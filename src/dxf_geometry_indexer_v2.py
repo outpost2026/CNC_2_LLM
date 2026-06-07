@@ -1069,7 +1069,7 @@ def _check_panel_fits_stock(panel_w, panel_h, stock_w, stock_h):
     return False, 0.0, 0.0
 
 
-def build_semantic_analysis(entities, layers_output, topology_stats, spatial_bounds, constraints):
+def build_semantic_analysis(entities, layers_output, topology_stats, spatial_bounds, constraints, tool_config=None):
     """Deterministic semantic analysis layer — zero ML, zero LLM, pure geometry."""
     bbox = spatial_bounds["global_bbox_mm"]
     closed = [e for e in entities if e.get("is_closed_loop", False)]
@@ -1113,7 +1113,7 @@ def build_semantic_analysis(entities, layers_output, topology_stats, spatial_bou
     vslot_count = len(vslot_ids)
     vslot_total_len = tools.get("v_slot_45deg", {}).get("single_pass_length_mm", 0)
 
-    feed_rate = 200.0
+    feed_rate = (tool_config or {}).get("default_feed_rate_mm_per_sec", 200.0)
     vibrate_len = tools.get("vibrate_cutter_0deg", {}).get("total_length_mm", 0)
     vibrate_time = vibrate_len / feed_rate if feed_rate > 0 else 0
     vslot_time = (vslot_total_len * 2) / feed_rate if feed_rate > 0 else 0
@@ -1268,9 +1268,8 @@ def index_dxf(dxf_path, tool_config=None):
     global_bbox = [float('inf'), float('inf'), float('-inf'), float('-inf')]
 
     for idx, entity in enumerate(msp):
-        layer_name = entity.dxf.layer
         color_idx = getattr(entity.dxf, 'color', 256)
-        if color_idx == 256: color_idx = layer_colors.get(layer_name, 7)
+        if color_idx == 256: color_idx = 7
         dtype = entity.dxftype()
         if dtype not in _GEOM_FNS: continue
 
@@ -1297,7 +1296,7 @@ def index_dxf(dxf_path, tool_config=None):
         if bb[3] > global_bbox[3]: global_bbox[3] = bb[3]
 
         all_entities.append({
-            "id": f"E_{idx:04d}", "entity_index": idx, "layer": layer_name, "color_index": color_idx,
+            "id": f"E_{idx:04d}", "entity_index": idx, "layer": entity.dxf.layer, "color_index": color_idx,
             "type": dtype, "length_mm": round(length, 2), "point_count": pt_count,
             "bbox_mm": [round(x, 2) for x in bb],
             "center_mm": [round(x, 2) for x in center],
@@ -1334,7 +1333,7 @@ def index_dxf(dxf_path, tool_config=None):
     }
     temp_topology = {"total_closed_loops": total_closed, "total_open_paths": total_open}
 
-    semantic = build_semantic_analysis(all_entities, [], temp_topology, temp_spatial, constraints)
+    semantic = build_semantic_analysis(all_entities, [], temp_topology, temp_spatial, constraints, tool_config)
 
     rag = build_rag_queries(all_entities, semantic)
     global_feats = _build_ml_vector(all_entities, entity_graph, bool_analysis, constraints, semantic)
