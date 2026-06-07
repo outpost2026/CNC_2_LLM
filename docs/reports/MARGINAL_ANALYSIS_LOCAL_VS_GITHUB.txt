@@ -144,8 +144,8 @@ Fáze 2: První vývojová větev
   [ ] 9. Tag: v2.3.0-dev1
 
 Fáze 3: GitHub push (po P0, cca 2 h od teď)
-  [ ] 10. Vytvořit private repo na GitHub: Moodpasta/DXF_indexer
-  [ ] 11. git remote add origin https://github.com/<user>/DXF_indexer.git
+  [x] 10. Vytvořit private repo na GitHub: outpost2026/CNC_2_LLM
+  [ ] 11. git remote add origin https://github.com/outpost2026/CNC_2_LLM.git
   [ ] 12. git push -u origin main
   [ ] 13. git push --tags
 

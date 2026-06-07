@@ -22,7 +22,7 @@ je to infrastruktura profesionálního vývoje.
 
 1. Jdi na https://github.com/<tvuj-ucet>
 2. Klikni na "+" vpravo nahoře → "New repository"
-3. Repository name: `DXF_indexer`
+3. Repository name: `CNC_2_LLM`
 4. Description: "Deterministický DXF/CAD indexer pro CNC frézování (Moodpasta)"
 5. Public/Private: **Private** (doporučeno — kód obsahuje firemní know-how)
 6. NEZAŠKRTÁVEJ "Initialize with README" (už ho máme)
@@ -36,7 +36,7 @@ Po vytvoření repo Ti GitHub ukáže příkazy. Použij druhý blok
 ```bash
 cd "g:\Můj disk\Moodpasta\dxf_integrace\DXF_indexer_main"
 
-git remote add origin https://github.com/<TVUJ_UCET>/DXF_indexer.git
+git remote add origin https://github.com/outpost2026/CNC_2_LLM.git
 git branch -M main
 git push -u origin main
 git push --tags
@@ -44,7 +44,7 @@ git push --tags
 
 ### Krok 3: Ověř
 
-- Jdi na https://github.com/<tvuj-ucet>/DXF_indexer
+- Jdi na https://github.com/outpost2026/CNC_2_LLM
 - Měl bys vidět všechny soubory, README.md, tagy
 
 ## Jak bude vývoj vypadat s GitHubem
@@ -209,7 +209,7 @@ Slouží primárně jako:
 - [x] První commit: baseline V2.2
 
 ### DNES / ZÍTRA (podle Tvého tempa)
-- [ ] Vytvořit private repo na GitHub.com
+- [x] Vytvořit private repo na GitHub.com: `outpost2026/CNC_2_LLM`
 - [ ] git remote add origin
 - [ ] git push -u origin main
 - [ ] git push --tags
