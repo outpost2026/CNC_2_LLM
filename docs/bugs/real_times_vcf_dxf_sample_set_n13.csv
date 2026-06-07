@@ -1,0 +1,14 @@
+soubor,empiricky cas,Predikce VCF v20,Predikce DXF v4.5,Predikce dxf_geometry_indexer_v2.py,VCF delta,DXF delta,Indexer_v2.py delta,,"delta = 1,00",100% shoda
+3780_deska_2,321,547,97,66,"1,7","0,3","0,21",,Delta > 1,odchylka nahoru
+3780_deska_4,396,655,744,552,"1,65","1,88","1,39",,delta < 1,odchylka dolu
+3780_deska_5,376,637,707,523,"1,69","1,88","1,39",,,
+3781_deska_1,447,501,885,663,"1,12","1,98","1,48",,"delta = 0,60",60% procentí shoda = odchylka dolu = model podhodnocuje
+3781_deska_2,504,557,992,750,"1,11","1,97","1,49",,"Delta = 1,73",73% rozdíl = odchylka nahoru = model nadhodnocuje
+3822_deska_2ks,388,354,198,136,"0,91","0,51","0,35",,,
+3824_deska_1,578,573,529,313,"0,99","0,92","0,54",,,
+3824_deska_4,660,644,729,404,"0,98","1,1","0,61",,,
+3873_PCB_A,1417,1516,552,475,"1,07","0,39","0,34",,,
+3873_PCB_C,1251,2154,651,598,"1,72","0,52","0,48",,,
+3891_deska_3,448,447,783,564,1,"1,75","1,26",,,
+3892_deska_2,534,550,903,670,"1,03","1,69","1,25",,,
+3931_26ks_skladba,4560,4848,2640,523,"1,06","0,58","0,11",,,
