@@ -11,6 +11,7 @@ def _normalize_for_comparison(result):
     if "metadata" in result:
         result["metadata"].pop("timestamp", None)
         result["metadata"].pop("file", None)
+        result["metadata"].pop("file_name", None)
         result["metadata"].pop("md5", None)
     return json.dumps(result, sort_keys=True, indent=None, ensure_ascii=False)
 

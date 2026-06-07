@@ -988,22 +988,58 @@ def _simple_zone_split(entities, global_bbox):
 
 
 def _assign_tools(entities, outer_bbox, tool_config=None):
-    """Deterministic CNC tool assignment.
-    Closed loops -> vibrate cutter. Open paths inside bbox -> V-slot double pass.
+    """Deterministic CNC tool assignment with ACI color priority (C3 fix).
+    Priority: ACI color mapping > geometry heuristic.
+    Closed loops -> vibrate cutter. Open paths -> V-slot double pass.
     V-slot double-pass incorporates start/end extensions from config.
+    Returns (tools_dict, conflict_detected, conflict_entity_ids).
     """
+    aci_map = {}
+    if tool_config:
+        aci_map = tool_config.get("aci_color_mapping", {})
+
     vibrate_ids = []
     vslot_ids = []
+    conflict_ids = []
 
     for e in entities:
-        if e.get("is_closed_loop", False):
-            vibrate_ids.append(e["id"])
+        eid = e["id"]
+        ci = str(e.get("color_index", 7))
+        is_closed = e.get("is_closed_loop", False)
+        geometry_tool = "vibrate_cutter_0deg" if is_closed else "v_slot_45deg"
+
+        aci_tool = None
+        if ci in aci_map:
+            ct = aci_map[ci].get("cutter_type", "")
+            if "v-slot" in ct.lower() or "vslot" in ct.lower():
+                aci_tool = "v_slot_45deg"
+            elif "vibrate" in ct.lower():
+                aci_tool = "vibrate_cutter_0deg"
+
+        if aci_tool is not None:
+            if aci_tool != geometry_tool:
+                conflict_ids.append(eid)
+            if aci_tool == "v_slot_45deg":
+                bb = e["bbox_mm"]
+                bbox_overlaps = not (bb[2] < outer_bbox[0] or bb[0] > outer_bbox[2] or
+                                    bb[3] < outer_bbox[1] or bb[1] > outer_bbox[3])
+                if bbox_overlaps:
+                    vslot_ids.append(eid)
+                else:
+                    vibrate_ids.append(eid)
+            else:
+                vibrate_ids.append(eid)
         else:
-            bb = e["bbox_mm"]
-            bbox_overlaps = not (bb[2] < outer_bbox[0] or bb[0] > outer_bbox[2] or
-                                bb[3] < outer_bbox[1] or bb[1] > outer_bbox[3])
-            if bbox_overlaps:
-                vslot_ids.append(e["id"])
+            if is_closed:
+                vibrate_ids.append(eid)
+            else:
+                bb = e["bbox_mm"]
+                bbox_overlaps = not (bb[2] < outer_bbox[0] or bb[0] > outer_bbox[2] or
+                                    bb[3] < outer_bbox[1] or bb[1] > outer_bbox[3])
+                if bbox_overlaps:
+                    vslot_ids.append(eid)
+                else:
+                    vibrate_ids.append(eid)
 
     tools = {}
     v_total = round(sum(e["length_mm"] for e in entities if e["id"] in vibrate_ids), 1)
@@ -1019,9 +1055,6 @@ def _assign_tools(entities, outer_bbox, tool_config=None):
         fb_vslot = (tool_config.get("cognition", {}) or {}).get("generic_layer_fallback", {}).get("fallback_vslot", {})
         vslot_start_ext = fb_vslot.get("start_extension_mm", 2.0)
         vslot_end_ext = fb_vslot.get("end_extension_mm", 2.0)
-        ext_factor = vslot_multiplier if extensions_doubled else 1.0
-    else:
-        ext_factor = vslot_multiplier
 
     if vibrate_ids:
         tools["vibrate_cutter_0deg"] = {
@@ -1047,7 +1080,8 @@ def _assign_tools(entities, outer_bbox, tool_config=None):
             "start_extension_mm": vslot_start_ext,
             "end_extension_mm": vslot_end_ext
         }
-    return tools
+
+    return tools, len(conflict_ids) > 0, conflict_ids
 
 
 def _detect_mounting_flap(closed_entities):
@@ -1162,7 +1196,7 @@ def build_semantic_analysis(entities, layers_output, topology_stats, spatial_bou
     closed = [e for e in entities if e.get("is_closed_loop", False)]
 
     zones = _semantic_zone_split(entities, bbox)
-    tools = _assign_tools(entities, bbox, tool_config)
+    tools, has_conflict, conflict_eids = _assign_tools(entities, bbox, tool_config)
     flap = _detect_mounting_flap(closed) if len(closed) >= 2 else {"detected": False}
 
     w_panel, h_panel = bbox[2] - bbox[0], bbox[3] - bbox[1]
@@ -1242,6 +1276,8 @@ def build_semantic_analysis(entities, layers_output, topology_stats, spatial_bou
         "narrative_summary": "",
         "zones": zones,
         "tool_assignments": tools,
+        "tool_conflict_detected": has_conflict,
+        "tool_conflict_entity_ids": conflict_eids,
         "cutting_time_estimate": cutting_time,
         "mounting_flap": flap,
         "material_yield": material_yield,
