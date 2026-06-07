@@ -73,7 +73,7 @@ try:
 except ImportError:
     pass
 
-VERSION = "2.2.0"
+VERSION = "2.3.0"
 
 ADJACENCY_THRESHOLD_MM = 1.0
 PROXIMITY_THRESHOLD_MM = 5.0
@@ -422,17 +422,45 @@ def shape_groups(entities):
 
 def proximity_matrix(shape_groups_list, entities):
     matrix = {}
+    if _HAS_SHAPELY:
+        def _shape_group_hull_and_tree(sg, entities):
+            polys = []
+            for idx_i in sg["entity_indices"]:
+                verts = entities[idx_i].get("vertices", [])
+                if len(verts) >= 3:
+                    polys.append(Polygon(verts).convex_hull)
+            if not polys:
+                return None, None
+            merged = unary_union(polys) if len(polys) > 1 else polys[0]
+            return merged, STRtree(polys)
+        sg_data = {}
+        for sg_i in shape_groups_list:
+            sg_data[sg_i["id"]] = _shape_group_hull_and_tree(sg_i, entities)
     for sg_i in shape_groups_list:
         sid_i = sg_i["id"]; matrix[sid_i] = {}
         for sg_j in shape_groups_list:
             sid_j = sg_j["id"]
             if sid_i == sid_j: continue
-            min_d = float('inf')
-            for idx_i in sg_i["entity_indices"]:
-                for idx_j in sg_j["entity_indices"]:
-                    d = _bbox_distance(entities[idx_i]["bbox_mm"], entities[idx_j]["bbox_mm"])
-                    if d < min_d: min_d = d
-            matrix[sid_i][sid_j] = round(min_d, 2) if min_d != float('inf') else 0.0
+            if _HAS_SHAPELY:
+                geom_i, _ = sg_data.get(sid_i, (None, None))
+                geom_j, _ = sg_data.get(sid_j, (None, None))
+                if geom_i is not None and geom_j is not None:
+                    d = geom_i.distance(geom_j)
+                    matrix[sid_i][sid_j] = round(d, 2)
+                else:
+                    min_d = float('inf')
+                    for idx_i in sg_i["entity_indices"]:
+                        for idx_j in sg_j["entity_indices"]:
+                            d = _bbox_distance(entities[idx_i]["bbox_mm"], entities[idx_j]["bbox_mm"])
+                            if d < min_d: min_d = d
+                    matrix[sid_i][sid_j] = round(min_d, 2) if min_d != float('inf') else 0.0
+            else:
+                min_d = float('inf')
+                for idx_i in sg_i["entity_indices"]:
+                    for idx_j in sg_j["entity_indices"]:
+                        d = _bbox_distance(entities[idx_i]["bbox_mm"], entities[idx_j]["bbox_mm"])
+                        if d < min_d: min_d = d
+                matrix[sid_i][sid_j] = round(min_d, 2) if min_d != float('inf') else 0.0
     return matrix
 
 def _point_in_polygon(px, py, poly):
@@ -450,21 +478,40 @@ def _point_in_polygon(px, py, poly):
 
 def nesting_tree(entities):
     parent_map = {}
-    for ia, el_a in enumerate(entities):
-        if not el_a.get("is_closed_loop") and el_a.get("center_mm"):
-            continue
-        cx, cy = el_a.get("center_mm", [0, 0])
-        containing = []
-        for ib, el_b in enumerate(entities):
-            if ia == ib or not el_b.get("is_closed_loop", False): continue
-            bb = el_b["bbox_mm"]
-            if not (bb[0] <= cx <= bb[2] and bb[1] <= cy <= bb[3]): continue
-            verts = el_b.get("vertices", [])
-            if verts and _point_in_polygon(cx, cy, verts):
-                containing.append(ib)
-        if containing:
-            parent_map[ia] = min(containing, key=lambda i: (entities[i]["bbox_mm"][2] - entities[i]["bbox_mm"][0]) *
-                                  (entities[i]["bbox_mm"][3] - entities[i]["bbox_mm"][1]))
+    if _HAS_SHAPELY:
+        entity_polys = []
+        for ia, el_a in enumerate(entities):
+            if el_a.get("is_closed_loop") and el_a.get("vertices"):
+                verts = el_a["vertices"]
+                if len(verts) >= 3:
+                    entity_polys.append((ia, Polygon(verts)))
+        for ia, poly_a in entity_polys:
+            if poly_a.is_empty: continue
+            containing = []
+            for ib, poly_b in entity_polys:
+                if ia == ib or poly_b.is_empty: continue
+                if poly_b.contains(poly_a):
+                    containing.append(ib)
+            if containing:
+                area_map = {ib: (entities[ib]["bbox_mm"][2] - entities[ib]["bbox_mm"][0]) *
+                            (entities[ib]["bbox_mm"][3] - entities[ib]["bbox_mm"][1]) for ib in containing}
+                parent_map[ia] = min(containing, key=lambda i: area_map[i])
+    else:
+        for ia, el_a in enumerate(entities):
+            if not el_a.get("is_closed_loop") and el_a.get("center_mm"):
+                continue
+            cx, cy = el_a.get("center_mm", [0, 0])
+            containing = []
+            for ib, el_b in enumerate(entities):
+                if ia == ib or not el_b.get("is_closed_loop", False): continue
+                bb = el_b["bbox_mm"]
+                if not (bb[0] <= cx <= bb[2] and bb[1] <= cy <= bb[3]): continue
+                verts = el_b.get("vertices", [])
+                if verts and _point_in_polygon(cx, cy, verts):
+                    containing.append(ib)
+            if containing:
+                parent_map[ia] = min(containing, key=lambda i: (entities[i]["bbox_mm"][2] - entities[i]["bbox_mm"][0]) *
+                                      (entities[i]["bbox_mm"][3] - entities[i]["bbox_mm"][1]))
 
     children_map = {i: [] for i in range(len(entities))}
     for child, parent in parent_map.items():
@@ -526,6 +573,9 @@ def build_entity_graph(entities):
 
     adj_list = {f"E_{idx:04d}": [] for idx in range(n)}
     for src, tgt, _ in adjacency_edges:
+        adj_list[src].append(tgt)
+        adj_list[tgt].append(src)
+    for src, tgt, _ in intersection_edges:
         adj_list[src].append(tgt)
         adj_list[tgt].append(src)
     for src, tgt, _ in proximity_edges:
@@ -896,7 +946,23 @@ def _semantic_zone_split(entities, global_bbox):
             "spacing_mean_mm": spacing_mm
         })
 
-    return result if result else _simple_zone_split(entities, global_bbox)
+    return _deduplicate_zones(result) if result else _simple_zone_split(entities, global_bbox)
+
+
+def _deduplicate_zones(zones):
+    if len(zones) <= 1:
+        return zones
+    seen_sets = {}
+    merged = []
+    for zone in zones:
+        eid_set = frozenset(zone["entity_ids"])
+        if eid_set in seen_sets:
+            continue
+        seen_sets[eid_set] = len(merged)
+        merged.append(zone)
+    for i in range(len(merged)):
+        merged[i]["zone_id"] = f"Z{i + 1}"
+    return merged
 
 
 def _simple_zone_split(entities, global_bbox):
@@ -921,9 +987,10 @@ def _simple_zone_split(entities, global_bbox):
              "spacing_mean_mm": spacing_mm}]
 
 
-def _assign_tools(entities, outer_bbox):
+def _assign_tools(entities, outer_bbox, tool_config=None):
     """Deterministic CNC tool assignment.
     Closed loops -> vibrate cutter. Open paths inside bbox -> V-slot double pass.
+    V-slot double-pass incorporates start/end extensions from config.
     """
     vibrate_ids = []
     vslot_ids = []
@@ -942,6 +1009,20 @@ def _assign_tools(entities, outer_bbox):
     v_total = round(sum(e["length_mm"] for e in entities if e["id"] in vibrate_ids), 1)
     vs_total = round(sum(e["length_mm"] for e in entities if e["id"] in vslot_ids), 1)
 
+    vslot_multiplier = 2.0
+    vslot_start_ext = 0.0
+    vslot_end_ext = 0.0
+    if tool_config:
+        vb = tool_config.get("vslot_bidirectional", {})
+        vslot_multiplier = vb.get("cut_both_side_multiplier", 2.0)
+        extensions_doubled = vb.get("extensions_also_doubled", True)
+        fb_vslot = (tool_config.get("cognition", {}) or {}).get("generic_layer_fallback", {}).get("fallback_vslot", {})
+        vslot_start_ext = fb_vslot.get("start_extension_mm", 2.0)
+        vslot_end_ext = fb_vslot.get("end_extension_mm", 2.0)
+        ext_factor = vslot_multiplier if extensions_doubled else 1.0
+    else:
+        ext_factor = vslot_multiplier
+
     if vibrate_ids:
         tools["vibrate_cutter_0deg"] = {
             "entity_ids": vibrate_ids,
@@ -951,14 +1032,20 @@ def _assign_tools(entities, outer_bbox):
             "operation": "outer_format"
         }
     if vslot_ids:
+        vslot_count = len(vslot_ids)
+        total_extensions = vslot_count * (vslot_start_ext + vslot_end_ext)
+        double_pass_raw = vs_total + total_extensions
+        double_pass_effective = round(vslot_multiplier * double_pass_raw, 1)
         tools["v_slot_45deg"] = {
             "entity_ids": vslot_ids,
-            "entity_count": len(vslot_ids),
+            "entity_count": vslot_count,
             "single_pass_length_mm": vs_total,
-            "double_pass_length_mm": round(vs_total * 2, 1),
+            "double_pass_length_mm": double_pass_effective,
             "passes": 2,
-            "head_rotations": len(vslot_ids),
-            "operation": "decorative_grooves"
+            "head_rotations": vslot_count,
+            "operation": "decorative_grooves",
+            "start_extension_mm": vslot_start_ext,
+            "end_extension_mm": vslot_end_ext
         }
     return tools
 
@@ -1075,7 +1162,7 @@ def build_semantic_analysis(entities, layers_output, topology_stats, spatial_bou
     closed = [e for e in entities if e.get("is_closed_loop", False)]
 
     zones = _semantic_zone_split(entities, bbox)
-    tools = _assign_tools(entities, bbox)
+    tools = _assign_tools(entities, bbox, tool_config)
     flap = _detect_mounting_flap(closed) if len(closed) >= 2 else {"detected": False}
 
     w_panel, h_panel = bbox[2] - bbox[0], bbox[3] - bbox[1]
@@ -1111,12 +1198,12 @@ def build_semantic_analysis(entities, layers_output, topology_stats, spatial_bou
 
     vslot_ids = tools.get("v_slot_45deg", {}).get("entity_ids", [])
     vslot_count = len(vslot_ids)
-    vslot_total_len = tools.get("v_slot_45deg", {}).get("single_pass_length_mm", 0)
+    vslot_total_len = tools.get("v_slot_45deg", {}).get("double_pass_length_mm", 0)
 
     feed_rate = (tool_config or {}).get("default_feed_rate_mm_per_sec", 200.0)
     vibrate_len = tools.get("vibrate_cutter_0deg", {}).get("total_length_mm", 0)
     vibrate_time = vibrate_len / feed_rate if feed_rate > 0 else 0
-    vslot_time = (vslot_total_len * 2) / feed_rate if feed_rate > 0 else 0
+    vslot_time = vslot_total_len / feed_rate if feed_rate > 0 else 0
     rotation_overhead = vslot_count * 0.5
     total_time = vibrate_time + vslot_time + rotation_overhead
 
