@@ -1,0 +1,506 @@
+{
+  "meta": {
+    "handoff_id": "DXF_indexer_v2.2_dev_handoff_COMPLETE",
+    "generated": "2026-06-07T02:15:00Z",
+    "project": "Moodpasta DXF/CAD Indexer",
+    "version": "2.2.0",
+    "author": "Ondrej Sousek",
+    "scope": "ML hygiene fixes + Layer Card (CAM import) + Visualization repair + CLI extension",
+    "effort": "~3.5 hours",
+    "repository_root": "G:\\Můj disk\\Moodpasta\\dxf_integrace\\",
+    "active_directory": "G:\\Můj disk\\Moodpasta\\dxf_integrace\\DXF_indexer_v2.2\\"
+  },
+
+  "project_history": {
+    "DXF_v4.5": "Original heuristic-based parser (depth-first entity tree explorer)",
+    "DXF_indexer_v2.0": "First deterministic indexer rewrite (shapely, zone detection, ML vector)",
+    "DXF_indexer_v2.1": "Bugfixes + extended features (graph components, proximity, TAC)",
+    "DXF_indexer_v2.2": "THIS VERSION — ML hygiene, Layer Card, visualization fix, CLI --viz"
+  },
+
+  "v22_changes": {
+
+    "A_ml_target_leakage_fix": {
+      "severity": "CRITICAL",
+      "status": "FIXED",
+      "description": "_build_ml_vector() was feeding cutting_time_estimate_s as a feature to the ML model. This is a textbook case of target leakage — the model would learn to copy the time value directly instead of learning to predict it from geometry features.",
+      "file": "dxf_geometry_indexer_v2.py",
+      "function": "_build_ml_vector()",
+      "line": "~1432",
+      "was": "Feature vector included: cutting_time_estimate_s",
+      "now": "cutting_time_estimate_s REMOVED from feature vector. Added: panel_fits_stock (bool), v_slot_single_pass_length_mm. panel_yield_percent is -1.0 for oversized panels (was 0 — indistinguishable from 0% valid yield).",
+      "impact_ml_pipeline": "BREAKING: ML models trained on V2.1 CSV will fail on V2.2 (different column count, different semantics). Retrain required."
+    },
+
+    "B_panel_yield_fix": {
+      "severity": "HIGH",
+      "status": "FIXED",
+      "description": "Panels larger than stock plate (2900x1220) had yield capped at 100% via min(...,100), and waste_mm went negative (e.g. [-3756, -1551]). No 90-degree rotation was checked.",
+      "file": "dxf_geometry_indexer_v2.py",
+      "new_function": "_check_panel_fits_stock(w, h, stock_w, stock_h)",
+      "logic": "Tests both orientations (0deg and 90deg). If panel fits rotated: panel_rotated=true in output. If panel doesn't fit at all: yield_percent=null, waste_mm=null, panel_fits_stock=false.",
+      "json_additions": ["material_yield.panel_fits_stock (bool)", "material_yield.panel_rotated (bool)"],
+      "narrative_update": "VAROVANI: Panel XxY mm se nevejde na surovou desku... (when oversized), (panel otocen o 90deg) notation when rotated."
+    },
+
+    "C_missing_csv_columns_fix": {
+      "severity": "HIGH",
+      "status": "FIXED",
+      "description": "When semantic_zone_count=0, columns zone_lengths_mean, largest_zone_entity_count, max_zone_spacing_mm were never emitted → CSV schema inconsistency across files. Also _simple_zone_split() never computed spacing_mean_mm.",
+      "file": "dxf_geometry_indexer_v2.py",
+      "fix_1": "_build_ml_vector(): zone features always emitted with default=0 (not conditional on zone_count>0)",
+      "fix_2": "_simple_zone_split(): added spacing calculation from entity centers — max_zone_spacing_mm now reflects actual zone distances"
+    },
+
+    "D_layer_card": {
+      "severity": "N/A — NEW FEATURE",
+      "status": "IMPLEMENTED",
+      "description": "New CAM-import-ready layer analysis. Entities are aggregated by DXF color_index (ACI 0-255), cross-referenced with dxf_tool_config.json aci_color_mapping to determine cutter_type, base_speed, direction, and validation_status for each color.",
+      "file": "dxf_geometry_indexer_v2.py",
+      "new_functions": [
+        {
+          "name": "build_layer_card(entities, tool_config=None)",
+          "description": "Aggregates entities by color_index. Per color: entity_count, total_length_mm, point_count, point_density_per_meter, closed_count, open_count, closed_ratio, total_tac_rad, tac_per_meter, min_length_mm, max_length_mm, geometry_types[], layers[]. Tool config cross-reference: cutter_type, base_speed_mms, direction, validation_status, is_mapped. Output: dict with color_count, total_entities_mapped, total_entities_unmapped, colors[]."
+        },
+        {
+          "name": "write_layer_card_csv(data, out)",
+          "description": "Writes standalone {name}_layer_card.csv with 20 columns: color_index, color_name, entity_count, total_length_mm, point_count, closed_count, open_count, closed_ratio, total_tac_rad, tac_per_meter, point_density_per_meter, min_length_mm, max_length_mm, geometry_types, layers, cutter_type, base_speed_mms, direction, validation_status, is_mapped."
+        }
+      ],
+      "constants_added": "_ACI_COLOR_NAMES = {0:'ByBlock', 1:'Red', 2:'Yellow', 3:'Green', 4:'Cyan', 5:'Blue', 6:'Magenta', 7:'White', 8:'DarkGray', 9:'LightGray', 30:'Orange', 52:'Lime', 92:'Azure'}",
+      "json_output": "New root key 'layer_card' in index JSON",
+      "md_output": "New section '## Layer Card (CAM Import Reference)' in Markdown output",
+      "csv_output": "New {name}_layer_card.csv standalone file",
+      "streamlit": "New panel in Layers tab showing per-color table with tool assignment and validation status",
+      "tool_config_passthrough": "index_dxf() now accepts tool_config=None parameter and passes it to build_layer_card(). Previously build_layer_card() was called without tool_config, making all colors 'unmapped'."
+    },
+
+    "E_visualization_fix_and_extension": {
+      "severity": "HIGH (crash)",
+      "status": "FIXED + EXTENDED",
+      "description_bug": "dxf_indexer_app_v2.py had 'import math' inside an `else` block (only executed when NO file uploaded). Uploading a DXF → NameError on math.cos/math.sin/math.radians in 2D Viz tab → streamlit crash.",
+      "file": "dxf_indexer_app_v2.py",
+      "fix": "'import math' moved to top of file (line 4). Added proper layer_colors tracking and seen_colors set.",
+      "cli_extension": {
+        "new_flags": ["--viz (generates {name}_2d.png)", "--config <path> (path to dxf_tool_config.json)"],
+        "new_function": "_render_png(dxf_path, out_path, semantic, tool_config)",
+        "render_specs": "1920x1080, DPI 100, dark theme (#1a1a2e bg), aspect='equal', Y-axis inverted (CAD convention). Legend: color_index → color_name → cutter_type. Entities rendered by color_index with matplotlib patches. Circles: 48 segments. Arcs: adaptive segmentation (min 12, ar/0.08). Stock boundary: dashed rectangle 2900x1220. Zone overlays: horizontal dashed lines from semantic.zones."
+      },
+      "streamlit_updates": [
+        "Legend panel with tool types from layer_card",
+        "Stock boundary rectangle drawn on plot",
+        "Zone overlay (horizontal zone boundary lines)",
+        "Smoother circle rendering (48 points)",
+        "Adaptive arc segmentation"
+      ]
+    },
+
+    "F_version_and_header": {
+      "description": "VERSION updated to '2.2.0', docstring updated with V2.2 changes."
+    }
+  },
+
+  "files": {
+    "dxf_geometry_indexer_v2.py": {
+      "path": "DXF_indexer_v2.2\\dxf_geometry_indexer_v2.py",
+      "size": "~1994 lines",
+      "role": "Core deterministic indexer",
+      "key_functions": [
+        "index_dxf(path, tool_config=None) — main entry, ~line 1625",
+        "_build_ml_vector(...) — ML feature extraction, ~line 1325",
+        "_check_panel_fits_stock(w, h, sw, sh) — panel fit with rotation, ~line 780",
+        "build_layer_card(entities, tool_config=None) — color aggregation, ~line 1520",
+        "write_layer_card_csv(data, out) — CAM CSV export, ~line 1610",
+        "_render_png(dxf, out, semantic, tool_config) — CLI visualization, ~line 1750",
+        "_simple_zone_split(entities) — zone detection with spacing calc, ~line 610",
+        "write_ml_vectors_csv(entries, out) — ML CSV with fixed columns, ~line 1490",
+        "write_json(data, out), write_md(data, out) — JSON/MD output formatters"
+      ],
+      "version_header": "VERSION = '2.2.0'",
+      "dependencies": "ezdxf, numpy (required); shapely, scipy, gudhi (optional); matplotlib (for --viz)"
+    },
+    "dxf_indexer_app_v2.py": {
+      "path": "DXF_indexer_v2.2\\dxf_indexer_app_v2.py",
+      "size": "~509 lines",
+      "role": "Streamlit DEV dashboard",
+      "imports_fixed": "'import math' moved from else-block to top (line 4)",
+      "tabs": [
+        "Entity Graph",
+        "Boolean Ops",
+        "RAG Queries",
+        "Layers (with new Layer Card panel)",
+        "2D Viz (with legend, stock rect, zone overlay, smooth circles/arcs)",
+        "Semantic Analysis",
+        "ML Vector"
+      ],
+      "dependencies": "streamlit, matplotlib, pandas, ezdxf, numpy"
+    },
+    "dxf_tool_config.json": {
+      "path": "DXF_indexer_v2.2\\dxf_tool_config.json",
+      "size": "~45 lines",
+      "role": "External CNC tool configuration for ACI color mapping",
+      "struture": {
+        "default_feed_rate_mm_per_sec": 200,
+        "stock_plate_mm": [2900, 1220],
+        "vibrate_cutter_0deg": {"base_speed_mms": 200, "direction": 0, "validation_status": "validated"},
+        "vibrate_cutter_45deg": {"base_speed_mms": 170, "direction": 45, "validation_status": "validated"},
+        "vibrate_cutter_90deg": {"base_speed_mms": 200, "direction": 90, "validation_status": "validated"},
+        "v_slot": {"base_speed_mms": 150, "direction": "V-slot", "validation_status": "validated"},
+        "aci_color_mapping": {
+          "Laser": {"aci_codes": [1], "cutter_type": "laser", "direction": "2D_cut"},
+          "Drill": {"aci_codes": [2,30], "cutter_type": "vibrate_cutter_0deg", "direction": 0},
+          "V-cut": {"aci_codes": [3,52], "cutter_type": "vibrate_cutter_45deg", "direction": 45},
+          "Cross-cut": {"aci_codes": [4,92], "cutter_type": "vibrate_cutter_90deg", "direction": 90},
+          "V-slot": {"aci_codes": [5], "cutter_type": "v_v-slot", "direction": "V-slot"},
+          "Plunge": {"aci_codes": [6], "cutter_type": "vibrate_cutter_0deg", "direction": 0},
+          "Marking": {"aci_codes": [7], "cutter_type": "vibrate_cutter_0deg", "direction": 0}
+        }
+      },
+      "unchanged": true
+    },
+    "requirements.txt": {
+      "path": "DXF_indexer_v2.2\\requirements.txt",
+      "content": "ezdxf, numpy, shapely, scipy, matplotlib, pandas, streamlit",
+      "unchanged": true
+    },
+    "diff.txt": {
+      "path": "DXF_indexer_v2.2\\diff.txt",
+      "lines": 128,
+      "role": "Detailed V2.1→V2.2 diff documentation",
+      "unchanged": false
+    },
+    "readme.txt": {
+      "path": "DXF_indexer_v2.2\\readme.txt",
+      "lines": 123,
+      "role": "V2.2 architecture, usage, and validation documentation",
+      "unchanged": false
+    },
+    "demo_data": {
+      "path": "DXF_indexer_v2.2\\demo_data\\",
+      "description": "3 test DXF files + their previous outputs",
+      "files": [
+        "tmpzdv4yjbe.dxf — circles + 2 slots",
+        "tmpayydik84.dxf — 35 vertical slots",
+        "tmp0rv8aewa.dxf — large oversize panel (yield bug test case)"
+      ]
+    },
+    "test_output_v22": {
+      "path": "DXF_indexer_v2.2\\test_output_v22\\",
+      "description": "Validation outputs generated with V2.2 parser",
+      "contents": "JSON, MD, ML CSV, layer_card CSV, PNG (--viz) for all 3 demo DXF"
+    }
+  },
+
+  "validation_results": {
+    "parser_tested_on": "3 demo DXF files in demo_data/",
+    "output_formats": ["JSON", "MD", "ML CSV", "Layer Card CSV", "PNG"],
+    "checks": [
+      {
+        "check": "ML leakage",
+        "status": "PASS",
+        "detail": "ML CSV does NOT contain cutting_time_estimate_s as a feature"
+      },
+      {
+        "check": "Layer card mapping",
+        "status": "PASS",
+        "detail": "ACI 3 (Green) maps to V-slot cutter with base_speed 150 mm/s"
+      },
+      {
+        "check": "Layer card mapping",
+        "status": "PASS",
+        "detail": "ACI 52 (Lime) maps to V-slot, properly cross-referenced with tool_config"
+      },
+      {
+        "check": "Panel yield oversized",
+        "status": "PASS",
+        "detail": "tmp0rv8aewa (2015x1235 oversized panel) reports yield_percent=null, panel_fits_stock=false"
+      },
+      {
+        "check": "CSV schema consistency",
+        "status": "PASS",
+        "detail": "zone_lengths_mean, largest_zone_entity_count, max_zone_spacing_mm present even when zone_count=0"
+      },
+      {
+        "check": "Visualization",
+        "status": "PASS",
+        "detail": "2D Viz tab works without crash, proper legend and stock boundary"
+      },
+      {
+        "check": "CLI --viz",
+        "status": "PASS",
+        "detail": "PNG generated at 1920x1080, dark theme, color-coded entities, zone overlay"
+      },
+      {
+        "check": "Backward compatibility",
+        "status": "PASS",
+        "detail": "All V2.1 JSON fields preserved. V2.2 only adds layer_card and 2 material_yield bools."
+      }
+    ]
+  },
+
+  "known_issues_critical": [
+    {
+      "id": "C1",
+      "title": "Empty nesting_tree",
+      "severity": "high",
+      "description": "nesting_tree is always empty, even when containment relationships exist. This regression from V2.1 means no hierarchical entity grouping is provided in the output.",
+      "affected": "V2.1, V2.2",
+      "target_fix": "V2.3"
+    },
+    {
+      "id": "C2",
+      "title": "Proximity matrix all zeros",
+      "severity": "high",
+      "description": "proximity_matrix contains zeros for most shape group pairs. In some outputs the entire matrix is zero, making spatial relationship features useless for ML.",
+      "affected": "V2.2",
+      "target_fix": "V2.3"
+    },
+    {
+      "id": "C3",
+      "title": "Tool assignment conflict",
+      "severity": "critical",
+      "description": "Entities assigned to both vibrate_cutter_0deg (based on ACI color from tool_config) and v_slot_45deg (based on geometry heuristic: open paths). Layer card correctly maps color to tool, but semantic analysis also heuristically assigns tools, creating ambiguity.",
+      "affected": "V2.2",
+      "target_fix": "V2.3 — HIGHEST PRIORITY"
+    },
+    {
+      "id": "C4",
+      "title": "Tool_summary missing correct total_length",
+      "severity": "medium",
+      "description": "For V-slot, total_length_mm = 0 but single_pass_length_mm and double_pass_length_mm are correct. Discrepancy makes the summary unreliable.",
+      "affected": "V2.1, V2.2",
+      "target_fix": "V2.3"
+    },
+    {
+      "id": "C5",
+      "title": "Wrong graph_connected_components count",
+      "severity": "medium",
+      "description": "Some panels report graph_connected_components=9 but all entities belong to one spatial cluster. Components are counted from adjacency/containment only, not from intersection/touch.",
+      "affected": "V2.2",
+      "target_fix": "V2.3"
+    },
+    {
+      "id": "C6",
+      "title": "Duplicated zones",
+      "severity": "medium",
+      "description": "Same entity_ids appear in multiple zones (identical zone content with different zone indices). Each entity should belong to exactly one zone.",
+      "affected": "V2.2",
+      "target_fix": "V2.3"
+    }
+  ],
+
+  "known_issues_minor": [
+    {
+      "id": "M1",
+      "title": "Regularity_score negative values",
+      "description": "Negative values (e.g. -4.477) when zone pattern is non-uniform. Score is unbounded, which is confusing.",
+      "fix": "Document or clamp to [0,1]"
+    },
+    {
+      "id": "M2",
+      "title": "min_feature_width_mm always zero",
+      "description": "Feature not implemented — stub returns 0.",
+      "fix": "Implement via distance transform or minimum entity distance from proximity matrix"
+    },
+    {
+      "id": "M3",
+      "title": "Inconsistent bbox field naming",
+      "description": "global_bbox_mm uses absolute coordinates, panel_bbox_mm uses relative dimensions. Same name 'bbox_mm' with different semantics is confusing.",
+      "fix": "Rename panel_bbox_mm to panel_size_mm or relative_bbox_mm"
+    }
+  ],
+
+  "v23_plan": {
+    "version": "2.3.0",
+    "estimated_effort": "~6 hours",
+    "architecture_decision": "Fully standalone functions with own inputs/outputs (NOT pipeline pattern, NOT minimal refactoring). Each module is independently callable.",
+    "priority_1_fixes": [
+      {
+        "id": "V23_P1_01",
+        "task": "Fix C3 — Tool assignment conflict resolution",
+        "approach": "Define clear priority: if ACI color is mapped in layer_card tool_config, that overrides geometry heuristic. Otherwise fallback to geometry detection. Add 'tool_conflict_detected' boolean flag when both rules apply to same entity.",
+        "files": "dxf_geometry_indexer_v2.py → _analyze_semantic_cutting() or equivalent",
+        "outputs": "Updated semantic_analysis.tool_summary with unambiguous assignments"
+      },
+      {
+        "id": "V23_P1_02",
+        "task": "Fix C1 — Nesting tree construction",
+        "approach": "Recursively build nesting_tree from containment edges (parent → children). Include all entities. Use shapely contains() for polygon-in-polygon relationships.",
+        "files": "dxf_geometry_indexer_v2.py → new _build_nesting_tree() function",
+        "outputs": "JSON nesting_tree array with parent_ids and child_ids"
+      },
+      {
+        "id": "V23_P1_03",
+        "task": "Fix C2 — Proximity matrix computation",
+        "approach": "Compute minimum Euclidean distance between entity bounding boxes or convex hulls. Use STRtree spatial index for efficiency on large entity counts.",
+        "files": "dxf_geometry_indexer_v2.py → _compute_proximity_matrix()",
+        "outputs": "Accurate proximity_matrix in JSON and as ML features"
+      }
+    ],
+    "priority_2_enhancements": [
+      {
+        "id": "V23_P2_04",
+        "task": "Modular architecture — separate functions with own outputs",
+        "approach": "Split index_dxf() into independently callable modules: geometry_extraction(dxf) → entities, spatial_analysis(entities) → proximity/containment/graph, semantic_analysis(entities, tool_config) → zones/cutting_time, feature_extraction(entities, zones) → ML vector, output_formatting(data) → JSON/MD/CSV. Each returns self-contained dict.",
+        "files": "New: dxf_geometry_extractor.py, dxf_spatial_analyzer.py, dxf_semantic_analyzer.py, dxf_feature_extractor.py, dxf_output_formatter.py OR all in dxf_geometry_indexer_v2.py with clear section headers"
+      },
+      {
+        "id": "V23_P2_05",
+        "task": "New ML features",
+        "features": [
+          "point_density_per_meter — total entity vertices / panel perimeter",
+          "cut_density_m_per_m2 — total entity length / panel area",
+          "open_closed_ratio — open paths / closed paths",
+          "avg_points_per_entity — vertex count / entity count",
+          "sharp_corners_per_meter — count of angles < 45deg / perimeter",
+          "complexity_index — weighted combination of above"
+        ],
+        "files": "dxf_geometry_indexer_v2.py → _build_ml_vector()",
+        "csv_columns_added": 6
+      },
+      {
+        "id": "V23_P2_06",
+        "task": "CSV column standardization — fixed schema",
+        "approach": "Define FIXED_CSV_SCHEMA tuple in write_ml_vectors_csv(). Always write all columns in fixed order regardless of data. Missing values → null/0.",
+        "files": "dxf_geometry_indexer_v2.py → write_ml_vectors_csv()"
+      },
+      {
+        "id": "V23_P2_07",
+        "task": "Time component breakdown in ML vector",
+        "features": [
+          "vibrate_cutter_time_s — based on vibrate path lengths",
+          "v_slot_time_s — based on V-slot path lengths",
+          "head_rotation_overhead_s — estimated rotation time between cuts"
+        ],
+        "files": "dxf_geometry_indexer_v2.py → _build_ml_vector()",
+        "note": "These are legitimate features (time components based on geometry and tool selection, NOT the target variable)"
+      }
+    ],
+    "priority_3_cleanup": [
+      {
+        "id": "V23_P3_08",
+        "task": "Fix C4 — tool_summary total_length_mm consistency",
+        "files": "dxf_geometry_indexer_v2.py → _analyze_semantic_cutting()"
+      },
+      {
+        "id": "V23_P3_09",
+        "task": "Fix C5 — graph_connected_components computation",
+        "files": "dxf_geometry_indexer_v2.py"
+      },
+      {
+        "id": "V23_P3_10",
+        "task": "Fix C6 — Deduplicate zones",
+        "files": "dxf_geometry_indexer_v2.py → zone detection logic"
+      },
+      {
+        "id": "V23_P3_11",
+        "task": "Fix M1 — Regularity score normalization",
+        "files": "dxf_geometry_indexer_v2.py"
+      },
+      {
+        "id": "V23_P3_12",
+        "task": "Implement M2 — min_feature_width_mm",
+        "files": "dxf_geometry_indexer_v2.py"
+      },
+      {
+        "id": "V23_P3_13",
+        "task": "Fix M3 — Rename panel_bbox_mm to panel_size_mm",
+        "files": "dxf_geometry_indexer_v2.py"
+      }
+    ]
+  },
+
+  "v24_plan_deferred": {
+    "version": "2.4.0",
+    "description": "Advanced shape analysis features deferred from V2.2/V2.3 scope",
+    "features": [
+      "Fourier Descriptors (EFD) for shape signature",
+      "D2 Shape Histogram (distance distribution between random points)",
+      "Convex Decomposition of complex shapes",
+      "Straight Skeleton for medial axis computation (CGAL/polyskel)",
+      "Willmore energy for surface complexity",
+      "Hole detection in polygons (num_holes, hole_areas)",
+      "3D entity support (extrusions, solids from DXF R13+)"
+    ]
+  },
+
+  "cli_reference": {
+    "commands": [
+      {
+        "command": "python dxf_geometry_indexer_v2.py -i ./dxf_files -o ./output -f both",
+        "description": "Batch process all DXF files, output JSON + MD"
+      },
+      {
+        "command": "python dxf_geometry_indexer_v2.py -i ./dxf_files -r",
+        "description": "Recursive search in subdirectories"
+      },
+      {
+        "command": "python dxf_geometry_indexer_v2.py -i ./dxf_files --viz",
+        "description": "Generate 2D PNG visualization for each DXF"
+      },
+      {
+        "command": "python dxf_geometry_indexer_v2.py -i ./dxf_files --viz --config dxf_tool_config.json",
+        "description": "Visualization with tool-type color legend from config"
+      },
+      {
+        "command": "python dxf_geometry_indexer_v2.py -i single_file.dxf -o ./output",
+        "description": "Process single DXF file"
+      },
+      {
+        "command": "streamlit run dxf_indexer_app_v2.py",
+        "description": "Launch Streamlit DEV dashboard"
+      }
+    ],
+    "outputs_per_dxf": [
+      "{name}_index.json — Full index including geometry, semantic, layer_card",
+      "{name}_index.md — Markdown narrative summary with Layer Card table",
+      "{name}_ml_vector.csv — ML training features (no target leakage)",
+      "{name}_layer_card.csv — CAM-import-ready per-color statistics",
+      "{name}_2d.png — 2D visualization (only with --viz flag)",
+      "summary_index.csv — Concatenated summary of all processed DXFs"
+    ]
+  },
+
+  "output_formats": {
+    "json_structure": {
+      "meta": ["dxf_file", "timestamp", "version", "unit"],
+      "geometry_overview": ["entity_count", "total_path_length_mm", "bounding_box_mm", "panel_bbox_mm", "panel_area_mm2", "has_lwpolylines", "has_splines", "has_circles", "has_arcs", "has_lines", "has_3d_entities"],
+      "entity_graph": ["shape_groups", "graph_edges", "graph_connected_components", "adjacency_list", "containment_list", "nesting_tree"],
+      "zone_analysis": ["zones with type, entity_ids, regularity_score, spacing_mean_mm"],
+      "semantic_analysis": ["cutting_time_estimate_s", "total_tac_rad", "tool_summary", "narrative_summary"],
+      "material_yield": ["yield_percent", "waste_mm", "panel_fits_stock", "panel_rotated"],
+      "layer_card": ["color_count", "total_entities_mapped", "total_entities_unmapped", "colors[]"],
+      "proximity_matrix": "n×n float array"
+    },
+    "ml_csv_columns_v22": [
+      "dxf_file", "entity_count", "total_path_length_mm", "panel_area_mm2",
+      "has_lwpolylines", "has_splines", "has_circles", "has_arcs", "has_lines",
+      "graph_connected_components", "zone_count",
+      "zone_lengths_mean", "largest_zone_entity_count", "max_zone_spacing_mm",
+      "total_tac_rad", "vibrate_cutter_count", "v_slot_single_pass_length_mm",
+      "panel_fits_stock", "panel_yield_percent"
+    ],
+    "layer_card_csv_columns": [
+      "color_index", "color_name", "entity_count", "total_length_mm", "point_count",
+      "closed_count", "open_count", "closed_ratio", "total_tac_rad", "tac_per_meter",
+      "point_density_per_meter", "min_length_mm", "max_length_mm", "geometry_types",
+      "layers", "cutter_type", "base_speed_mms", "direction", "validation_status", "is_mapped"
+    ]
+  },
+
+  "known_limitations": [
+    "No support for 3D entities (extrusions, solids) — DXF R13+ only",
+    "num_holes always 0 — hole detection not implemented",
+    "No multi-sheet panel handling (panel > stock → yield_percent=null)",
+    "Feed rate hardcoded at 200 mm/s (should be configurable per material/thickness/tool)",
+    "max_nesting_depth = 0 for all samples — contour nesting not computed",
+    "Only AC1009 (AutoCAD R12) DXF format tested",
+    "Splines approximated — not exact geometry"
+  ],
+
+  "dependencies": {
+    "required": ["ezdxf (DXF parser)", "numpy (math)"],
+    "optional_enhanced": ["shapely (boolean ops, polygon analysis)", "scipy (spatial algorithms)", "gdudhi (topological persistence — unused in V2.2)"],
+    "visualization": ["matplotlib (Streamlit + CLI --viz)", "pandas (CSV handling)", "streamlit (dev dashboard)"]
+  }
+}

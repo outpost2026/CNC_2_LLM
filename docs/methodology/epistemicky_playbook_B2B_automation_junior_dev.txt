@@ -1,0 +1,272 @@
+# Detailní analýza kódu a epistemický playbook pro profesionální vývoj B2B automation/ML
+
+## 1. Souhrnná analýza současného kódu
+
+### 1.1 `dxf_geometry_indexer_v2.py` (jádro, ~2000 řádků)
+
+**Silné stránky:**
+- Deterministické geometrické výpočty (délky, TAC, plochy) – správně izolované funkce.
+- Přehledné členění do sekcí (`GEOMETRIC PRIMITIVES`, `COMPLEXITY ANALYSIS`, `SPATIAL ANALYSIS`, atd.).
+- Používá `try/except` pro volitelné knihovny (Shapely, SciPy, matplotlib) – robustní.
+- Typové hinty a docstringy u většiny funkcí.
+- Version stamping (`VERSION = "2.2.0"`).
+- CLI s argumenty (`-i`, `-o`, `--viz`, `--config`).
+- Streamlit dashboard má vlastní vizualizaci a přehledné karty.
+
+**Kritické slabiny (z pohledu B2B SME):**
+
+| Kategorie | Problém | Důsledek |
+|-----------|---------|----------|
+| **Architektura** | Monolit – všechny funkce v jednom souboru, žádné samostatné moduly. | Nelze testovat jednotlivé vrstvy izolovaně. Každá změna riskuje regresi. |
+| **Globální stav** | Proměnné jako `_HAS_SHAPELY`, `_HAS_SCIPY` modifikovatelné zvenčí. | Nečisté, nedeterministické chování při importu. |
+| **Duplicitní logika** | Výpočet bodů/segmentů pro TAC i pro vizualizaci je dvakrát. | Údržba peklo – změna jednoho místa neovlivní druhé. |
+| **Chybějící oddělení** | Parsování, analýza, výstup, vizualizace – vše v jedné funkci `index_dxf()`. | Nelze použít jen část pipeline (např. jen extrakci geometrie bez ML vektoru). |
+| **Nedeterminismus** | `_assign_tools()` stále používá geometrii (otevřené dráhy → V‑slot), nebere v potaz ACI mapping z configu. | **Stále existuje tool conflict (C3)** – viz handoff. |
+| **V‑slot double‑pass** | Kód používá `single_pass_length_mm` a `double_pass_length_mm` (správně), ale `cutting_time` počítá z `vslot_total_len * 2`. Dobře. | OK. |
+| **Epistemické flagy** | `validation_status` se jen ukládá do Layer Card, nijak neovlivňuje běh. `--strict` neexistuje. | Bezpečnostní riziko – neověřené rychlosti (hypothesis) se používají. |
+| **Nesting_tree** | Implementace v `nesting_tree()` existuje, ale vrací strom jen pro uzavřené smyčky? Kontrola: používá `_point_in_polygon` a `containing`. Měla by fungovat. Ale C1 říká "always empty". Možná chyba v datech. | Viz handoff – pravděpodobně selhává kvůli chybějícím polygonům. |
+| **Proximity matrix** | Implementace v `proximity_matrix()` používá `_bbox_distance`, ale matice se počítá jen mezi shape groups, ne mezi entitami. A vrací nuly, pokud nedojde k překryvu? Handoff C2 říká "samé nuly". | Nedostatečné – chybí výpočet přes STRtree a minimální vzdálenosti mezi konvexními obálkami. |
+| **Zóny (C6)** | `_semantic_zone_split` a `_simple_zone_split` vytvářejí zóny, ale mohou se překrývat. | Duplicitní entity. |
+| **Testy** | Žádné unit testy, žádná testovací sada (jen demo_data). | Nelze automatizovat regrese. |
+
+**Co je naopak v pořádku:**
+- Výpočet délek (LINE, ARC, CIRCLE, SPLINE, ELLIPSE, LWPOLYLINE) – deterministický.
+- TAC (Total Angle Change) s resamplováním oblouků – správně.
+- Boolean analýza (Shapely) – funguje, solidity, díry.
+- Layer Card – správně agreguje podle barev a čte tool_config.
+- ML vektor – už neobsahuje leakage (`cutting_time_estimate_s` odstraněno).
+- Vizualizace CLI (`_render_png`) – funkční.
+
+### 1.2 `dxf_indexer_app_v2.py` (Streamlit)
+
+**Silné stránky:**
+- Pěkné UI s kartami a metrikami.
+- Dynamické načítání konfigurace.
+- Zpracování demo souborů.
+- Export JSON, MD, CSV.
+
+**Slabiny:**
+- **Import `math`** – již opraven (není v else bloku). ✅
+- **Závislost na jádru** – volá `index_dxf` přímo, což blokuje UI při dlouhém běhu (není async).
+- **Chybí zpracování velkých DXF** – může dojít k timeoutu nebo pádu.
+- **Vizualizace** – vlastní kód pro kreslení, nevolá `_render_png`, což vede k duplicitě logiky.
+
+---
+
+## 2. Epistemický playbook pro začínajícího B2B developera
+
+Cílem je překonat fázi „kutil“ (píše kód, který funguje, ale je křehký, netestovaný, nemodulární) a dosáhnout úrovně **SME B2B ready developer** (produkční kód s nulovou chybovostí, testy, modularitou, determinismem, auditovatelností).
+
+### 2.1 Základní principy (Golden Rules pro Open Code + DeepSeek V4)
+
+| Princip | Význam pro vývojáře |
+|---------|---------------------|
+| **Determinismus** | Při stejných vstupech musí výstup vždy stejný (žádné random, čas, čtení souborů mimo konfiguraci, žádné stringové heuristiky). |
+| **Modularita** | Každá funkce dělá jednu věc a je samostatně testovatelná. Žádné monolitické 2000 řádkové soubory. |
+| **Konfigurace > kód** | Všechny proměnlivé parametry (rychlosti, prahy, prodloužení) v externím JSON, nikdy ne hardcoded. |
+| **Epistemická transparentnost** | Každá heuristická hodnota má `_status` (`empirical` / `calibrated` / `hypothesis`). |
+| **Test first** | Než napíšeš funkci, napiš test, který selže. Pak teprve implementuj. |
+| **Verzování výstupů** | Při změně formátu výstupu zvyš verzi (patch/minor/major) a aktualizuj golden master. |
+| **Logování místo printů** | Používej `logging.getLogger(__name__)`. |
+| **Typové hinty a docstringy** | Povinné pro všechny funkce (i vnitřní). |
+
+### 2.2 Konkrétní metodika práce s DeepSeek V4 API
+
+#### Krok 1: Příprava kontextu (před odesláním promptu)
+- Otevři cílový modul (např. `dxf_spatial.py`).
+- Vyber jednu funkci k úpravě (max 200 řádků).
+- Zkopíruj její kód a signaturu.
+- Napiš, co je špatně (např. `proximity_matrix` vrací nuly).
+- Uveď očekávaný výstup (ukázka).
+- Omezení (žádné nové importy, zachování rozhraní).
+
+#### Krok 2: Vygenerování unit testu (první prompt)
+```text
+Vygeneruj pytest test pro funkci `proximity_matrix`. 
+Testovací scénář: 3 entity – dva překrývající se obdélníky (vzdálenost 0), jeden samostatný (vzdálenost 15 mm). 
+Očekávaná matice (mezi shape groups): [[0, 0, 15], [0, 0, 15], [15, 15, 0]].
+Test musí selhat se současnou implementací (která vrací nuly). 
+Použij `unittest.mock` nebo skutečné entity. 
+Výstup ulož do `tests/test_proximity.py`.
+```
+
+#### Krok 3: Ověření, že test selhává
+```bash
+pytest tests/test_proximity.py -v
+# musí skončit s FAIL
+```
+
+#### Krok 4: Oprava funkce (druhý prompt)
+```text
+Oprav funkci `proximity_matrix` v `dxf_spatial.py`. 
+Implementuj výpočet minimální euklidovské vzdálenosti mezi bounding boxy entit pomocí `shapely.STRtree`. 
+Výstup: n×n float matice (symetrická, diagonála 0). 
+Pokud vzdálenost > 250 mm, nastav na 0 (zanedbáváme). 
+Zachovej původní signaturu: `proximity_matrix(shape_groups, entities) -> dict`. 
+Použij existující `_bbox_distance`. 
+Nepřidávej nové importy (shapely už je k dispozici). 
+Po opravě vrať pouze změněnou funkci.
+```
+
+#### Krok 5: Validace opravy
+```bash
+pytest tests/test_proximity.py -v  # musí projít
+python dxf_cli.py -i demo_data/26_skladba.dxf -o /tmp/test
+diff /tmp/test/26_skladba_index.json test_output_v22/26_skladba_index.json --ignore-matching-lines="timestamp\|md5"
+# musí být shodné (kromě metadat)
+```
+
+#### Krok 6: Commit a verzování
+```bash
+git add dxf_spatial.py tests/test_proximity.py
+git commit -m "Fix C2: proximity_matrix now uses STRtree, non-zero distances"
+# Update VERSION in dxf_spatial.py to 2.2.1 (patch)
+```
+
+### 2.3 Architektonický refaktoring (jak rozdělit monolit)
+
+Současný kód je třeba rozčlenit na tyto moduly:
+
+| Modul | Odpovědnost | Přesunout z `dxf_geometry_indexer_v2.py` |
+|-------|-------------|-------------------------------------------|
+| `dxf_parser.py` | Načtení DXF, extrakce entit (délky, body, TAC) | `_GEOM_FNS`, `_line_length`, `_circle_length`, ..., `compute_entity_complexity`, `compute_tac`, `_resample_*` |
+| `dxf_spatial.py` | Prostorové vztahy: bbox, centroid, distance, proximity, containment, nesting_tree, shape_groups, bfs_clusters | `_bb`, `_centroid`, `_bbox_distance`, `proximity_matrix`, `nesting_tree`, `shape_groups`, `bfs_clusters`, `_point_in_polygon` |
+| `dxf_graph.py` | Entity graph (adjacency, containment, components) | `build_entity_graph`, `_endpoint_distance` |
+| `dxf_bool.py` | Boolean operace (Shapely) | `shp_polygon`, `boolean_analysis` |
+| `dxf_constraints.py` | Geometrické vazby (rovnoběžnost, kolmost) | `detect_geometric_constraints`, `_line_angle`, `_angle_diff` |
+| `dxf_semantic.py` | Zóny, nástroje, cutting time, yield, narrative | `_semantic_zone_split`, `_simple_zone_split`, `_assign_tools`, `_detect_mounting_flap`, `_narrative_summary`, `_check_panel_fits_stock`, `build_semantic_analysis` |
+| `dxf_layer_card.py` | Agregace podle barev, tool_config mapping | `build_layer_card`, `write_layer_card_csv`, `_ACI_COLOR_NAMES` |
+| `dxf_features.py` | ML vektor | `_build_ml_vector` |
+| `dxf_output.py` | JSON, MD, CSV, PNG | `write_json`, `write_md`, `write_summary_csv`, `write_ml_vectors_csv`, `_render_png` |
+| `dxf_config.py` | Načtení a validace `dxf_tool_config.json` | (nový) |
+| `dxf_cli.py` | Hlavní skript, argparse, orchestrace | `main` |
+| `dxf_app.py` | Streamlit dashboard (volá moduly) | `dxf_indexer_app_v2.py` |
+
+**Postup refaktoringu (s pomocí DeepSeek V4):**
+1. Vytvoř prázdné moduly (např. `dxf_parser.py`).
+2. Pro každý modul: zkopíruj příslušné funkce, přidej `import` závislosti.
+3. Oprav vzájemné závislosti (např. `dxf_semantic` potřebuje `dxf_spatial`).
+4. Vytvoř `dxf_cli.py`, který importuje `index_dxf` (ta bude orchestrátor).
+5. `index_dxf()` pak bude volat funkce z jednotlivých modulů.
+
+**Prompt pro refaktoring:**
+```text
+Přesuň funkce `_semantic_zone_split`, `_simple_zone_split`, `_assign_tools`, `_detect_mounting_flap`, `_narrative_summary`, `_check_panel_fits_stock`, `build_semantic_analysis` z `dxf_geometry_indexer_v2.py` do nového modulu `dxf_semantic.py`. 
+Zachovej všechny importy (math, numpy, collections). 
+Přidej na začátek modulu `from dxf_spatial import _bbox_distance, _centroid` (pokud používá). 
+Funkce nesmí mít žádné vedlejší efekty (kromě logování). 
+V původním souboru nahraď přesunuté funkce importem z `dxf_semantic`. 
+Vygeneruj také odpovídající změnu v `dxf_geometry_indexer_v2.py` (import).
+```
+
+### 2.4 Epistemický rámec – implementace `--strict` a `E_confidence`
+
+**Současný stav:** `validation_status` existuje v `dxf_tool_config.json`, ale kód ho ignoruje.
+
+**Požadavek:**
+- Při spuštění `--strict` musí parser zkontrolovat každou entitu: pokud má přiřazený `cutter_type` a jeho `validation_status` je `"hypothesis"`, ukonči program s chybou a výpisem, která barva/entita způsobila problém.
+- Vypočti `E_confidence` = (Σ délka empirical + 0.5 × Σ délka calibrated) / Σ celková délka všech entit. Výsledek ulož do JSON (`epistemic_confidence`).
+
+**Implementační prompt:**
+```text
+V modulu `dxf_layer_card.py` uprav `build_layer_card`, aby vracela i seznam délek podle statusu. 
+Přidej do `dxf_semantic.py` výpočet `epistemic_confidence` a ulož do `semantic_analysis`. 
+V `dxf_cli.py` přidej argument `--strict`. 
+Při `--strict` projdi všechny entity, pro každou najdi její tool_config z layer_card, pokud `validation_status == "hypothesis"`, zavolej `sys.exit(1)` s hláškou.
+```
+
+### 2.5 Testovací strategie pro B2B
+
+| Typ testu | Nástroj | Kritérium |
+|-----------|---------|-----------|
+| **Unit testy** | `pytest` + pokrytí >80 % | Každá funkce v modulech má testy pro normální i okrajové případy. |
+| **Integrační testy** | `pytest` s `demo_data/` | Spuštění CLI na 3–5 vzorcích, porovnání výstupu s golden master. |
+| **Regresní testy** | `pytest` + `diff` | Po každé změně se musí golden master shodovat (kromě timestamp, md5). |
+| **Zátěžové testy** | `time` + velké DXF (>10 MB) | Nesmí dojít k timeoutu (max 30 s). |
+| **Determinismus** | Spuštění stejného DXF dvakrát, porovnání JSON | Musí být identický (kromě metadat). |
+
+**Golden master workflow:**
+1. Po každé verzi ulož výstupy do `test_output_vX.Y/`.
+2. Při CI (GitHub Actions) spusť parser na `demo_data/` a porovnej s golden masterem.
+3. Pokud se liší, build selže.
+
+### 2.6 Doporučený vývojový cyklus (1 den = 1–2 úkoly)
+
+| Fáze | Čas | Úkol | Výstup |
+|------|-----|------|--------|
+| Ráno (1h) | Plánování | Vyber jednu kritickou chybu z handoff (např. C2 – proximity). | Prompt pro DeepSeek. |
+| Dopoledne (2h) | Implementace + test | DeepSeek vygeneruje unit test + opravu. | Zelené testy, aktualizovaný golden master. |
+| Oběd (0.5h) | Code review | Zkontroluj, zda nebyly zavedeny nové heuristiky nebo hardcoded hodnoty. | Schválení. |
+| Odpoledne (2h) | Integrace a dokumentace | Commit, push, aktualizace handoff. | Commit message odkazující na handoff ID (např. "Fix C2"). |
+| Večer (0.5h) | Refaktoring | Přesuň jednu sadu funkcí do samostatného modulu. | Nový modul + aktualizovaný import. |
+
+### 2.7 Měřítka úspěšnosti (B2B ready)
+
+| Kritérium | Měřítko | Cílová hodnota |
+|-----------|---------|----------------|
+| **Pokrytí testy** | `pytest --cov` | >80 % |
+| **Determinismus** | Stejný vstup → stejný výstup | 100 % (kromě timestamp) |
+| **Epistemická průhlednost** | Všechny heuristiky mají `_status` | 100 % |
+| **Modularita** | Počet řádků na modul | < 500 |
+| **Chybovost v produkci** | Počet hlášených incidentů za měsíc | 0 |
+| **Rychlost zpracování** | 1 DXF < 30 s | 100 % vzorků |
+
+### 2.8 Časté chyby začínajícího developera (a jak je DeepSeek V4 pomůže překonat)
+
+| Chyba | Projev | DeepSeek náprava |
+|-------|--------|------------------|
+| **Stringové heuristiky** | `if "fazeta" in layer_name:` | V promptu výslovně zakázat. DeepSeek musí navrhnout ACI mapping. |
+| **Hardcoded rychlosti** | `speed = 200` | Požaduj čtení z `dxf_tool_config.json`. |
+| **Žádné typové hinty** | `def foo(x, y):` | Prompt vyžaduje type hints a docstringy. |
+| **Používání `print()`** | `print("Debug")` | Požaduj `logger.debug`. |
+| **Monolitické funkce** | Jedna funkce dělá vše | Rozděl na menší, každou testovat. |
+| **Ignorování hranic** | `panel_area = w*h` bez kontroly | DeepSeek přidá validaci (None, 0, inf). |
+| **Chybějící testy** | Žádné `tests/` | DeepSeek vygeneruje testy před implementací. |
+
+### 2.9 Ukázka kompletního promptu pro začínajícího developera
+
+```text
+Jsem začínající vývojář B2B automation. Mám za úkol opravit chybu C3 (tool conflict) v DXF parseru. 
+
+Současný kód (v modulu dxf_semantic.py, funkce _assign_tools) přiřazuje nástroje takto:
+- Uzavřené smyčky → vibrate_cutter
+- Otevřené dráhy → v_slot_45deg
+
+Problém: Layer Card již mapuje ACI barvu 7 (bílá) na vibrate_cutter, ale otevřené dráhy jsou zároveň V-slot. Operátor neví, čím řezat.
+
+Požadavek:
+1. ACI mapping má vyšší prioritu. Pokud je entita mapována v layer_card (is_mapped=True), použij cutter_type z tool_config.
+2. Zbylé entity (is_mapped=False) přiřaď podle geometrie (otevřené → V-slot, uzavřené → vibrate).
+3. Pokud entita splňuje obě pravidla (mapovaná i geometrie), přidej její ID do seznamu 'tool_conflict_entity_ids' a nastav 'tool_conflict_detected' = True v semantic_analysis.
+4. Zachovej stávající výstupní schéma JSON – pouze přidej dvě pole.
+
+Omezení:
+- Žádné nové importy.
+- Nepoužívej stringové porovnávání názvů vrstev ani souborů.
+- Všechny rychlosti čti z configu (předaného jako argument tool_config).
+
+Nejprve mi vygeneruj pytest test, který ověří, že pro demo_data/3781_1.dxf (bílá barva + otevřené dráhy) je detekován conflict. Test musí selhat se současným kódem.
+
+Poté vygeneruj opravenou verzi _assign_tools. Vrať pouze změněnou funkci. Po opravě přidej do narrative_summary varování o konfliktu.
+```
+
+---
+
+## 3. Závěr a doporučení pro další postup
+
+Aby se začínající developer posunul od kutily k B2B SME, musí:
+
+1. **Osvojit si deterministické myšlení** – každý vstup má přesně definovaný výstup, žádné skryté závislosti.
+2. **Přijmout test-first kulturu** – bez testů není kód hotový.
+3. **Refaktorovat monolit na moduly** – každá část má jednu odpovědnost.
+4. **Implementovat epistemický rámec** – `validation_status` a `--strict` jsou pro B2B klíčové (Gold tarif).
+5. **Používat DeepSeek V4 jako asistenta, ne jako autopilota** – vždy kontrolovat vygenerovaný kód, zda neobsahuje anti‑patterny (stringové heuristiky, hardcoded hodnoty, chybějící testy).
+
+**Okamžité akce (podle handoff V2.3):**
+- [ ] Odstranit `semantic_layer_mapping` a `filename_overrides` z `dxf_tool_config.json` (nedeterminismus).
+- [ ] Implementovat V‑slot double‑pass (již částečně je, ale zkontrolovat výpočet času).
+- [ ] Opravit proximity_matrix (C2) pomocí STRtree.
+- [ ] Přidat `--strict` a `E_confidence`.
+- [ ] Spustit refaktoring na moduly (první krok: `dxf_spatial.py`).
+
+Tento playbook poskytuje developerovi jasný návod, jak s pomocí DeepSeek V4 postupovat iterativně, bezpečně a profesionálně. Dodržováním těchto pravidel překročí hranici mezi hobby projektem a průmyslovým softwarem.

@@ -1,0 +1,274 @@
+{
+  "handoff_id": "dev_handoff_v2.3_open_code_deepseek",
+  "timestamp": "2026-06-07T12:00:00Z",
+  "project": "Moodpasta DXF/CAD Indexer",
+  "current_version": "2.2.0",
+  "target_version": "2.3.0",
+  "author": "Ondrej Sousek (continuation)",
+  "development_methodology": "Open Code CLI + DeepSeek V4 API",
+  "summary_of_current_state": {
+    "strengths": [
+      "Entity extraction and basic geometry metrics (deterministic length calculations)",
+      "Layer Card with ACI color mapping (CAM import ready)",
+      "Material yield with panel rotation detection",
+      "Zone detection with regularity_score",
+      "CLI --viz PNG export",
+      "Streamlit dashboard (7 tabs)"
+    ],
+    "critical_blockers": [
+      "String‑based heuristics (semantic_layer_mapping, filename_overrides) still active → non‑deterministic output",
+      "V‑slot double‑pass not implemented (single‑pass only) → time underestimation 50‑100%",
+      "Nesting_tree always empty (C1)",
+      "Proximity_matrix all zeros (C2)",
+      "Tool assignment conflict (C3): same entities assigned to both Vibrate and V‑slot",
+      "Graph_connected_components wrong (C5)",
+      "Duplicated zones (C6)",
+      "Epistemic confidence index (E_confidence) and --strict mode not implemented",
+      "TopoSanitizer with make_valid(method='structure') missing",
+      "Monolithic architecture (~2000 lines) – no modular separation"
+    ],
+    "config_vs_code_mismatch": [
+      "dxf_tool_config.json (v4.4.0) contains vslot_bidirectional.cut_both_side_multiplier=2.0, but code uses single_pass",
+      "config has semantic_layer_mapping and filename_overrides (string heuristics) – must be removed",
+      "config has validation_status fields, but code never uses them for decisions",
+      "config has path_compression and kinematic_scaling – not implemented in code"
+    ]
+  },
+  "v23_plan": {
+    "phase_0_immediate_removal_of_nondeterminism": {
+      "hours": 2,
+      "tasks": [
+        {
+          "id": "P0-01",
+          "description": "Delete entire 'semantic_layer_mapping' section from dxf_tool_config.json",
+          "reason": "String‑based layer name heuristics make parser non‑deterministic"
+        },
+        {
+          "id": "P0-02",
+          "description": "Delete entire 'filename_overrides' section (including 'botanic' anti‑pattern)",
+          "reason": "Output must not depend on file name"
+        },
+        {
+          "id": "P0-03",
+          "description": "Modify code to ignore layer names and use ONLY ACI color mapping for tool assignment",
+          "files": ["dxf_geometry_indexer_v2.py", "dxf_indexer_app_v2.py"],
+          "verification": "Same DXF with renamed layers produces identical JSON (except metadata)"
+        }
+      ]
+    },
+    "phase_1_critical_geometry_fixes": {
+      "hours": 8,
+      "tasks": [
+        {
+          "id": "P1-01",
+          "description": "Implement V‑slot double‑pass length calculation",
+          "detail": "L_effective = multiplier × (path_length + start_extension + end_extension) where multiplier = 2.0. Add field 'v_slot_double_pass_length_mm' to ML vector and JSON. Keep 'v_slot_single_pass_length_mm' for reference but use double‑pass for cutting_time.",
+          "files": ["dxf_geometry_indexer_v2.py"]
+        },
+        {
+          "id": "P1-02",
+          "description": "Fix nesting_tree (C1) – recursively build from containment edges using shapely.contains()",
+          "files": ["dxf_geometry_indexer_v2.py"]
+        },
+        {
+          "id": "P1-03",
+          "description": "Fix proximity_matrix (C2) – compute minimum Euclidean distance between convex hulls using STRtree spatial index",
+          "files": ["dxf_geometry_indexer_v2.py"]
+        },
+        {
+          "id": "P1-04",
+          "description": "Fix graph_connected_components (C5) – use bounding box overlaps + distance threshold",
+          "files": ["dxf_geometry_indexer_v2.py"]
+        },
+        {
+          "id": "P1-05",
+          "description": "Fix duplicate zones (C6) – cluster zones so each entity belongs to exactly one zone",
+          "files": ["dxf_geometry_indexer_v2.py"]
+        }
+      ]
+    },
+    "phase_2_tool_conflict_resolution": {
+      "hours": 2,
+      "tasks": [
+        {
+          "id": "P2-01",
+          "description": "Resolve tool assignment conflict (C3) – ACI color mapping has higher priority than geometry heuristic",
+          "implementation": "First assign tools based on layer_card (ACI mapping), then remaining entities by geometry (open paths → V‑slot). Add 'tool_conflict_detected' boolean and 'tool_conflict_entity_ids' list to semantic_analysis in JSON.",
+          "files": ["dxf_geometry_indexer_v2.py"]
+        }
+      ]
+    },
+    "phase_3_topological_sanitation": {
+      "hours": 4,
+      "tasks": [
+        {
+          "id": "P3-01",
+          "description": "Implement TopoSanitizer class as described in PDF (str. 7–9)",
+          "features": [
+            "Convert DXF entity to Shapely geometry via ezdxf_shapely",
+            "Check validity with shapely.is_valid",
+            "If invalid, repair with shapely.make_valid(method='structure')",
+            "Extract largest polygon from GeometryCollection",
+            "Check boundaries against stock plate",
+            "Log warnings for each repair"
+          ],
+          "files": ["dxf_geometry_indexer_v2.py"]
+        }
+      ]
+    },
+    "phase_4_epistemic_framework": {
+      "hours": 3,
+      "tasks": [
+        {
+          "id": "P4-01",
+          "description": "Implement E_confidence index calculation",
+          "formula": "E_confidence = (Σ L_empirical + 0.5 × Σ L_calibrated) / Σ L_total",
+          "output": "Add 'epistemic_confidence' to JSON root"
+        },
+        {
+          "id": "P4-02",
+          "description": "Implement --strict CLI flag",
+          "behavior": "If any entity has validation_status='hypothesis', abort with error message and exit code 1"
+        },
+        {
+          "id": "P4-03",
+          "description": "Propagate validation_status from config to layer_card and semantic_analysis outputs",
+          "files": ["dxf_geometry_indexer_v2.py"]
+        }
+      ]
+    },
+    "phase_5_modular_refactoring": {
+      "hours": 8,
+      "tasks": [
+        {
+          "id": "P5-01",
+          "description": "Split dxf_geometry_indexer_v2.py into modules",
+          "modules": [
+            "dxf_parser.py – entity extraction, length calculations",
+            "dxf_spatial.py – bounding boxes, proximity, containment, nesting_tree",
+            "dxf_semantic.py – zone detection, tool assignment, cutting_time, narrative",
+            "dxf_features.py – ML vector construction",
+            "dxf_output.py – JSON, MD, CSV, PNG writers",
+            "dxf_cli.py – main entry point with argument parsing",
+            "dxf_config.py – load and validate dxf_tool_config.json"
+          ],
+          "verification": "All existing CLI commands produce identical output as monolithic version"
+        }
+      ]
+    }
+  },
+  "ml_roadmap_for_mape_10_percent": {
+    "prerequisites": [
+      "V‑slot double‑pass implemented",
+      "String heuristics removed",
+      "At least 50 DXF files with real cutting times collected"
+    ],
+    "new_features_to_add": [
+      {"name": "point_density_per_meter", "formula": "total_vertices / total_path_length_mm * 1000"},
+      {"name": "cut_density_m_per_m2", "formula": "total_path_length_mm / panel_area_mm2 * 1000"},
+      {"name": "sharp_corners_per_meter", "formula": "count_angles_lt_45deg / total_path_length_mm * 1000"},
+      {"name": "open_closed_ratio", "formula": "open_paths / closed_paths"},
+      {"name": "avg_points_per_entity", "formula": "total_vertices / entity_count"},
+      {"name": "v_slot_double_pass_length_mm", "formula": "2 × (single_pass + extensions)"},
+      {"name": "plunge_count", "formula": "number of separate cutting operations"}
+    ],
+    "features_to_remove_from_ml_vector": [
+      "cutting_time_estimate_s (already removed in V2.2 – but ensure no leakage)"
+    ],
+    "expected_improvement": "MAPE from current ~40‑60% down to <15% after feature addition, <10% after 100+ samples"
+  },
+  "cli_reference_updates": {
+    "new_flags": [
+      "--strict (abort on hypothesis entities)",
+      "--confidence (print E_confidence index only)"
+    ],
+    "example_commands": [
+      "python dxf_cli.py -i input.dxf --strict",
+      "python dxf_cli.py -i ./dxf_folder --viz --config dxf_tool_config.json",
+      "python dxf_cli.py -i input.dxf --confidence"
+    ]
+  },
+  "deepseek_v4_integration_golden_rules": {
+    "methodology_name": "Open Code CLI + DeepSeek V4 API – Golden Rules for Developer",
+    "rules": [
+      {
+        "id": "DR1",
+        "title": "Context priming before code generation",
+        "description": "Always provide DeepSeek V4 with: (a) exact function signature, (b) expected input/output examples, (c) relevant existing code snippets (max 200 lines), (d) constraints (no new dependencies, maintain backward compatibility).",
+        "example_prompt": "I need to implement fix_proximity_matrix(entities). Current proximity_matrix returns zeros. Use shapely.STRtree to compute min Euclidean distance between entity bounding boxes. Existing code: [paste 50 lines]. Output format: n×n list of floats. Do not import new libraries beyond shapely."
+      },
+      {
+        "id": "DR2",
+        "title": "Iterative validation loop",
+        "description": "After each generated code block, run the CLI on 3 test DXF files. Compare output with previous golden master. If mismatch >0.1% in numeric fields, rollback and refine prompt.",
+        "tooling": "Use diff tool on JSON outputs (ignore timestamp and metadata)."
+      },
+      {
+        "id": "DR3",
+        "title": "Configuration over code",
+        "description": "Never hardcode machine parameters (speeds, extensions, penalties). Always read from dxf_tool_config.json. If DeepSeek suggests hardcoded values, reject and ask to reference config keys.",
+        "verification": "grep for hardcoded numbers in generated code – only allowed are mathematical constants (0, 1, 2, π) and config defaults."
+      },
+      {
+        "id": "DR4",
+        "title": "Determinism by design",
+        "description": "Every generated function must be pure (no random, no time, no file system reads except explicit config). Output must be deterministic given same input DXF and config. Reject any suggestion using string matching on layer names or file names.",
+        "test": "Run same DXF twice with different file names → JSON must be identical (except metadata.file_name)."
+      },
+      {
+        "id": "DR5",
+        "title": "Epistemic transparency",
+        "description": "For any heuristic (e.g., density penalty, corner slowdown), the code must output its validation_status ('empirical', 'calibrated', 'hypothesis') alongside the value. Ask DeepSeek to add _status fields.",
+        "example": "corner_slowdown_seconds = 0.05, corner_slowdown_status = 'calibrated'"
+      },
+      {
+        "id": "DR6",
+        "title": "Modular ask, modular answer",
+        "description": "Request changes function‑by‑function, not whole file rewrites. DeepSeek V4 has 128k context – use it to keep entire module in context, but ask for single function modifications.",
+        "workflow": "Open file → copy entire module into chat → ask 'modify function X to do Y' → paste back only changed function → test."
+      },
+      {
+        "id": "DR7",
+        "title": "Unit test generation alongside code",
+        "description": "For every bugfix, ask DeepSeek to generate a pytest unit test that would have caught the bug. Store tests in tests/ directory.",
+        "example_prompt": "Now generate a pytest test that verifies proximity_matrix is non‑zero for intersecting entities."
+      },
+      {
+        "id": "DR8",
+        "title": "Error handling and logging",
+        "description": "All generated code must use logging (logger = logging.getLogger('Moodpasta.<module>')) with levels: DEBUG for verbose geometry, INFO for normal, WARNING for repaired geometries, ERROR for fatal issues. Never print(), always logger.",
+        "format": "Include module name in logger: logging.getLogger('Moodpasta.dxf_spatial')"
+      },
+      {
+        "id": "DR9",
+        "title": "Type hints and docstrings",
+        "description": "Enforce type hints for all function arguments and returns. Docstring must describe: purpose, parameters, returns, raises, and example.",
+        "example": "def compute_confidence(empirical_len: float, calibrated_len: float, total_len: float) -> float:\n    \"\"\"Compute epistemic confidence index.\n    \n    Args:\n        empirical_len: Total length of empirically validated paths (mm)\n        calibrated_len: Total length of calibrated paths (mm)\n        total_len: Total path length (mm)\n    \n    Returns:\n        E_confidence in range [0,1]\n    \n    Raises:\n        ValueError: If total_len <= 0\n    \n    Example:\n        >>> compute_confidence(1000, 500, 2000)\n        0.625\n    \"\"\""
+      },
+      {
+        "id": "DR10",
+        "title": "Version stamping",
+        "description": "Every generated function that changes output format must update the VERSION string at top of file. Ask DeepSeek to increment patch version (2.2.x → 2.2.x+1) for bugfixes, minor version (2.2 → 2.3) for new features.",
+        "location": "dxf_geometry_indexer_v2.py top: VERSION = '2.2.0'"
+      }
+    ],
+    "workflow_summary": "1. Prime context (function signature + constraints). 2. Generate code. 3. Run test suite. 4. If fail, refine prompt with error message. 5. Once pass, commit with message linking to handoff task ID. 6. Update golden master JSON."
+  },
+  "validation_checklist": {
+    "before_commit": [
+      "Run: python dxf_cli.py -i demo_data/26_skladba.dxf --strict (should pass)",
+      "Run: python dxf_cli.py -i demo_data/3781_1.dxf --viz (PNG generated without crash)",
+      "Run: diff test_output_v22/26_skladba_index.json new_output/26_skladba_index.json (only timestamp and version differ)",
+      "Check: grep -r 'fazeta|vzor|obrysy|botanic' dxf_geometry_indexer_v2.py (should return nothing)",
+      "Check: v_slot_double_pass_length_mm present in ML CSV and > 2 × single_pass"
+    ]
+  },
+  "appendix_deepseek_v4_api_tips": {
+    "api_endpoint": "https://api.deepseek.com/v4/chat/completions (hypothetical – use actual V4 endpoint)",
+    "recommended_model": "deepseek-v4-0612 (or latest)",
+    "temperature": 0.2 for bugfixes, 0.7 for new feature brainstorming",
+    "max_tokens": 8192,
+    "system_prompt": "You are an expert Python developer specializing in CAD/CAM, DXF parsing, Shapely geometry, and deterministic algorithms. You follow coding best practices: type hints, docstrings, logging, unit tests. You never use string heuristics for layer classification. You always refer to external configuration for machine parameters. You ensure all outputs are deterministic. You add validation_status for any heuristic value.",
+    "cost_saving": "Cache context in local files – send only diff of relevant module, not whole 2000‑line file each time."
+  }
+}

@@ -1,0 +1,108 @@
+# 📐 DXF Geometry Index V2: 26_skladba.dxf
+- Indexer: V2.0.0 · DXF: AC1015 · MD5: 85b4ca6b1567e38c...
+- Timestamp: 2026-06-06T18:17:22
+- Libs: Shapely=✅ · SciPy=✅ · GUDHI=❌
+
+## Spatial Bounds
+| Property | Value |
+|---|---|
+| Canvas bbox (mm) | [390, -0, 1610, 2900] |
+| Canvas area (m²) | 3.538 |
+| Total path length (m) | 104.54 |
+| Entities | 183 | Layers | 1 |
+
+## Topology
+| Property | Value |
+|---|---|
+| Closed loops | 183 | Open paths | 0 |
+| Closed ratio | 100.0% | Max nesting depth | 1 |
+| Shape patterns | 6 | Spatial clusters | 1 |
+| Total vertices | 7288 | Mean seg length | 19.9 mm |
+| Point density | 69.7 pts/m |
+
+## Entity Graph (V2.0)
+| Metric | Value |
+|---|---|
+| Nodes | 183 |
+| Adjacency edges | 0 |
+| Containment edges | 208 |
+| Intersection overlaps | 208 |
+| Proximity edges | 1741 |
+| Connected components | 2 |
+| Max degree | 31 |
+| Cycle count | 208 |
+
+## Boolean Analysis (Shapely)
+| Property | Value |
+|---|---|
+| Unified area (mm²) | 3538000 |
+| Boundary length (mm) | 8240.0 |
+| Convex hull area (mm²) | 3538000 |
+| Solidity | 1.000 |
+| Number of holes | 0 |
+| Min feature width (mm) | 0.0 |
+
+## Geometric Constraints (V2.0)
+| Property | Value |
+|---|---|
+| Parallel pairs | 16653 |
+| Perpendicular pairs | 0 |
+| Orthogonal ratio | 1.000 |
+
+## Layers
+| Layer | Entities | Length (m) | Points | Closed | Curv. index | TAC (rad) | Arc ratio |
+|---|---|---|---|---|---|---|---|
+| mainlayer | 183 | 104.54 | 7288 | 100.0% | 0.000000 | 0.00 | 0.0% |
+
+## Shape Groups
+| ID | Type | Instances | Length (mm) | Points | Aspect |
+|---|---|---|---|---|---|---|
+| Shape_G1 | LWPOLYLINE | 1 | 8240.0 | 8 | 0.4 |
+| Shape_G2 | LWPOLYLINE | 52 | 512.0 | 48 | 1.2 |
+| Shape_G3 | LWPOLYLINE | 52 | 784.0 | 56 | 0.6 |
+| Shape_G4 | LWPOLYLINE | 26 | 440.0 | 24 | 0.8 |
+| Shape_G5 | LWPOLYLINE | 26 | 600.0 | 40 | 0.5 |
+| Shape_G6 | LWPOLYLINE | 26 | 72.0 | 8 | 2.0 |
+
+## RAG: Largest Contours
+| Entity | Type | Area (mm²) | Center (mm) |
+|---|---|---|---|
+| E_0000 | LWPOLYLINE | 3538000 | [1000, 1450] |
+| E_0002 | LWPOLYLINE | 22416 | [1410, 2780] |
+| E_0004 | LWPOLYLINE | 22416 | [1280, 2780] |
+| E_0009 | LWPOLYLINE | 22416 | [812, 2780] |
+| E_0011 | LWPOLYLINE | 22416 | [682, 2780] |
+
+## ML Feature Vector (V2.0)
+| Feature | Value |
+|---|---|
+| boundary_length_mm | 8240.0 |
+| closed_loop_count | 183 |
+| constraints_orthogonal_ratio | 1.0 |
+| constraints_parallel | 16653 |
+| constraints_perpendicular | 0 |
+| convex_hull_area_mm2 | 3537999.82 |
+| entity_count | 183 |
+| graph_connected_components | 2 |
+| graph_cycle_count | 208 |
+| graph_max_degree | 31 |
+| mean_area_mm2 | 31892.9 |
+| mean_avg_segment_mm | 19.94 |
+| mean_curvature_index | 0.0 |
+| mean_length_mm | 571.28 |
+| min_feature_width_mm | 0.0 |
+| num_holes | 0 |
+| open_path_count | 0 |
+| p50_length_mm | 512.0 |
+| p95_length_mm | 784.0 |
+| solidity | 1.0 |
+| std_area_mm2 | 259992.76 |
+| std_avg_segment_mm | 85.83 |
+| std_curvature_index | 0.0 |
+| std_length_mm | 610.9 |
+| total_area_mm2 | 5836400.21 |
+| total_direction_changes | 0 |
+| total_length_mm | 104544.0 |
+| total_sharp_corners | 0 |
+| total_tac_rad | 0.0 |
+| unified_area_mm2 | 3537999.82 |

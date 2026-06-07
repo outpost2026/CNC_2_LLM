@@ -1,0 +1,184 @@
+# Marginální analýza: Lokální adhoc workflow vs GitHub pivot
+# ============================================================
+# Datum: 2026-06-07
+# Kontext: DXF_indexer přechází z V2.2 do V2.3 s novou B2B metodikou
+# Autor: OpenCode analýza pro Ondreje Souska
+
+## SOUČASNÝ STAV — Lokální adhoc workflow
+
+verzování:     adresářové (DXF_indexer_v2.0/ v2.1/ v2.2/)
+diff tracking:  ruční diff.txt + readme.txt
+záloha:         lokální disk (single point of failure)
+spolupráce:     nemožná (jeden vývojář)
+experimenty:    kopie celého adresáře → DXF_indexer_v2.2_backup/
+                riskantní, kognitivně náročné
+historie:       implicitní (jména adresářů), žádný blame/log
+CI/CD:          nemožné (nutný push do cloudu)
+regrese:        manuální diff s golden masterem
+
+## OPTION A — Enhanced Local (zůstat na local, použít novou metodiku)
+
+změny oproti současnosti:
+  + metodologické dokumenty v New_rules/
+  + strukturovanější master adresář
+  + testovací scaffold
+  + prompt šablony
+
+náklady:
+  setup:                 1.5 h (vytvořit master dir, nakopírovat)
+  denní workflow:        beze změny (copy-paste souborů)
+  riziko ztráty dat:     VYSOKÉ (jeden disk)
+  paralelní experimenty: stále kopie celých adresářů
+  regresní testy:         manuální diff (žádná automatizace)
+  návrat ke staré verzi: kopírovat z backup adresáře (pomalé, chybové)
+
+výhody:
+  + žádná learning curve
+  + okamžitě použitelné
+
+nevýhody:
+  - kognitivní zátěž roste s počtem souborů (už teď signifikantní)
+  - žádná ochrana proti nechtěnému přepsání
+  - review změn = manuální porovnávání diff.txt
+  - při selhání disku = vše ztraceno
+  - nemožnost sdílet s kýmkoli jiným (Odoo tým, CAM operátor)
+
+verdikt: UDRŽITELNÉ pro 1-2 další iterace, pak neudržitelné.
+         V2.3 přidá 7 modulů → kognitivní zátěž exploduje.
+
+
+## OPTION B — GitHub Pivot (git init → GitHub repo)
+
+změny oproti současnosti:
+  + git pro verzování (místo adresářů)
+  + GitHub repo jako remote backup + kolaborační hub
+  + branches pro experimenty/featury
+  + potenciální CI/CD (GitHub Actions pro golden master testy)
+
+náklady:
+  setup:                    3 h (git init, první commit, push, README, .gitignore)
+  learning curve:           git add, commit, branch, push (~30 min)
+  změna workflow:           místo kopírování adresářů → git branch + commit
+  GitHub repo:              public nebo private (private zdarma)
+
+výhody:
+  + kompletní historie změn (git log, git blame, git diff)
+  + paralelní vývoj přes branche (feature/fix-C3, feature/p4-epistemic)
+  + okamžitý návrat k libovolné verzi (git checkout <commit>)
+  + remote backup (GitHub)
+  + možnost PR review (až bude druhý vývojář / Odoo tým)
+  + CI/CD potenciál: GitHub Actions → spustit testy při push
+  + tagy pro release: v2.2.0, v2.3.0
+  + .gitignore chrání před commitováním temp/vygenerovaných souborů
+
+nevýhody:
+  - 30 min učení git základů (jednorázová investice)
+  - 3 h setup (jednorázová investice)
+  - nutnost pamatovat git add → commit → push
+
+minimální git znalosti potřebné pro tento projekt:
+  git add <soubor>          # přidat změněný soubor
+  git commit -m "zpráva"   # uložit lokálně
+  git push                  # nahrát na GitHub
+  git branch <název>        # vytvořit větev pro experiment
+  git checkout <název>      # přepnout na větev
+  git log --oneline         # zobrazit historii
+
+  To je 6 příkazů. Naučit se za 30 minut.
+
+
+## DOPORUČENÍ: GitHub Pivot (Option B)
+
+Důvody:
+
+1. KOMPLEXITA PŘEKROČILA PRÁH
+   V2.3 přinese 7+ modulů, testovací sadu, golden mastery, více výstupních
+   formátů. Adhoc adresáře už teď způsobují kognitivní přetížení (5 verzí
+   parseru v 5 adresářích, každý s kopiemi konfigu).
+
+2. NOVÁ METODIKA SI ŘÍKÁ O GIT
+   10 Golden Rules předpokládá iterativní workflow:
+   - [DR2] Iterative Validation Loop
+   - [DR10] Version Stamping
+   - WIP commity před každým promptem
+   - Rollback při špatné LLM odpovědi
+
+   Toto vše git řeší nativně. Bez gitu musíš kopírovat celé adresáře.
+
+3. PRODUKČNÍ NASAZENÍ NA OBZORU
+   Až bude parser nasazen na GCP Cloud Run a integrován s Odoo,
+   git se stane NEZBYTNOSTÍ (CI/CD pipeline, audit trail, rollback).
+   Začít teď znamená vybudovat návyk, než se stane kritickým.
+
+4. JEDNORÁZOVÁ INVESTICE, TRVALÝ PŘÍNOS
+   3 hodiny setupu ušetří desítky hodin v budoucnu:
+   - okamžitý diff mezi verzemi: git diff v2.2.0 v2.3.0
+   - bezpečné experimentování: git checkout -b experiment
+   - automatický diff.txt: git log --stat
+
+5. GITHUB JE ZDARMA PRO SOUKROMÉ REPO
+   Stačí vytvořit private repo → nikdo jiný nevidí kód.
+   Veřejné až při open-source / sdílení s Odoo týmem.
+
+6. ZMĚNA WORKFLOW JE MINIMÁLNÍ
+   Současný workflow:   kopírovat soubory → upravit → otestovat
+   Nový workflow:        git checkout -b feature → upravit → git commit → otestovat
+   
+   Jediný rozdíl: místo Ctrl+C/Ctrl+V používáš `git` příkazy.
+   Výhoda: git nikdy nezapomene, co jsi změnil.
+
+
+## IMPLEMENTAČNÍ PLÁN GITHUB PIVOTU
+
+Fáze 1: Lokální git (TEĎ)
+  [ ] 1. git init v DXF_indexer_main/
+  [ ] 2. .gitignore (__pycache__, *.pyc, test_output/tmp, .env)
+  [ ] 3. První commit: baseline V2.2 + dokumentace
+  [ ] 4. Tag: v2.2.0
+
+Fáze 2: První vývojová větev
+  [ ] 5. git checkout -b feature/p0-remove-nondeterminism
+  [ ] 6. Implementace P0-01, P0-02, P0-03
+  [ ] 7. git commit -m "P0: Remove semantic_layer_mapping and filename_overrides"
+  [ ] 8. git checkout main && git merge feature/p0-remove-nondeterminism
+  [ ] 9. Tag: v2.3.0-dev1
+
+Fáze 3: GitHub push (po P0, cca 2 h od teď)
+  [ ] 10. Vytvořit private repo na GitHub: Moodpasta/DXF_indexer
+  [ ] 11. git remote add origin https://github.com/<user>/DXF_indexer.git
+  [ ] 12. git push -u origin main
+  [ ] 13. git push --tags
+
+Fáze 4: Budoucnost (V2.3+)
+  [ ] 14. GitHub Actions: automatické testy při push (pytest + golden master diff)
+  [ ] 15. Pull Request workflow pro code review (až bude druhý vývojář)
+  [ ] 16. Release stránka s downloadem pro CAM operátory
+
+
+## CO SE TÍM ZÍSKÁ KONKRÉTNĚ PRO V2.3
+
+Současný adhoc přístup:
+  Pracuješ na P0 → vytvoříš kopii DXF_indexer_v2.2 → DXF_indexer_v2.2_backup
+  Změníš dxf_tool_config.json → omylem uložíš špatně → původní verze pryč
+  (pokud sis neudělal kopii předem)
+
+S git:
+  git checkout -b p0-cleanup
+  Změníš dxf_tool_config.json
+  git diff  ← okamžitě vidíš, co jsi změnil
+  git checkout dxf_tool_config.json  ← okamžitý návrat k původní verzi
+  git stash  ← odložíš rozpracované změny, přepneš na něco jiného
+
+To je ten rozdíl: jistota vs riziko.
+
+
+## VERDIKT
+
+DOPORUČUJI GitHub Pivot.
+
+Riziko odmítnutí: Autor se vyhýbal gitu, protože dosavadní workflow dostačovalo.
+Tento práh byl překročen — V2.3 komplexita + B2B metodika vyžadují verzovací systém.
+
+Git není volitelný — je to infrastruktura profesionálního vývoje.
+Stejně jako bys neřezal CNC frézou bez upnutí materiálu,
+neměl bys vyvíjet B2B nástroj bez verzovacího systému.

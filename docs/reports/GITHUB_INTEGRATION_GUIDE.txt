@@ -1,0 +1,234 @@
+# GitHub Integration Guide — DXF Geometry Indexer
+# ============================================================
+
+## Proč GitHub TEĎ (a ne dřív)
+
+Dosavadní workflow (adhoc adresáře, diff.txt, ruční verzování) FUNGOVALO pro
+V2.0–V2.2, kde byl jeden vývojář, jeden monolitický soubor, malá komplexita.
+
+V2.3 přináší:
+- 7+ modulů (místo 1 monolitu)
+- Testovací sadu (pytest, unit testy, integrační testy)
+- Golden mastery pro regresní ochranu
+- Epistemický rámec (E_confidence, --strict)
+- 6 vývojových fází s 13 tasky
+
+Tato komplexita už vyžaduje verzovací systém. Git není "nice to have" —
+je to infrastruktura profesionálního vývoje.
+
+## GitHub repo — jak vytvořit
+
+### Krok 1: Vytvoř repo na GitHub.com
+
+1. Jdi na https://github.com/<tvuj-ucet>
+2. Klikni na "+" vpravo nahoře → "New repository"
+3. Repository name: `DXF_indexer`
+4. Description: "Deterministický DXF/CAD indexer pro CNC frézování (Moodpasta)"
+5. Public/Private: **Private** (doporučeno — kód obsahuje firemní know-how)
+6. NEZAŠKRTÁVEJ "Initialize with README" (už ho máme)
+7. Klikni "Create repository"
+
+### Krok 2: Připoj lokální repo k GitHub
+
+Po vytvoření repo Ti GitHub ukáže příkazy. Použij druhý blok
+("…or push an existing repository from the command line"):
+
+```bash
+cd "g:\Můj disk\Moodpasta\dxf_integrace\DXF_indexer_main"
+
+git remote add origin https://github.com/<TVUJ_UCET>/DXF_indexer.git
+git branch -M main
+git push -u origin main
+git push --tags
+```
+
+### Krok 3: Ověř
+
+- Jdi na https://github.com/<tvuj-ucet>/DXF_indexer
+- Měl bys vidět všechny soubory, README.md, tagy
+
+## Jak bude vývoj vypadat s GitHubem
+
+### Standardní workflow pro jeden task (např. P0-01)
+
+```bash
+# 1. Vytvoř větev pro task
+git checkout -b feature/p0-remove-semantic-layer-mapping
+
+# 2. Implementuj změnu
+# ... uprav soubor ...
+
+# 3. Ověř, co jsi změnil
+git diff
+
+# 4. Commitni změnu
+git add src/dxf_tool_config.json
+git commit -m "P0-01: Remove semantic_layer_mapping from tool_config"
+
+# 5. Pushni na GitHub (záloha)
+git push -u origin feature/p0-remove-semantic-layer-mapping
+
+# 6. Až jsi hotový, přepni na main a sluč
+git checkout main
+git merge feature/p0-remove-semantic-layer-mapping
+
+# 7. Pushni main + tag
+git push
+git tag -a v2.3.0-dev1 -m "V2.3.0-dev1: P0 complete"
+git push --tags
+```
+
+### Experiment bez rizika
+
+```bash
+# Chceš zkusit nový přístup, ale bojíš se rozbít fungující kód?
+git checkout -b experiment/alternative-proximity
+
+# ... implementuj experiment ...
+
+# Pokud se nepovedl:
+git checkout main
+git branch -D experiment/alternative-proximity
+
+# Pokud se povedl:
+git checkout main
+git merge experiment/alternative-proximity
+```
+
+### Návrat k libovolné verzi
+
+```bash
+# Zobrazit historii
+git log --oneline
+
+# Vrátit se k V2.2.0 (baseline)
+git checkout v2.2.0
+```
+
+### Záloha před LLM promptem
+
+```bash
+# Podle DR2 — před každým promptem na DeepSeek
+git add -A
+git commit -m "WIP: before DeepSeek prompt for P1-03 proximity_matrix"
+```
+
+## Větve (branches) pro V2.3
+
+Doporučená struktura:
+
+```
+main ────────────────────────────────────────────── v2.3.0 (release)
+  │
+  ├── feature/p0-remove-nondeterminism ── merge ── v2.3.0-dev1
+  ├── feature/p1-critical-geometry-fixes ─ merge ── v2.3.0-dev2
+  │   ├── p1-01-vslot-double-pass
+  │   ├── p1-02-nesting-tree
+  │   ├── p1-03-proximity-matrix
+  │   ├── p1-04-graph-components
+  │   └── p1-05-deduplicate-zones
+  ├── feature/p2-tool-conflict ── merge ── v2.3.0-dev3
+  ├── feature/p3-toposanitizer ── merge ── v2.3.0-dev4
+  ├── feature/p4-epistemic-framework ── merge ── v2.3.0-dev5
+  └── feature/p5-modular-refactoring ── merge ── v2.3.0
+```
+
+## Git tahák — 6 příkazů, které potřebuješ
+
+| Příkaz | Co dělá | Kdy použít |
+|--------|---------|------------|
+| `git status` | Ukáže, co se změnilo | Před každým commitem |
+| `git add <file>` | Označí soubor k uložení | Po úpravě souboru |
+| `git commit -m "..."` | Uloží změny lokálně | Po dokončení tasku |
+| `git push` | Nahraje změny na GitHub | Pro zálohu |
+| `git checkout -b <name>` | Vytvoří novou větev | Před novým taskem |
+| `git merge <branch>` | Sloučí větev do aktuální | Po dokončení tasku |
+
+To je všechno. Šest příkazů. Zbytek se naučíš za chodu.
+
+## Časté situace a jejich řešení
+
+### "Zapomněl jsem vytvořit branch a už jsem něco změnil"
+
+```bash
+git checkout -b feature/muj-task
+# změny jdou s tebou do nové větve
+```
+
+### "Commitnul jsem špatně, chci to vzít zpátky"
+
+```bash
+git reset --soft HEAD~1
+# soubory zůstanou změněné, můžeš je znovu commitnout
+```
+
+### "Rozbil jsem soubor, chci verzi z posledního commitu"
+
+```bash
+git checkout -- src/dxf_tool_config.json
+# Vrátí soubor do stavu z posledního commitu
+```
+
+### "Chci vidět, co jsem změnil od posledního commitu"
+
+```bash
+git diff
+```
+
+### "Chci vidět celou historii změn"
+
+```bash
+git log --oneline --graph
+```
+
+## Co NEDĚLAT s Gitem
+
+- **Nepushovat** `output/`, `__pycache__/`, `.env` — proto máme `.gitignore`
+- **Necommitovat** hesla, API klíče, tokeny
+- **Nepoužívat** `git push --force` na main (nikdy!)
+- **Nemazat** `.git/` adresář (to je celá historie)
+
+## Kdy pushnout na GitHub
+
+Pushovat můžeš:
+1. Po každém commitu (automatická záloha)
+2. Na konci dne (denní záloha)
+3. Před vypnutím počítače (jistota)
+
+GitHub repr je soukromé (private). Nikdo jiný ho nevidí.
+Slouží primárně jako:
+- Záloha (kdyby selhal disk)
+- Historie (co se kdy změnilo)
+- Budoucí kolaborace (až bude Odoo tým)
+
+## Plán přechodu
+
+### TEĎ (tato session)
+- [x] git init v DXF_indexer_main/
+- [x] .gitignore + README.md
+- [x] První commit: baseline V2.2
+
+### DNES / ZÍTRA (podle Tvého tempa)
+- [ ] Vytvořit private repo na GitHub.com
+- [ ] git remote add origin
+- [ ] git push -u origin main
+- [ ] git push --tags
+
+### PŘI PRVNÍM VÝVOJOVÉM TASKU (P0)
+- [ ] git checkout -b feature/p0-remove-nondeterminism
+- [ ] Implementovat P0-01, P0-02, P0-03
+- [ ] git commit + git push
+- [ ] git merge do main
+
+## Shrnutí
+
+GitHub pivot NENÍ:
+- Složitý (6 příkazů, 30 minut učení)
+- Riskantní (všechno je lokálně, GitHub je jen záloha)
+- Předčasný (komplexita V2.3 ho vyžaduje)
+
+GitHub pivot JE:
+- Jednorázová investice 3 hodin
+- Trvalá ochrana proti ztrátě dat
+- Základ pro profesionální CI/CD pipeline
+- Nezbytný pro budoucí kolaboraci

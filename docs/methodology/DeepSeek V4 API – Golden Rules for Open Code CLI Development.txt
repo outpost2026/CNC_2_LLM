@@ -1,0 +1,368 @@
+# DeepSeek V4 API – Golden Rules for Open Code CLI Development
+
+## Metodika pro iterační vývoj DXF parseru (Moodpasta)
+
+> **Autor**: Ondrej Sousek  
+> **Use case**: Vývoj deterministického DXF/CAD indexeru v Pythonu s využitím DeepSeek V4 API  
+> **Princip**: Open Code CLI – každá změna je verifikována lokálně před integrací  
+
+---
+
+## 1. Základní principy práce s LLM na kódové bázi
+
+| Princip | Popis |
+|---------|-------|
+| **Determinismus nad vším** | Výstup parseru musí být identický pro stejný vstup – žádné stringové heuristiky, žádné náhodné hodnoty. |
+| **Konfigurace > kód** | Všechny strojní parametry (rychlosti, prodloužení, penalty) v `dxf_tool_config.json`, nikdy ne hardcoded. |
+| **Epistemická transparentnost** | Každá heuristika má `validation_status` (`empirical` / `calibrated` / `hypothesis`). |
+| **Modularita** | Komunikace s API po funkcích, ne po celých souborech (max 200–300 řádků kontextu). |
+| **Test-first** | Před implementací nechat API vygenerovat unit test, pak vlastní kód. |
+
+---
+
+## 2. Golden Rules pro promptování DeepSeek V4
+
+### Rule 1: Kontextové primování (Context Priming)
+
+**Vždy poskytni:**
+- Přesný název funkce a její současný kód (max 100 řádků)
+- Vstupní příklad (ukázka DXF entity nebo JSON struktury)
+- Očekávaný výstup (příklad)
+- Omezení (žádné nové závislosti, zachování formátu výstupu)
+
+```text
+[Template]
+Funkce: _fix_proximity_matrix(entities: list) -> list
+
+Současný kód:
+[copy 50-100 řádků]
+
+Problém: Vrací matici nul.
+
+Požadavek: Implementujte výpočet minimální euklidovské vzdálenosti mezi bounding boxy entit pomocí shapely.STRtree. Výstup: seznam seznamů floatů (n x n). Nepoužívejte numpy. Zachovejte stávající signaturu.
+
+Testovací vstup: 3 entity – dva překrývající se obdélníky, jeden samostatný.
+Očekávaná matice: [[0, 0, 12.5], [0, 0, 12.5], [12.5, 12.5, 0]]
+```
+
+### Rule 2: Iterativní validace (Iterative Validation Loop)
+
+Po každé odpovědi:
+1. Ulož vygenerovaný kód do dočasného souboru
+2. Spusť CLI na testovací sadě (`demo_data/`)
+3. Porovnej výstup s golden masterem (`test_output_v22/`)
+4. Pokud se liší číselná pole o >0.1 %, vrať se k promptu s chybovou hláškou
+
+```bash
+# Automatizovaný test po každé změně
+python dxf_geometry_indexer_v2.py -i demo_data/26_skladba.dxf -o /tmp/test_output
+diff /tmp/test_output/26_skladba_index.json test_output_v22/26_skladba_index.json --ignore-matching-lines="timestamp\|md5"
+```
+
+### Rule 3: Žádné hardcoded hodnoty (Configuration over Code)
+
+Pokud DeepSeek navrhne:
+```python
+plunge_penalty = 0.20  # špatně!
+```
+→ **odmítni** a požaduj:
+```python
+plunge_penalty = config["kinematic_constants"]["per_entity_overheads"]["plunge_overhead_seconds"]
+```
+
+**Prompt korekce:** "Nahraď pevnou hodnotu čtením z dxf_tool_config.json pod klíčem kinematic_constants.per_entity_overheads.plunge_overhead_seconds."
+
+### Rule 4: Determinismus testování (Determinism by Design)
+
+Požaduj, aby vygenerovaná funkce:
+- Nepoužívala `random`, `time`, `uuid`
+- Nepoužívala `os.listdir()` nebo čtení jiných souborů než konfigurace
+- Nepoužívala stringové porovnávání názvů vrstev (`if "fazeta" in layer_name`)
+
+**Ověřovací grep:**
+```bash
+grep -E "if.*layer.*name|random\.|time\.|uuid|listdir" dxf_geometry_indexer_v2.py
+```
+
+### Rule 5: Epistemické značky (Epistemic Transparency)
+
+Každá odhadovaná hodnota (např. corner slowdown) musí mít doprovodný status:
+
+```python
+# Požadovaný výstup
+corner_slowdown_seconds = 0.05
+corner_slowdown_status = "calibrated"  # nebo "empirical" / "hypothesis"
+```
+
+**Prompt:** "Ke každé heuristické konstantě přidej druhou proměnnou `_status` s hodnotou z konfigurace validation_status."
+
+### Rule 6: Modulární dotazy (Modular Ask)
+
+**Špatně:** "Přepiš celý soubor dxf_geometry_indexer_v2.py" → kolize verzí, ztráta kontextu.
+
+**Správně:** 
+```text
+Otevři funkci _simple_zone_split na řádcích 610-680. 
+Uprav ji tak, aby každá entita patřila pouze do jedné zóny (oprava C6).
+Pošli pouze tělo funkce.
+```
+
+Využívej, že DeepSeek V4 má 128k kontext – můžeš poslat celý modul, ale požaduj změnu pouze v jedné funkci.
+
+### Rule 7: Unit testy před kódem (Test-First Generation)
+
+Než necháš vygenerovat opravu, požaduj nejprve test, který selhává:
+
+```text
+Vygeneruj pytest test, který odhalí, že proximity_matrix vrací samé nuly pro překrývající se entity.
+Použij mocker nebo testovací DXF z demo_data.
+```
+
+Pak test ulož do `tests/test_proximity.py`. Teprve potom generuj opravu samotné funkce.
+
+### Rule 8: Logování místo printů (Logging, not Printing)
+
+Veškerý vygenerovaný kód musí používat `logging.getLogger()`, nikoli `print()`.
+
+```python
+import logging
+logger = logging.getLogger("Moodpasta.dxf_spatial")
+
+# Správně
+logger.debug(f"Proximity between {id1} and {id2}: {dist}")
+
+# Špatně
+print(f"Proximity: {dist}")
+```
+
+**Prompt:** "Použij logger s modulem 'Moodpasta.název_modulu' a úrovněmi DEBUG pro podrobnosti, INFO pro normální běh, WARNING pro opravené geometrie, ERROR pro fatální chyby."
+
+### Rule 9: Typové hinty a docstringy (Type Hints & Docstrings)
+
+Požaduj striktně:
+
+```python
+def compute_confidence(empirical_len: float, calibrated_len: float, total_len: float) -> float:
+    """
+    Compute epistemic confidence index.
+
+    Args:
+        empirical_len: Total length of empirically validated paths (mm)
+        calibrated_len: Total length of calibrated paths (mm)
+        total_len: Total path length (mm)
+
+    Returns:
+        E_confidence in range [0, 1]
+
+    Raises:
+        ValueError: If total_len <= 0
+
+    Example:
+        >>> compute_confidence(1000, 500, 2000)
+        0.625
+    """
+```
+
+### Rule 10: Verzování výstupů (Version Stamping)
+
+Po každé úspěšné změně, která modifikuje výstupní formát (JSON, CSV), požaduj inkrementaci verze:
+
+- **Patch** (2.2.0 → 2.2.1): Oprava chyby, beze změny schématu
+- **Minor** (2.2.x → 2.3.0): Nová pole v JSON/CSV, zpětně kompatibilní
+- **Major** (2.x → 3.0): Breaking change (např. přejmenování klíčů)
+
+**Prompt:** "Zvyš minor verzi na 2.3.0, protože přidáváme pole v_slot_double_pass_length_mm do ML CSV."
+
+---
+
+## 3. Pracovní postup (Workflow) – krok za krokem
+
+```mermaid
+graph TD
+    A[Identifikuj bug/feature z handoff] --> B[Vytvoř prompt s kontextem]
+    B --> C[DeepSeek V4 vygeneruje unit test]
+    C --> D[Ulož test, spusť – musí selhat]
+    D --> E[DeepSeek V4 vygeneruje opravu funkce]
+    E --> F[Ulož kód, spusť CLI na demo_data]
+    F --> G{Porovnej s golden master}
+    G -->|Shoda| H[Commit + update handoff]
+    G -->|Neshoda| I[Pošli diff jako zpětnou vazbu]
+    I --> E
+```
+
+### Detailní příklad
+
+**1. Prompt (pro opravu C1 – nesting_tree):**
+```text
+Funkce: nesting_tree(entities, containment_edges) v dxf_geometry_indexer_v2.py, řádky ~870-920.
+
+Současný kód vrací prázdný seznam. Potřebujeme rekurzivní stavbu stromu z containment_edges.
+
+Každý uzel je dict: {'parent_id': int, 'child_ids': list[int]}.
+Použij shapely.contains() pro určení rodičovství.
+
+Vstup: entities (list dictů s 'id' a 'shapely_polygon'), containment_edges (seznam dvojic (parent, child)).
+
+Výstup: seznam uzlů.
+
+Nepoužívejte žádné knihovny mimo shapely, které již jsou v requirements.txt.
+
+Nejprve vygeneruj pytest test, který ověří, že pro tři polygon (vnější, vnitřní, samostatný) funkce vrátí správný strom.
+```
+
+**2. DeepSeek vrátí test → ulož do `tests/test_nesting_tree.py`**
+
+**3. Spustíš test → selže (prázdný strom)**
+
+**4. DeepSeek vrátí opravenou funkci → nahraď v kódu**
+
+**5. Spustíš CLI:**
+```bash
+python dxf_geometry_indexer_v2.py -i demo_data/26_skladba.dxf -o /tmp/test && \
+python -c "import json; print(json.load(open('/tmp/test/26_skladba_index.json'))['entity_graph']['nesting_tree'][:3])"
+```
+
+**6. Porovnáš s golden masterem (vizuálně nebo diff) – pokud OK, commit.**
+
+---
+
+## 4. Užitečné prompt patterns
+
+### Pattern A: Oprava konkrétního bugu
+```text
+Bug C3: Tool assignment conflict. Stejné entity (id 5,12,33) jsou přiřazeny k 'vibrate_cutter' (podle ACI barvy 7) a zároveň k 'v_slot_45deg' (podle geometrie). 
+Upravte _assign_tools() tak, aby ACI mapping měl prioritu. 
+Přidejte do výstupu 'tool_conflict_detected' a 'tool_conflict_entity_ids'.
+Viz handoff C3. 
+Poskytněte pouze změněnou funkci.
+```
+
+### Pattern B: Nová ML feature
+```text
+Přidejte do _build_ml_vector() feature 'sharp_corners_per_meter'. 
+Výpočet: spočítejte vrcholy s úhlem <45° (pomocí _line_angle() z již existujícího kódu), vydělte total_path_length_mm a vynásobte 1000. 
+Přidejte nový sloupec za 'total_sharp_corners' do CSV. 
+Verze se zvyšuje na 2.3.0.
+```
+
+### Pattern C: Refaktoring na modul
+```text
+Vytvořte nový modul dxf_spatial.py. 
+Přesuňte do něj následující funkce z dxf_geometry_indexer_v2.py: _bb, _centroid, _bbox_distance, proximity_matrix, nesting_tree, shape_groups, bfs_clusters. 
+Zachovejte všechny importy. 
+Modul musí být samostatně spustitelný (mít vlastní test). 
+Z původního souboru tyto funkce odstraňte a nahraďte importem.
+```
+
+---
+
+## 5. Blacklist – co nikdy nepoužívat (a co zakázat DeepSeek)
+
+| Pattern | Proč je zakázán |
+|---------|----------------|
+| `if "fazeta" in layer_name:` | Nedeterministické, závislé na pojmenování |
+| `if "botanic" in filename:` | Anti‑pattern z PDF, musí být odstraněn |
+| `time.sleep()` | Zbytečné čekání, prodlužuje běh |
+| `random.uniform()` | Nedeterministické |
+| `eval()` nebo `exec()` | Bezpečnostní riziko |
+| `pickle.load()` | Verzní nekompatibilita |
+| Pevně zapsaná cesta k souboru (např. `C:\data\...`) | Nepřenositelné |
+| `input()` | Blokuje dávkové zpracování |
+
+**Prompt pro zákaz:** "Při generování kódů nikdy nepoužívej následující: `eval`, `exec`, `pickle`, `input`, `time.sleep`, `random`, stringové porovnávání názvů vrstev ani jmen souborů. Všechny parametry čti z `dxf_tool_config.json`."
+
+---
+
+## 6. Užitečné zkratky pro prompt (vlastní makra)
+
+| Zkratka | Význam |
+|---------|--------|
+| `[GOLDEN]` | Odkaz na golden master výstup v `test_output_v22/` |
+| `[CONFIG]` | Odkaz na `dxf_tool_config.json` schema |
+| `[C1]` až `[C6]` | Kritické chyby z handoff |
+| `[NO-HEURISTIC]` | Zakázat stringové heuristiky |
+| `[ADD-TEST]` | Vygeneruj nejprve unit test |
+| `[MODULE:name]` | Práce pouze v daném modulu |
+
+Příklad:
+```text
+[NO-HEURISTIC] [ADD-TEST] Oprav [C2] – proximity_matrix. Použij [CONFIG] pro výchozí práh vzdálenosti (pokud existuje). Výstup porovnej s [GOLDEN] pro 26_skladba.dxf.
+```
+
+---
+
+## 7. Měření úspěšnosti
+
+| Metrika | Cíl | Způsob měření |
+|---------|-----|---------------|
+| První odpověď bez chyb | 70 % | Ruční kontrola |
+| Počet iterací na opravu | ≤ 2 | Počet promptů na bug |
+| Shoda s golden masterem | 100 % | `diff --ignore-matching-lines` |
+| Čas od promptu po commit | < 30 min | Stopky |
+
+---
+
+## 8. Zálohování a versionování
+
+**Před každým promptem** ulož aktuální stav:
+```bash
+git add -A && git commit -m "WIP before DeepSeek prompt for task C3"
+```
+
+**Po úspěšné integraci**:
+```bash
+git commit --amend -m "Fix C3: tool conflict resolution, added conflict flags"
+```
+
+**V případě špatné odpovědi**:
+```bash
+git reset --hard HEAD~1   # vrať se do stavu před promptem
+```
+
+---
+
+## 9. Shrnutí – checklist před odesláním promptu
+
+- [ ] Je funkce izolovaná (max 200 řádků kontextu)?
+- [ ] Jsou uvedeny příklady vstupu a výstupu?
+- [ ] Je zakázáno použití stringových heuristik?
+- [ ] Jsou všechny numerické hodnoty odkazovány do configu?
+- [ ] Je požadováno logování místo printů?
+- [ ] Je požadován unit test?
+- [ ] Je specifikována požadovaná změna verze?
+
+---
+
+## 10. Ukázka kompletního promptu (reálný case)
+
+```text
+Oprava C3 – Tool assignment conflict.
+
+Současný kód _assign_tools() (řádky 1150-1220):
+[copy kódu]
+
+Problém: Entity s ACI barvou 7 (bílá) jsou mapovány na 'vibrate_cutter' podle layer_card,
+ale zároveň jsou přiřazeny k 'v_slot_45deg' geometrickou heuristikou (otevřené dráhy).
+
+Požadavek:
+1. ACI mapping má vyšší prioritu. Pokud je barva mapována, použij cutter_type z configu.
+2. Zbylé entity (unmapped) zpracuj geometrickou heuristikou.
+3. Pokud entita splňuje obě pravidla, přidej její ID do seznamu 'tool_conflict_entity_ids'.
+4. Nastav 'tool_conflict_detected' = True.
+5. Výstup do JSON: semantic_analysis.tool_conflict_detected, semantic_analysis.tool_conflict_entity_ids.
+
+Omezení:
+- Žádné nové importy.
+- Zachovej stávající strukturu výstupu (pouze přidej dvě pole).
+- Žádné stringové heuristiky na názvy vrstev.
+
+Nejprve vygeneruj pytest test, který odhalí konflikt pro demo_data/3781_1.dxf (bílá barva + otevřené dráhy).
+
+Poté vygeneruj opravenou _assign_tools().
+
+Verzi zvyš na 2.3.0.
+```
+
+---
+
+**Tato metodika je navržena speciálně pro iterativní vývoj DXF parseru s DeepSeek V4 API. Dodržováním těchto pravidel dosáhneš deterministického, testovatelného a udržitelného kódu.**

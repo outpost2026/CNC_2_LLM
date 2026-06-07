@@ -1,0 +1,128 @@
+# DIFF: dxf_geometry_indexer_v2.py V2.1 → V2.2
+# ============================================================
+# Datum: 2026-06-07
+# Popis: ML hygiene fixy, Layer Card (CAM import), vizualizacni opravy
+
+## 1. ML TARGET LEAKAGE FIX (PRIORITA 1)
+
+### Problem (V2.1 bug)
+_build_ml_vector() obsahoval `cutting_time_estimate_s` jako feature. Model by se
+naucil primo hodnotu casu z deleg a nebyl by pouzitelny pro predikci na novych datech.
+
+### Oprava (V2.2)
+  * Odstaneno `cutting_time_estimate_s` z feature vektoru
+  * Pridano `panel_fits_stock` (bool) jako nova feature
+  * Pridano `v_slot_single_pass_length_mm` (z JSON, chybelo v ML vektoru)
+  * Yield: -1.0 misto 0 pro nepasujici panely (detekovatelna anommalie)
+
+## 2. PANEL YIELD FIX
+
+### Problem (V2.1 bug)
+  * `yield_pct = min(..., 100)` — capovalo oversized panely na 100%
+  * `waste_mm` slo do zapornych hodnot (napr. [-3756, -1551])
+  * Zadna kontrola rotace panelu o 90deg
+
+### Oprava (V2.2)
+  * Nova funkce _check_panel_fits_stock(w, h, stock_w, stock_h)
+  * Zkousi obe orientace (0deg i 90deg)
+  * Pokud nepasuje: yield_percent=null, waste_mm=null, panel_fits_stock=false
+  * Pokud pasuje po otoceni: panel_rotated=true
+  * Material_yield JSON rozsiren o panel_fits_stock, panel_rotated
+
+## 3. CHYBEJICI CSV SLOUPCE FIX
+
+### Problem (V2.1 bug)
+  Kdyz semantic_zone_count=0, sloupce `zone_lengths_mean`, `largest_zone_entity_count`,
+  `max_zone_spacing_mm` se nikdy nevygenerovaly → nekonzistence CSV napric soubory.
+  `_simple_zone_split()` nikdy nenastavovala `spacing_mean_mm`.
+
+### Oprava (V2.2)
+  * _build_ml_vector(): zone features emitovany vzdy (default=0)
+  * _simple_zone_split(): pridana spacing kalkulace z center entit
+  * max_zone_spacing_mm nyni reflektuje skutecna data
+
+## 4. LAYER CARD (NOVA FEATURE — CAM IMPORT)
+
+### Nova funkce: build_layer_card(entities, tool_config=None)
+  Agreguje entity podle color_index (ACI 0-255) a cross-referencuje
+  s dxf_tool_config.json `aci_color_mapping`:
+    * Per color: entity_count, total_length, point_count, point_density,
+      closed/open ratio, TAC, geometry_types, layers
+    * Tool config: cutter_type, base_speed, direction, validation_status
+    * is_mapped flag: ma barva mapovani v tool_configu?
+
+  Vystupni struktura v JSON:
+    layer_card: {color_count, total_entities_mapped, total_entities_unmapped, colors}
+
+### Nova funkce: write_layer_card_csv(data, out)
+  Samostatny CSV soubor `{name}_layer_card.csv` pro primy CAM import.
+  Sloupce: color_index, color_name, entity_count, total_length_mm, point_count,
+  closed_count, open_count, closed_ratio, total_tac_rad, tac_per_meter,
+  point_density_per_meter, min_length_mm, max_length_mm, geometry_types,
+  layers, cutter_type, base_speed_mms, direction, validation_status, is_mapped
+
+### Rozsireni write_md():
+  Nova sekce `## Layer Card (CAM Import Reference)` s tabulkou barev a toolu.
+
+### Konstanty:
+  _ACI_COLOR_NAMES: {0:"ByBlock", 1:"Red", 2:"Yellow", 3:"Green", 4:"Cyan",
+                     5:"Blue", 6:"Magenta", 7:"White", 8:"DarkGray", 9:"LightGray",
+                     30:"Orange", 52:"Lime", 92:"Azure"} + fallback "ACI_{n}"
+
+## 5. VIZUALIZACE FIX
+
+### Problem (V2.1 bug)
+  dxf_indexer_app_v2.py: `import math` bylo uvnitr `else` bloku (spusteno jen
+  kdyz NENI nahran soubor). Pri nahrani souboru → NameError pri pouziti
+  math.cos/math.sin/math.radians v 2D Viz tabu → crash.
+
+### Oprava (V2.2)
+  * `import math` presunut na zacatek souboru (radek 4)
+  * Pridany importy do viz tabu: korektni layer_colors, seen_colors tracking
+
+### CLI --viz flag
+  Nova funkce _render_png(dxf_path, out_path, semantic, tool_config):
+    * Cte DXF primo pres ezdxf (nezavisle na index_dxf)
+    * Renderuje vsechny entity barevne dle color_index (stejna paleta)
+    * Stock boundary: obdelnik 2900x1220 (carkovane)
+    * Zone overlays: horizontalni carkovane cary ze semantic.zones
+    * Legenda: color → name → tool_type (pokud je tool_config)
+    * Dark theme, aspect='equal', invert Y, 1920x1080, DPI 100
+  * `--viz` flag v argparse
+  * `--config` flag pro cestu k dxf_tool_config.json
+
+### Rozsireni Streamlit 2D Viz tabu:
+  * Legenda s tool typy z layer_card
+  * Stock boundary 2900x1220 (carkovany obdelnik)
+  * Zone overlay (horizontalni linie ze semantic.zones)
+  * Circles vykreslovany s 48 body (hladsi)
+  * Arcs: adaptivni segmentace (min 12, ar/0.08)
+
+## 6. VERSION & HEADER
+
+  * VERSION = "2.2.0"
+  * Docstring aktualizovan na V2.2 popis
+
+## 7. NARRATIVE SUMMARY UPDATE
+
+  * Obsluhuje null yield: "VAROVANI: Panel XxY mm se nevejde na surovou desku..."
+  * Pridano "(panel otocen o 90deg)" pokud panel_rotated=true
+
+## 8. ZPETNA KOMPATIBILITA
+
+OK Vsechna pole z V2.1 JSON zustavaji beze zmeny
+OK V2.2 POUZE pridava: layer_card, material_yield.panel_fits_stock/panel_rotated
+OK Stejne entity poradi a ID
+OK Stejny output file naming
+OK Shapely/scipy optional zachovan (graceful degradation)
+WARNING _build_ml_vector: cutting_time_estimate_s ODSTRANEN z featur,
+   panel_yield_percent muze byt -1.0 (misto 0) pro oversized
+
+## 9. KNIHOVNY
+
+Bez zmeny. ezdxf + numpy required. shapely/scipy/gudhi optional.
+matplotlib: nove optional pro _render_png() (jiz v requirements.txt).
+
+## 10. PRACOVNOST
+
+~3.5 hodiny

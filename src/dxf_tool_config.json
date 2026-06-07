@@ -1,0 +1,428 @@
+{
+  "_schema": "dxf_tool_config_v1.0",
+  "_description": "Kalibracni protokol pro DXF-to-CNC heuristiky. Externí konfigurace pro dxf_parser_v4.4+. Každé pravidlo má validation_status (empirical/calibrated/hypothesis).",
+
+  "parser_metadata": {
+    "version": "4.4.0",
+    "console_encoding": "utf-8"
+  },
+
+  "aci_color_mapping": {
+    "_description": "Mapování ACI barevných indexů (AutoCAD Color Index) na řezné nástroje a parametry. Použito, když vrstva NEMÁ sémantické jméno.",
+    "1": {
+      "cutter_type": "Vibrate cutter",
+      "base_speed_mms": 150,
+      "direction": "N/A",
+      "h2_mm": -0.3,
+      "vs_comp_mm": 0.0,
+      "start_extension_mm": 0.0,
+      "end_extension_mm": 0.0,
+      "is_output": true,
+      "validation_status": "hypothesis",
+      "_note": "Červená (C02/C10, ACI 1) — vnější obrysy. Ale slouží i jako metadata/bounding box. Empiricky neověřeno napříč všemi zakázkami."
+    },
+    "2": {
+      "cutter_type": "V-slot",
+      "base_speed_mms": 300,
+      "direction": "Left",
+      "h2_mm": 6.0,
+      "vs_comp_mm": 0.1,
+      "start_extension_mm": 0.0,
+      "end_extension_mm": 0.0,
+      "is_output": true,
+      "validation_status": "empirical",
+      "_note": "Žlutá (C04, ACI 2) — fazety. Jednostranný V-slot, potvrzeno na produkčních VCF."
+    },
+    "3": {
+      "cutter_type": "V-slot",
+      "base_speed_mms": 200,
+      "direction": "Cut both side",
+      "h2_mm": 6.0,
+      "vs_comp_mm": 0.0,
+      "start_extension_mm": 2.0,
+      "end_extension_mm": 2.0,
+      "is_output": true,
+      "validation_status": "empirical",
+      "_note": "Zelená (C03, ACI 3) — VZOR_ZELENA. Standardní V-slot, 200 mm/s. Potvrzeno: 7 correct matches v4.3."
+    },
+    "30": {
+      "cutter_type": "V-slot",
+      "base_speed_mms": 100,
+      "direction": "Cut both side",
+      "h2_mm": 6.0,
+      "vs_comp_mm": 0.0,
+      "start_extension_mm": 2.0,
+      "end_extension_mm": 2.0,
+      "is_output": true,
+      "validation_status": "calibrated",
+      "_note": "Oranžová (C30, ACI 30) — speciální V-slot varianta. Pomalý, pro složité vzory."
+    },
+    "52": {
+      "cutter_type": "V-slot",
+      "base_speed_mms": 200,
+      "direction": "Cut both side",
+      "h2_mm": 6.0,
+      "vs_comp_mm": 0.0,
+      "start_extension_mm": 3.0,
+      "end_extension_mm": 3.0,
+      "is_output": true,
+      "validation_status": "hypothesis",
+      "_note": "Limetková (C52, ACI 52) — málo vzorků, spekulativní mapování."
+    },
+    "92": {
+      "cutter_type": "V-slot",
+      "base_speed_mms": 300,
+      "direction": "Cut both side",
+      "h2_mm": 6.0,
+      "vs_comp_mm": 0.0,
+      "start_extension_mm": 10.0,
+      "end_extension_mm": 10.0,
+      "is_output": true,
+      "validation_status": "hypothesis",
+      "_note": "Azurová (C92, ACI 92) — málo vzorků, spekulativní mapování."
+    },
+    "4": {
+      "cutter_type": "ambiguous",
+      "base_speed_mms": 200,
+      "direction": "Cut both side",
+      "h2_mm": 6.0,
+      "vs_comp_mm": 0.0,
+      "start_extension_mm": 2.0,
+      "end_extension_mm": 2.0,
+      "is_output": true,
+      "validation_status": "hypothesis",
+      "_note": "Azurová (C06, ACI 4) — AMBIGUOUS. Podle hustoty bodů se rozhoduje mezi Vibrate (50 mm/s) a V-slot (200 mm/s).",
+      "density_rules": {
+        "vibrate_if_density_gt": 30.0,
+        "vibrate_speed_mms": 50,
+        "vslot_speed_mms": 200,
+        "vslot_direction": "Cut both side",
+        "vslot_start_extension_mm": 2.0,
+        "vslot_end_extension_mm": 2.0
+      }
+    },
+    "5": {
+      "cutter_type": "Vibrate cutter",
+      "base_speed_mms": 100,
+      "direction": "N/A",
+      "h2_mm": -0.3,
+      "vs_comp_mm": 0.0,
+      "start_extension_mm": 0.0,
+      "end_extension_mm": 0.0,
+      "is_output": true,
+      "validation_status": "empirical",
+      "_note": "Modrá (C01, ACI 5) — malé kruhy/dírky. Vibrate cutter 100 mm/s."
+    },
+    "6": {
+      "cutter_type": "Vibrate cutter",
+      "base_speed_mms": 300,
+      "direction": "N/A",
+      "h2_mm": -0.3,
+      "vs_comp_mm": 0.0,
+      "start_extension_mm": 0.0,
+      "end_extension_mm": 0.0,
+      "is_output": true,
+      "validation_status": "calibrated",
+      "_note": "Purpurová (C15, ACI 6) — vysokorychlostní chop. 300 mm/s."
+    },
+    "7": {
+      "cutter_type": "Vibrate cutter",
+      "base_speed_mms": 200,
+      "direction": "N/A",
+      "h2_mm": -0.3,
+      "vs_comp_mm": 0.0,
+      "start_extension_mm": 0.0,
+      "end_extension_mm": 0.0,
+      "is_output": true,
+      "validation_status": "empirical",
+      "_note": "Černá/bílá (C00, ACI 7) — hlavní obrysy. Vibrate cutter 200 mm/s."
+    }
+  },
+
+  "semantic_layer_mapping": {
+    "_description": "Mapování prefixů názvů vrstev na parametry. Má prioritu před ACI barevným mapováním.",
+    "popis": {
+      "cutter_type": "Vibrate cutter",
+      "base_speed_mms": 100,
+      "direction": "N/A",
+      "is_output": false,
+      "h2_mm": 0.0,
+      "_note": "Popisky — vizuální reference, neřezat."
+    },
+    "formaty": {
+      "cutter_type": "Vibrate cutter",
+      "base_speed_mms": 100,
+      "direction": "N/A",
+      "is_output": false,
+      "h2_mm": 0.0,
+      "_note": "Formátové rámy — neřezat."
+    },
+    "sheet": {
+      "cutter_type": "Vibrate cutter",
+      "base_speed_mms": 100,
+      "direction": "N/A",
+      "is_output": false,
+      "h2_mm": 0.0,
+      "_note": "Sheet boundary — neřezat."
+    },
+    "fazeta": {
+      "cutter_type": "V-slot",
+      "base_speed_mms": 300,
+      "direction": "Left",
+      "h2_mm": 6.0,
+      "vs_comp_mm": 0.1,
+      "is_output": true,
+      "_note": "Fazety — jednostranný V-slot."
+    },
+    "vzor": {
+      "cutter_type": "V-slot",
+      "base_speed_mms": 200,
+      "direction": "Cut both side",
+      "h2_mm": 6.0,
+      "start_extension_mm": 2.0,
+      "end_extension_mm": 2.0,
+      "is_output": true,
+      "_note": "Vzory — oboustranný V-slot. Standardní rychlost 200 mm/s."
+    },
+    "obrysy": {
+      "cutter_type": "Vibrate cutter",
+      "base_speed_mms": 200,
+      "direction": "N/A",
+      "h2_mm": -0.3,
+      "is_output": true,
+      "_note": "Obrysy — hlavní ořez vibračním nožem."
+    },
+    "chop": {
+      "cutter_type": "Vibrate cutter",
+      "base_speed_mms": 300,
+      "direction": "N/A",
+      "h2_mm": -0.3,
+      "is_output": true,
+      "_note": "Chop — vysokorychlostní řez."
+    }
+  },
+
+  "filename_overrides": {
+    "_description": "Overridy specifické pro konkrétní soubory. Detekují se podle substringu v názvu souboru. Použije se poslední vyhovující pravidlo.",
+    "_priority_note": "Filename overrides mají vyšší prioritu než ACI mapování a sémantické mapování.",
+    "rules": [
+      {
+        "pattern": "botanic",
+        "apply_to_layers": {
+          "layer_name_contains": ["layer_4"],
+          "color_indices": [4]
+        },
+        "override": {
+          "cutter_type": "V-slot",
+          "direction": "Cut both side",
+          "base_speed_mms": 400,
+          "start_extension_mm": 3.0,
+          "end_extension_mm": 3.0,
+          "h2_mm": 6.0,
+          "is_output": true
+        },
+        "validation_status": "empirical",
+        "_note": "Botanic 2790 — layer_4 / ACI 4 má V-slot na 400 mm/s (namísto standardního ambiguous chování)."
+      }
+    ]
+  },
+
+  "kinematic_constants": {
+    "_description": "Fyzikální konstanty kinematického modelu. Nezávislé na barvě nebo názvu vrstvy.",
+    "corner_times": {
+      "standard_corner_seconds": 0.66,
+      "organic_corner_seconds": 0.30,
+      "organic_keywords": ["deska", "botanic", "circle", "fluenz", "curve", "pcb"],
+      "validation_status": "empirical",
+      "_instructions": "standard: 10× L-cut (pravý úhel, 100 mm rameno), změřit celkový čas, odečíst lineární složku, vydělit 10. organic: totéž pro kruhové/obloukové segmenty."
+    },
+    "lift_and_rotation": {
+      "t_lift_seconds": 2.2,
+      "t_rot_vslot_seconds": 1.5,
+      "validation_status": "calibrated",
+      "_instructions": "Zdvih: změřit čas mezi koncem jednoho elementu a začátkem dalšího na sousední pozici. Rotace: změřit čas přepnutí směru V-slotu."
+    },
+    "overheads": {
+      "setup_overhead_seconds": 50.0,
+      "traverse_speed_mms": 500.0,
+      "traverse_distance_between_elements_mm": 150.0,
+      "return_home_time_seconds": 15.0,
+      "validation_status": "calibrated"
+    },
+    "density_penalties": {
+      "vibrate_curve_threshold_mm": 0.2,
+      "vibrate_curve_point_penalty_seconds": 1.2,
+      "validation_status": "hypothesis",
+      "_instructions": "Kalibrovat: změřit čas řezu organické křivky (kruh ø100 mm) a porovnat s predikcí. Upravit threshold."
+    },
+    "per_entity_overheads": {
+      "plunge_overhead_seconds": 0.20,
+      "corner_slowdown_seconds": 0.05,
+      "validation_status": "calibrated",
+      "_note": "Plunge: zanoření nástroje do materiálu. Corner slowdown: mikro-brzdění v každém vertexu."
+    }
+  },
+
+  "speed_density_modulation": {
+    "_description": "Modulace rychlosti podle hustoty bodů (pts/m). Vyšší hustota = pomalejší řez (akcelerační limity portálu).",
+    "vibrate_cutter": {
+      "validation_status": "hypothesis",
+      "rules": [
+        {
+          "condition": "pts_density > 150.0",
+          "speed_mms": 50,
+          "_note": "Extrémní hustota bodů (např. musica organické vlny)."
+        },
+        {
+          "condition": "pts_density > 35.0",
+          "speed_mms": 75,
+          "min_of_base": true,
+          "_note": "Střední hustota — max(base_speed, 75) nebo 75, podle toho co je nižší."
+        }
+      ],
+      "default": "base_speed ponecháno beze změny"
+    },
+    "vslot": {
+      "validation_status": "hypothesis",
+      "rules": [
+        {
+          "condition": "pts_density > 150.0",
+          "speed_mms": 75,
+          "_note": "Extrémní hustota V-slotu (organické vzory jako musica)."
+        },
+        {
+          "condition": "pts_density > 100.0",
+          "speed_multiplier": 0.5,
+          "min_speed_mms": 100,
+          "_note": "Vysoká hustota — poloviční rychlost, min 100 mm/s."
+        },
+        {
+          "condition": "pts_density > 30.0",
+          "speed_multiplier": 0.75,
+          "min_speed_mms": 150,
+          "_note": "Zvýšená hustota — 75% rychlosti, min 150 mm/s."
+        }
+      ],
+      "aci_3_green_exempt": true,
+      "_aci_3_note": "Zelený V-slot (ACI 3, standardní VZOR) běží vždy na plných 200 mm/s — penaltizace způsobovala regrese (~25 % nadhodnocení času)."
+    }
+  },
+
+  "geometric_rules": {
+    "_description": "Geometrická pravidla aplikovaná napříč všemi vrstvami (např. deaktivace stock sheetu, fallback pro generické vrstvy).",
+    "stock_sheet_detection": {
+      "width_range_mm": [1100.0, 1350.0],
+      "height_range_mm": [2800.0, 3000.0],
+      "action": "deactivate_layer",
+      "_note": "Pokud bounding box vrstvy odpovídá rozměrům materiálového formátu, vrstva se deaktivuje (je to jen bounding box, ne řez)."
+    },
+    "layer_zero_deactivation": {
+      "target_names": ["0", "layer_0", "layer_00", "defpoints", "default"],
+      "condition": "exists_other_active_with_length_gt_100mm",
+      "action": "deactivate_layer",
+      "_note": "Layer_0 se deaktivuje, pokud existují jiné aktivní vrstvy s délkou >100 mm."
+    },
+    "generic_layer_deactivation": {
+      "standard_colors": [1, 2, 3, 4, 5, 6, 7, 30, 52, 92],
+      "condition": "exists_standard_active_with_length_gt_100mm AND generic_layer_with_non_standard_color",
+      "action": "deactivate_layer",
+      "_note": "Generické vrstvy (Layer_X, Vrstva_X atd.) s nestandardní barvou se deaktivují, pokud existují aktivní standardní vrstvy."
+    },
+    "generic_layer_fallback": {
+      "activation_thresholds": {
+        "total_length_mm": 10000.0,
+        "entity_count": 50
+      },
+      "arc_ratio_threshold": 0.3,
+      "_note": "Fallback pro generické vrstvy, které nebyly deaktivovány: pokud je vrstva dostatečně velká, aktivuje se. Typ nástroje se určí podle arc_ratio (>0.3 → V-slot, jinak Vibrate).",
+      "fallback_vslot": {
+        "cutter_type": "V-slot",
+        "direction": "Cut both side",
+        "speed_mms": 200,
+        "start_extension_mm": 2.0,
+        "end_extension_mm": 2.0,
+        "h2_mm": 6.0
+      },
+      "fallback_vibrate": {
+        "cutter_type": "Vibrate cutter",
+        "direction": "N/A",
+        "speed_mms": 200,
+        "start_extension_mm": 0.0,
+        "end_extension_mm": 0.0,
+        "h2_mm": -0.3
+      }
+    },
+    "empty_output_fallback": {
+      "active_path_threshold_mm": 100.0,
+      "empty_predicted_time_seconds": 60,
+      "_note": "Pokud aktivní délka dráhy <100 mm (prázdný/připravený soubor), predikuj 60 s (viz 'manchester vše' false positive)."
+    }
+  },
+
+  "path_compression": {
+    "_description": "Heuristika slučování segmentů podle průměrné délky segmentu. Simuluje path join optimalizaci VCutWorks.",
+    "join_thresholds": [
+      {"avg_seg_mm_lt": 5.0, "factor": 20.0},
+      {"avg_seg_mm_lt": 15.0, "factor_formula": "12.0 + (15.0 - avg) * 0.8"},
+      {"avg_seg_mm_lt": 25.0, "factor_formula": "5.0 + (25.0 - avg) * 0.7"},
+      {"avg_seg_mm_lt": 80.0, "factor_formula": "2.0 + (80.0 - avg) * (3.0 / 55.0)"},
+      {"default_factor": 1.0}
+    ],
+    "specialized_joins": {
+      "vzor_vslot": {
+        "keywords": ["camel", "matcha", "savanna"],
+        "joined_length_mm": 2700.0,
+        "default_joined_length_mm": 1700.0,
+        "_note": "VZOR V-slot na celoplošných panelech Camel/Matcha/Savanna se slévá do dlouhých drah ~2700 mm."
+      },
+      "obrysy_vibrate": {
+        "joined_length_mm": 7980.0,
+        "pts_per_element": 4,
+        "_note": "OBRYSY vibrační nůž — obvodový ořez se slévá do jedné dlouhé dráhy (~7980 mm)."
+      }
+    },
+    "validation_status": "calibrated"
+  },
+
+  "vslot_bidirectional": {
+    "_description": "Fyzikální model oboustranného V-slotu. Dvojnásobný řez — tam i zpět — plus dvojnásobné nájezdy/výjezdy.",
+    "cut_both_side_multiplier": 2.0,
+    "extensions_also_doubled": true,
+    "_formula": "L_cut_effective = multiplier × (path_length + total_extensions)",
+    "validation_status": "empirical",
+    "_note": "Potvrzeno na produkčních VCF — manchester, camel, savanna, matcha."
+  },
+
+  "kinematic_scaling": {
+    "_description": "Emulace LSP look-ahead akceleračního profilu pro hladké husté křivky.",
+    "pts_per_element_threshold": 4.0,
+    "raw_pts_density_threshold": 45.0,
+    "min_scale": 0.15,
+    "scale_formula": "max(min_scale, 4.0 / pts_per_element)",
+    "_note": "Pokud má vrstva mnoho bodů na element (>4) a vysokou hustotu bodů (>45 pts/m), zpomalí se rohové časy (plotr nemůže prudce akcelerovat)."
+  },
+
+  "safety_checks": {
+    "_description": "Bezpečnostní kontroly spouštěné po dokončení analýzy.",
+    "positive_cut_depth_vibrate": {
+      "condition": "cutter_type == 'Vibrate cutter' AND is_output AND h2 > 0.0",
+      "severity": "CRITICAL",
+      "message": "Kladná hloubka řezu u vibračního nože — hrozí poškození podložky nebo stroje!"
+    }
+  },
+
+  "generic_layer_patterns": {
+    "_description": "Regex patterny pro detekci generických (nesémantických) názvů vrstev.",
+    "exact_matches": ["0", "layer_0", "layer_00", "defpoints", "default"],
+    "regex_patterns": ["^(layer|vrstva|skica|sketch|contour|path|entity|element|object|shape|geometry|g)[_ ]*\\d*$"]
+  },
+
+  "epistemic_confidence_index": {
+    "_description": "Podíl empiricky overených heuristik vůči všem. Vypočítává se automaticky při startu parseru.",
+    "method": "count_validation_status_in_aci_mapping",
+    "empirical_count": 0,
+    "total_count": 0,
+    "index": 0.0,
+    "_note": "Automaticky přepisováno parserem při načtení konfigurace."
+  }
+}

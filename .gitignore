@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+.env
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary output (generated at runtime, not committed)
+output/
+tmp/
+*.tmp
+
+# Golden master backups (only commit canonical version)
+test_output/*_backup/
+test_output/*_old/
+
+# Streamlit
+.streamlit/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sensitive
+*.pem
+*.key
+credentials*.json

@@ -1,0 +1,152 @@
+{
+  "handoff_id": "dev_handoff_v2.2_to_v2.3",
+  "timestamp": "2026-06-07T01:35:00Z",
+  "project": "Moodpasta CAD Parser (DXF/VCF)",
+  "current_version": "2.2.0",
+  "target_version": "2.3.0",
+  "summary": {
+    "total_samples_analyzed": 8,
+    "primary_strengths": [
+      "Entity extraction and basic geometry metrics",
+      "Cutting time estimation (feed rate 200 mm/s)",
+      "Material yield calculation with panel rotation detection",
+      "Zone detection (full_height, uniform_pattern) with regularity_score",
+      "Layer_card mapping with tool_config (color → cutter type)"
+    ],
+    "critical_issues": [
+      "Nesting_tree always empty (regression from v2.1)",
+      "Proximity_matrix contains only zeros for most shape groups",
+      "Tool assignment conflict: same entities assigned to both vibrate cutter and V-slot (color mapping vs geometry logic)",
+      "Tool_summary.v_slot_45deg.total_length_mm = 0 despite single_pass_length_mm being correct",
+      "Graph_connected_components sometimes wrong (e.g., 9 components for a single cluster)",
+      "Duplicated zones (identical entity sets appear in multiple zones)"
+    ]
+  },
+  "critical_issues": [
+    {
+      "id": "C1",
+      "title": "Empty nesting_tree",
+      "severity": "high",
+      "description": "nesting_tree is always empty, even when containment edges exist (e.g., child-parent relationships).",
+      "affected_versions": "2.1, 2.2",
+      "suggested_fix": "Recursively build nesting_tree from containment edges. Include all entities (parents and children)."
+    },
+    {
+      "id": "C2",
+      "title": "Proximity matrix all zeros",
+      "severity": "high",
+      "description": "proximity_matrix has zeros for most shape group pairs, except a few cases. In some outputs, entire matrix is zero.",
+      "affected_versions": "2.2",
+      "suggested_fix": "Compute minimum Euclidean distance between convex hulls or bounding boxes of shape groups. Use spatial index (e.g., STRtree) for efficiency."
+    },
+    {
+      "id": "C3",
+      "title": "Tool assignment conflict",
+      "severity": "critical",
+      "description": "Entities are assigned to both 'vibrate_cutter_0deg' (based on layer color) and 'v_slot_45deg' (based on geometry: open paths). This makes output ambiguous for operators.",
+      "affected_versions": "2.2",
+      "suggested_fix": "Define clear priority: if color is mapped to a cutter in layer_card, that overrides geometry heuristic. Otherwise, fallback to geometry. Add a 'tool_conflict_detected' boolean flag when both rules apply."
+    },
+    {
+      "id": "C4",
+      "title": "Tool_summary missing correct total_length",
+      "severity": "medium",
+      "description": "For V-slot, total_length_mm = 0, but single_pass_length_mm and double_pass_length_mm are correct.",
+      "affected_versions": "2.1, 2.2",
+      "suggested_fix": "Set total_length_mm = single_pass_length_mm for consistency, or remove the field entirely."
+    },
+    {
+      "id": "C5",
+      "title": "Wrong graph_connected_components",
+      "severity": "medium",
+      "description": "In some panels (e.g., tmp1943cdvv.dxf), graph_connected_components=9 but all entities belong to one spatial cluster. Components counted only from adjacency/containment, not from intersection.",
+      "affected_versions": "2.2",
+      "suggested_fix": "Build graph using intersection edges (bbox overlaps) and proximity (if distance < threshold). Then compute connected components."
+    },
+    {
+      "id": "C6",
+      "title": "Duplicated zones",
+      "severity": "medium",
+      "description": "Same set of entity_ids appears in multiple zones (e.g., Z2 and Z3 identical).",
+      "affected_versions": "2.2",
+      "suggested_fix": "Cluster zones such that each entity belongs to exactly one zone. Merge zones with identical entity sets."
+    }
+  ],
+  "minor_issues": [
+    {
+      "id": "M1",
+      "title": "Regularity_score can be negative",
+      "description": "Negative values (e.g., -4.477) are mathematically possible but unclear meaning. Document or clamp to [0,1] if intended as normalized score.",
+      "suggested_fix": "Document that negative values indicate anti‑regularity, or transform to 0–1 range."
+    },
+    {
+      "id": "M2",
+      "title": "min_feature_width_mm always zero",
+      "description": "Feature not implemented; always returns 0.",
+      "suggested_fix": "Implement via distance transform or minimum distance between entities (from proximity matrix)."
+    },
+    {
+      "id": "M3",
+      "title": "Inconsistent naming of bbox fields",
+      "description": "global_bbox_mm uses absolute coordinates, panel_bbox_mm uses relative dimensions. Same name causes confusion.",
+      "suggested_fix": "Rename panel_bbox_mm to panel_size_mm (or relative_bbox_mm)."
+    }
+  ],
+  "recommendations": {
+    "for_v2.3": [
+      "Fix C1 (nesting_tree)",
+      "Fix C3 (tool assignment conflict) – highest priority for production",
+      "Fix C2 (proximity matrix)",
+      "Fix C5 (graph components)",
+      "Fix C6 (duplicate zones)",
+      "Add tool_conflict_detected flag and warning in narrative_summary"
+    ],
+    "for_v2.4": [
+      "Implement min_feature_width_mm (M2)",
+      "Improve regularity_score normalization",
+      "Add feature extraction for ML: point_density_per_meter, open_closed_ratio, cut_density_per_m2",
+      "Add cutting_time sub‑features (vibrate_time, vslot_time, head_rotation_time) to CSV"
+    ],
+    "architecture": {
+      "suggested_layers": [
+        "Parsing layer (DXF/VCF → ParsedGeometry)",
+        "Feature extraction (→ ML vector, JSON index, MD summary)",
+        "Knowledge base engine (rules.json → tool_config, validation_status)",
+        "Prediction layer (ML model for time/cost)",
+        "API layer (FastAPI) + UI (Streamlit)"
+      ],
+      "benefits": "Separate concerns, enable CLI/batch processing, easier integration with Odoo ERP."
+    }
+  },
+  "known_limitations": [
+    "No support for 3D entities (extrusions, solids)",
+    "Does not detect holes in polygons (num_holes always 0)",
+    "No handling of multiple stock plates (panel larger than one sheet yields yield_percent=null)",
+    "Feed rate hardcoded (200 mm/s) – should be configurable per material/thickness",
+    "No validation of nested contours (max_nesting_depth = 0 for all samples)"
+  ],
+  "next_steps": [
+    "1. Prioritize fixing C3 (tool conflict) and C1 (nesting_tree).",
+    "2. After fixes, generate test suite with the 8 sample DXF files.",
+    "3. Update version to 2.3.0 and deploy to GCP Cloud Run.",
+    "4. Integrate with Odoo via REST API (FastAPI endpoint).",
+    "5. Train ML model on collected features to predict cutting time directly (avoiding leakage)."
+  ],
+  "appendix": {
+    "test_files_analyzed": [
+      "tmpzdv4yjbe (v2.1) – circles + 2 slots",
+      "tmpayydik84 (v2.1) – 35 vertical slots",
+      "tmp0rv8aewa (v2.1) – large oversize panel (yield bug)",
+      "tmpaixxgq4f (v2.2) – small intricate shapes",
+      "tmpzogtictg (v2.2) – 7 rectangles (test)",
+      "tmp7jeacg01 (v2.2) – 17 slots + 2 outer loops",
+      "tmp1943cdvv (v2.2) – 11 slots with symmetry",
+      "tmp99n7ktx1 (v2.2) – 39 slots, two zone types"
+    ],
+    "parser_metadata": {
+      "dxf_version_supported": "AC1009 (AutoCAD R12)",
+      "libraries": "shapely, scipy (gudhi optional)",
+      "output_formats": "JSON, CSV, MD"
+    }
+  }
+}
