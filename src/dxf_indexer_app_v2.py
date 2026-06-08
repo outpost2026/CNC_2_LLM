@@ -277,7 +277,9 @@ if uploaded_file is not None:
                                 continue
                             if len(verts) > 1:
                                 color_idx = getattr(entity.dxf, 'color', 256)
-                                if color_idx == 256: color_idx = 7
+                                if color_idx in (0, 256):
+                                    lc = layer_colors.get(entity.dxf.layer, 256)
+                                    color_idx = lc if lc not in (0, 256) else 7
                                 plt_ents.append({"verts": verts, "color": color_idx})
                                 seen_colors.add(color_idx)
                         except Exception:

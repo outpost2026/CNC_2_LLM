@@ -1368,6 +1368,16 @@ def build_layer_card(entities, tool_config=None):
     }
 
 
+def resolve_aci_color(entity, layer_colors):
+    color_idx = getattr(entity.dxf, 'color', 256)
+    if color_idx not in (0, 256):
+        return color_idx
+    layer_color = layer_colors.get(entity.dxf.layer, 256)
+    if layer_color not in (0, 256):
+        return layer_color
+    return 7
+
+
 # ═══════════════════════════════════════════════════
 # MAIN PARSER (v2.2 — layer card + ML hygiene)
 # ═══════════════════════════════════════════════════
@@ -1391,8 +1401,7 @@ def index_dxf(dxf_path, tool_config=None, keep_vertices=False):
     global_bbox = [float('inf'), float('inf'), float('-inf'), float('-inf')]
 
     for idx, entity in enumerate(msp):
-        color_idx = getattr(entity.dxf, 'color', 256)
-        if color_idx == 256: color_idx = 7
+        color_idx = resolve_aci_color(entity, layer_colors)
         dtype = entity.dxftype()
         if dtype not in _GEOM_FNS: continue
 
