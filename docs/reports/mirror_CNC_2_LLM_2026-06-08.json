@@ -1,0 +1,2912 @@
+{
+  "metadata": {
+    "id": 1261961730,
+    "node_id": "R_kgDOSzgCAg",
+    "name": "CNC_2_LLM",
+    "full_name": "outpost2026/CNC_2_LLM",
+    "private": false,
+    "owner": {
+      "login": "outpost2026",
+      "id": 270636523,
+      "node_id": "U_kgDOECGV6w",
+      "avatar_url": "https://avatars.githubusercontent.com/u/270636523?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/outpost2026",
+      "html_url": "https://github.com/outpost2026",
+      "followers_url": "https://api.github.com/users/outpost2026/followers",
+      "following_url": "https://api.github.com/users/outpost2026/following{/other_user}",
+      "gists_url": "https://api.github.com/users/outpost2026/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/outpost2026/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/outpost2026/subscriptions",
+      "organizations_url": "https://api.github.com/users/outpost2026/orgs",
+      "repos_url": "https://api.github.com/users/outpost2026/repos",
+      "events_url": "https://api.github.com/users/outpost2026/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/outpost2026/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "html_url": "https://github.com/outpost2026/CNC_2_LLM",
+    "description": "CNC2LLM - pipeline z DXF pro strojové učení, automatizaci výroby, naceňování & integraci do ERP v designové výrobě na CNC (Wynnwood s.r.o.)",
+    "fork": false,
+    "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM",
+    "forks_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/forks",
+    "keys_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/keys{/key_id}",
+    "collaborators_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/collaborators{/collaborator}",
+    "teams_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/teams",
+    "hooks_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/hooks",
+    "issue_events_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/issues/events{/number}",
+    "events_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/events",
+    "assignees_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/assignees{/user}",
+    "branches_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/branches{/branch}",
+    "tags_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/tags",
+    "blobs_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs{/sha}",
+    "git_tags_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/tags{/sha}",
+    "git_refs_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/refs{/sha}",
+    "trees_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees{/sha}",
+    "statuses_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/statuses/{sha}",
+    "languages_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/languages",
+    "stargazers_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/stargazers",
+    "contributors_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/contributors",
+    "subscribers_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/subscribers",
+    "subscription_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/subscription",
+    "commits_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/commits{/sha}",
+    "git_commits_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/commits{/sha}",
+    "comments_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/comments{/number}",
+    "issue_comment_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/issues/comments{/number}",
+    "contents_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/contents/{+path}",
+    "compare_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/compare/{base}...{head}",
+    "merges_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/merges",
+    "archive_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/{archive_format}{/ref}",
+    "downloads_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/downloads",
+    "issues_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/issues{/number}",
+    "pulls_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/pulls{/number}",
+    "milestones_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/milestones{/number}",
+    "notifications_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/notifications{?since,all,participating}",
+    "labels_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/labels{/name}",
+    "releases_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/releases{/id}",
+    "deployments_url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/deployments",
+    "created_at": "2026-06-07T11:46:00Z",
+    "updated_at": "2026-06-08T12:56:38Z",
+    "pushed_at": "2026-06-08T12:08:26Z",
+    "git_url": "git://github.com/outpost2026/CNC_2_LLM.git",
+    "ssh_url": "git@github.com:outpost2026/CNC_2_LLM.git",
+    "clone_url": "https://github.com/outpost2026/CNC_2_LLM.git",
+    "svn_url": "https://github.com/outpost2026/CNC_2_LLM",
+    "homepage": null,
+    "size": 908,
+    "stargazers_count": 0,
+    "watchers_count": 0,
+    "language": "Python",
+    "has_issues": true,
+    "has_projects": true,
+    "has_downloads": true,
+    "has_wiki": false,
+    "has_pages": false,
+    "has_discussions": false,
+    "forks_count": 0,
+    "mirror_url": null,
+    "archived": false,
+    "disabled": false,
+    "open_issues_count": 0,
+    "license": null,
+    "allow_forking": true,
+    "is_template": false,
+    "web_commit_signoff_required": false,
+    "has_pull_requests": true,
+    "pull_request_creation_policy": "all",
+    "topics": [],
+    "visibility": "public",
+    "forks": 0,
+    "open_issues": 0,
+    "watchers": 0,
+    "default_branch": "main"
+  },
+  "branches_full": {
+    "feature/PNG_Trimming_vector": {
+      "commit_sha": "20918bad0683378a2d20cb9076545183eb795347",
+      "tree": [
+        {
+          "path": ".gitignore",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "887ab8bffe30fa7e040151057ab256c0ca3dec7b",
+          "size": 439,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/887ab8bffe30fa7e040151057ab256c0ca3dec7b"
+        },
+        {
+          "path": "README.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b82e78f257f75e808f42e842830f3736b495ad7a",
+          "size": 3120,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b82e78f257f75e808f42e842830f3736b495ad7a"
+        },
+        {
+          "path": "demo_data",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "65b3396e947222f7b9ffccf2d3017bd567496b89",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/65b3396e947222f7b9ffccf2d3017bd567496b89"
+        },
+        {
+          "path": "demo_data/26_skladba.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d02ef230783ad1097e1790657f071bd3bfae1679",
+          "size": 230008,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/d02ef230783ad1097e1790657f071bd3bfae1679"
+        },
+        {
+          "path": "demo_data/26_skladba_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "02bcbcd44b4c5fc042329df1b6a601a0e0224c03",
+          "size": 60617,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/02bcbcd44b4c5fc042329df1b6a601a0e0224c03"
+        },
+        {
+          "path": "demo_data/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9f390c0f991ea8aba53d5014bf96c326808d7253",
+          "size": 930893,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/9f390c0f991ea8aba53d5014bf96c326808d7253"
+        },
+        {
+          "path": "demo_data/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4bac8d46ceeb03b257761e37cec2134c2dff73f6",
+          "size": 4910,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4bac8d46ceeb03b257761e37cec2134c2dff73f6"
+        },
+        {
+          "path": "demo_data/26_skladba_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ce101fca36d91689d6b0d1b741e128c5897cab38",
+          "size": 502,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ce101fca36d91689d6b0d1b741e128c5897cab38"
+        },
+        {
+          "path": "demo_data/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fdcf778a5a3b27929590f45099119c5f184a005d",
+          "size": 1265,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/fdcf778a5a3b27929590f45099119c5f184a005d"
+        },
+        {
+          "path": "demo_data/3781_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad",
+          "size": 10493,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad"
+        },
+        {
+          "path": "demo_data/3781_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bc47494141547d128fac0bb412688e21e0c49ca9",
+          "size": 28702,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/bc47494141547d128fac0bb412688e21e0c49ca9"
+        },
+        {
+          "path": "demo_data/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7adfe6101588851a74b4d5c9351d6ae57d760040",
+          "size": 52095,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7adfe6101588851a74b4d5c9351d6ae57d760040"
+        },
+        {
+          "path": "demo_data/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f577dbfca275e7a6e5faf4c931c5b7469f95ee55",
+          "size": 5139,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f577dbfca275e7a6e5faf4c931c5b7469f95ee55"
+        },
+        {
+          "path": "demo_data/3781_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "49e02678d624b2c6811bcc8d157918a4ce14f00b",
+          "size": 592,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/49e02678d624b2c6811bcc8d157918a4ce14f00b"
+        },
+        {
+          "path": "demo_data/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "2c6f5219138d918a9566f726e34976be742e9b78",
+          "size": 1270,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/2c6f5219138d918a9566f726e34976be742e9b78"
+        },
+        {
+          "path": "demo_data/3824_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f069af5a66f0034c891f31b22241e9d3814ad0ff",
+          "size": 152356,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f069af5a66f0034c891f31b22241e9d3814ad0ff"
+        },
+        {
+          "path": "demo_data/3824_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "31703bc38f598460ec4fe1395e6845b38a5de8f8",
+          "size": 51118,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/31703bc38f598460ec4fe1395e6845b38a5de8f8"
+        },
+        {
+          "path": "demo_data/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "27c26f0ebbbfefae0fe7920aaeeace19c7b07d32",
+          "size": 405613,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/27c26f0ebbbfefae0fe7920aaeeace19c7b07d32"
+        },
+        {
+          "path": "demo_data/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5619ab5c406e6867520e4847831796f52f2662fa",
+          "size": 8209,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5619ab5c406e6867520e4847831796f52f2662fa"
+        },
+        {
+          "path": "demo_data/3824_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a2eff8d79602202ccc0db7ae5e6889183e62916c",
+          "size": 486,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a2eff8d79602202ccc0db7ae5e6889183e62916c"
+        },
+        {
+          "path": "demo_data/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7481cab2e0c06ed096ae5738972345e2517e27ce",
+          "size": 1286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7481cab2e0c06ed096ae5738972345e2517e27ce"
+        },
+        {
+          "path": "demo_data/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e70daa2168fb9baf388676b16832375dbf3ae18b",
+          "size": 1674493,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e70daa2168fb9baf388676b16832375dbf3ae18b"
+        },
+        {
+          "path": "demo_data/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f22d1cd497eeea0c13dc87337fd1482f4c7e960f",
+          "size": 676,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f22d1cd497eeea0c13dc87337fd1482f4c7e960f"
+        },
+        {
+          "path": "docs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "2948f93a2cf215d03b63dcf2973978b7717a1afb",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/2948f93a2cf215d03b63dcf2973978b7717a1afb"
+        },
+        {
+          "path": "docs/PROJEKTOVA_MAPA.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c45310a98e8e7bbbd7ab84e2ecb33e7588b3dc70",
+          "size": 5744,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/c45310a98e8e7bbbd7ab84e2ecb33e7588b3dc70"
+        },
+        {
+          "path": "docs/bugs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "9c05c9904f036bd8adaaa7437ee8685601d799c5",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/9c05c9904f036bd8adaaa7437ee8685601d799c5"
+        },
+        {
+          "path": "docs/bugs/real_times_vcf_dxf_sample_set_n13.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9114d242c77ed7cfb6c291d625c7291c51a4a209",
+          "size": 1026,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/9114d242c77ed7cfb6c291d625c7291c51a4a209"
+        },
+        {
+          "path": "docs/handoffs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "c9dc0e070c36f0bb78437428e35d0b942b28ab52",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/c9dc0e070c36f0bb78437428e35d0b942b28ab52"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v2.2_to_v2.3.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a",
+          "size": 7391,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v22_complete.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "95db51f3c975595523231764ca16ff90cd69f47b",
+          "size": 25673,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/95db51f3c975595523231764ca16ff90cd69f47b"
+        },
+        {
+          "path": "docs/handoffs/diff_V2.1_to_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5e7fea641c7c18202ec1bc850b8b6384a77e96bb",
+          "size": 5217,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5e7fea641c7c18202ec1bc850b8b6384a77e96bb"
+        },
+        {
+          "path": "docs/handoffs/handoff_v2.3_to_v2.4.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "2e6b9af0b0bc3f078ff976ee2adaba9e711bbfba",
+          "size": 8143,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/2e6b9af0b0bc3f078ff976ee2adaba9e711bbfba"
+        },
+        {
+          "path": "docs/handoffs/readme_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "92bac22259770ef0835819ee06723670f3bcc4a3",
+          "size": 5640,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/92bac22259770ef0835819ee06723670f3bcc4a3"
+        },
+        {
+          "path": "docs/methodology",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ecb8107a0eba3a26ec5875060b22cd765cce9a7b",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/ecb8107a0eba3a26ec5875060b22cd765cce9a7b"
+        },
+        {
+          "path": "docs/methodology/DeepSeek V4 API – Golden Rules for Open Code CLI Development.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "418c527bfc251dcef96f5d6f3b6a3cc8aac7e895",
+          "size": 13345,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/418c527bfc251dcef96f5d6f3b6a3cc8aac7e895"
+        },
+        {
+          "path": "docs/methodology/METHODOLOGY_MASTER_V1.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a",
+          "size": 34118,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a"
+        },
+        {
+          "path": "docs/methodology/PARADIGM_SHIFT_REPORT_V2_2_to_V2_3.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "46e25db2f1e2bd6cf13ddf7468e5c57bf804be19",
+          "size": 11670,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/46e25db2f1e2bd6cf13ddf7468e5c57bf804be19"
+        },
+        {
+          "path": "docs/methodology/SNR_analyza_data_trimming.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "143d0a6d4045314a2091269fce7c5181e631d4ed",
+          "size": 22050,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/143d0a6d4045314a2091269fce7c5181e631d4ed"
+        },
+        {
+          "path": "docs/methodology/dev_handoff_v2.3_open_code_deepseek.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1",
+          "size": 15242,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1"
+        },
+        {
+          "path": "docs/methodology/epistemicky_playbook_B2B_automation_junior_dev.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "dd69d14839296e10c450c1bcb48d9301f8e3537c",
+          "size": 17509,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/dd69d14839296e10c450c1bcb48d9301f8e3537c"
+        },
+        {
+          "path": "docs/methodology/semanticka_embedding_korelace.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1a5ded54ff10b3f5201a58f81571fa4f1d33d952",
+          "size": 15776,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1a5ded54ff10b3f5201a58f81571fa4f1d33d952"
+        },
+        {
+          "path": "docs/reports",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d46d5502294020863283a0cddc19c7cf57e3b208",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/d46d5502294020863283a0cddc19c7cf57e3b208"
+        },
+        {
+          "path": "docs/reports/DEVELOPER_ASSESSMENT_PNG_TRIMMING_BRANCH.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fd348bbf72196d88c6dd289a5363cfbfb6698fa4",
+          "size": 13649,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/fd348bbf72196d88c6dd289a5363cfbfb6698fa4"
+        },
+        {
+          "path": "docs/reports/GITHUB_INTEGRATION_GUIDE.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "885ebf8072609c5f005ce83c3e33531fdf3d3a83",
+          "size": 6679,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/885ebf8072609c5f005ce83c3e33531fdf3d3a83"
+        },
+        {
+          "path": "docs/reports/MARGINAL_ANALYSIS_LOCAL_VS_GITHUB.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c3ed4164ccba3522477c9cd608610c6bfc97e223",
+          "size": 7320,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/c3ed4164ccba3522477c9cd608610c6bfc97e223"
+        },
+        {
+          "path": "docs/reports/Refraktorizace_parseru_DXF_indexer_v2.3.0.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4ec6342670518352d1b6994f78a9ac79842528d3",
+          "size": 10811,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4ec6342670518352d1b6994f78a9ac79842528d3"
+        },
+        {
+          "path": "docs/reports/Refraktorizace_parseru_DXF_indexer_v2.3.0.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "057c46bb2894fa33a2dd725f098f2e1844223e14",
+          "size": 9286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/057c46bb2894fa33a2dd725f098f2e1844223e14"
+        },
+        {
+          "path": "requirements.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bd5caef5d330b30b89708f560e1da0640cbc4592",
+          "size": 106,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/bd5caef5d330b30b89708f560e1da0640cbc4592"
+        },
+        {
+          "path": "src",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "793e018b7544b4b06f94d79b6751b8e25a333599",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/793e018b7544b4b06f94d79b6751b8e25a333599"
+        },
+        {
+          "path": "src/dxf_geometry_indexer_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cadeb7e60b328e4106bc5d6b189680747f38ce22",
+          "size": 93459,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cadeb7e60b328e4106bc5d6b189680747f38ce22"
+        },
+        {
+          "path": "src/dxf_indexer_app_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f83cd9911bd29fa4bac70faf6d783b5bf5250fcd",
+          "size": 30308,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f83cd9911bd29fa4bac70faf6d783b5bf5250fcd"
+        },
+        {
+          "path": "src/dxf_tool_config.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3af4a939635a6e95fd2a919e814f41771663917d",
+          "size": 13332,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/3af4a939635a6e95fd2a919e814f41771663917d"
+        },
+        {
+          "path": "src/semantic_embedding_dashboard.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "023fd04867e2af2dd87691cc97d9f777c1dbe6e6",
+          "size": 17843,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/023fd04867e2af2dd87691cc97d9f777c1dbe6e6"
+        },
+        {
+          "path": "test_output",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "649dd7e33ec5d98c3da0b5e4850c9720182d297d",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/649dd7e33ec5d98c3da0b5e4850c9720182d297d"
+        },
+        {
+          "path": "test_output/26_skladba_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "32f48251a61ddd3e9edc3474880f3e23b4e9b9b5",
+          "size": 67243,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/32f48251a61ddd3e9edc3474880f3e23b4e9b9b5"
+        },
+        {
+          "path": "test_output/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "376fa423b77422e31519eb6bb924b3b6d494d05f",
+          "size": 461564,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/376fa423b77422e31519eb6bb924b3b6d494d05f"
+        },
+        {
+          "path": "test_output/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "48314af060e1e22339e11955a040b39536db2658",
+          "size": 4908,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/48314af060e1e22339e11955a040b39536db2658"
+        },
+        {
+          "path": "test_output/26_skladba_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ce101fca36d91689d6b0d1b741e128c5897cab38",
+          "size": 502,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ce101fca36d91689d6b0d1b741e128c5897cab38"
+        },
+        {
+          "path": "test_output/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b83515acc10374302d9c660530ce2fda3346d981",
+          "size": 1264,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b83515acc10374302d9c660530ce2fda3346d981"
+        },
+        {
+          "path": "test_output/3781_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e78a683b1162cf2a05ecfa8325c7689d705ea399",
+          "size": 37231,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e78a683b1162cf2a05ecfa8325c7689d705ea399"
+        },
+        {
+          "path": "test_output/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "834c7607df0d0dd7c812dc55c8e7e8eeca2198e3",
+          "size": 47702,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/834c7607df0d0dd7c812dc55c8e7e8eeca2198e3"
+        },
+        {
+          "path": "test_output/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "388752d3723f1e7281f1c960ac281120c66ba529",
+          "size": 5139,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/388752d3723f1e7281f1c960ac281120c66ba529"
+        },
+        {
+          "path": "test_output/3781_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "49e02678d624b2c6811bcc8d157918a4ce14f00b",
+          "size": 592,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/49e02678d624b2c6811bcc8d157918a4ce14f00b"
+        },
+        {
+          "path": "test_output/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ec5bef576fda2ac03fbf58e89ef34c1f11f17880",
+          "size": 1270,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ec5bef576fda2ac03fbf58e89ef34c1f11f17880"
+        },
+        {
+          "path": "test_output/3824_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "802785dc680c6005aca814b366e2a6906014492c",
+          "size": 78528,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/802785dc680c6005aca814b366e2a6906014492c"
+        },
+        {
+          "path": "test_output/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e84da9badd4db862604b4a72360907851d6fbec2",
+          "size": 304462,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e84da9badd4db862604b4a72360907851d6fbec2"
+        },
+        {
+          "path": "test_output/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd3d74a84a780dcf02f2f93222639e55171f58c3",
+          "size": 8407,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd3d74a84a780dcf02f2f93222639e55171f58c3"
+        },
+        {
+          "path": "test_output/3824_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a2eff8d79602202ccc0db7ae5e6889183e62916c",
+          "size": 486,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a2eff8d79602202ccc0db7ae5e6889183e62916c"
+        },
+        {
+          "path": "test_output/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1bc043f8b312c35a490ace0ff82c874d462dbe45",
+          "size": 1286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1bc043f8b312c35a490ace0ff82c874d462dbe45"
+        },
+        {
+          "path": "test_output/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4f09d9b24538da46faa067f7aeca6da20ed22fe7",
+          "size": 956160,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4f09d9b24538da46faa067f7aeca6da20ed22fe7"
+        },
+        {
+          "path": "test_output/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "752d4c644f21d2efbd0ce7693749e7407eb0dc01",
+          "size": 662,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/752d4c644f21d2efbd0ce7693749e7407eb0dc01"
+        },
+        {
+          "path": "tests",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a0b7b535707294b359653937af60bd2e5e0dd44b",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/a0b7b535707294b359653937af60bd2e5e0dd44b"
+        },
+        {
+          "path": "tests/__init__.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd7cdbae6dace85404c4ace6efc8d184d95de7fc",
+          "size": 45,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd7cdbae6dace85404c4ace6efc8d184d95de7fc"
+        },
+        {
+          "path": "tests/conftest.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "79ea7f944bcbb4690bdda0ff3087a2928d3010c3",
+          "size": 1447,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/79ea7f944bcbb4690bdda0ff3087a2928d3010c3"
+        },
+        {
+          "path": "tests/test_determinism.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "32a410bbc5b926ea9df784e185d803eee27e1131",
+          "size": 2315,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/32a410bbc5b926ea9df784e185d803eee27e1131"
+        },
+        {
+          "path": "tests/test_golden_master.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fbeb0d8f48c2f85d946490c21860a63dfea16736",
+          "size": 2506,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/fbeb0d8f48c2f85d946490c21860a63dfea16736"
+        },
+        {
+          "path": "tests/test_layer_card.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3408461e2dfadd12a775423be1e0c50eff218967",
+          "size": 1870,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/3408461e2dfadd12a775423be1e0c50eff218967"
+        },
+        {
+          "path": "tests/test_ml_vector.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "beac52137a5e06c03768f227773d8b86a4157a28",
+          "size": 1534,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/beac52137a5e06c03768f227773d8b86a4157a28"
+        },
+        {
+          "path": "tests/test_smoke.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "122cd53770f8fc69fe240e019cbdbd479d1267cc",
+          "size": 1555,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/122cd53770f8fc69fe240e019cbdbd479d1267cc"
+        }
+      ]
+    },
+    "feature/SNR_optimalization": {
+      "commit_sha": "c8c4fc1380e6dfbd7c38bcfd50a3ccbe76404fce",
+      "tree": [
+        {
+          "path": ".gitignore",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "887ab8bffe30fa7e040151057ab256c0ca3dec7b",
+          "size": 439,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/887ab8bffe30fa7e040151057ab256c0ca3dec7b"
+        },
+        {
+          "path": "README.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b82e78f257f75e808f42e842830f3736b495ad7a",
+          "size": 3120,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b82e78f257f75e808f42e842830f3736b495ad7a"
+        },
+        {
+          "path": "demo_data",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "65b3396e947222f7b9ffccf2d3017bd567496b89",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/65b3396e947222f7b9ffccf2d3017bd567496b89"
+        },
+        {
+          "path": "demo_data/26_skladba.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d02ef230783ad1097e1790657f071bd3bfae1679",
+          "size": 230008,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/d02ef230783ad1097e1790657f071bd3bfae1679"
+        },
+        {
+          "path": "demo_data/26_skladba_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "02bcbcd44b4c5fc042329df1b6a601a0e0224c03",
+          "size": 60617,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/02bcbcd44b4c5fc042329df1b6a601a0e0224c03"
+        },
+        {
+          "path": "demo_data/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9f390c0f991ea8aba53d5014bf96c326808d7253",
+          "size": 930893,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/9f390c0f991ea8aba53d5014bf96c326808d7253"
+        },
+        {
+          "path": "demo_data/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4bac8d46ceeb03b257761e37cec2134c2dff73f6",
+          "size": 4910,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4bac8d46ceeb03b257761e37cec2134c2dff73f6"
+        },
+        {
+          "path": "demo_data/26_skladba_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ce101fca36d91689d6b0d1b741e128c5897cab38",
+          "size": 502,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ce101fca36d91689d6b0d1b741e128c5897cab38"
+        },
+        {
+          "path": "demo_data/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fdcf778a5a3b27929590f45099119c5f184a005d",
+          "size": 1265,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/fdcf778a5a3b27929590f45099119c5f184a005d"
+        },
+        {
+          "path": "demo_data/3781_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad",
+          "size": 10493,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad"
+        },
+        {
+          "path": "demo_data/3781_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bc47494141547d128fac0bb412688e21e0c49ca9",
+          "size": 28702,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/bc47494141547d128fac0bb412688e21e0c49ca9"
+        },
+        {
+          "path": "demo_data/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7adfe6101588851a74b4d5c9351d6ae57d760040",
+          "size": 52095,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7adfe6101588851a74b4d5c9351d6ae57d760040"
+        },
+        {
+          "path": "demo_data/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f577dbfca275e7a6e5faf4c931c5b7469f95ee55",
+          "size": 5139,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f577dbfca275e7a6e5faf4c931c5b7469f95ee55"
+        },
+        {
+          "path": "demo_data/3781_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "49e02678d624b2c6811bcc8d157918a4ce14f00b",
+          "size": 592,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/49e02678d624b2c6811bcc8d157918a4ce14f00b"
+        },
+        {
+          "path": "demo_data/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "2c6f5219138d918a9566f726e34976be742e9b78",
+          "size": 1270,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/2c6f5219138d918a9566f726e34976be742e9b78"
+        },
+        {
+          "path": "demo_data/3824_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f069af5a66f0034c891f31b22241e9d3814ad0ff",
+          "size": 152356,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f069af5a66f0034c891f31b22241e9d3814ad0ff"
+        },
+        {
+          "path": "demo_data/3824_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "31703bc38f598460ec4fe1395e6845b38a5de8f8",
+          "size": 51118,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/31703bc38f598460ec4fe1395e6845b38a5de8f8"
+        },
+        {
+          "path": "demo_data/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "27c26f0ebbbfefae0fe7920aaeeace19c7b07d32",
+          "size": 405613,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/27c26f0ebbbfefae0fe7920aaeeace19c7b07d32"
+        },
+        {
+          "path": "demo_data/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5619ab5c406e6867520e4847831796f52f2662fa",
+          "size": 8209,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5619ab5c406e6867520e4847831796f52f2662fa"
+        },
+        {
+          "path": "demo_data/3824_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a2eff8d79602202ccc0db7ae5e6889183e62916c",
+          "size": 486,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a2eff8d79602202ccc0db7ae5e6889183e62916c"
+        },
+        {
+          "path": "demo_data/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7481cab2e0c06ed096ae5738972345e2517e27ce",
+          "size": 1286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7481cab2e0c06ed096ae5738972345e2517e27ce"
+        },
+        {
+          "path": "demo_data/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e70daa2168fb9baf388676b16832375dbf3ae18b",
+          "size": 1674493,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e70daa2168fb9baf388676b16832375dbf3ae18b"
+        },
+        {
+          "path": "demo_data/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f22d1cd497eeea0c13dc87337fd1482f4c7e960f",
+          "size": 676,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f22d1cd497eeea0c13dc87337fd1482f4c7e960f"
+        },
+        {
+          "path": "docs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "0ce34232ebd667aa4353c93576ec7fb9f4a2bf04",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/0ce34232ebd667aa4353c93576ec7fb9f4a2bf04"
+        },
+        {
+          "path": "docs/bugs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "9c05c9904f036bd8adaaa7437ee8685601d799c5",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/9c05c9904f036bd8adaaa7437ee8685601d799c5"
+        },
+        {
+          "path": "docs/bugs/real_times_vcf_dxf_sample_set_n13.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9114d242c77ed7cfb6c291d625c7291c51a4a209",
+          "size": 1026,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/9114d242c77ed7cfb6c291d625c7291c51a4a209"
+        },
+        {
+          "path": "docs/handoffs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3f3dc0ca6c9156eb861ac7ed439dbc15cfd1d143",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/3f3dc0ca6c9156eb861ac7ed439dbc15cfd1d143"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v2.2_to_v2.3.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a",
+          "size": 7391,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v22_complete.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "95db51f3c975595523231764ca16ff90cd69f47b",
+          "size": 25673,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/95db51f3c975595523231764ca16ff90cd69f47b"
+        },
+        {
+          "path": "docs/handoffs/diff_V2.1_to_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5e7fea641c7c18202ec1bc850b8b6384a77e96bb",
+          "size": 5217,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5e7fea641c7c18202ec1bc850b8b6384a77e96bb"
+        },
+        {
+          "path": "docs/handoffs/readme_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "92bac22259770ef0835819ee06723670f3bcc4a3",
+          "size": 5640,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/92bac22259770ef0835819ee06723670f3bcc4a3"
+        },
+        {
+          "path": "docs/methodology",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ecb8107a0eba3a26ec5875060b22cd765cce9a7b",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/ecb8107a0eba3a26ec5875060b22cd765cce9a7b"
+        },
+        {
+          "path": "docs/methodology/DeepSeek V4 API – Golden Rules for Open Code CLI Development.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "418c527bfc251dcef96f5d6f3b6a3cc8aac7e895",
+          "size": 13345,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/418c527bfc251dcef96f5d6f3b6a3cc8aac7e895"
+        },
+        {
+          "path": "docs/methodology/METHODOLOGY_MASTER_V1.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a",
+          "size": 34118,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a"
+        },
+        {
+          "path": "docs/methodology/PARADIGM_SHIFT_REPORT_V2_2_to_V2_3.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "46e25db2f1e2bd6cf13ddf7468e5c57bf804be19",
+          "size": 11670,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/46e25db2f1e2bd6cf13ddf7468e5c57bf804be19"
+        },
+        {
+          "path": "docs/methodology/SNR_analyza_data_trimming.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "143d0a6d4045314a2091269fce7c5181e631d4ed",
+          "size": 22050,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/143d0a6d4045314a2091269fce7c5181e631d4ed"
+        },
+        {
+          "path": "docs/methodology/dev_handoff_v2.3_open_code_deepseek.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1",
+          "size": 15242,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1"
+        },
+        {
+          "path": "docs/methodology/epistemicky_playbook_B2B_automation_junior_dev.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "dd69d14839296e10c450c1bcb48d9301f8e3537c",
+          "size": 17509,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/dd69d14839296e10c450c1bcb48d9301f8e3537c"
+        },
+        {
+          "path": "docs/methodology/semanticka_embedding_korelace.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1a5ded54ff10b3f5201a58f81571fa4f1d33d952",
+          "size": 15776,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1a5ded54ff10b3f5201a58f81571fa4f1d33d952"
+        },
+        {
+          "path": "docs/reports",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "1e76b80d72cd05ec256183e31818e77436a23eea",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/1e76b80d72cd05ec256183e31818e77436a23eea"
+        },
+        {
+          "path": "docs/reports/GITHUB_INTEGRATION_GUIDE.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "885ebf8072609c5f005ce83c3e33531fdf3d3a83",
+          "size": 6679,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/885ebf8072609c5f005ce83c3e33531fdf3d3a83"
+        },
+        {
+          "path": "docs/reports/MARGINAL_ANALYSIS_LOCAL_VS_GITHUB.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c3ed4164ccba3522477c9cd608610c6bfc97e223",
+          "size": 7320,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/c3ed4164ccba3522477c9cd608610c6bfc97e223"
+        },
+        {
+          "path": "docs/reports/Refraktorizace_parseru_DXF_indexer_v2.3.0.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4ec6342670518352d1b6994f78a9ac79842528d3",
+          "size": 10811,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4ec6342670518352d1b6994f78a9ac79842528d3"
+        },
+        {
+          "path": "docs/reports/Refraktorizace_parseru_DXF_indexer_v2.3.0.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "057c46bb2894fa33a2dd725f098f2e1844223e14",
+          "size": 9286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/057c46bb2894fa33a2dd725f098f2e1844223e14"
+        },
+        {
+          "path": "requirements.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bd5caef5d330b30b89708f560e1da0640cbc4592",
+          "size": 106,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/bd5caef5d330b30b89708f560e1da0640cbc4592"
+        },
+        {
+          "path": "src",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "793e018b7544b4b06f94d79b6751b8e25a333599",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/793e018b7544b4b06f94d79b6751b8e25a333599"
+        },
+        {
+          "path": "src/dxf_geometry_indexer_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cadeb7e60b328e4106bc5d6b189680747f38ce22",
+          "size": 93459,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cadeb7e60b328e4106bc5d6b189680747f38ce22"
+        },
+        {
+          "path": "src/dxf_indexer_app_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f83cd9911bd29fa4bac70faf6d783b5bf5250fcd",
+          "size": 30308,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f83cd9911bd29fa4bac70faf6d783b5bf5250fcd"
+        },
+        {
+          "path": "src/dxf_tool_config.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3af4a939635a6e95fd2a919e814f41771663917d",
+          "size": 13332,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/3af4a939635a6e95fd2a919e814f41771663917d"
+        },
+        {
+          "path": "src/semantic_embedding_dashboard.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "023fd04867e2af2dd87691cc97d9f777c1dbe6e6",
+          "size": 17843,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/023fd04867e2af2dd87691cc97d9f777c1dbe6e6"
+        },
+        {
+          "path": "test_output",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "649dd7e33ec5d98c3da0b5e4850c9720182d297d",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/649dd7e33ec5d98c3da0b5e4850c9720182d297d"
+        },
+        {
+          "path": "test_output/26_skladba_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "32f48251a61ddd3e9edc3474880f3e23b4e9b9b5",
+          "size": 67243,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/32f48251a61ddd3e9edc3474880f3e23b4e9b9b5"
+        },
+        {
+          "path": "test_output/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "376fa423b77422e31519eb6bb924b3b6d494d05f",
+          "size": 461564,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/376fa423b77422e31519eb6bb924b3b6d494d05f"
+        },
+        {
+          "path": "test_output/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "48314af060e1e22339e11955a040b39536db2658",
+          "size": 4908,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/48314af060e1e22339e11955a040b39536db2658"
+        },
+        {
+          "path": "test_output/26_skladba_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ce101fca36d91689d6b0d1b741e128c5897cab38",
+          "size": 502,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ce101fca36d91689d6b0d1b741e128c5897cab38"
+        },
+        {
+          "path": "test_output/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b83515acc10374302d9c660530ce2fda3346d981",
+          "size": 1264,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b83515acc10374302d9c660530ce2fda3346d981"
+        },
+        {
+          "path": "test_output/3781_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e78a683b1162cf2a05ecfa8325c7689d705ea399",
+          "size": 37231,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e78a683b1162cf2a05ecfa8325c7689d705ea399"
+        },
+        {
+          "path": "test_output/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "834c7607df0d0dd7c812dc55c8e7e8eeca2198e3",
+          "size": 47702,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/834c7607df0d0dd7c812dc55c8e7e8eeca2198e3"
+        },
+        {
+          "path": "test_output/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "388752d3723f1e7281f1c960ac281120c66ba529",
+          "size": 5139,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/388752d3723f1e7281f1c960ac281120c66ba529"
+        },
+        {
+          "path": "test_output/3781_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "49e02678d624b2c6811bcc8d157918a4ce14f00b",
+          "size": 592,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/49e02678d624b2c6811bcc8d157918a4ce14f00b"
+        },
+        {
+          "path": "test_output/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ec5bef576fda2ac03fbf58e89ef34c1f11f17880",
+          "size": 1270,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ec5bef576fda2ac03fbf58e89ef34c1f11f17880"
+        },
+        {
+          "path": "test_output/3824_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "802785dc680c6005aca814b366e2a6906014492c",
+          "size": 78528,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/802785dc680c6005aca814b366e2a6906014492c"
+        },
+        {
+          "path": "test_output/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e84da9badd4db862604b4a72360907851d6fbec2",
+          "size": 304462,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e84da9badd4db862604b4a72360907851d6fbec2"
+        },
+        {
+          "path": "test_output/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd3d74a84a780dcf02f2f93222639e55171f58c3",
+          "size": 8407,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd3d74a84a780dcf02f2f93222639e55171f58c3"
+        },
+        {
+          "path": "test_output/3824_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a2eff8d79602202ccc0db7ae5e6889183e62916c",
+          "size": 486,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a2eff8d79602202ccc0db7ae5e6889183e62916c"
+        },
+        {
+          "path": "test_output/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1bc043f8b312c35a490ace0ff82c874d462dbe45",
+          "size": 1286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1bc043f8b312c35a490ace0ff82c874d462dbe45"
+        },
+        {
+          "path": "test_output/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4f09d9b24538da46faa067f7aeca6da20ed22fe7",
+          "size": 956160,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4f09d9b24538da46faa067f7aeca6da20ed22fe7"
+        },
+        {
+          "path": "test_output/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "752d4c644f21d2efbd0ce7693749e7407eb0dc01",
+          "size": 662,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/752d4c644f21d2efbd0ce7693749e7407eb0dc01"
+        },
+        {
+          "path": "tests",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a0b7b535707294b359653937af60bd2e5e0dd44b",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/a0b7b535707294b359653937af60bd2e5e0dd44b"
+        },
+        {
+          "path": "tests/__init__.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd7cdbae6dace85404c4ace6efc8d184d95de7fc",
+          "size": 45,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd7cdbae6dace85404c4ace6efc8d184d95de7fc"
+        },
+        {
+          "path": "tests/conftest.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "79ea7f944bcbb4690bdda0ff3087a2928d3010c3",
+          "size": 1447,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/79ea7f944bcbb4690bdda0ff3087a2928d3010c3"
+        },
+        {
+          "path": "tests/test_determinism.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "32a410bbc5b926ea9df784e185d803eee27e1131",
+          "size": 2315,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/32a410bbc5b926ea9df784e185d803eee27e1131"
+        },
+        {
+          "path": "tests/test_golden_master.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fbeb0d8f48c2f85d946490c21860a63dfea16736",
+          "size": 2506,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/fbeb0d8f48c2f85d946490c21860a63dfea16736"
+        },
+        {
+          "path": "tests/test_layer_card.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3408461e2dfadd12a775423be1e0c50eff218967",
+          "size": 1870,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/3408461e2dfadd12a775423be1e0c50eff218967"
+        },
+        {
+          "path": "tests/test_ml_vector.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "beac52137a5e06c03768f227773d8b86a4157a28",
+          "size": 1534,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/beac52137a5e06c03768f227773d8b86a4157a28"
+        },
+        {
+          "path": "tests/test_smoke.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "122cd53770f8fc69fe240e019cbdbd479d1267cc",
+          "size": 1555,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/122cd53770f8fc69fe240e019cbdbd479d1267cc"
+        }
+      ]
+    },
+    "feature/p0-remove-nondeterminism": {
+      "commit_sha": "0a5f830a319667d1e0f3a083f3036bfe7f3fa19e",
+      "tree": [
+        {
+          "path": ".gitignore",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "887ab8bffe30fa7e040151057ab256c0ca3dec7b",
+          "size": 439,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/887ab8bffe30fa7e040151057ab256c0ca3dec7b"
+        },
+        {
+          "path": "README.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b82e78f257f75e808f42e842830f3736b495ad7a",
+          "size": 3120,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b82e78f257f75e808f42e842830f3736b495ad7a"
+        },
+        {
+          "path": "demo_data",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6fcd870ce1dbfad1b0c09fec3c2dc516a7830614",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/6fcd870ce1dbfad1b0c09fec3c2dc516a7830614"
+        },
+        {
+          "path": "demo_data/26_skladba.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d02ef230783ad1097e1790657f071bd3bfae1679",
+          "size": 230008,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/d02ef230783ad1097e1790657f071bd3bfae1679"
+        },
+        {
+          "path": "demo_data/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e488e84443c686311c20f5338c6ce8acd0a213e0",
+          "size": 439300,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e488e84443c686311c20f5338c6ce8acd0a213e0"
+        },
+        {
+          "path": "demo_data/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7375d24261b9885c15998cac03b6bd8ba1a2d7e9",
+          "size": 3153,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7375d24261b9885c15998cac03b6bd8ba1a2d7e9"
+        },
+        {
+          "path": "demo_data/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "88031567f4fa78a0ff670d317a5a9170e0104f90",
+          "size": 696,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/88031567f4fa78a0ff670d317a5a9170e0104f90"
+        },
+        {
+          "path": "demo_data/3781_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad",
+          "size": 10493,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad"
+        },
+        {
+          "path": "demo_data/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "efbb476406830cf360d679caee0e9de0137555ad",
+          "size": 38427,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/efbb476406830cf360d679caee0e9de0137555ad"
+        },
+        {
+          "path": "demo_data/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "dde8e653d45ccc443ab24d03b39d26a80bfc54d7",
+          "size": 2737,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/dde8e653d45ccc443ab24d03b39d26a80bfc54d7"
+        },
+        {
+          "path": "demo_data/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9a5d8f3f4a49159c5e94b6b0e00aefbb910ec6ed",
+          "size": 689,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/9a5d8f3f4a49159c5e94b6b0e00aefbb910ec6ed"
+        },
+        {
+          "path": "demo_data/3824_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f069af5a66f0034c891f31b22241e9d3814ad0ff",
+          "size": 152356,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f069af5a66f0034c891f31b22241e9d3814ad0ff"
+        },
+        {
+          "path": "demo_data/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "95f970be78e9643c8fb57dd4bd96eeb1e8a896a6",
+          "size": 289356,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/95f970be78e9643c8fb57dd4bd96eeb1e8a896a6"
+        },
+        {
+          "path": "demo_data/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1eb285751772eff6a318461820bc05dd5880f931",
+          "size": 6051,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1eb285751772eff6a318461820bc05dd5880f931"
+        },
+        {
+          "path": "demo_data/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7f622c78f60a0e3038965f06cc7ab9365cf7319d",
+          "size": 700,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7f622c78f60a0e3038965f06cc7ab9365cf7319d"
+        },
+        {
+          "path": "demo_data/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "53fdd8874e5a2c2cc87acfcb48a60bf4583c26af",
+          "size": 902039,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/53fdd8874e5a2c2cc87acfcb48a60bf4583c26af"
+        },
+        {
+          "path": "demo_data/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a1151d191120c683239621792b61718ffb89c144",
+          "size": 504,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a1151d191120c683239621792b61718ffb89c144"
+        },
+        {
+          "path": "docs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "f154da0e99d19966542e94896410ecf13e90ebb9",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/f154da0e99d19966542e94896410ecf13e90ebb9"
+        },
+        {
+          "path": "docs/bugs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "9c05c9904f036bd8adaaa7437ee8685601d799c5",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/9c05c9904f036bd8adaaa7437ee8685601d799c5"
+        },
+        {
+          "path": "docs/bugs/real_times_vcf_dxf_sample_set_n13.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9114d242c77ed7cfb6c291d625c7291c51a4a209",
+          "size": 1026,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/9114d242c77ed7cfb6c291d625c7291c51a4a209"
+        },
+        {
+          "path": "docs/handoffs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3f3dc0ca6c9156eb861ac7ed439dbc15cfd1d143",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/3f3dc0ca6c9156eb861ac7ed439dbc15cfd1d143"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v2.2_to_v2.3.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a",
+          "size": 7391,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v22_complete.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "95db51f3c975595523231764ca16ff90cd69f47b",
+          "size": 25673,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/95db51f3c975595523231764ca16ff90cd69f47b"
+        },
+        {
+          "path": "docs/handoffs/diff_V2.1_to_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5e7fea641c7c18202ec1bc850b8b6384a77e96bb",
+          "size": 5217,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5e7fea641c7c18202ec1bc850b8b6384a77e96bb"
+        },
+        {
+          "path": "docs/handoffs/readme_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "92bac22259770ef0835819ee06723670f3bcc4a3",
+          "size": 5640,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/92bac22259770ef0835819ee06723670f3bcc4a3"
+        },
+        {
+          "path": "docs/methodology",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "aef1ca5376f45705d5e343770c899933bc3c6e84",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/aef1ca5376f45705d5e343770c899933bc3c6e84"
+        },
+        {
+          "path": "docs/methodology/DeepSeek V4 API – Golden Rules for Open Code CLI Development.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "418c527bfc251dcef96f5d6f3b6a3cc8aac7e895",
+          "size": 13345,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/418c527bfc251dcef96f5d6f3b6a3cc8aac7e895"
+        },
+        {
+          "path": "docs/methodology/METHODOLOGY_MASTER_V1.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a",
+          "size": 34118,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a"
+        },
+        {
+          "path": "docs/methodology/PARADIGM_SHIFT_REPORT_V2_2_to_V2_3.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "46e25db2f1e2bd6cf13ddf7468e5c57bf804be19",
+          "size": 11670,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/46e25db2f1e2bd6cf13ddf7468e5c57bf804be19"
+        },
+        {
+          "path": "docs/methodology/SNR_analyza_data_trimming.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "143d0a6d4045314a2091269fce7c5181e631d4ed",
+          "size": 22050,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/143d0a6d4045314a2091269fce7c5181e631d4ed"
+        },
+        {
+          "path": "docs/methodology/dev_handoff_v2.3_open_code_deepseek.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1",
+          "size": 15242,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1"
+        },
+        {
+          "path": "docs/methodology/epistemicky_playbook_B2B_automation_junior_dev.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "dd69d14839296e10c450c1bcb48d9301f8e3537c",
+          "size": 17509,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/dd69d14839296e10c450c1bcb48d9301f8e3537c"
+        },
+        {
+          "path": "docs/reports",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8bb74557339ea3727d2131fa2a4988139ecc9365",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/8bb74557339ea3727d2131fa2a4988139ecc9365"
+        },
+        {
+          "path": "docs/reports/GITHUB_INTEGRATION_GUIDE.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "885ebf8072609c5f005ce83c3e33531fdf3d3a83",
+          "size": 6679,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/885ebf8072609c5f005ce83c3e33531fdf3d3a83"
+        },
+        {
+          "path": "docs/reports/MARGINAL_ANALYSIS_LOCAL_VS_GITHUB.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c3ed4164ccba3522477c9cd608610c6bfc97e223",
+          "size": 7320,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/c3ed4164ccba3522477c9cd608610c6bfc97e223"
+        },
+        {
+          "path": "requirements.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bd5caef5d330b30b89708f560e1da0640cbc4592",
+          "size": 106,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/bd5caef5d330b30b89708f560e1da0640cbc4592"
+        },
+        {
+          "path": "src",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ebd927f40d79823055b6cc75fa31c66603613401",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/ebd927f40d79823055b6cc75fa31c66603613401"
+        },
+        {
+          "path": "src/dxf_geometry_indexer_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8c703ff6b4dfc3f93bd74770c2640966520d6b2d",
+          "size": 95423,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/8c703ff6b4dfc3f93bd74770c2640966520d6b2d"
+        },
+        {
+          "path": "src/dxf_indexer_app_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b8d93aabfb34ab23288a004a4fa58288370de90e",
+          "size": 30617,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b8d93aabfb34ab23288a004a4fa58288370de90e"
+        },
+        {
+          "path": "src/dxf_tool_config.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3af4a939635a6e95fd2a919e814f41771663917d",
+          "size": 13332,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/3af4a939635a6e95fd2a919e814f41771663917d"
+        },
+        {
+          "path": "test_output",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "649dd7e33ec5d98c3da0b5e4850c9720182d297d",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/649dd7e33ec5d98c3da0b5e4850c9720182d297d"
+        },
+        {
+          "path": "test_output/26_skladba_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "32f48251a61ddd3e9edc3474880f3e23b4e9b9b5",
+          "size": 67243,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/32f48251a61ddd3e9edc3474880f3e23b4e9b9b5"
+        },
+        {
+          "path": "test_output/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "376fa423b77422e31519eb6bb924b3b6d494d05f",
+          "size": 461564,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/376fa423b77422e31519eb6bb924b3b6d494d05f"
+        },
+        {
+          "path": "test_output/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "48314af060e1e22339e11955a040b39536db2658",
+          "size": 4908,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/48314af060e1e22339e11955a040b39536db2658"
+        },
+        {
+          "path": "test_output/26_skladba_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ce101fca36d91689d6b0d1b741e128c5897cab38",
+          "size": 502,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ce101fca36d91689d6b0d1b741e128c5897cab38"
+        },
+        {
+          "path": "test_output/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b83515acc10374302d9c660530ce2fda3346d981",
+          "size": 1264,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b83515acc10374302d9c660530ce2fda3346d981"
+        },
+        {
+          "path": "test_output/3781_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e78a683b1162cf2a05ecfa8325c7689d705ea399",
+          "size": 37231,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e78a683b1162cf2a05ecfa8325c7689d705ea399"
+        },
+        {
+          "path": "test_output/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "834c7607df0d0dd7c812dc55c8e7e8eeca2198e3",
+          "size": 47702,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/834c7607df0d0dd7c812dc55c8e7e8eeca2198e3"
+        },
+        {
+          "path": "test_output/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "388752d3723f1e7281f1c960ac281120c66ba529",
+          "size": 5139,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/388752d3723f1e7281f1c960ac281120c66ba529"
+        },
+        {
+          "path": "test_output/3781_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "49e02678d624b2c6811bcc8d157918a4ce14f00b",
+          "size": 592,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/49e02678d624b2c6811bcc8d157918a4ce14f00b"
+        },
+        {
+          "path": "test_output/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ec5bef576fda2ac03fbf58e89ef34c1f11f17880",
+          "size": 1270,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ec5bef576fda2ac03fbf58e89ef34c1f11f17880"
+        },
+        {
+          "path": "test_output/3824_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "802785dc680c6005aca814b366e2a6906014492c",
+          "size": 78528,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/802785dc680c6005aca814b366e2a6906014492c"
+        },
+        {
+          "path": "test_output/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e84da9badd4db862604b4a72360907851d6fbec2",
+          "size": 304462,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e84da9badd4db862604b4a72360907851d6fbec2"
+        },
+        {
+          "path": "test_output/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd3d74a84a780dcf02f2f93222639e55171f58c3",
+          "size": 8407,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd3d74a84a780dcf02f2f93222639e55171f58c3"
+        },
+        {
+          "path": "test_output/3824_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a2eff8d79602202ccc0db7ae5e6889183e62916c",
+          "size": 486,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a2eff8d79602202ccc0db7ae5e6889183e62916c"
+        },
+        {
+          "path": "test_output/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1bc043f8b312c35a490ace0ff82c874d462dbe45",
+          "size": 1286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1bc043f8b312c35a490ace0ff82c874d462dbe45"
+        },
+        {
+          "path": "test_output/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4f09d9b24538da46faa067f7aeca6da20ed22fe7",
+          "size": 956160,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4f09d9b24538da46faa067f7aeca6da20ed22fe7"
+        },
+        {
+          "path": "test_output/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "752d4c644f21d2efbd0ce7693749e7407eb0dc01",
+          "size": 662,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/752d4c644f21d2efbd0ce7693749e7407eb0dc01"
+        },
+        {
+          "path": "tests",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a0b7b535707294b359653937af60bd2e5e0dd44b",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/a0b7b535707294b359653937af60bd2e5e0dd44b"
+        },
+        {
+          "path": "tests/__init__.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd7cdbae6dace85404c4ace6efc8d184d95de7fc",
+          "size": 45,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd7cdbae6dace85404c4ace6efc8d184d95de7fc"
+        },
+        {
+          "path": "tests/conftest.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "79ea7f944bcbb4690bdda0ff3087a2928d3010c3",
+          "size": 1447,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/79ea7f944bcbb4690bdda0ff3087a2928d3010c3"
+        },
+        {
+          "path": "tests/test_determinism.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "32a410bbc5b926ea9df784e185d803eee27e1131",
+          "size": 2315,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/32a410bbc5b926ea9df784e185d803eee27e1131"
+        },
+        {
+          "path": "tests/test_golden_master.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fbeb0d8f48c2f85d946490c21860a63dfea16736",
+          "size": 2506,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/fbeb0d8f48c2f85d946490c21860a63dfea16736"
+        },
+        {
+          "path": "tests/test_layer_card.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3408461e2dfadd12a775423be1e0c50eff218967",
+          "size": 1870,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/3408461e2dfadd12a775423be1e0c50eff218967"
+        },
+        {
+          "path": "tests/test_ml_vector.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "beac52137a5e06c03768f227773d8b86a4157a28",
+          "size": 1534,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/beac52137a5e06c03768f227773d8b86a4157a28"
+        },
+        {
+          "path": "tests/test_smoke.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "122cd53770f8fc69fe240e019cbdbd479d1267cc",
+          "size": 1555,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/122cd53770f8fc69fe240e019cbdbd479d1267cc"
+        }
+      ]
+    },
+    "feature/semantic_embedding": {
+      "commit_sha": "803868aa11c95e956d457d976df15a7aaaf2a318",
+      "tree": [
+        {
+          "path": ".gitignore",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "887ab8bffe30fa7e040151057ab256c0ca3dec7b",
+          "size": 439,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/887ab8bffe30fa7e040151057ab256c0ca3dec7b"
+        },
+        {
+          "path": "README.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b82e78f257f75e808f42e842830f3736b495ad7a",
+          "size": 3120,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b82e78f257f75e808f42e842830f3736b495ad7a"
+        },
+        {
+          "path": "demo_data",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "65b3396e947222f7b9ffccf2d3017bd567496b89",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/65b3396e947222f7b9ffccf2d3017bd567496b89"
+        },
+        {
+          "path": "demo_data/26_skladba.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d02ef230783ad1097e1790657f071bd3bfae1679",
+          "size": 230008,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/d02ef230783ad1097e1790657f071bd3bfae1679"
+        },
+        {
+          "path": "demo_data/26_skladba_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "02bcbcd44b4c5fc042329df1b6a601a0e0224c03",
+          "size": 60617,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/02bcbcd44b4c5fc042329df1b6a601a0e0224c03"
+        },
+        {
+          "path": "demo_data/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9f390c0f991ea8aba53d5014bf96c326808d7253",
+          "size": 930893,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/9f390c0f991ea8aba53d5014bf96c326808d7253"
+        },
+        {
+          "path": "demo_data/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4bac8d46ceeb03b257761e37cec2134c2dff73f6",
+          "size": 4910,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4bac8d46ceeb03b257761e37cec2134c2dff73f6"
+        },
+        {
+          "path": "demo_data/26_skladba_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ce101fca36d91689d6b0d1b741e128c5897cab38",
+          "size": 502,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ce101fca36d91689d6b0d1b741e128c5897cab38"
+        },
+        {
+          "path": "demo_data/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fdcf778a5a3b27929590f45099119c5f184a005d",
+          "size": 1265,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/fdcf778a5a3b27929590f45099119c5f184a005d"
+        },
+        {
+          "path": "demo_data/3781_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad",
+          "size": 10493,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad"
+        },
+        {
+          "path": "demo_data/3781_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bc47494141547d128fac0bb412688e21e0c49ca9",
+          "size": 28702,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/bc47494141547d128fac0bb412688e21e0c49ca9"
+        },
+        {
+          "path": "demo_data/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7adfe6101588851a74b4d5c9351d6ae57d760040",
+          "size": 52095,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7adfe6101588851a74b4d5c9351d6ae57d760040"
+        },
+        {
+          "path": "demo_data/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f577dbfca275e7a6e5faf4c931c5b7469f95ee55",
+          "size": 5139,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f577dbfca275e7a6e5faf4c931c5b7469f95ee55"
+        },
+        {
+          "path": "demo_data/3781_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "49e02678d624b2c6811bcc8d157918a4ce14f00b",
+          "size": 592,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/49e02678d624b2c6811bcc8d157918a4ce14f00b"
+        },
+        {
+          "path": "demo_data/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "2c6f5219138d918a9566f726e34976be742e9b78",
+          "size": 1270,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/2c6f5219138d918a9566f726e34976be742e9b78"
+        },
+        {
+          "path": "demo_data/3824_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f069af5a66f0034c891f31b22241e9d3814ad0ff",
+          "size": 152356,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f069af5a66f0034c891f31b22241e9d3814ad0ff"
+        },
+        {
+          "path": "demo_data/3824_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "31703bc38f598460ec4fe1395e6845b38a5de8f8",
+          "size": 51118,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/31703bc38f598460ec4fe1395e6845b38a5de8f8"
+        },
+        {
+          "path": "demo_data/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "27c26f0ebbbfefae0fe7920aaeeace19c7b07d32",
+          "size": 405613,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/27c26f0ebbbfefae0fe7920aaeeace19c7b07d32"
+        },
+        {
+          "path": "demo_data/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5619ab5c406e6867520e4847831796f52f2662fa",
+          "size": 8209,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5619ab5c406e6867520e4847831796f52f2662fa"
+        },
+        {
+          "path": "demo_data/3824_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a2eff8d79602202ccc0db7ae5e6889183e62916c",
+          "size": 486,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a2eff8d79602202ccc0db7ae5e6889183e62916c"
+        },
+        {
+          "path": "demo_data/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7481cab2e0c06ed096ae5738972345e2517e27ce",
+          "size": 1286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7481cab2e0c06ed096ae5738972345e2517e27ce"
+        },
+        {
+          "path": "demo_data/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e70daa2168fb9baf388676b16832375dbf3ae18b",
+          "size": 1674493,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e70daa2168fb9baf388676b16832375dbf3ae18b"
+        },
+        {
+          "path": "demo_data/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f22d1cd497eeea0c13dc87337fd1482f4c7e960f",
+          "size": 676,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f22d1cd497eeea0c13dc87337fd1482f4c7e960f"
+        },
+        {
+          "path": "docs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "9ee97de4414be3c667efb6f7d33b28d99596fd3d",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/9ee97de4414be3c667efb6f7d33b28d99596fd3d"
+        },
+        {
+          "path": "docs/bugs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "9c05c9904f036bd8adaaa7437ee8685601d799c5",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/9c05c9904f036bd8adaaa7437ee8685601d799c5"
+        },
+        {
+          "path": "docs/bugs/real_times_vcf_dxf_sample_set_n13.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9114d242c77ed7cfb6c291d625c7291c51a4a209",
+          "size": 1026,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/9114d242c77ed7cfb6c291d625c7291c51a4a209"
+        },
+        {
+          "path": "docs/handoffs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3f3dc0ca6c9156eb861ac7ed439dbc15cfd1d143",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/3f3dc0ca6c9156eb861ac7ed439dbc15cfd1d143"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v2.2_to_v2.3.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a",
+          "size": 7391,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v22_complete.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "95db51f3c975595523231764ca16ff90cd69f47b",
+          "size": 25673,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/95db51f3c975595523231764ca16ff90cd69f47b"
+        },
+        {
+          "path": "docs/handoffs/diff_V2.1_to_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5e7fea641c7c18202ec1bc850b8b6384a77e96bb",
+          "size": 5217,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5e7fea641c7c18202ec1bc850b8b6384a77e96bb"
+        },
+        {
+          "path": "docs/handoffs/readme_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "92bac22259770ef0835819ee06723670f3bcc4a3",
+          "size": 5640,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/92bac22259770ef0835819ee06723670f3bcc4a3"
+        },
+        {
+          "path": "docs/methodology",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "ecb8107a0eba3a26ec5875060b22cd765cce9a7b",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/ecb8107a0eba3a26ec5875060b22cd765cce9a7b"
+        },
+        {
+          "path": "docs/methodology/DeepSeek V4 API – Golden Rules for Open Code CLI Development.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "418c527bfc251dcef96f5d6f3b6a3cc8aac7e895",
+          "size": 13345,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/418c527bfc251dcef96f5d6f3b6a3cc8aac7e895"
+        },
+        {
+          "path": "docs/methodology/METHODOLOGY_MASTER_V1.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a",
+          "size": 34118,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a"
+        },
+        {
+          "path": "docs/methodology/PARADIGM_SHIFT_REPORT_V2_2_to_V2_3.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "46e25db2f1e2bd6cf13ddf7468e5c57bf804be19",
+          "size": 11670,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/46e25db2f1e2bd6cf13ddf7468e5c57bf804be19"
+        },
+        {
+          "path": "docs/methodology/SNR_analyza_data_trimming.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "143d0a6d4045314a2091269fce7c5181e631d4ed",
+          "size": 22050,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/143d0a6d4045314a2091269fce7c5181e631d4ed"
+        },
+        {
+          "path": "docs/methodology/dev_handoff_v2.3_open_code_deepseek.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1",
+          "size": 15242,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1"
+        },
+        {
+          "path": "docs/methodology/epistemicky_playbook_B2B_automation_junior_dev.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "dd69d14839296e10c450c1bcb48d9301f8e3537c",
+          "size": 17509,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/dd69d14839296e10c450c1bcb48d9301f8e3537c"
+        },
+        {
+          "path": "docs/methodology/semanticka_embedding_korelace.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1a5ded54ff10b3f5201a58f81571fa4f1d33d952",
+          "size": 15776,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1a5ded54ff10b3f5201a58f81571fa4f1d33d952"
+        },
+        {
+          "path": "docs/reports",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8bb74557339ea3727d2131fa2a4988139ecc9365",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/8bb74557339ea3727d2131fa2a4988139ecc9365"
+        },
+        {
+          "path": "docs/reports/GITHUB_INTEGRATION_GUIDE.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "885ebf8072609c5f005ce83c3e33531fdf3d3a83",
+          "size": 6679,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/885ebf8072609c5f005ce83c3e33531fdf3d3a83"
+        },
+        {
+          "path": "docs/reports/MARGINAL_ANALYSIS_LOCAL_VS_GITHUB.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c3ed4164ccba3522477c9cd608610c6bfc97e223",
+          "size": 7320,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/c3ed4164ccba3522477c9cd608610c6bfc97e223"
+        },
+        {
+          "path": "requirements.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bd5caef5d330b30b89708f560e1da0640cbc4592",
+          "size": 106,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/bd5caef5d330b30b89708f560e1da0640cbc4592"
+        },
+        {
+          "path": "src",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "793e018b7544b4b06f94d79b6751b8e25a333599",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/793e018b7544b4b06f94d79b6751b8e25a333599"
+        },
+        {
+          "path": "src/dxf_geometry_indexer_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cadeb7e60b328e4106bc5d6b189680747f38ce22",
+          "size": 93459,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cadeb7e60b328e4106bc5d6b189680747f38ce22"
+        },
+        {
+          "path": "src/dxf_indexer_app_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f83cd9911bd29fa4bac70faf6d783b5bf5250fcd",
+          "size": 30308,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f83cd9911bd29fa4bac70faf6d783b5bf5250fcd"
+        },
+        {
+          "path": "src/dxf_tool_config.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3af4a939635a6e95fd2a919e814f41771663917d",
+          "size": 13332,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/3af4a939635a6e95fd2a919e814f41771663917d"
+        },
+        {
+          "path": "src/semantic_embedding_dashboard.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "023fd04867e2af2dd87691cc97d9f777c1dbe6e6",
+          "size": 17843,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/023fd04867e2af2dd87691cc97d9f777c1dbe6e6"
+        },
+        {
+          "path": "test_output",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "649dd7e33ec5d98c3da0b5e4850c9720182d297d",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/649dd7e33ec5d98c3da0b5e4850c9720182d297d"
+        },
+        {
+          "path": "test_output/26_skladba_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "32f48251a61ddd3e9edc3474880f3e23b4e9b9b5",
+          "size": 67243,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/32f48251a61ddd3e9edc3474880f3e23b4e9b9b5"
+        },
+        {
+          "path": "test_output/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "376fa423b77422e31519eb6bb924b3b6d494d05f",
+          "size": 461564,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/376fa423b77422e31519eb6bb924b3b6d494d05f"
+        },
+        {
+          "path": "test_output/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "48314af060e1e22339e11955a040b39536db2658",
+          "size": 4908,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/48314af060e1e22339e11955a040b39536db2658"
+        },
+        {
+          "path": "test_output/26_skladba_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ce101fca36d91689d6b0d1b741e128c5897cab38",
+          "size": 502,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ce101fca36d91689d6b0d1b741e128c5897cab38"
+        },
+        {
+          "path": "test_output/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b83515acc10374302d9c660530ce2fda3346d981",
+          "size": 1264,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b83515acc10374302d9c660530ce2fda3346d981"
+        },
+        {
+          "path": "test_output/3781_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e78a683b1162cf2a05ecfa8325c7689d705ea399",
+          "size": 37231,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e78a683b1162cf2a05ecfa8325c7689d705ea399"
+        },
+        {
+          "path": "test_output/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "834c7607df0d0dd7c812dc55c8e7e8eeca2198e3",
+          "size": 47702,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/834c7607df0d0dd7c812dc55c8e7e8eeca2198e3"
+        },
+        {
+          "path": "test_output/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "388752d3723f1e7281f1c960ac281120c66ba529",
+          "size": 5139,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/388752d3723f1e7281f1c960ac281120c66ba529"
+        },
+        {
+          "path": "test_output/3781_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "49e02678d624b2c6811bcc8d157918a4ce14f00b",
+          "size": 592,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/49e02678d624b2c6811bcc8d157918a4ce14f00b"
+        },
+        {
+          "path": "test_output/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ec5bef576fda2ac03fbf58e89ef34c1f11f17880",
+          "size": 1270,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ec5bef576fda2ac03fbf58e89ef34c1f11f17880"
+        },
+        {
+          "path": "test_output/3824_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "802785dc680c6005aca814b366e2a6906014492c",
+          "size": 78528,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/802785dc680c6005aca814b366e2a6906014492c"
+        },
+        {
+          "path": "test_output/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e84da9badd4db862604b4a72360907851d6fbec2",
+          "size": 304462,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e84da9badd4db862604b4a72360907851d6fbec2"
+        },
+        {
+          "path": "test_output/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd3d74a84a780dcf02f2f93222639e55171f58c3",
+          "size": 8407,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd3d74a84a780dcf02f2f93222639e55171f58c3"
+        },
+        {
+          "path": "test_output/3824_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a2eff8d79602202ccc0db7ae5e6889183e62916c",
+          "size": 486,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a2eff8d79602202ccc0db7ae5e6889183e62916c"
+        },
+        {
+          "path": "test_output/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1bc043f8b312c35a490ace0ff82c874d462dbe45",
+          "size": 1286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1bc043f8b312c35a490ace0ff82c874d462dbe45"
+        },
+        {
+          "path": "test_output/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4f09d9b24538da46faa067f7aeca6da20ed22fe7",
+          "size": 956160,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4f09d9b24538da46faa067f7aeca6da20ed22fe7"
+        },
+        {
+          "path": "test_output/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "752d4c644f21d2efbd0ce7693749e7407eb0dc01",
+          "size": 662,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/752d4c644f21d2efbd0ce7693749e7407eb0dc01"
+        },
+        {
+          "path": "tests",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "a0b7b535707294b359653937af60bd2e5e0dd44b",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/a0b7b535707294b359653937af60bd2e5e0dd44b"
+        },
+        {
+          "path": "tests/__init__.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd7cdbae6dace85404c4ace6efc8d184d95de7fc",
+          "size": 45,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd7cdbae6dace85404c4ace6efc8d184d95de7fc"
+        },
+        {
+          "path": "tests/conftest.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "79ea7f944bcbb4690bdda0ff3087a2928d3010c3",
+          "size": 1447,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/79ea7f944bcbb4690bdda0ff3087a2928d3010c3"
+        },
+        {
+          "path": "tests/test_determinism.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "32a410bbc5b926ea9df784e185d803eee27e1131",
+          "size": 2315,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/32a410bbc5b926ea9df784e185d803eee27e1131"
+        },
+        {
+          "path": "tests/test_golden_master.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "fbeb0d8f48c2f85d946490c21860a63dfea16736",
+          "size": 2506,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/fbeb0d8f48c2f85d946490c21860a63dfea16736"
+        },
+        {
+          "path": "tests/test_layer_card.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3408461e2dfadd12a775423be1e0c50eff218967",
+          "size": 1870,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/3408461e2dfadd12a775423be1e0c50eff218967"
+        },
+        {
+          "path": "tests/test_ml_vector.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "beac52137a5e06c03768f227773d8b86a4157a28",
+          "size": 1534,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/beac52137a5e06c03768f227773d8b86a4157a28"
+        },
+        {
+          "path": "tests/test_smoke.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "122cd53770f8fc69fe240e019cbdbd479d1267cc",
+          "size": 1555,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/122cd53770f8fc69fe240e019cbdbd479d1267cc"
+        }
+      ]
+    },
+    "main": {
+      "commit_sha": "23ed0b0c5fce72c9d0b3111d73f8ede361a88a92",
+      "tree": [
+        {
+          "path": ".gitignore",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "887ab8bffe30fa7e040151057ab256c0ca3dec7b",
+          "size": 439,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/887ab8bffe30fa7e040151057ab256c0ca3dec7b"
+        },
+        {
+          "path": "README.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b82e78f257f75e808f42e842830f3736b495ad7a",
+          "size": 3120,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b82e78f257f75e808f42e842830f3736b495ad7a"
+        },
+        {
+          "path": "demo_data",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "6fcd870ce1dbfad1b0c09fec3c2dc516a7830614",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/6fcd870ce1dbfad1b0c09fec3c2dc516a7830614"
+        },
+        {
+          "path": "demo_data/26_skladba.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d02ef230783ad1097e1790657f071bd3bfae1679",
+          "size": 230008,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/d02ef230783ad1097e1790657f071bd3bfae1679"
+        },
+        {
+          "path": "demo_data/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e488e84443c686311c20f5338c6ce8acd0a213e0",
+          "size": 439300,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e488e84443c686311c20f5338c6ce8acd0a213e0"
+        },
+        {
+          "path": "demo_data/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7375d24261b9885c15998cac03b6bd8ba1a2d7e9",
+          "size": 3153,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7375d24261b9885c15998cac03b6bd8ba1a2d7e9"
+        },
+        {
+          "path": "demo_data/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "88031567f4fa78a0ff670d317a5a9170e0104f90",
+          "size": 696,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/88031567f4fa78a0ff670d317a5a9170e0104f90"
+        },
+        {
+          "path": "demo_data/3781_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad",
+          "size": 10493,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/be5aadeeb1d66f7cb745cf28d5a22d0b3f46abad"
+        },
+        {
+          "path": "demo_data/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "efbb476406830cf360d679caee0e9de0137555ad",
+          "size": 38427,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/efbb476406830cf360d679caee0e9de0137555ad"
+        },
+        {
+          "path": "demo_data/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "dde8e653d45ccc443ab24d03b39d26a80bfc54d7",
+          "size": 2737,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/dde8e653d45ccc443ab24d03b39d26a80bfc54d7"
+        },
+        {
+          "path": "demo_data/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9a5d8f3f4a49159c5e94b6b0e00aefbb910ec6ed",
+          "size": 689,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/9a5d8f3f4a49159c5e94b6b0e00aefbb910ec6ed"
+        },
+        {
+          "path": "demo_data/3824_1.dxf",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f069af5a66f0034c891f31b22241e9d3814ad0ff",
+          "size": 152356,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f069af5a66f0034c891f31b22241e9d3814ad0ff"
+        },
+        {
+          "path": "demo_data/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "95f970be78e9643c8fb57dd4bd96eeb1e8a896a6",
+          "size": 289356,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/95f970be78e9643c8fb57dd4bd96eeb1e8a896a6"
+        },
+        {
+          "path": "demo_data/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1eb285751772eff6a318461820bc05dd5880f931",
+          "size": 6051,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1eb285751772eff6a318461820bc05dd5880f931"
+        },
+        {
+          "path": "demo_data/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7f622c78f60a0e3038965f06cc7ab9365cf7319d",
+          "size": 700,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/7f622c78f60a0e3038965f06cc7ab9365cf7319d"
+        },
+        {
+          "path": "demo_data/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "53fdd8874e5a2c2cc87acfcb48a60bf4583c26af",
+          "size": 902039,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/53fdd8874e5a2c2cc87acfcb48a60bf4583c26af"
+        },
+        {
+          "path": "demo_data/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a1151d191120c683239621792b61718ffb89c144",
+          "size": 504,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a1151d191120c683239621792b61718ffb89c144"
+        },
+        {
+          "path": "docs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "739830a47dcde33687e4aca806da531e1d1a29c1",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/739830a47dcde33687e4aca806da531e1d1a29c1"
+        },
+        {
+          "path": "docs/handoffs",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "3f3dc0ca6c9156eb861ac7ed439dbc15cfd1d143",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/3f3dc0ca6c9156eb861ac7ed439dbc15cfd1d143"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v2.2_to_v2.3.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a",
+          "size": 7391,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/eca0b11e72e841bdc2bb0f77b7abf11b44b1fa9a"
+        },
+        {
+          "path": "docs/handoffs/dev_handoff_v22_complete.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "95db51f3c975595523231764ca16ff90cd69f47b",
+          "size": 25673,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/95db51f3c975595523231764ca16ff90cd69f47b"
+        },
+        {
+          "path": "docs/handoffs/diff_V2.1_to_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5e7fea641c7c18202ec1bc850b8b6384a77e96bb",
+          "size": 5217,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5e7fea641c7c18202ec1bc850b8b6384a77e96bb"
+        },
+        {
+          "path": "docs/handoffs/readme_V2.2.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "92bac22259770ef0835819ee06723670f3bcc4a3",
+          "size": 5640,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/92bac22259770ef0835819ee06723670f3bcc4a3"
+        },
+        {
+          "path": "docs/methodology",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "abf50973f6779ebe3931bce292ddfdea836032b3",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/abf50973f6779ebe3931bce292ddfdea836032b3"
+        },
+        {
+          "path": "docs/methodology/DeepSeek V4 API – Golden Rules for Open Code CLI Development.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "418c527bfc251dcef96f5d6f3b6a3cc8aac7e895",
+          "size": 13345,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/418c527bfc251dcef96f5d6f3b6a3cc8aac7e895"
+        },
+        {
+          "path": "docs/methodology/METHODOLOGY_MASTER_V1.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a",
+          "size": 34118,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a3c8768e5cf162b96ab2cefc2ffbd9f23a3a123a"
+        },
+        {
+          "path": "docs/methodology/PARADIGM_SHIFT_REPORT_V2_2_to_V2_3.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "46e25db2f1e2bd6cf13ddf7468e5c57bf804be19",
+          "size": 11670,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/46e25db2f1e2bd6cf13ddf7468e5c57bf804be19"
+        },
+        {
+          "path": "docs/methodology/dev_handoff_v2.3_open_code_deepseek.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1",
+          "size": 15242,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/5ddc3ce3a180bdbca423ef8e753291c9cfe83fc1"
+        },
+        {
+          "path": "docs/methodology/epistemicky_playbook_B2B_automation_junior_dev.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "dd69d14839296e10c450c1bcb48d9301f8e3537c",
+          "size": 17509,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/dd69d14839296e10c450c1bcb48d9301f8e3537c"
+        },
+        {
+          "path": "docs/reports",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "8bb74557339ea3727d2131fa2a4988139ecc9365",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/8bb74557339ea3727d2131fa2a4988139ecc9365"
+        },
+        {
+          "path": "docs/reports/GITHUB_INTEGRATION_GUIDE.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "885ebf8072609c5f005ce83c3e33531fdf3d3a83",
+          "size": 6679,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/885ebf8072609c5f005ce83c3e33531fdf3d3a83"
+        },
+        {
+          "path": "docs/reports/MARGINAL_ANALYSIS_LOCAL_VS_GITHUB.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c3ed4164ccba3522477c9cd608610c6bfc97e223",
+          "size": 7320,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/c3ed4164ccba3522477c9cd608610c6bfc97e223"
+        },
+        {
+          "path": "requirements.txt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bd5caef5d330b30b89708f560e1da0640cbc4592",
+          "size": 106,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/bd5caef5d330b30b89708f560e1da0640cbc4592"
+        },
+        {
+          "path": "src",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "9be6779bc1be54a0420dc1177f244d73632d8df4",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/9be6779bc1be54a0420dc1177f244d73632d8df4"
+        },
+        {
+          "path": "src/dxf_geometry_indexer_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6ad669c041ac1e7e3541b92ea5a9e8523d2d36bf",
+          "size": 89962,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/6ad669c041ac1e7e3541b92ea5a9e8523d2d36bf"
+        },
+        {
+          "path": "src/dxf_indexer_app_v2.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f085f9f599525878756798962454c08f8efe6ff4",
+          "size": 30653,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/f085f9f599525878756798962454c08f8efe6ff4"
+        },
+        {
+          "path": "src/dxf_tool_config.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "736fd673563c9620fb6dbdf1aa7d64ecc13ff2c1",
+          "size": 15981,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/736fd673563c9620fb6dbdf1aa7d64ecc13ff2c1"
+        },
+        {
+          "path": "test_output",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "649dd7e33ec5d98c3da0b5e4850c9720182d297d",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/649dd7e33ec5d98c3da0b5e4850c9720182d297d"
+        },
+        {
+          "path": "test_output/26_skladba_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "32f48251a61ddd3e9edc3474880f3e23b4e9b9b5",
+          "size": 67243,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/32f48251a61ddd3e9edc3474880f3e23b4e9b9b5"
+        },
+        {
+          "path": "test_output/26_skladba_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "376fa423b77422e31519eb6bb924b3b6d494d05f",
+          "size": 461564,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/376fa423b77422e31519eb6bb924b3b6d494d05f"
+        },
+        {
+          "path": "test_output/26_skladba_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "48314af060e1e22339e11955a040b39536db2658",
+          "size": 4908,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/48314af060e1e22339e11955a040b39536db2658"
+        },
+        {
+          "path": "test_output/26_skladba_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ce101fca36d91689d6b0d1b741e128c5897cab38",
+          "size": 502,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ce101fca36d91689d6b0d1b741e128c5897cab38"
+        },
+        {
+          "path": "test_output/26_skladba_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b83515acc10374302d9c660530ce2fda3346d981",
+          "size": 1264,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/b83515acc10374302d9c660530ce2fda3346d981"
+        },
+        {
+          "path": "test_output/3781_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e78a683b1162cf2a05ecfa8325c7689d705ea399",
+          "size": 37231,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e78a683b1162cf2a05ecfa8325c7689d705ea399"
+        },
+        {
+          "path": "test_output/3781_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "834c7607df0d0dd7c812dc55c8e7e8eeca2198e3",
+          "size": 47702,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/834c7607df0d0dd7c812dc55c8e7e8eeca2198e3"
+        },
+        {
+          "path": "test_output/3781_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "388752d3723f1e7281f1c960ac281120c66ba529",
+          "size": 5139,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/388752d3723f1e7281f1c960ac281120c66ba529"
+        },
+        {
+          "path": "test_output/3781_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "49e02678d624b2c6811bcc8d157918a4ce14f00b",
+          "size": 592,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/49e02678d624b2c6811bcc8d157918a4ce14f00b"
+        },
+        {
+          "path": "test_output/3781_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ec5bef576fda2ac03fbf58e89ef34c1f11f17880",
+          "size": 1270,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/ec5bef576fda2ac03fbf58e89ef34c1f11f17880"
+        },
+        {
+          "path": "test_output/3824_1_2d.png",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "802785dc680c6005aca814b366e2a6906014492c",
+          "size": 78528,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/802785dc680c6005aca814b366e2a6906014492c"
+        },
+        {
+          "path": "test_output/3824_1_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "e84da9badd4db862604b4a72360907851d6fbec2",
+          "size": 304462,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/e84da9badd4db862604b4a72360907851d6fbec2"
+        },
+        {
+          "path": "test_output/3824_1_index.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd3d74a84a780dcf02f2f93222639e55171f58c3",
+          "size": 8407,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd3d74a84a780dcf02f2f93222639e55171f58c3"
+        },
+        {
+          "path": "test_output/3824_1_layer_card.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a2eff8d79602202ccc0db7ae5e6889183e62916c",
+          "size": 486,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/a2eff8d79602202ccc0db7ae5e6889183e62916c"
+        },
+        {
+          "path": "test_output/3824_1_ml_vector.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1bc043f8b312c35a490ace0ff82c874d462dbe45",
+          "size": 1286,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/1bc043f8b312c35a490ace0ff82c874d462dbe45"
+        },
+        {
+          "path": "test_output/master_index.json",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4f09d9b24538da46faa067f7aeca6da20ed22fe7",
+          "size": 956160,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/4f09d9b24538da46faa067f7aeca6da20ed22fe7"
+        },
+        {
+          "path": "test_output/summary_index.csv",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "752d4c644f21d2efbd0ce7693749e7407eb0dc01",
+          "size": 662,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/752d4c644f21d2efbd0ce7693749e7407eb0dc01"
+        },
+        {
+          "path": "tests",
+          "mode": "040000",
+          "type": "tree",
+          "sha": "d61f712ffc2b506262c2e2da44e11319f42680e3",
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/trees/d61f712ffc2b506262c2e2da44e11319f42680e3"
+        },
+        {
+          "path": "tests/__init__.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd7cdbae6dace85404c4ace6efc8d184d95de7fc",
+          "size": 45,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/cd7cdbae6dace85404c4ace6efc8d184d95de7fc"
+        },
+        {
+          "path": "tests/conftest.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "79ea7f944bcbb4690bdda0ff3087a2928d3010c3",
+          "size": 1447,
+          "url": "https://api.github.com/repos/outpost2026/CNC_2_LLM/git/blobs/79ea7f944bcbb4690bdda0ff3087a2928d3010c3"
+        }
+      ]
+    }
+  }
+}
