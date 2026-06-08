@@ -1,0 +1,1569 @@
+{
+  "indexer_version": "2.3.0",
+  "metadata": {
+    "file": "G:\\Můj disk\\Moodpasta\\dxf_integrace\\DXF_indexer_main\\demo_data\\3822_2ks.dxf",
+    "file_name": "3822_2ks.dxf",
+    "dxf_version": "AC1015",
+    "file_size_bytes": 12995,
+    "md5": "293b8b836338b5b3bea1f56674d17a4e",
+    "timestamp": "2026-06-08T23:20:06",
+    "libraries_available": {
+      "shapely": true,
+      "scipy": true,
+      "gudhi": false
+    }
+  },
+  "spatial_bounds": {
+    "global_bbox_mm": [
+      392.0,
+      -0.0,
+      1600.0,
+      2790.0
+    ],
+    "canvas_area_mm2": 3370320.0,
+    "total_path_length_mm": 39516.76,
+    "entity_count": 14,
+    "layer_count": 1
+  },
+  "topology_stats": {
+    "total_closed_loops": 4,
+    "total_open_paths": 10,
+    "closed_ratio": 0.286,
+    "max_nesting_depth": 1,
+    "distinct_shape_patterns": 6,
+    "spatial_clusters": 1,
+    "total_vertices": 92,
+    "global_mean_segment_length_mm": 485.84,
+    "point_density_per_meter": 2.33
+  },
+  "entity_graph": {
+    "node_count": 14,
+    "edge_statistics": {
+      "adjacency": 2,
+      "containment": 2,
+      "intersection_bbox_overlaps": 28,
+      "proximity": 28
+    },
+    "graph_features": {
+      "connected_components": 1,
+      "cycle_count": 2,
+      "max_degree": 12,
+      "graph_diameter": 14,
+      "laplacian_eigenvalues_top10": [
+        0.0,
+        2.809698,
+        3.952448,
+        4.974377,
+        6.336163,
+        7.676473,
+        8.509059,
+        9.3835,
+        9.678352,
+        10.592181
+      ]
+    },
+    "edges": {
+      "adjacency": [
+        {
+          "source": "E_0000",
+          "target": "E_0012",
+          "distance_mm": 0.0
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0013",
+          "distance_mm": 0.0
+        }
+      ],
+      "containment": [
+        {
+          "child": "E_0000",
+          "parent": "E_0012"
+        },
+        {
+          "child": "E_0001",
+          "parent": "E_0013"
+        }
+      ],
+      "intersection": [
+        {
+          "source": "E_0000",
+          "target": "E_0002"
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0003"
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0004"
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0005"
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0006"
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0007"
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0008"
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0009"
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0010"
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0011"
+        },
+        {
+          "source": "E_0002",
+          "target": "E_0003"
+        },
+        {
+          "source": "E_0002",
+          "target": "E_0004"
+        },
+        {
+          "source": "E_0002",
+          "target": "E_0012"
+        },
+        {
+          "source": "E_0003",
+          "target": "E_0012"
+        },
+        {
+          "source": "E_0004",
+          "target": "E_0005"
+        },
+        {
+          "source": "E_0004",
+          "target": "E_0012"
+        },
+        {
+          "source": "E_0005",
+          "target": "E_0006"
+        },
+        {
+          "source": "E_0005",
+          "target": "E_0012"
+        },
+        {
+          "source": "E_0006",
+          "target": "E_0012"
+        },
+        {
+          "source": "E_0007",
+          "target": "E_0008"
+        },
+        {
+          "source": "E_0007",
+          "target": "E_0009"
+        },
+        {
+          "source": "E_0007",
+          "target": "E_0013"
+        },
+        {
+          "source": "E_0008",
+          "target": "E_0013"
+        },
+        {
+          "source": "E_0009",
+          "target": "E_0010"
+        },
+        {
+          "source": "E_0009",
+          "target": "E_0013"
+        },
+        {
+          "source": "E_0010",
+          "target": "E_0011"
+        },
+        {
+          "source": "E_0010",
+          "target": "E_0013"
+        },
+        {
+          "source": "E_0011",
+          "target": "E_0013"
+        }
+      ],
+      "proximity": [
+        {
+          "source": "E_0000",
+          "target": "E_0001",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0007",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0008",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0009",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0011",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0013",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0002",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0004",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0005",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0006",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0012",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0002",
+          "target": "E_0007",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0002",
+          "target": "E_0008",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0002",
+          "target": "E_0009",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0002",
+          "target": "E_0013",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0004",
+          "target": "E_0007",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0004",
+          "target": "E_0009",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0004",
+          "target": "E_0013",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0005",
+          "target": "E_0009",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0005",
+          "target": "E_0011",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0005",
+          "target": "E_0013",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0006",
+          "target": "E_0011",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0006",
+          "target": "E_0013",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0007",
+          "target": "E_0012",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0008",
+          "target": "E_0012",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0009",
+          "target": "E_0012",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0011",
+          "target": "E_0012",
+          "distance_mm": 8.0
+        },
+        {
+          "source": "E_0012",
+          "target": "E_0013",
+          "distance_mm": 8.0
+        }
+      ]
+    }
+  },
+  "boolean_analysis": {
+    "method": "shapely",
+    "unified_area_mm2": 3348000.0,
+    "boundary_length_mm": 13560.0,
+    "convex_hull_area_mm2": 3370320.0,
+    "solidity": 0.9934,
+    "num_holes": 0,
+    "estimated_min_feature_width_mm": 0.0
+  },
+  "geometric_constraints": {
+    "parallel_pairs": 15,
+    "perpendicular_pairs": 0,
+    "colinear_pairs": 0,
+    "tangent_pairs": 0,
+    "orthogonal_ratio": 0.165
+  },
+  "rag_queries": {
+    "largest_closed_contours": [
+      {
+        "entity_id": "E_0000",
+        "type": "LWPOLYLINE",
+        "area_mm2": 1674000.0,
+        "bbox_mm": [
+          1000.0,
+          -0.0,
+          1600.0,
+          2790.0
+        ],
+        "center_mm": [
+          1300.0,
+          1395.0
+        ]
+      },
+      {
+        "entity_id": "E_0001",
+        "type": "LWPOLYLINE",
+        "area_mm2": 1674000.0,
+        "bbox_mm": [
+          392.0,
+          -0.0,
+          992.0,
+          2790.0
+        ],
+        "center_mm": [
+          692.0,
+          1395.0
+        ]
+      },
+      {
+        "entity_id": "E_0004",
+        "type": "LWPOLYLINE",
+        "area_mm2": 1673999.99,
+        "bbox_mm": [
+          1000.0,
+          0.0,
+          1600.0,
+          2790.0
+        ],
+        "center_mm": [
+          1300.0,
+          1395.0
+        ]
+      },
+      {
+        "entity_id": "E_0005",
+        "type": "LWPOLYLINE",
+        "area_mm2": 1673999.99,
+        "bbox_mm": [
+          392.0,
+          0.0,
+          992.0,
+          2790.0
+        ],
+        "center_mm": [
+          692.0,
+          1395.0
+        ]
+      }
+    ],
+    "isolated_features": [],
+    "dense_regions": [],
+    "nesting_summary": "4 closed contours detected, 2 top-level boundaries.",
+    "cutting_time_estimate": {
+      "config_feed_rate_mmps": 200,
+      "vibrate_cutter_time_s": 67.8,
+      "v_slot_time_s": 260.0,
+      "head_rotation_overhead_s": 6.0,
+      "total_time_s": 333.8
+    },
+    "tool_summary": {
+      "vibrate_cutter_0deg": {
+        "entity_count": 2,
+        "total_length_mm": 13560.0,
+        "operation": "outer_format"
+      },
+      "v_slot_45deg": {
+        "entity_count": 12,
+        "total_length_mm": 0,
+        "operation": "decorative_grooves"
+      }
+    },
+    "zone_analysis": [
+      {
+        "zone_id": "Z1",
+        "zone_type": "vertical_pattern",
+        "entity_count": 4,
+        "spacing_mean_mm": 202.67,
+        "regularity_score": -0.414
+      },
+      {
+        "zone_id": "Z2",
+        "zone_type": "cassette_bottom",
+        "entity_count": 2,
+        "spacing_mean_mm": 608.0,
+        "regularity_score": 1.0
+      }
+    ],
+    "mounting_flap": {
+      "detected": false
+    },
+    "material_optimization": {
+      "stock_plate_mm": [
+        2900.0,
+        1220.0
+      ],
+      "panel_bbox_mm": [
+        1208.0,
+        2790.0
+      ],
+      "yield_percent": 95.3,
+      "waste_mm": [
+        110.0,
+        12.0
+      ],
+      "panel_fits_stock": true,
+      "panel_rotated": true
+    }
+  },
+  "ml_feature_vector_global": {
+    "entity_count": 14,
+    "closed_loop_count": 4,
+    "open_path_count": 10,
+    "total_vertices": 92,
+    "total_length_mm": 39516.76,
+    "mean_length_mm": 2822.63,
+    "std_length_mm": 2550.8,
+    "p50_length_mm": 1800.5,
+    "p95_length_mm": 6780.0,
+    "min_length_mm": 361.01,
+    "mean_area_mm2": 1674000.0,
+    "std_area_mm2": 0.01,
+    "total_area_mm2": 6695999.98,
+    "total_tac_rad": 0.0,
+    "mean_tac_rad": 0.0,
+    "std_tac_rad": 0.0,
+    "max_tac_rad": 0.0,
+    "tac_per_meter": 0.0,
+    "mean_curvature_index": 0.0,
+    "std_curvature_index": 0.0,
+    "total_sharp_corners": 0,
+    "total_direction_changes": 0,
+    "mean_avg_segment_mm": 468.01,
+    "std_avg_segment_mm": 319.37,
+    "mean_point_count": 6.57,
+    "max_point_count": 8,
+    "has_arcs_entity_count": 0,
+    "has_arcs_ratio": 0.0,
+    "max_bulge_any": 0.0,
+    "mean_bulge_all": 0.0,
+    "graph_connected_components": 1,
+    "graph_max_degree": 12,
+    "graph_cycle_count": 2,
+    "graph_diameter": 14,
+    "constraints_parallel": 15,
+    "constraints_perpendicular": 0,
+    "constraints_orthogonal_ratio": 0.165,
+    "unified_area_mm2": 3348000.0,
+    "convex_hull_area_mm2": 3370320.0,
+    "solidity": 0.9934,
+    "num_holes": 0,
+    "boundary_length_mm": 13560.0,
+    "min_feature_width_mm": 0.0,
+    "semantic_zone_count": 2,
+    "largest_zone_entity_count": 4,
+    "zone_lengths_mean": 1639.3,
+    "max_zone_spacing_mm": 608.0,
+    "v_slot_entity_count": 12,
+    "v_slot_double_pass_length_mm": 52009.6,
+    "v_slot_single_pass_length_mm": 25956.8,
+    "head_rotation_count": 12,
+    "vibrate_cutter_length_mm": 13560.0,
+    "has_mounting_flap": 0,
+    "panel_yield_percent": 95.3,
+    "panel_fits_stock": 1,
+    "panel_is_orthogonal": 0
+  },
+  "semantic_analysis": {
+    "panel_type": "cassette_panel",
+    "confidence": "high",
+    "narrative_summary": "Vyrez o rozmerech 1208 x 2790 mm (3.37 m2). Celkova delka tras: 39.5 m. Nalezeno 4 uzavrenych obrysu a 10 otevrenych drah.\nPanel je clenen na 2 zon:\n- vertical_pattern: 4 prvku, delka 1803 mm, roztec 202.7 mm\n- cassette_bottom: 2 prvku, delka 1476 mm, roztec 608.0 mm\nPrirazeni nastroju CNC:\n- Vibrate cutter 0deg: 2 entit, 13.6 m (vnejsi format)\n- V-slot 45/30deg: 12 drah, 52.0 m dvojitym pojezdem, 12x otoceni hlavy o 180deg (dekorativni drazky)\nVyteznost materialu: 95.3% z formatu 2900x1220 mm (panel otocen o 90deg).\nOdhadovany cas CNC rezu: 5m 33s (při feed rate 200 mm/s).\n",
+    "zones": [
+      {
+        "zone_id": "Z1",
+        "zone_type": "vertical_pattern",
+        "y_range_mm": [
+          -0.0,
+          1997.5
+        ],
+        "entity_count": 4,
+        "entity_ids": [
+          "E_0004",
+          "E_0006",
+          "E_0009",
+          "E_0011"
+        ],
+        "pattern": "irregular",
+        "regularity_score": -0.414,
+        "length_mean_mm": 1802.8,
+        "spacing_mean_mm": 202.67
+      },
+      {
+        "zone_id": "Z2",
+        "zone_type": "cassette_bottom",
+        "y_range_mm": [
+          1796.7,
+          2790.0
+        ],
+        "entity_count": 2,
+        "entity_ids": [
+          "E_0002",
+          "E_0007"
+        ],
+        "pattern": "regular_grid",
+        "regularity_score": 1.0,
+        "length_mean_mm": 1475.8,
+        "spacing_mean_mm": 608.0
+      }
+    ],
+    "tool_assignments": {
+      "vibrate_cutter_0deg": {
+        "entity_ids": [
+          "E_0004",
+          "E_0005"
+        ],
+        "entity_count": 2,
+        "total_length_mm": 13560.0,
+        "passes": 1,
+        "operation": "outer_format"
+      },
+      "v_slot_45deg": {
+        "entity_ids": [
+          "E_0000",
+          "E_0001",
+          "B_0002",
+          "B_0003",
+          "B_0004",
+          "B_0005",
+          "B_0006",
+          "B_0007",
+          "B_0008",
+          "B_0009",
+          "B_0010",
+          "B_0011"
+        ],
+        "entity_count": 12,
+        "single_pass_length_mm": 25956.8,
+        "double_pass_length_mm": 52009.6,
+        "passes": 2,
+        "head_rotations": 12,
+        "operation": "decorative_grooves",
+        "start_extension_mm": 2.0,
+        "end_extension_mm": 2.0
+      }
+    },
+    "tool_conflict_detected": true,
+    "tool_conflict_entity_ids": [
+      "E_0000",
+      "E_0001"
+    ],
+    "cutting_time_estimate": {
+      "config_feed_rate_mmps": 200,
+      "vibrate_cutter_time_s": 67.8,
+      "v_slot_time_s": 260.0,
+      "head_rotation_overhead_s": 6.0,
+      "total_time_s": 333.8
+    },
+    "mounting_flap": {
+      "detected": false
+    },
+    "material_yield": {
+      "stock_plate_mm": [
+        2900.0,
+        1220.0
+      ],
+      "panel_bbox_mm": [
+        1208.0,
+        2790.0
+      ],
+      "yield_percent": 95.3,
+      "waste_mm": [
+        110.0,
+        12.0
+      ],
+      "panel_fits_stock": true,
+      "panel_rotated": true
+    },
+    "constraints_summary": {
+      "orthogonal_ratio": 0.165,
+      "parallel_pairs": 15,
+      "perpendicular_pairs": 0
+    },
+    "is_orthogonal": false,
+    "has_arcs_any": false
+  },
+  "layer_card": {
+    "color_count": 3,
+    "total_entities_mapped": 3,
+    "total_entities_unmapped": 0,
+    "colors": {
+      "2": {
+        "color_index": 2,
+        "color_name": "Yellow",
+        "entity_count": 2,
+        "total_length_mm": 13560.0,
+        "total_point_count": 16,
+        "point_density_per_meter": 1.2,
+        "closed_count": 2,
+        "open_count": 0,
+        "closed_ratio": 1.0,
+        "total_tac_rad": 0.0,
+        "tac_per_meter": 0.0,
+        "min_length_mm": 6780.0,
+        "max_length_mm": 6780.0,
+        "geometry_types": {
+          "LWPOLYLINE": 2
+        },
+        "layers": [
+          "mainlayer"
+        ],
+        "tool_config": {
+          "cutter_type": "V-slot",
+          "base_speed_mms": 300,
+          "direction": "Left",
+          "h2_mm": 6.0,
+          "validation_status": "empirical",
+          "is_output": true,
+          "note": "Žlutá (C04, ACI 2) — fazety. Jednostranný V-slot, potvrzeno na produkčních VCF."
+        },
+        "is_mapped": true
+      },
+      "3": {
+        "color_index": 3,
+        "color_name": "Green",
+        "entity_count": 10,
+        "total_length_mm": 12396.76,
+        "total_point_count": 60,
+        "point_density_per_meter": 4.8,
+        "closed_count": 0,
+        "open_count": 10,
+        "closed_ratio": 0.0,
+        "total_tac_rad": 0.0,
+        "tac_per_meter": 0.0,
+        "min_length_mm": 361.01,
+        "max_length_mm": 1805.05,
+        "geometry_types": {
+          "LWPOLYLINE": 10
+        },
+        "layers": [
+          "mainlayer"
+        ],
+        "tool_config": {
+          "cutter_type": "V-slot",
+          "base_speed_mms": 200,
+          "direction": "Cut both side",
+          "h2_mm": 6.0,
+          "validation_status": "empirical",
+          "is_output": true,
+          "note": "Zelená (C03, ACI 3) — VZOR_ZELENA. Standardní V-slot, 200 mm/s. Potvrzeno: 7 correct matches v4.3."
+        },
+        "is_mapped": true
+      },
+      "7": {
+        "color_index": 7,
+        "color_name": "Black",
+        "entity_count": 2,
+        "total_length_mm": 13560.0,
+        "total_point_count": 16,
+        "point_density_per_meter": 1.2,
+        "closed_count": 2,
+        "open_count": 0,
+        "closed_ratio": 1.0,
+        "total_tac_rad": 0.0,
+        "tac_per_meter": 0.0,
+        "min_length_mm": 6780.0,
+        "max_length_mm": 6780.0,
+        "geometry_types": {
+          "LWPOLYLINE": 2
+        },
+        "layers": [
+          "mainlayer"
+        ],
+        "tool_config": {
+          "cutter_type": "Vibrate cutter",
+          "base_speed_mms": 200,
+          "direction": "N/A",
+          "h2_mm": -0.3,
+          "validation_status": "empirical",
+          "is_output": true,
+          "note": "Černá/bílá (C00, ACI 7) — hlavní obrysy. Vibrate cutter 200 mm/s."
+        },
+        "is_mapped": true
+      }
+    }
+  },
+  "layers": [
+    {
+      "name": "mainlayer",
+      "color_index": 3,
+      "entity_count": 14,
+      "total_length_mm": 39516.76,
+      "total_point_count": 92,
+      "bbox_mm": [
+        392.0,
+        -0.0,
+        1600.0,
+        2790.0
+      ],
+      "geometry_types": {
+        "LWPOLYLINE": 14
+      },
+      "spatial_complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 429.53,
+        "closed_loop_ratio": 0.286,
+        "arc_ratio": 0.0,
+        "total_tac_rad": 0.0
+      },
+      "entity_ids": [
+        "E_0000",
+        "E_0001",
+        "E_0002",
+        "E_0003",
+        "E_0004",
+        "E_0005",
+        "E_0006",
+        "E_0007",
+        "E_0008",
+        "E_0009",
+        "E_0010",
+        "E_0011",
+        "E_0012",
+        "E_0013"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "id": "E_0000",
+      "entity_index": 0,
+      "layer": "mainlayer",
+      "color_index": 2,
+      "type": "LWPOLYLINE",
+      "length_mm": 6780.0,
+      "point_count": 8,
+      "bbox_mm": [
+        1000.0,
+        -0.0,
+        1600.0,
+        2790.0
+      ],
+      "center_mm": [
+        1300.0,
+        1395.0
+      ],
+      "area_mm2": 1674000.0,
+      "is_closed_loop": true,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 847.5,
+        "is_closed_loop": true,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 1178.45,
+        "mean_segment_length_mm": 968.57,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 2790.0,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "E_0001",
+      "entity_index": 1,
+      "layer": "mainlayer",
+      "color_index": 2,
+      "type": "LWPOLYLINE",
+      "length_mm": 6780.0,
+      "point_count": 8,
+      "bbox_mm": [
+        392.0,
+        -0.0,
+        992.0,
+        2790.0
+      ],
+      "center_mm": [
+        692.0,
+        1395.0
+      ],
+      "area_mm2": 1674000.0,
+      "is_closed_loop": true,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 847.5,
+        "is_closed_loop": true,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 1178.45,
+        "mean_segment_length_mm": 968.57,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 2790.0,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0002",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 1475.76,
+      "point_count": 8,
+      "bbox_mm": [
+        1000.0,
+        1796.66,
+        1600.0,
+        2790.0
+      ],
+      "center_mm": [
+        1300.0,
+        2293.33
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 184.47,
+        "is_closed_loop": false,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 182.93,
+        "mean_segment_length_mm": 210.82,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 395.0,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0003",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 361.01,
+      "point_count": 2,
+      "bbox_mm": [
+        1300.0,
+        2392.48,
+        1600.0,
+        2593.3
+      ],
+      "center_mm": [
+        1450.0,
+        2492.89
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 180.5,
+        "is_closed_loop": false,
+        "vertex_count": 2
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 0.0,
+        "mean_segment_length_mm": 361.01,
+        "min_segment_mm": 361.01,
+        "max_segment_mm": 361.01,
+        "segment_count": 1
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0004",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 1805.05,
+      "point_count": 8,
+      "bbox_mm": [
+        1000.0,
+        1194.21,
+        1600.0,
+        1997.48
+      ],
+      "center_mm": [
+        1300.0,
+        1595.84
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 225.63,
+        "is_closed_loop": false,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 252.65,
+        "mean_segment_length_mm": 257.86,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 722.02,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0005",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 756.06,
+      "point_count": 4,
+      "bbox_mm": [
+        1000.0,
+        598.34,
+        1300.0,
+        1194.21
+      ],
+      "center_mm": [
+        1150.0,
+        896.27
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 189.01,
+        "is_closed_loop": false,
+        "vertex_count": 4
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 178.75,
+        "mean_segment_length_mm": 252.02,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 395.05,
+        "segment_count": 3
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0006",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 1800.5,
+      "point_count": 8,
+      "bbox_mm": [
+        1000.0,
+        -0.0,
+        1600.0,
+        799.16
+      ],
+      "center_mm": [
+        1300.0,
+        399.58
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 225.06,
+        "is_closed_loop": false,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 252.39,
+        "mean_segment_length_mm": 257.21,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 722.02,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0007",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 1475.76,
+      "point_count": 8,
+      "bbox_mm": [
+        392.0,
+        1796.66,
+        992.0,
+        2790.0
+      ],
+      "center_mm": [
+        692.0,
+        2293.33
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 184.47,
+        "is_closed_loop": false,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 182.93,
+        "mean_segment_length_mm": 210.82,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 395.0,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0008",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 361.01,
+      "point_count": 2,
+      "bbox_mm": [
+        692.0,
+        2392.48,
+        992.0,
+        2593.3
+      ],
+      "center_mm": [
+        842.0,
+        2492.89
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 180.5,
+        "is_closed_loop": false,
+        "vertex_count": 2
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 0.0,
+        "mean_segment_length_mm": 361.01,
+        "min_segment_mm": 361.01,
+        "max_segment_mm": 361.01,
+        "segment_count": 1
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0009",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 1805.05,
+      "point_count": 8,
+      "bbox_mm": [
+        392.0,
+        1194.21,
+        992.0,
+        1997.48
+      ],
+      "center_mm": [
+        692.0,
+        1595.84
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 225.63,
+        "is_closed_loop": false,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 252.65,
+        "mean_segment_length_mm": 257.86,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 722.02,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0010",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 756.06,
+      "point_count": 4,
+      "bbox_mm": [
+        392.0,
+        598.34,
+        692.0,
+        1194.21
+      ],
+      "center_mm": [
+        542.0,
+        896.27
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 189.01,
+        "is_closed_loop": false,
+        "vertex_count": 4
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 178.75,
+        "mean_segment_length_mm": 252.02,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 395.05,
+        "segment_count": 3
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0011",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 3,
+      "type": "LWPOLYLINE",
+      "length_mm": 1800.5,
+      "point_count": 8,
+      "bbox_mm": [
+        392.0,
+        -0.0,
+        992.0,
+        799.16
+      ],
+      "center_mm": [
+        692.0,
+        399.58
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 225.06,
+        "is_closed_loop": false,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 252.39,
+        "mean_segment_length_mm": 257.21,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 722.02,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "E_0004",
+      "entity_index": 4,
+      "layer": "mainlayer",
+      "color_index": 7,
+      "type": "LWPOLYLINE",
+      "length_mm": 6780.0,
+      "point_count": 8,
+      "bbox_mm": [
+        1000.0,
+        0.0,
+        1600.0,
+        2790.0
+      ],
+      "center_mm": [
+        1300.0,
+        1395.0
+      ],
+      "area_mm2": 1673999.99,
+      "is_closed_loop": true,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 847.5,
+        "is_closed_loop": true,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 1178.45,
+        "mean_segment_length_mm": 968.57,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 2790.0,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "E_0005",
+      "entity_index": 5,
+      "layer": "mainlayer",
+      "color_index": 7,
+      "type": "LWPOLYLINE",
+      "length_mm": 6780.0,
+      "point_count": 8,
+      "bbox_mm": [
+        392.0,
+        0.0,
+        992.0,
+        2790.0
+      ],
+      "center_mm": [
+        692.0,
+        1395.0
+      ],
+      "area_mm2": 1673999.99,
+      "is_closed_loop": true,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 847.5,
+        "is_closed_loop": true,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 1178.45,
+        "mean_segment_length_mm": 968.57,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 2790.0,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    }
+  ],
+  "spatial_clusters": [
+    {
+      "cluster_id": 1,
+      "entity_count": 14,
+      "entity_ids": [
+        "E_0000",
+        "E_0001",
+        "E_-001",
+        "E_-001",
+        "E_-001",
+        "E_-001",
+        "E_-001",
+        "E_-001",
+        "E_-001",
+        "E_-001",
+        "E_-001",
+        "E_0004",
+        "E_0005",
+        "E_-001"
+      ],
+      "bbox_mm": [
+        392.0,
+        -0.0,
+        1600.0,
+        2790.0
+      ]
+    }
+  ],
+  "shape_groups": [
+    {
+      "id": "Shape_G1",
+      "type": "LWPOLYLINE",
+      "point_count": 8,
+      "length_mm": 6780.0,
+      "aspect_ratio": 0.2,
+      "instance_count": 4,
+      "entity_indices": [
+        0,
+        1,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "Shape_G2",
+      "type": "LWPOLYLINE",
+      "point_count": 8,
+      "length_mm": 1475.8,
+      "aspect_ratio": 0.6,
+      "instance_count": 2,
+      "entity_indices": [
+        2,
+        7
+      ]
+    },
+    {
+      "id": "Shape_G3",
+      "type": "LWPOLYLINE",
+      "point_count": 2,
+      "length_mm": 361.0,
+      "aspect_ratio": 1.5,
+      "instance_count": 2,
+      "entity_indices": [
+        3,
+        8
+      ]
+    },
+    {
+      "id": "Shape_G4",
+      "type": "LWPOLYLINE",
+      "point_count": 8,
+      "length_mm": 1805.0,
+      "aspect_ratio": 0.7,
+      "instance_count": 2,
+      "entity_indices": [
+        4,
+        9
+      ]
+    },
+    {
+      "id": "Shape_G5",
+      "type": "LWPOLYLINE",
+      "point_count": 4,
+      "length_mm": 756.1,
+      "aspect_ratio": 0.5,
+      "instance_count": 2,
+      "entity_indices": [
+        5,
+        10
+      ]
+    },
+    {
+      "id": "Shape_G6",
+      "type": "LWPOLYLINE",
+      "point_count": 8,
+      "length_mm": 1800.5,
+      "aspect_ratio": 0.8,
+      "instance_count": 2,
+      "entity_indices": [
+        6,
+        11
+      ]
+    }
+  ],
+  "proximity_matrix": {
+    "Shape_G1": {
+      "Shape_G2": 0.0,
+      "Shape_G3": 0.0,
+      "Shape_G4": 0.0,
+      "Shape_G5": 0.0,
+      "Shape_G6": 0.0
+    },
+    "Shape_G2": {
+      "Shape_G1": 0.0,
+      "Shape_G3": 0.0,
+      "Shape_G4": 0.0,
+      "Shape_G5": 673.02,
+      "Shape_G6": 1041.64
+    },
+    "Shape_G3": {
+      "Shape_G1": 0.0,
+      "Shape_G2": 0.0,
+      "Shape_G4": 395.0,
+      "Shape_G5": 1198.27,
+      "Shape_G6": 1593.32
+    },
+    "Shape_G4": {
+      "Shape_G1": 0.0,
+      "Shape_G2": 0.0,
+      "Shape_G3": 395.0,
+      "Shape_G5": 0.0,
+      "Shape_G6": 395.05
+    },
+    "Shape_G5": {
+      "Shape_G1": 0.0,
+      "Shape_G2": 673.02,
+      "Shape_G3": 1198.27,
+      "Shape_G4": 0.0,
+      "Shape_G6": 0.0
+    },
+    "Shape_G6": {
+      "Shape_G1": 0.0,
+      "Shape_G2": 1041.64,
+      "Shape_G3": 1593.32,
+      "Shape_G4": 395.05,
+      "Shape_G5": 0.0
+    }
+  },
+  "nesting_tree": [
+    {
+      "entity_id": "E_0000",
+      "type": "LWPOLYLINE",
+      "length_mm": 6780.0,
+      "bbox_mm": [
+        1000.0,
+        -0.0,
+        1600.0,
+        2790.0
+      ],
+      "area_mm2": 1674000.0,
+      "children": [
+        {
+          "entity_id": "E_0012",
+          "type": "LWPOLYLINE",
+          "length_mm": 6780.0,
+          "bbox_mm": [
+            1000.0,
+            0.0,
+            1600.0,
+            2790.0
+          ],
+          "area_mm2": 1673999.99,
+          "children": []
+        }
+      ]
+    },
+    {
+      "entity_id": "E_0001",
+      "type": "LWPOLYLINE",
+      "length_mm": 6780.0,
+      "bbox_mm": [
+        392.0,
+        -0.0,
+        992.0,
+        2790.0
+      ],
+      "area_mm2": 1674000.0,
+      "children": [
+        {
+          "entity_id": "E_0013",
+          "type": "LWPOLYLINE",
+          "length_mm": 6780.0,
+          "bbox_mm": [
+            392.0,
+            0.0,
+            992.0,
+            2790.0
+          ],
+          "area_mm2": 1673999.99,
+          "children": []
+        }
+      ]
+    }
+  ]
+}

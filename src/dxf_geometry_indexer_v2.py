@@ -1510,6 +1510,56 @@ def index_dxf(dxf_path, tool_config=None, keep_vertices=False):
     for idx, entity in enumerate(msp):
         color_idx = resolve_cam_color(entity, doc)
         dtype = entity.dxftype()
+        if dtype == 'INSERT':
+            try:
+                block = doc.blocks.get(entity.dxf.name)
+                if block:
+                    for bie in block:
+                        if bie.dxftype() not in _GEOM_FNS or bie.dxftype() == 'INSERT':
+                            continue
+                        if bie.dxftype() == 'SPLINE':
+                            try:
+                                pts = list(bie.flattening(0.1))
+                                if not pts: continue
+                                b_vert = [(p.x, p.y) for p in pts]
+                                b_len = sum(pts[i].distance(pts[i+1]) for i in range(len(pts)-1))
+                                b_pt = len(b_vert)
+                                b_bulge = [0.0] * b_pt
+                                b_dtype = 'SPLINE'
+                            except Exception:
+                                continue
+                        else:
+                            b_len, b_pt, b_vert, b_bulge = _GEOM_FNS[bie.dxftype()](bie)
+                            b_dtype = bie.dxftype()
+                        if b_len <= 0: continue
+                        b_color_idx = resolve_cam_color(bie, doc)
+                        b_bb = _bb(b_vert)
+                        b_center = _centroid(b_vert)
+                        b_complexity = compute_entity_complexity(b_vert, b_len, b_bulge)
+                        b_seg_stats = compute_segment_statistics(b_vert)
+                        b_ic = b_complexity["is_closed_loop"]
+                        b_area = _polygon_area(b_vert, b_ic)
+                        b_tac = compute_tac(b_vert, b_ic, b_bulge)
+                        if b_bb[0] < global_bbox[0]: global_bbox[0] = b_bb[0]
+                        if b_bb[1] < global_bbox[1]: global_bbox[1] = b_bb[1]
+                        if b_bb[2] > global_bbox[2]: global_bbox[2] = b_bb[2]
+                        if b_bb[3] > global_bbox[3]: global_bbox[3] = b_bb[3]
+                        all_entities.append({
+                            "id": f"B_{len(all_entities):04d}", "entity_index": -1, "layer": bie.dxf.layer, "color_index": b_color_idx,
+                            "type": b_dtype, "length_mm": round(b_len, 2), "point_count": b_pt,
+                            "bbox_mm": [round(x, 2) for x in b_bb],
+                            "center_mm": [round(x, 2) for x in b_center],
+                            "area_mm2": round(b_area, 2), "is_closed_loop": b_ic,
+                            "complexity": b_complexity, "segment_statistics": b_seg_stats,
+                            "tac_rad": round(b_tac, 4),
+                            "has_arcs": any(abs(b) > 0.0001 for b in b_bulge),
+                            "max_bulge": round(max(abs(b) for b in b_bulge) if b_bulge else 0, 6),
+                            "mean_bulge": round(sum(abs(b) for b in b_bulge) / len(b_bulge) if b_bulge else 0, 6),
+                            "vertices": b_vert
+                        })
+            except Exception:
+                pass
+            continue
         if dtype not in _GEOM_FNS: continue
 
         length, pt_count, vertices, bulge_data = _GEOM_FNS[dtype](entity)

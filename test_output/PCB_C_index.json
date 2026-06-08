@@ -6,7 +6,7 @@
     "dxf_version": "AC1015",
     "file_size_bytes": 278341,
     "md5": "74d3ac6273665ff0711899a685b80d77",
-    "timestamp": "2026-06-08T21:49:21",
+    "timestamp": "2026-06-08T23:20:03",
     "libraries_available": {
       "shapely": true,
       "scipy": true,
@@ -18,46 +18,46 @@
       798.91,
       -0.0,
       2000.0,
-      2550.0
+      2732.39
     ],
-    "canvas_area_mm2": 3062782.0,
-    "total_path_length_mm": 60744.25,
-    "entity_count": 671,
+    "canvas_area_mm2": 3281849.0,
+    "total_path_length_mm": 62137.08,
+    "entity_count": 675,
     "layer_count": 1
   },
   "topology_stats": {
-    "total_closed_loops": 2,
-    "total_open_paths": 669,
-    "closed_ratio": 0.003,
+    "total_closed_loops": 4,
+    "total_open_paths": 671,
+    "closed_ratio": 0.006,
     "max_nesting_depth": 0,
-    "distinct_shape_patterns": 115,
+    "distinct_shape_patterns": 119,
     "spatial_clusters": 1,
-    "total_vertices": 4272,
-    "global_mean_segment_length_mm": 6.27,
-    "point_density_per_meter": 70.33
+    "total_vertices": 4656,
+    "global_mean_segment_length_mm": 6.26,
+    "point_density_per_meter": 74.93
   },
   "entity_graph": {
-    "node_count": 671,
+    "node_count": 675,
     "edge_statistics": {
       "adjacency": 709,
       "containment": 1,
       "intersection_bbox_overlaps": 1030,
-      "proximity": 17381
+      "proximity": 17491
     },
     "graph_features": {
       "connected_components": 1,
       "cycle_count": 1,
-      "max_degree": 670,
-      "graph_diameter": 671,
+      "max_degree": 674,
+      "graph_diameter": 675,
       "laplacian_eigenvalues_top10": [
         0.0,
-        2.904987,
-        4.415972,
-        5.028134,
-        5.845316,
-        6.877717,
-        7.49009,
-        8.313971,
+        2.899351,
+        4.456638,
+        5.060865,
+        5.881473,
+        6.879987,
+        7.53464,
+        8.312461,
         11.0,
         11.0
       ]
@@ -7740,6 +7740,26 @@
       ],
       "proximity": [
         {
+          "source": "E_0000",
+          "target": "E_0671",
+          "distance_mm": 82.49
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0672",
+          "distance_mm": 82.49
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0673",
+          "distance_mm": 80.89
+        },
+        {
+          "source": "E_0000",
+          "target": "E_0674",
+          "distance_mm": 80.83
+        },
+        {
           "source": "E_0001",
           "target": "E_0002",
           "distance_mm": 92.57
@@ -8048,6 +8068,21 @@
           "source": "E_0001",
           "target": "E_0498",
           "distance_mm": 206.05
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0672",
+          "distance_mm": 242.73
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0673",
+          "distance_mm": 210.58
+        },
+        {
+          "source": "E_0001",
+          "target": "E_0674",
+          "distance_mm": 206.13
         },
         {
           "source": "E_0002",
@@ -18740,6 +18775,11 @@
           "distance_mm": 22.1
         },
         {
+          "source": "E_0041",
+          "target": "E_0674",
+          "distance_mm": 243.1
+        },
+        {
           "source": "E_0042",
           "target": "E_0043",
           "distance_mm": 159.72
@@ -18873,6 +18913,11 @@
           "source": "E_0042",
           "target": "E_0666",
           "distance_mm": 196.22
+        },
+        {
+          "source": "E_0042",
+          "target": "E_0674",
+          "distance_mm": 192.2
         },
         {
           "source": "E_0043",
@@ -20493,6 +20538,26 @@
           "source": "E_0048",
           "target": "E_0494",
           "distance_mm": 69.65
+        },
+        {
+          "source": "E_0048",
+          "target": "E_0671",
+          "distance_mm": 201.88
+        },
+        {
+          "source": "E_0048",
+          "target": "E_0672",
+          "distance_mm": 181.73
+        },
+        {
+          "source": "E_0048",
+          "target": "E_0673",
+          "distance_mm": 149.56
+        },
+        {
+          "source": "E_0048",
+          "target": "E_0674",
+          "distance_mm": 148.13
         },
         {
           "source": "E_0049",
@@ -22503,6 +22568,16 @@
           "source": "E_0057",
           "target": "E_0478",
           "distance_mm": 116.29
+        },
+        {
+          "source": "E_0057",
+          "target": "E_0671",
+          "distance_mm": 192.49
+        },
+        {
+          "source": "E_0057",
+          "target": "E_0672",
+          "distance_mm": 236.52
         },
         {
           "source": "E_0058",
@@ -34535,6 +34610,26 @@
           "distance_mm": 220.02
         },
         {
+          "source": "E_0098",
+          "target": "E_0671",
+          "distance_mm": 143.21
+        },
+        {
+          "source": "E_0098",
+          "target": "E_0672",
+          "distance_mm": 145.33
+        },
+        {
+          "source": "E_0098",
+          "target": "E_0673",
+          "distance_mm": 152.31
+        },
+        {
+          "source": "E_0098",
+          "target": "E_0674",
+          "distance_mm": 222.49
+        },
+        {
           "source": "E_0099",
           "target": "E_0100",
           "distance_mm": 145.02
@@ -42205,6 +42300,16 @@
           "distance_mm": 217.75
         },
         {
+          "source": "E_0129",
+          "target": "E_0671",
+          "distance_mm": 149.99
+        },
+        {
+          "source": "E_0129",
+          "target": "E_0672",
+          "distance_mm": 223.34
+        },
+        {
           "source": "E_0130",
           "target": "E_0135",
           "distance_mm": 164.7
@@ -42828,6 +42933,26 @@
           "source": "E_0130",
           "target": "E_0522",
           "distance_mm": 222.56
+        },
+        {
+          "source": "E_0130",
+          "target": "E_0671",
+          "distance_mm": 82.72
+        },
+        {
+          "source": "E_0130",
+          "target": "E_0672",
+          "distance_mm": 120.91
+        },
+        {
+          "source": "E_0130",
+          "target": "E_0673",
+          "distance_mm": 144.52
+        },
+        {
+          "source": "E_0130",
+          "target": "E_0674",
+          "distance_mm": 248.84
         },
         {
           "source": "E_0131",
@@ -45388,6 +45513,26 @@
           "source": "E_0135",
           "target": "E_0642",
           "distance_mm": 218.25
+        },
+        {
+          "source": "E_0135",
+          "target": "E_0671",
+          "distance_mm": 125.81
+        },
+        {
+          "source": "E_0135",
+          "target": "E_0672",
+          "distance_mm": 103.53
+        },
+        {
+          "source": "E_0135",
+          "target": "E_0673",
+          "distance_mm": 80.89
+        },
+        {
+          "source": "E_0135",
+          "target": "E_0674",
+          "distance_mm": 107.35
         },
         {
           "source": "E_0136",
@@ -50983,6 +51128,26 @@
           "source": "E_0164",
           "target": "E_0496",
           "distance_mm": 248.23
+        },
+        {
+          "source": "E_0164",
+          "target": "E_0671",
+          "distance_mm": 139.11
+        },
+        {
+          "source": "E_0164",
+          "target": "E_0672",
+          "distance_mm": 139.11
+        },
+        {
+          "source": "E_0164",
+          "target": "E_0673",
+          "distance_mm": 137.51
+        },
+        {
+          "source": "E_0164",
+          "target": "E_0674",
+          "distance_mm": 137.45
         },
         {
           "source": "E_0165",
@@ -57010,6 +57175,11 @@
           "distance_mm": 173.44
         },
         {
+          "source": "E_0197",
+          "target": "E_0674",
+          "distance_mm": 211.19
+        },
+        {
           "source": "E_0198",
           "target": "E_0253",
           "distance_mm": 165.64
@@ -58478,6 +58648,16 @@
           "source": "E_0205",
           "target": "E_0478",
           "distance_mm": 177.44
+        },
+        {
+          "source": "E_0205",
+          "target": "E_0671",
+          "distance_mm": 158.67
+        },
+        {
+          "source": "E_0205",
+          "target": "E_0672",
+          "distance_mm": 229.26
         },
         {
           "source": "E_0206",
@@ -66888,6 +67068,11 @@
           "source": "E_0251",
           "target": "E_0666",
           "distance_mm": 65.22
+        },
+        {
+          "source": "E_0251",
+          "target": "E_0674",
+          "distance_mm": 220.7
         },
         {
           "source": "E_0252",
@@ -82640,6 +82825,21 @@
           "distance_mm": 126.08
         },
         {
+          "source": "E_0463",
+          "target": "E_0671",
+          "distance_mm": 164.76
+        },
+        {
+          "source": "E_0463",
+          "target": "E_0672",
+          "distance_mm": 210.45
+        },
+        {
+          "source": "E_0463",
+          "target": "E_0673",
+          "distance_mm": 232.17
+        },
+        {
           "source": "E_0464",
           "target": "E_0467",
           "distance_mm": 93.77
@@ -82678,6 +82878,21 @@
           "source": "E_0464",
           "target": "E_0478",
           "distance_mm": 113.81
+        },
+        {
+          "source": "E_0464",
+          "target": "E_0671",
+          "distance_mm": 159.63
+        },
+        {
+          "source": "E_0464",
+          "target": "E_0672",
+          "distance_mm": 200.39
+        },
+        {
+          "source": "E_0464",
+          "target": "E_0673",
+          "distance_mm": 220.97
         },
         {
           "source": "E_0465",
@@ -82720,6 +82935,21 @@
           "distance_mm": 105.41
         },
         {
+          "source": "E_0465",
+          "target": "E_0671",
+          "distance_mm": 173.99
+        },
+        {
+          "source": "E_0465",
+          "target": "E_0672",
+          "distance_mm": 212.01
+        },
+        {
+          "source": "E_0465",
+          "target": "E_0673",
+          "distance_mm": 231.45
+        },
+        {
           "source": "E_0466",
           "target": "E_0467",
           "distance_mm": 112.62
@@ -82760,6 +82990,21 @@
           "distance_mm": 118.56
         },
         {
+          "source": "E_0466",
+          "target": "E_0671",
+          "distance_mm": 178.71
+        },
+        {
+          "source": "E_0466",
+          "target": "E_0672",
+          "distance_mm": 221.54
+        },
+        {
+          "source": "E_0466",
+          "target": "E_0673",
+          "distance_mm": 242.17
+        },
+        {
           "source": "E_0467",
           "target": "E_0471",
           "distance_mm": 213.0
@@ -82800,6 +83045,26 @@
           "distance_mm": 107.89
         },
         {
+          "source": "E_0467",
+          "target": "E_0671",
+          "distance_mm": 113.19
+        },
+        {
+          "source": "E_0467",
+          "target": "E_0672",
+          "distance_mm": 115.85
+        },
+        {
+          "source": "E_0467",
+          "target": "E_0673",
+          "distance_mm": 124.87
+        },
+        {
+          "source": "E_0467",
+          "target": "E_0674",
+          "distance_mm": 204.68
+        },
+        {
           "source": "E_0468",
           "target": "E_0471",
           "distance_mm": 198.0
@@ -82838,6 +83103,26 @@
           "source": "E_0468",
           "target": "E_0478",
           "distance_mm": 107.89
+        },
+        {
+          "source": "E_0468",
+          "target": "E_0671",
+          "distance_mm": 113.19
+        },
+        {
+          "source": "E_0468",
+          "target": "E_0672",
+          "distance_mm": 113.6
+        },
+        {
+          "source": "E_0468",
+          "target": "E_0673",
+          "distance_mm": 118.89
+        },
+        {
+          "source": "E_0468",
+          "target": "E_0674",
+          "distance_mm": 192.27
         },
         {
           "source": "E_0469",
@@ -82880,6 +83165,26 @@
           "distance_mm": 92.89
         },
         {
+          "source": "E_0469",
+          "target": "E_0671",
+          "distance_mm": 128.19
+        },
+        {
+          "source": "E_0469",
+          "target": "E_0672",
+          "distance_mm": 128.55
+        },
+        {
+          "source": "E_0469",
+          "target": "E_0673",
+          "distance_mm": 133.07
+        },
+        {
+          "source": "E_0469",
+          "target": "E_0674",
+          "distance_mm": 201.34
+        },
+        {
           "source": "E_0470",
           "target": "E_0471",
           "distance_mm": 213.0
@@ -82918,6 +83223,26 @@
           "source": "E_0470",
           "target": "E_0478",
           "distance_mm": 92.89
+        },
+        {
+          "source": "E_0470",
+          "target": "E_0671",
+          "distance_mm": 128.19
+        },
+        {
+          "source": "E_0470",
+          "target": "E_0672",
+          "distance_mm": 130.54
+        },
+        {
+          "source": "E_0470",
+          "target": "E_0673",
+          "distance_mm": 138.44
+        },
+        {
+          "source": "E_0470",
+          "target": "E_0674",
+          "distance_mm": 213.22
         },
         {
           "source": "E_0471",
@@ -82980,6 +83305,26 @@
           "distance_mm": 145.75
         },
         {
+          "source": "E_0471",
+          "target": "E_0671",
+          "distance_mm": 236.08
+        },
+        {
+          "source": "E_0471",
+          "target": "E_0672",
+          "distance_mm": 208.23
+        },
+        {
+          "source": "E_0471",
+          "target": "E_0673",
+          "distance_mm": 144.79
+        },
+        {
+          "source": "E_0471",
+          "target": "E_0674",
+          "distance_mm": 111.82
+        },
+        {
           "source": "E_0472",
           "target": "E_0475",
           "distance_mm": 246.11
@@ -83033,6 +83378,26 @@
           "source": "E_0472",
           "target": "E_0494",
           "distance_mm": 130.75
+        },
+        {
+          "source": "E_0472",
+          "target": "E_0671",
+          "distance_mm": 249.34
+        },
+        {
+          "source": "E_0472",
+          "target": "E_0672",
+          "distance_mm": 220.96
+        },
+        {
+          "source": "E_0472",
+          "target": "E_0673",
+          "distance_mm": 154.75
+        },
+        {
+          "source": "E_0472",
+          "target": "E_0674",
+          "distance_mm": 111.82
         },
         {
           "source": "E_0473",
@@ -83105,6 +83470,21 @@
           "distance_mm": 130.75
         },
         {
+          "source": "E_0473",
+          "target": "E_0672",
+          "distance_mm": 229.02
+        },
+        {
+          "source": "E_0473",
+          "target": "E_0673",
+          "distance_mm": 165.92
+        },
+        {
+          "source": "E_0473",
+          "target": "E_0674",
+          "distance_mm": 126.82
+        },
+        {
           "source": "E_0474",
           "target": "E_0475",
           "distance_mm": 226.71
@@ -83175,6 +83555,26 @@
           "distance_mm": 145.75
         },
         {
+          "source": "E_0474",
+          "target": "E_0671",
+          "distance_mm": 243.65
+        },
+        {
+          "source": "E_0474",
+          "target": "E_0672",
+          "distance_mm": 216.77
+        },
+        {
+          "source": "E_0474",
+          "target": "E_0673",
+          "distance_mm": 156.67
+        },
+        {
+          "source": "E_0474",
+          "target": "E_0674",
+          "distance_mm": 126.82
+        },
+        {
           "source": "E_0475",
           "target": "E_0479",
           "distance_mm": 197.6
@@ -83193,6 +83593,21 @@
           "source": "E_0475",
           "target": "E_0482",
           "distance_mm": 208.57
+        },
+        {
+          "source": "E_0475",
+          "target": "E_0671",
+          "distance_mm": 221.08
+        },
+        {
+          "source": "E_0475",
+          "target": "E_0672",
+          "distance_mm": 222.45
+        },
+        {
+          "source": "E_0475",
+          "target": "E_0673",
+          "distance_mm": 226.52
         },
         {
           "source": "E_0476",
@@ -83215,6 +83630,21 @@
           "distance_mm": 198.92
         },
         {
+          "source": "E_0476",
+          "target": "E_0671",
+          "distance_mm": 221.08
+        },
+        {
+          "source": "E_0476",
+          "target": "E_0672",
+          "distance_mm": 221.29
+        },
+        {
+          "source": "E_0476",
+          "target": "E_0673",
+          "distance_mm": 223.28
+        },
+        {
           "source": "E_0477",
           "target": "E_0479",
           "distance_mm": 176.38
@@ -83235,6 +83665,21 @@
           "distance_mm": 187.39
         },
         {
+          "source": "E_0477",
+          "target": "E_0671",
+          "distance_mm": 236.08
+        },
+        {
+          "source": "E_0477",
+          "target": "E_0672",
+          "distance_mm": 236.28
+        },
+        {
+          "source": "E_0477",
+          "target": "E_0673",
+          "distance_mm": 238.04
+        },
+        {
           "source": "E_0478",
           "target": "E_0479",
           "distance_mm": 187.2
@@ -83253,6 +83698,21 @@
           "source": "E_0478",
           "target": "E_0482",
           "distance_mm": 197.61
+        },
+        {
+          "source": "E_0478",
+          "target": "E_0671",
+          "distance_mm": 236.08
+        },
+        {
+          "source": "E_0478",
+          "target": "E_0672",
+          "distance_mm": 237.37
+        },
+        {
+          "source": "E_0478",
+          "target": "E_0673",
+          "distance_mm": 241.09
         },
         {
           "source": "E_0479",
@@ -83635,6 +84095,16 @@
           "distance_mm": 58.8
         },
         {
+          "source": "E_0487",
+          "target": "E_0673",
+          "distance_mm": 216.29
+        },
+        {
+          "source": "E_0487",
+          "target": "E_0674",
+          "distance_mm": 128.44
+        },
+        {
           "source": "E_0488",
           "target": "E_0491",
           "distance_mm": 43.8
@@ -83653,6 +84123,16 @@
           "source": "E_0488",
           "target": "E_0494",
           "distance_mm": 43.8
+        },
+        {
+          "source": "E_0488",
+          "target": "E_0673",
+          "distance_mm": 228.85
+        },
+        {
+          "source": "E_0488",
+          "target": "E_0674",
+          "distance_mm": 134.04
         },
         {
           "source": "E_0489",
@@ -83675,6 +84155,16 @@
           "distance_mm": 43.8
         },
         {
+          "source": "E_0489",
+          "target": "E_0673",
+          "distance_mm": 237.16
+        },
+        {
+          "source": "E_0489",
+          "target": "E_0674",
+          "distance_mm": 147.77
+        },
+        {
           "source": "E_0490",
           "target": "E_0491",
           "distance_mm": 59.75
@@ -83695,6 +84185,16 @@
           "distance_mm": 58.8
         },
         {
+          "source": "E_0490",
+          "target": "E_0673",
+          "distance_mm": 225.06
+        },
+        {
+          "source": "E_0490",
+          "target": "E_0674",
+          "distance_mm": 142.71
+        },
+        {
           "source": "E_0491",
           "target": "E_0663",
           "distance_mm": 235.54
@@ -83703,6 +84203,11 @@
           "source": "E_0491",
           "target": "E_0666",
           "distance_mm": 235.54
+        },
+        {
+          "source": "E_0491",
+          "target": "E_0674",
+          "distance_mm": 159.99
         },
         {
           "source": "E_0492",
@@ -83725,6 +84230,11 @@
           "distance_mm": 220.54
         },
         {
+          "source": "E_0492",
+          "target": "E_0674",
+          "distance_mm": 171.12
+        },
+        {
           "source": "E_0493",
           "target": "E_0663",
           "distance_mm": 220.54
@@ -83745,6 +84255,11 @@
           "distance_mm": 220.54
         },
         {
+          "source": "E_0493",
+          "target": "E_0674",
+          "distance_mm": 181.2
+        },
+        {
           "source": "E_0494",
           "target": "E_0663",
           "distance_mm": 235.54
@@ -83753,6 +84268,11 @@
           "source": "E_0494",
           "target": "E_0666",
           "distance_mm": 235.54
+        },
+        {
+          "source": "E_0494",
+          "target": "E_0674",
+          "distance_mm": 170.73
         },
         {
           "source": "E_0495",
@@ -94643,25 +95163,55 @@
           "source": "E_0654",
           "target": "E_0658",
           "distance_mm": 96.68
+        },
+        {
+          "source": "E_0671",
+          "target": "E_0672",
+          "distance_mm": 18.69
+        },
+        {
+          "source": "E_0671",
+          "target": "E_0673",
+          "distance_mm": 50.05
+        },
+        {
+          "source": "E_0671",
+          "target": "E_0674",
+          "distance_mm": 165.64
+        },
+        {
+          "source": "E_0672",
+          "target": "E_0673",
+          "distance_mm": 17.62
+        },
+        {
+          "source": "E_0672",
+          "target": "E_0674",
+          "distance_mm": 133.21
+        },
+        {
+          "source": "E_0673",
+          "target": "E_0674",
+          "distance_mm": 50.53
         }
       ]
     }
   },
   "boolean_analysis": {
     "method": "shapely",
-    "unified_area_mm2": 3060000.0,
-    "boundary_length_mm": 7500.0,
-    "convex_hull_area_mm2": 3060000.0,
-    "solidity": 1.0,
+    "unified_area_mm2": 3062039.3,
+    "boundary_length_mm": 7890.5,
+    "convex_hull_area_mm2": 3173375.33,
+    "solidity": 0.9649,
     "num_holes": 0,
     "estimated_min_feature_width_mm": 0.0
   },
   "geometric_constraints": {
-    "parallel_pairs": 10288,
-    "perpendicular_pairs": 10002,
+    "parallel_pairs": 10453,
+    "perpendicular_pairs": 10220,
     "colinear_pairs": 0,
     "tangent_pairs": 0,
-    "orthogonal_ratio": 0.607
+    "orthogonal_ratio": 0.6
   },
   "rag_queries": {
     "largest_closed_contours": [
@@ -94679,34 +95229,64 @@
           1400.0,
           1275.0
         ]
+      },
+      {
+        "entity_id": "B_0671",
+        "type": "LWPOLYLINE",
+        "area_mm2": 1850.61,
+        "bbox_mm": [
+          1241.42,
+          2632.49,
+          1305.01,
+          2729.45
+        ],
+        "center_mm": [
+          1273.21,
+          2680.97
+        ]
+      },
+      {
+        "entity_id": "B_0672",
+        "type": "LWPOLYLINE",
+        "area_mm2": 188.69,
+        "bbox_mm": [
+          1323.7,
+          2632.49,
+          1337.44,
+          2646.23
+        ],
+        "center_mm": [
+          1330.57,
+          2639.36
+        ]
       }
     ],
     "isolated_features": [],
     "dense_regions": [
       {
         "cluster_id": 1,
-        "entity_count": 671,
-        "density_per_m2": 219.1,
+        "entity_count": 675,
+        "density_per_m2": 205.7,
         "bbox_mm": [
           798.91,
           0.0,
           2000.0,
-          2550.0
+          2732.39
         ]
       }
     ],
-    "nesting_summary": "No containment detected.",
+    "nesting_summary": "3 closed contours detected, 4 top-level boundaries.",
     "cutting_time_estimate": {
       "config_feed_rate_mmps": 200,
-      "vibrate_cutter_time_s": 88.7,
+      "vibrate_cutter_time_s": 95.6,
       "v_slot_time_s": 440.4,
       "head_rotation_overhead_s": 128.5,
-      "total_time_s": 657.6
+      "total_time_s": 664.5
     },
     "tool_summary": {
       "vibrate_cutter_0deg": {
-        "entity_count": 414,
-        "total_length_mm": 17732.5,
+        "entity_count": 418,
+        "total_length_mm": 19125.3,
         "operation": "outer_format"
       },
       "v_slot_45deg": {
@@ -94741,11 +95321,11 @@
       ],
       "panel_bbox_mm": [
         1201.1,
-        2550.0
+        2732.4
       ],
-      "yield_percent": 86.6,
+      "yield_percent": 92.8,
       "waste_mm": [
-        350.0,
+        167.6,
         18.9
       ],
       "panel_fits_stock": true,
@@ -94753,48 +95333,48 @@
     }
   },
   "ml_feature_vector_global": {
-    "entity_count": 671,
-    "closed_loop_count": 2,
-    "open_path_count": 669,
-    "total_vertices": 4272,
-    "total_length_mm": 60744.25,
-    "mean_length_mm": 90.53,
-    "std_length_mm": 348.05,
+    "entity_count": 675,
+    "closed_loop_count": 4,
+    "open_path_count": 671,
+    "total_vertices": 4656,
+    "total_length_mm": 62137.08,
+    "mean_length_mm": 92.05,
+    "std_length_mm": 347.86,
     "p50_length_mm": 23.53,
-    "p95_length_mm": 311.43,
+    "p95_length_mm": 325.05,
     "min_length_mm": 7.0,
-    "mean_area_mm2": 3060000.0,
-    "std_area_mm2": 0.0,
-    "total_area_mm2": 3060000.0,
+    "mean_area_mm2": 1020679.77,
+    "std_area_mm2": 1442017.33,
+    "total_area_mm2": 3062039.3,
     "total_tac_rad": 564.7984,
     "mean_tac_rad": 0.84,
     "std_tac_rad": 0.67,
     "max_tac_rad": 1.4699,
-    "tac_per_meter": 9.297973,
+    "tac_per_meter": 9.089555,
     "mean_curvature_index": 0.04,
     "std_curvature_index": 0.03,
     "total_sharp_corners": 0,
     "total_direction_changes": 0,
-    "mean_avg_segment_mm": 66.99,
-    "std_avg_segment_mm": 204.79,
-    "mean_point_count": 6.37,
-    "max_point_count": 17,
+    "mean_avg_segment_mm": 66.63,
+    "std_avg_segment_mm": 204.24,
+    "mean_point_count": 6.9,
+    "max_point_count": 178,
     "has_arcs_entity_count": 0,
     "has_arcs_ratio": 0.0,
     "max_bulge_any": 0.0,
     "mean_bulge_all": 0.0,
     "graph_connected_components": 1,
-    "graph_max_degree": 670,
+    "graph_max_degree": 674,
     "graph_cycle_count": 1,
-    "graph_diameter": 671,
-    "constraints_parallel": 10288,
-    "constraints_perpendicular": 10002,
-    "constraints_orthogonal_ratio": 0.607,
-    "unified_area_mm2": 3060000.0,
-    "convex_hull_area_mm2": 3060000.0,
-    "solidity": 1.0,
+    "graph_diameter": 675,
+    "constraints_parallel": 10453,
+    "constraints_perpendicular": 10220,
+    "constraints_orthogonal_ratio": 0.6,
+    "unified_area_mm2": 3062039.3,
+    "convex_hull_area_mm2": 3173375.33,
+    "solidity": 0.9649,
     "num_holes": 0,
-    "boundary_length_mm": 7500.0,
+    "boundary_length_mm": 7890.5,
     "min_feature_width_mm": 0.0,
     "semantic_zone_count": 2,
     "largest_zone_entity_count": 3,
@@ -94804,16 +95384,16 @@
     "v_slot_double_pass_length_mm": 88079.6,
     "v_slot_single_pass_length_mm": 43011.8,
     "head_rotation_count": 257,
-    "vibrate_cutter_length_mm": 17732.5,
+    "vibrate_cutter_length_mm": 19125.3,
     "has_mounting_flap": 0,
-    "panel_yield_percent": 86.6,
+    "panel_yield_percent": 92.8,
     "panel_fits_stock": 1,
     "panel_is_orthogonal": 0
   },
   "semantic_analysis": {
     "panel_type": "unknown",
     "confidence": "medium",
-    "narrative_summary": "Vyrez o rozmerech 1201 x 2550 mm (3.06 m2). Celkova delka tras: 60.7 m. Nalezeno 2 uzavrenych obrysu a 669 otevrenych drah.\nPanel je clenen na 2 zon:\n- full_height: 3 prvku, delka 2547 mm, roztec 600.0 mm\n- full_height: 2 prvku, delka 1098 mm, roztec 329.2 mm\nPrirazeni nastroju CNC:\n- Vibrate cutter 0deg: 414 entit, 17.7 m (vnejsi format)\n- V-slot 45/30deg: 257 drah, 88.1 m dvojitym pojezdem, 257x otoceni hlavy o 180deg (dekorativni drazky)\nVyteznost materialu: 86.6% z formatu 2900x1220 mm (panel otocen o 90deg).\nOdhadovany cas CNC rezu: 10m 57s (při feed rate 200 mm/s).\n",
+    "narrative_summary": "Vyrez o rozmerech 1201 x 2732 mm (3.28 m2). Celkova delka tras: 62.1 m. Nalezeno 4 uzavrenych obrysu a 671 otevrenych drah.\nPanel je clenen na 2 zon:\n- full_height: 3 prvku, delka 2547 mm, roztec 600.0 mm\n- full_height: 2 prvku, delka 1098 mm, roztec 329.2 mm\nPrirazeni nastroju CNC:\n- Vibrate cutter 0deg: 418 entit, 19.1 m (vnejsi format)\n- V-slot 45/30deg: 257 drah, 88.1 m dvojitym pojezdem, 257x otoceni hlavy o 180deg (dekorativni drazky)\nVyteznost materialu: 92.8% z formatu 2900x1220 mm (panel otocen o 90deg).\nOdhadovany cas CNC rezu: 11m 4s (při feed rate 200 mm/s).\n",
     "zones": [
       {
         "zone_id": "Z1",
@@ -95267,10 +95847,14 @@
           "E_0667",
           "E_0668",
           "E_0669",
-          "E_0670"
+          "E_0670",
+          "B_0671",
+          "B_0672",
+          "B_0673",
+          "B_0674"
         ],
-        "entity_count": 414,
-        "total_length_mm": 17732.5,
+        "entity_count": 418,
+        "total_length_mm": 19125.3,
         "passes": 1,
         "operation": "outer_format"
       },
@@ -95957,14 +96541,16 @@
       "E_0667",
       "E_0668",
       "E_0669",
-      "E_0670"
+      "E_0670",
+      "B_0673",
+      "B_0674"
     ],
     "cutting_time_estimate": {
       "config_feed_rate_mmps": 200,
-      "vibrate_cutter_time_s": 88.7,
+      "vibrate_cutter_time_s": 95.6,
       "v_slot_time_s": 440.4,
       "head_rotation_overhead_s": 128.5,
-      "total_time_s": 657.6
+      "total_time_s": 664.5
     },
     "mounting_flap": {
       "detected": false
@@ -95976,29 +96562,60 @@
       ],
       "panel_bbox_mm": [
         1201.1,
-        2550.0
+        2732.4
       ],
-      "yield_percent": 86.6,
+      "yield_percent": 92.8,
       "waste_mm": [
-        350.0,
+        167.6,
         18.9
       ],
       "panel_fits_stock": true,
       "panel_rotated": true
     },
     "constraints_summary": {
-      "orthogonal_ratio": 0.607,
-      "parallel_pairs": 10288,
-      "perpendicular_pairs": 10002
+      "orthogonal_ratio": 0.6,
+      "parallel_pairs": 10453,
+      "perpendicular_pairs": 10220
     },
     "is_orthogonal": false,
     "has_arcs_any": false
   },
   "layer_card": {
-    "color_count": 5,
-    "total_entities_mapped": 3,
+    "color_count": 6,
+    "total_entities_mapped": 4,
     "total_entities_unmapped": 2,
     "colors": {
+      "1": {
+        "color_index": 1,
+        "color_name": "Red",
+        "entity_count": 4,
+        "total_length_mm": 1392.83,
+        "total_point_count": 384,
+        "point_density_per_meter": 275.7,
+        "closed_count": 2,
+        "open_count": 2,
+        "closed_ratio": 0.5,
+        "total_tac_rad": 0.0,
+        "tac_per_meter": 0.0,
+        "min_length_mm": 54.95,
+        "max_length_mm": 504.64,
+        "geometry_types": {
+          "LWPOLYLINE": 4
+        },
+        "layers": [
+          "mainlayer"
+        ],
+        "tool_config": {
+          "cutter_type": "Vibrate cutter",
+          "base_speed_mms": 150,
+          "direction": "N/A",
+          "h2_mm": -0.3,
+          "validation_status": "hypothesis",
+          "is_output": true,
+          "note": "Červená (C02/C10, ACI 1) — vnější obrysy. Ale slouží i jako metadata/bounding box. Empiricky neověřeno napříč všemi zakázkami."
+        },
+        "is_mapped": true
+      },
       "3": {
         "color_index": 3,
         "color_name": "Green",
@@ -96144,26 +96761,26 @@
     {
       "name": "mainlayer",
       "color_index": 5,
-      "entity_count": 671,
-      "total_length_mm": 60744.25,
-      "total_point_count": 4272,
+      "entity_count": 675,
+      "total_length_mm": 62137.08,
+      "total_point_count": 4656,
       "bbox_mm": [
         798.91,
         0.0,
         2000.0,
-        2550.0
+        2732.39
       ],
       "geometry_types": {
-        "LWPOLYLINE": 259,
+        "LWPOLYLINE": 263,
         "SPLINE": 412
       },
       "spatial_complexity": {
-        "curvature_index": 0.00929744,
+        "curvature_index": 0.00908904,
         "sharp_corners_count": 0,
         "direction_changes": 0,
-        "avg_segment_length_mm": 14.22,
-        "closed_loop_ratio": 0.003,
-        "arc_ratio": 0.614,
+        "avg_segment_length_mm": 13.35,
+        "closed_loop_ratio": 0.006,
+        "arc_ratio": 0.61,
         "total_tac_rad": 564.7984
       },
       "entity_ids": [
@@ -96837,7 +97454,11 @@
         "E_0667",
         "E_0668",
         "E_0669",
-        "E_0670"
+        "E_0670",
+        "E_0671",
+        "E_0672",
+        "E_0673",
+        "E_0674"
       ]
     }
   ],
@@ -123681,12 +124302,172 @@
       "has_arcs": false,
       "max_bulge": 0.0,
       "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0671",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 1,
+      "type": "LWPOLYLINE",
+      "length_mm": 335.56,
+      "point_count": 52,
+      "bbox_mm": [
+        1241.42,
+        2632.49,
+        1305.01,
+        2729.45
+      ],
+      "center_mm": [
+        1273.21,
+        2680.97
+      ],
+      "area_mm2": 1850.61,
+      "is_closed_loop": true,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 6.45,
+        "is_closed_loop": true,
+        "vertex_count": 52
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 11.12,
+        "mean_segment_length_mm": 6.58,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 63.59,
+        "segment_count": 51
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0672",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 1,
+      "type": "LWPOLYLINE",
+      "length_mm": 54.95,
+      "point_count": 8,
+      "bbox_mm": [
+        1323.7,
+        2632.49,
+        1337.44,
+        2646.23
+      ],
+      "center_mm": [
+        1330.57,
+        2639.36
+      ],
+      "area_mm2": 188.69,
+      "is_closed_loop": true,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 6.87,
+        "is_closed_loop": true,
+        "vertex_count": 8
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 6.8,
+        "mean_segment_length_mm": 7.85,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 13.74,
+        "segment_count": 7
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0673",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 1,
+      "type": "LWPOLYLINE",
+      "length_mm": 504.64,
+      "point_count": 146,
+      "bbox_mm": [
+        1355.06,
+        2630.89,
+        1420.12,
+        2729.38
+      ],
+      "center_mm": [
+        1387.59,
+        2680.14
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 3.46,
+        "is_closed_loop": false,
+        "vertex_count": 146
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 7.16,
+        "mean_segment_length_mm": 3.48,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 51.35,
+        "segment_count": 145
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    },
+    {
+      "id": "B_0674",
+      "entity_index": -1,
+      "layer": "mainlayer",
+      "color_index": 1,
+      "type": "LWPOLYLINE",
+      "length_mm": 497.68,
+      "point_count": 178,
+      "bbox_mm": [
+        1470.65,
+        2630.83,
+        1557.49,
+        2732.39
+      ],
+      "center_mm": [
+        1514.07,
+        2681.61
+      ],
+      "area_mm2": 0.0,
+      "is_closed_loop": false,
+      "complexity": {
+        "curvature_index": 0.0,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 2.8,
+        "is_closed_loop": false,
+        "vertex_count": 178
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 3.04,
+        "mean_segment_length_mm": 2.81,
+        "min_segment_mm": 0.0,
+        "max_segment_mm": 13.41,
+        "segment_count": 177
+      },
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     }
   ],
   "spatial_clusters": [
     {
       "cluster_id": 1,
-      "entity_count": 671,
+      "entity_count": 675,
       "entity_ids": [
         "E_0000",
         "E_0001",
@@ -124358,13 +125139,17 @@
         "E_0667",
         "E_0668",
         "E_0669",
-        "E_0670"
+        "E_0670",
+        "E_-001",
+        "E_-001",
+        "E_-001",
+        "E_-001"
       ],
       "bbox_mm": [
         798.91,
         0.0,
         2000.0,
-        2550.0
+        2732.39
       ]
     }
   ],
@@ -126189,6 +126974,50 @@
         669,
         670
       ]
+    },
+    {
+      "id": "Shape_G116",
+      "type": "LWPOLYLINE",
+      "point_count": 52,
+      "length_mm": 335.6,
+      "aspect_ratio": 0.7,
+      "instance_count": 1,
+      "entity_indices": [
+        671
+      ]
+    },
+    {
+      "id": "Shape_G117",
+      "type": "LWPOLYLINE",
+      "point_count": 8,
+      "length_mm": 55.0,
+      "aspect_ratio": 1.0,
+      "instance_count": 1,
+      "entity_indices": [
+        672
+      ]
+    },
+    {
+      "id": "Shape_G118",
+      "type": "LWPOLYLINE",
+      "point_count": 146,
+      "length_mm": 504.6,
+      "aspect_ratio": 0.7,
+      "instance_count": 1,
+      "entity_indices": [
+        673
+      ]
+    },
+    {
+      "id": "Shape_G119",
+      "type": "LWPOLYLINE",
+      "point_count": 178,
+      "length_mm": 497.7,
+      "aspect_ratio": 0.9,
+      "instance_count": 1,
+      "entity_indices": [
+        674
+      ]
     }
   ],
   "proximity_matrix": {
@@ -126306,7 +127135,11 @@
       "Shape_G112": 0.0,
       "Shape_G113": 0.0,
       "Shape_G114": 0.0,
-      "Shape_G115": 0.0
+      "Shape_G115": 0.0,
+      "Shape_G116": 82.49,
+      "Shape_G117": 82.49,
+      "Shape_G118": 80.89,
+      "Shape_G119": 80.83
     },
     "Shape_G2": {
       "Shape_G1": 0.0,
@@ -126422,7 +127255,11 @@
       "Shape_G112": 1492.84,
       "Shape_G113": 766.28,
       "Shape_G114": 0.0,
-      "Shape_G115": 1396.53
+      "Shape_G115": 1396.53,
+      "Shape_G116": 260.98,
+      "Shape_G117": 242.73,
+      "Shape_G118": 210.58,
+      "Shape_G119": 206.13
     },
     "Shape_G3": {
       "Shape_G1": 0.0,
@@ -126538,7 +127375,11 @@
       "Shape_G112": 1328.39,
       "Shape_G113": 587.19,
       "Shape_G114": 0.06,
-      "Shape_G115": 1317.41
+      "Shape_G115": 1317.41,
+      "Shape_G116": 525.03,
+      "Shape_G117": 498.92,
+      "Shape_G118": 483.21,
+      "Shape_G119": 472.68
     },
     "Shape_G4": {
       "Shape_G1": 0.0,
@@ -126654,7 +127495,11 @@
       "Shape_G112": 784.28,
       "Shape_G113": 43.08,
       "Shape_G114": 85.41,
-      "Shape_G115": 1111.22
+      "Shape_G115": 1111.22,
+      "Shape_G116": 1113.81,
+      "Shape_G117": 1097.45,
+      "Shape_G118": 1057.66,
+      "Shape_G119": 1005.67
     },
     "Shape_G5": {
       "Shape_G1": 0.0,
@@ -126770,7 +127615,11 @@
       "Shape_G112": 502.04,
       "Shape_G113": 372.56,
       "Shape_G114": 35.13,
-      "Shape_G115": 364.19
+      "Shape_G115": 364.19,
+      "Shape_G116": 450.0,
+      "Shape_G117": 423.15,
+      "Shape_G118": 357.81,
+      "Shape_G119": 273.4
     },
     "Shape_G6": {
       "Shape_G1": 0.0,
@@ -126886,7 +127735,11 @@
       "Shape_G112": 432.4,
       "Shape_G113": 623.09,
       "Shape_G114": 35.26,
-      "Shape_G115": 391.14
+      "Shape_G115": 391.14,
+      "Shape_G116": 482.81,
+      "Shape_G117": 459.03,
+      "Shape_G118": 402.64,
+      "Shape_G119": 336.57
     },
     "Shape_G7": {
       "Shape_G1": 0.0,
@@ -127002,7 +127855,11 @@
       "Shape_G112": 59.8,
       "Shape_G113": 940.02,
       "Shape_G114": 0.0,
-      "Shape_G115": 894.38
+      "Shape_G115": 894.38,
+      "Shape_G116": 538.04,
+      "Shape_G117": 579.81,
+      "Shape_G118": 596.66,
+      "Shape_G119": 672.06
     },
     "Shape_G8": {
       "Shape_G1": 0.0,
@@ -127118,7 +127975,11 @@
       "Shape_G112": 348.69,
       "Shape_G113": 1193.91,
       "Shape_G114": 0.0,
-      "Shape_G115": 863.21
+      "Shape_G115": 863.21,
+      "Shape_G116": 2322.81,
+      "Shape_G117": 2318.3,
+      "Shape_G118": 2307.23,
+      "Shape_G119": 2297.9
     },
     "Shape_G9": {
       "Shape_G1": 0.0,
@@ -127234,7 +128095,11 @@
       "Shape_G112": 535.9,
       "Shape_G113": 1397.0,
       "Shape_G114": 0.0,
-      "Shape_G115": 990.61
+      "Shape_G115": 990.61,
+      "Shape_G116": 2524.21,
+      "Shape_G117": 2520.2,
+      "Shape_G118": 2510.24,
+      "Shape_G119": 2502.25
     },
     "Shape_G10": {
       "Shape_G1": 0.0,
@@ -127350,7 +128215,11 @@
       "Shape_G112": 355.06,
       "Shape_G113": 1225.29,
       "Shape_G114": 0.01,
-      "Shape_G115": 985.03
+      "Shape_G115": 985.03,
+      "Shape_G116": 2382.69,
+      "Shape_G117": 2376.65,
+      "Shape_G118": 2361.6,
+      "Shape_G119": 2345.42
     },
     "Shape_G11": {
       "Shape_G1": 0.0,
@@ -127466,7 +128335,11 @@
       "Shape_G112": 190.58,
       "Shape_G113": 907.95,
       "Shape_G114": 0.0,
-      "Shape_G115": 821.02
+      "Shape_G115": 821.02,
+      "Shape_G116": 543.99,
+      "Shape_G117": 568.98,
+      "Shape_G118": 579.84,
+      "Shape_G119": 636.67
     },
     "Shape_G12": {
       "Shape_G1": 0.0,
@@ -127582,7 +128455,11 @@
       "Shape_G112": 60.0,
       "Shape_G113": 573.77,
       "Shape_G114": 41.68,
-      "Shape_G115": 733.26
+      "Shape_G115": 733.26,
+      "Shape_G116": 1728.56,
+      "Shape_G117": 1721.79,
+      "Shape_G118": 1705.64,
+      "Shape_G119": 1690.03
     },
     "Shape_G13": {
       "Shape_G1": 0.0,
@@ -127698,7 +128575,11 @@
       "Shape_G112": 0.0,
       "Shape_G113": 571.29,
       "Shape_G114": 84.75,
-      "Shape_G115": 913.25
+      "Shape_G115": 913.25,
+      "Shape_G116": 1776.42,
+      "Shape_G117": 1766.54,
+      "Shape_G118": 1742.27,
+      "Shape_G119": 1712.62
     },
     "Shape_G14": {
       "Shape_G1": 0.0,
@@ -127814,7 +128695,11 @@
       "Shape_G112": 3.87,
       "Shape_G113": 571.29,
       "Shape_G114": 97.02,
-      "Shape_G115": 630.22
+      "Shape_G115": 630.22,
+      "Shape_G116": 955.32,
+      "Shape_G117": 989.48,
+      "Shape_G118": 1002.56,
+      "Shape_G119": 1062.3
     },
     "Shape_G15": {
       "Shape_G1": 0.0,
@@ -127930,7 +128815,11 @@
       "Shape_G112": 361.8,
       "Shape_G113": 921.55,
       "Shape_G114": 0.0,
-      "Shape_G115": 579.61
+      "Shape_G115": 579.61,
+      "Shape_G116": 1975.84,
+      "Shape_G117": 1972.92,
+      "Shape_G118": 1966.27,
+      "Shape_G119": 1964.62
     },
     "Shape_G16": {
       "Shape_G1": 0.0,
@@ -128046,7 +128935,11 @@
       "Shape_G112": 269.21,
       "Shape_G113": 1149.43,
       "Shape_G114": 0.0,
-      "Shape_G115": 1110.09
+      "Shape_G115": 1110.09,
+      "Shape_G116": 2355.31,
+      "Shape_G117": 2346.64,
+      "Shape_G118": 2324.87,
+      "Shape_G119": 2297.41
     },
     "Shape_G17": {
       "Shape_G1": 0.0,
@@ -128162,7 +129055,11 @@
       "Shape_G112": 119.99,
       "Shape_G113": 582.25,
       "Shape_G114": 0.0,
-      "Shape_G115": 632.22
+      "Shape_G115": 632.22,
+      "Shape_G116": 690.69,
+      "Shape_G117": 709.93,
+      "Shape_G118": 718.09,
+      "Shape_G119": 763.9
     },
     "Shape_G18": {
       "Shape_G1": 0.0,
@@ -128278,7 +129175,11 @@
       "Shape_G112": 843.6,
       "Shape_G113": 168.36,
       "Shape_G114": 0.0,
-      "Shape_G115": 46.06
+      "Shape_G115": 46.06,
+      "Shape_G116": 1044.49,
+      "Shape_G117": 1030.11,
+      "Shape_G118": 995.81,
+      "Shape_G119": 954.57
     },
     "Shape_G19": {
       "Shape_G1": 0.0,
@@ -128394,7 +129295,11 @@
       "Shape_G112": 741.23,
       "Shape_G113": 0.0,
       "Shape_G114": 67.92,
-      "Shape_G115": 11.92
+      "Shape_G115": 11.92,
+      "Shape_G116": 1179.33,
+      "Shape_G117": 1165.92,
+      "Shape_G118": 1133.72,
+      "Shape_G119": 1094.55
     },
     "Shape_G20": {
       "Shape_G1": 0.0,
@@ -128510,7 +129415,11 @@
       "Shape_G112": 734.35,
       "Shape_G113": 125.29,
       "Shape_G114": 0.0,
-      "Shape_G115": 123.09
+      "Shape_G115": 123.09,
+      "Shape_G116": 1094.32,
+      "Shape_G117": 1082.17,
+      "Shape_G118": 1053.54,
+      "Shape_G119": 1021.69
     },
     "Shape_G21": {
       "Shape_G1": 0.0,
@@ -128626,7 +129535,11 @@
       "Shape_G112": 590.05,
       "Shape_G113": 222.12,
       "Shape_G114": 0.0,
-      "Shape_G115": 163.72
+      "Shape_G115": 163.72,
+      "Shape_G116": 1013.71,
+      "Shape_G117": 1004.58,
+      "Shape_G118": 984.19,
+      "Shape_G119": 967.73
     },
     "Shape_G22": {
       "Shape_G1": 0.0,
@@ -128742,7 +129655,11 @@
       "Shape_G112": 717.65,
       "Shape_G113": 43.08,
       "Shape_G114": 0.0,
-      "Shape_G115": 167.63
+      "Shape_G115": 167.63,
+      "Shape_G116": 955.76,
+      "Shape_G117": 947.04,
+      "Shape_G118": 927.99,
+      "Shape_G119": 914.77
     },
     "Shape_G23": {
       "Shape_G1": 0.0,
@@ -128858,7 +129775,11 @@
       "Shape_G112": 774.63,
       "Shape_G113": 94.33,
       "Shape_G114": 50.3,
-      "Shape_G115": 88.08
+      "Shape_G115": 88.08,
+      "Shape_G116": 1086.88,
+      "Shape_G117": 1073.58,
+      "Shape_G118": 1041.99,
+      "Shape_G119": 1004.99
     },
     "Shape_G24": {
       "Shape_G1": 0.0,
@@ -128974,7 +129895,11 @@
       "Shape_G112": 441.87,
       "Shape_G113": 71.26,
       "Shape_G114": 44.54,
-      "Shape_G115": 131.45
+      "Shape_G115": 131.45,
+      "Shape_G116": 1311.56,
+      "Shape_G117": 1298.1,
+      "Shape_G118": 1265.42,
+      "Shape_G119": 1224.11
     },
     "Shape_G25": {
       "Shape_G1": 0.0,
@@ -129090,7 +130015,11 @@
       "Shape_G112": 457.68,
       "Shape_G113": 152.44,
       "Shape_G114": 0.0,
-      "Shape_G115": 197.13
+      "Shape_G115": 197.13,
+      "Shape_G116": 1295.75,
+      "Shape_G117": 1285.16,
+      "Shape_G118": 1259.99,
+      "Shape_G119": 1231.95
     },
     "Shape_G26": {
       "Shape_G1": 0.0,
@@ -129206,7 +130135,11 @@
       "Shape_G112": 533.38,
       "Shape_G113": 291.67,
       "Shape_G114": 0.0,
-      "Shape_G115": 289.47
+      "Shape_G115": 289.47,
+      "Shape_G116": 1079.47,
+      "Shape_G117": 1072.2,
+      "Shape_G118": 1056.34,
+      "Shape_G119": 1046.64
     },
     "Shape_G27": {
       "Shape_G1": 0.0,
@@ -129322,7 +130255,11 @@
       "Shape_G112": 628.74,
       "Shape_G113": 344.06,
       "Shape_G114": 0.0,
-      "Shape_G115": 350.96
+      "Shape_G115": 350.96,
+      "Shape_G116": 1157.8,
+      "Shape_G117": 1152.48,
+      "Shape_G118": 1141.35,
+      "Shape_G119": 1137.67
     },
     "Shape_G28": {
       "Shape_G1": 0.0,
@@ -129438,7 +130375,11 @@
       "Shape_G112": 554.6,
       "Shape_G113": 402.74,
       "Shape_G114": 0.01,
-      "Shape_G115": 577.13
+      "Shape_G115": 577.13,
+      "Shape_G116": 1275.0,
+      "Shape_G117": 1270.97,
+      "Shape_G118": 1262.81,
+      "Shape_G119": 1261.36
     },
     "Shape_G29": {
       "Shape_G1": 0.0,
@@ -129554,7 +130495,11 @@
       "Shape_G112": 1225.78,
       "Shape_G113": 484.58,
       "Shape_G114": 29.01,
-      "Shape_G115": 1185.81
+      "Shape_G115": 1185.81,
+      "Shape_G116": 661.5,
+      "Shape_G117": 652.55,
+      "Shape_G118": 635.08,
+      "Shape_G119": 629.64
     },
     "Shape_G30": {
       "Shape_G1": 0.0,
@@ -129670,7 +130615,11 @@
       "Shape_G112": 1002.14,
       "Shape_G113": 965.61,
       "Shape_G114": 22.1,
-      "Shape_G115": 796.91
+      "Shape_G115": 796.91,
+      "Shape_G116": 469.56,
+      "Shape_G117": 438.96,
+      "Shape_G118": 361.72,
+      "Shape_G119": 243.1
     },
     "Shape_G31": {
       "Shape_G1": 0.0,
@@ -129786,7 +130735,11 @@
       "Shape_G112": 979.17,
       "Shape_G113": 996.54,
       "Shape_G114": 0.0,
-      "Shape_G115": 829.16
+      "Shape_G115": 829.16,
+      "Shape_G116": 417.69,
+      "Shape_G117": 386.94,
+      "Shape_G118": 309.42,
+      "Shape_G119": 192.2
     },
     "Shape_G32": {
       "Shape_G1": 0.0,
@@ -129902,7 +130855,11 @@
       "Shape_G112": 1376.09,
       "Shape_G113": 634.89,
       "Shape_G114": 137.04,
-      "Shape_G115": 1443.99
+      "Shape_G115": 1443.99,
+      "Shape_G116": 531.38,
+      "Shape_G117": 504.31,
+      "Shape_G118": 437.56,
+      "Shape_G119": 344.54
     },
     "Shape_G33": {
       "Shape_G1": 0.0,
@@ -130018,7 +130975,11 @@
       "Shape_G112": 729.34,
       "Shape_G113": 528.66,
       "Shape_G114": 0.0,
-      "Shape_G115": 359.96
+      "Shape_G115": 359.96,
+      "Shape_G116": 681.71,
+      "Shape_G117": 665.82,
+      "Shape_G118": 629.59,
+      "Shape_G119": 593.02
     },
     "Shape_G34": {
       "Shape_G1": 0.0,
@@ -130134,7 +131095,11 @@
       "Shape_G112": 983.79,
       "Shape_G113": 573.72,
       "Shape_G114": 0.0,
-      "Shape_G115": 803.44
+      "Shape_G115": 803.44,
+      "Shape_G116": 440.92,
+      "Shape_G117": 409.99,
+      "Shape_G118": 331.79,
+      "Shape_G119": 211.19
     },
     "Shape_G35": {
       "Shape_G1": 0.0,
@@ -130250,7 +131215,11 @@
       "Shape_G112": 1222.7,
       "Shape_G113": 652.62,
       "Shape_G114": 0.0,
-      "Shape_G115": 975.03
+      "Shape_G115": 975.03,
+      "Shape_G116": 354.91,
+      "Shape_G117": 355.66,
+      "Shape_G118": 357.48,
+      "Shape_G119": 392.04
     },
     "Shape_G36": {
       "Shape_G1": 0.0,
@@ -130366,7 +131335,11 @@
       "Shape_G112": 1287.26,
       "Shape_G113": 669.48,
       "Shape_G114": 0.0,
-      "Shape_G115": 1081.24
+      "Shape_G115": 1081.24,
+      "Shape_G116": 365.72,
+      "Shape_G117": 363.16,
+      "Shape_G118": 361.39,
+      "Shape_G119": 380.93
     },
     "Shape_G37": {
       "Shape_G1": 0.0,
@@ -130482,7 +131455,11 @@
       "Shape_G112": 1565.45,
       "Shape_G113": 841.18,
       "Shape_G114": 0.0,
-      "Shape_G115": 1452.42
+      "Shape_G115": 1452.42,
+      "Shape_G116": 201.88,
+      "Shape_G117": 181.73,
+      "Shape_G118": 149.56,
+      "Shape_G119": 148.13
     },
     "Shape_G38": {
       "Shape_G1": 0.0,
@@ -130598,7 +131575,11 @@
       "Shape_G112": 1367.76,
       "Shape_G113": 815.79,
       "Shape_G114": 27.86,
-      "Shape_G115": 1014.09
+      "Shape_G115": 1014.09,
+      "Shape_G116": 638.28,
+      "Shape_G117": 653.27,
+      "Shape_G118": 660.06,
+      "Shape_G119": 702.1
     },
     "Shape_G39": {
       "Shape_G1": 0.0,
@@ -130714,7 +131695,11 @@
       "Shape_G112": 1226.04,
       "Shape_G113": 917.87,
       "Shape_G114": 84.31,
-      "Shape_G115": 630.15
+      "Shape_G115": 630.15,
+      "Shape_G116": 928.58,
+      "Shape_G117": 958.56,
+      "Shape_G118": 970.13,
+      "Shape_G119": 1025.0
     },
     "Shape_G40": {
       "Shape_G1": 0.0,
@@ -130830,7 +131815,11 @@
       "Shape_G112": 1675.27,
       "Shape_G113": 1088.26,
       "Shape_G114": 0.0,
-      "Shape_G115": 1282.64
+      "Shape_G115": 1282.64,
+      "Shape_G116": 272.97,
+      "Shape_G117": 339.5,
+      "Shape_G118": 365.76,
+      "Shape_G119": 470.24
     },
     "Shape_G41": {
       "Shape_G1": 0.0,
@@ -130946,7 +131935,11 @@
       "Shape_G112": 1028.24,
       "Shape_G113": 528.66,
       "Shape_G114": 0.0,
-      "Shape_G115": 359.96
+      "Shape_G115": 359.96,
+      "Shape_G116": 403.72,
+      "Shape_G117": 428.6,
+      "Shape_G118": 440.34,
+      "Shape_G119": 503.06
     },
     "Shape_G42": {
       "Shape_G1": 0.0,
@@ -131062,7 +132055,11 @@
       "Shape_G112": 1766.55,
       "Shape_G113": 1118.98,
       "Shape_G114": 0.0,
-      "Shape_G115": 1456.51
+      "Shape_G115": 1456.51,
+      "Shape_G116": 192.49,
+      "Shape_G117": 236.52,
+      "Shape_G118": 257.17,
+      "Shape_G119": 350.39
     },
     "Shape_G43": {
       "Shape_G1": 0.0,
@@ -131178,7 +132175,11 @@
       "Shape_G112": 1382.7,
       "Shape_G113": 1002.67,
       "Shape_G114": 98.76,
-      "Shape_G115": 795.59
+      "Shape_G115": 795.59,
+      "Shape_G116": 924.35,
+      "Shape_G117": 960.04,
+      "Shape_G118": 987.73,
+      "Shape_G119": 1064.14
     },
     "Shape_G44": {
       "Shape_G1": 0.0,
@@ -131294,7 +132295,11 @@
       "Shape_G112": 663.71,
       "Shape_G113": 558.16,
       "Shape_G114": 0.0,
-      "Shape_G115": 426.48
+      "Shape_G115": 426.48,
+      "Shape_G116": 1278.98,
+      "Shape_G117": 1278.89,
+      "Shape_G118": 1277.76,
+      "Shape_G119": 1286.03
     },
     "Shape_G45": {
       "Shape_G1": 0.0,
@@ -131410,7 +132415,11 @@
       "Shape_G112": 356.9,
       "Shape_G113": 727.3,
       "Shape_G114": 57.45,
-      "Shape_G115": 452.17
+      "Shape_G115": 452.17,
+      "Shape_G116": 1755.9,
+      "Shape_G117": 1754.44,
+      "Shape_G118": 1751.73,
+      "Shape_G119": 1751.67
     },
     "Shape_G46": {
       "Shape_G1": 0.0,
@@ -131526,7 +132535,11 @@
       "Shape_G112": 663.07,
       "Shape_G113": 65.13,
       "Shape_G114": 0.0,
-      "Shape_G115": 99.18
+      "Shape_G115": 99.18,
+      "Shape_G116": 772.28,
+      "Shape_G117": 809.59,
+      "Shape_G118": 824.17,
+      "Shape_G119": 890.06
     },
     "Shape_G47": {
       "Shape_G1": 0.0,
@@ -131642,7 +132655,11 @@
       "Shape_G112": 754.95,
       "Shape_G113": 164.78,
       "Shape_G114": 0.0,
-      "Shape_G115": 123.09
+      "Shape_G115": 123.09,
+      "Shape_G116": 1041.34,
+      "Shape_G117": 1029.84,
+      "Shape_G118": 1003.14,
+      "Shape_G119": 975.37
     },
     "Shape_G48": {
       "Shape_G1": 0.0,
@@ -131758,7 +132775,11 @@
       "Shape_G112": 653.88,
       "Shape_G113": 280.39,
       "Shape_G114": 0.0,
-      "Shape_G115": 246.75
+      "Shape_G115": 246.75,
+      "Shape_G116": 1008.34,
+      "Shape_G117": 999.77,
+      "Shape_G118": 980.85,
+      "Shape_G119": 966.99
     },
     "Shape_G49": {
       "Shape_G1": 0.0,
@@ -131874,7 +132895,11 @@
       "Shape_G112": 589.16,
       "Shape_G113": 912.04,
       "Shape_G114": 46.75,
-      "Shape_G115": 160.08
+      "Shape_G115": 160.08,
+      "Shape_G116": 1818.76,
+      "Shape_G117": 1819.46,
+      "Shape_G118": 1819.01,
+      "Shape_G119": 1827.81
     },
     "Shape_G50": {
       "Shape_G1": 0.0,
@@ -131990,7 +133015,11 @@
       "Shape_G112": 570.82,
       "Shape_G113": 1209.78,
       "Shape_G114": 0.0,
-      "Shape_G115": 418.49
+      "Shape_G115": 418.49,
+      "Shape_G116": 2206.29,
+      "Shape_G117": 2206.29,
+      "Shape_G118": 2204.83,
+      "Shape_G119": 2209.09
     },
     "Shape_G51": {
       "Shape_G1": 0.0,
@@ -132106,7 +133135,11 @@
       "Shape_G112": 781.85,
       "Shape_G113": 1352.85,
       "Shape_G114": 0.0,
-      "Shape_G115": 476.5
+      "Shape_G115": 476.5,
+      "Shape_G116": 2257.1,
+      "Shape_G117": 2262.92,
+      "Shape_G118": 2264.32,
+      "Shape_G119": 2279.02
     },
     "Shape_G52": {
       "Shape_G1": 0.0,
@@ -132222,7 +133255,11 @@
       "Shape_G112": 411.34,
       "Shape_G113": 981.75,
       "Shape_G114": 0.01,
-      "Shape_G115": 549.32
+      "Shape_G115": 549.32,
+      "Shape_G116": 2015.69,
+      "Shape_G117": 2013.62,
+      "Shape_G118": 2009.1,
+      "Shape_G119": 2008.93
     },
     "Shape_G53": {
       "Shape_G1": 0.0,
@@ -132338,7 +133375,11 @@
       "Shape_G112": 876.7,
       "Shape_G113": 908.09,
       "Shape_G114": 43.69,
-      "Shape_G115": 739.39
+      "Shape_G115": 739.39,
+      "Shape_G116": 277.67,
+      "Shape_G117": 357.07,
+      "Shape_G118": 298.78,
+      "Shape_G119": 220.7
     },
     "Shape_G54": {
       "Shape_G1": 0.0,
@@ -132454,7 +133495,11 @@
       "Shape_G112": 1129.3,
       "Shape_G113": 965.61,
       "Shape_G114": 0.0,
-      "Shape_G115": 796.91
+      "Shape_G115": 796.91,
+      "Shape_G116": 611.45,
+      "Shape_G117": 579.79,
+      "Shape_G118": 499.13,
+      "Shape_G119": 368.01
     },
     "Shape_G55": {
       "Shape_G1": 0.0,
@@ -132570,7 +133615,11 @@
       "Shape_G112": 632.82,
       "Shape_G113": 1444.45,
       "Shape_G114": 0.0,
-      "Shape_G115": 914.76
+      "Shape_G115": 914.76,
+      "Shape_G116": 2524.03,
+      "Shape_G117": 2521.72,
+      "Shape_G118": 2516.11,
+      "Shape_G119": 2514.76
     },
     "Shape_G56": {
       "Shape_G1": 0.0,
@@ -132686,7 +133735,11 @@
       "Shape_G112": 242.41,
       "Shape_G113": 487.22,
       "Shape_G114": 0.0,
-      "Shape_G115": 676.77
+      "Shape_G115": 676.77,
+      "Shape_G116": 1578.2,
+      "Shape_G117": 1571.95,
+      "Shape_G118": 1557.39,
+      "Shape_G119": 1545.31
     },
     "Shape_G57": {
       "Shape_G1": 0.0,
@@ -132802,7 +133855,11 @@
       "Shape_G112": 0.0,
       "Shape_G113": 851.91,
       "Shape_G114": 0.0,
-      "Shape_G115": 946.29
+      "Shape_G115": 946.29,
+      "Shape_G116": 2049.17,
+      "Shape_G117": 2040.36,
+      "Shape_G118": 2018.52,
+      "Shape_G119": 1991.88
     },
     "Shape_G58": {
       "Shape_G1": 0.0,
@@ -132918,7 +133975,11 @@
       "Shape_G112": 236.48,
       "Shape_G113": 822.94,
       "Shape_G114": 0.0,
-      "Shape_G115": 687.03
+      "Shape_G115": 687.03,
+      "Shape_G116": 1932.69,
+      "Shape_G117": 1927.6,
+      "Shape_G118": 1915.44,
+      "Shape_G119": 1905.62
     },
     "Shape_G59": {
       "Shape_G1": 0.0,
@@ -133034,7 +134095,11 @@
       "Shape_G112": 442.44,
       "Shape_G113": 72.31,
       "Shape_G114": 0.0,
-      "Shape_G115": 1010.12
+      "Shape_G115": 1010.12,
+      "Shape_G116": 1339.1,
+      "Shape_G117": 1324.46,
+      "Shape_G118": 1288.59,
+      "Shape_G119": 1241.43
     },
     "Shape_G60": {
       "Shape_G1": 0.0,
@@ -133150,7 +134215,11 @@
       "Shape_G112": 445.94,
       "Shape_G113": 203.42,
       "Shape_G114": 0.0,
-      "Shape_G115": 261.65
+      "Shape_G115": 261.65,
+      "Shape_G116": 1325.89,
+      "Shape_G117": 1336.11,
+      "Shape_G118": 1337.05,
+      "Shape_G119": 1316.93
     },
     "Shape_G61": {
       "Shape_G1": 0.0,
@@ -133266,7 +134335,11 @@
       "Shape_G112": 502.28,
       "Shape_G113": 237.45,
       "Shape_G114": 0.02,
-      "Shape_G115": 724.77
+      "Shape_G115": 724.77,
+      "Shape_G116": 1210.34,
+      "Shape_G117": 1202.24,
+      "Shape_G118": 1183.78,
+      "Shape_G119": 1168.09
     },
     "Shape_G62": {
       "Shape_G1": 0.0,
@@ -133382,7 +134455,11 @@
       "Shape_G112": 1032.13,
       "Shape_G113": 368.26,
       "Shape_G114": 0.0,
-      "Shape_G115": 134.47
+      "Shape_G115": 134.47,
+      "Shape_G116": 843.58,
+      "Shape_G117": 829.06,
+      "Shape_G118": 795.32,
+      "Shape_G119": 758.67
     },
     "Shape_G63": {
       "Shape_G1": 0.0,
@@ -133498,7 +134575,11 @@
       "Shape_G112": 230.26,
       "Shape_G113": 365.92,
       "Shape_G114": 0.0,
-      "Shape_G115": 426.1
+      "Shape_G115": 426.1,
+      "Shape_G116": 910.08,
+      "Shape_G117": 910.51,
+      "Shape_G118": 910.42,
+      "Shape_G119": 925.11
     },
     "Shape_G64": {
       "Shape_G1": 0.0,
@@ -133614,7 +134695,11 @@
       "Shape_G112": 432.4,
       "Shape_G113": 623.09,
       "Shape_G114": 35.26,
-      "Shape_G115": 391.14
+      "Shape_G115": 391.14,
+      "Shape_G116": 482.81,
+      "Shape_G117": 459.03,
+      "Shape_G118": 402.64,
+      "Shape_G119": 336.57
     },
     "Shape_G65": {
       "Shape_G1": 0.0,
@@ -133730,7 +134815,11 @@
       "Shape_G112": 955.82,
       "Shape_G113": 678.97,
       "Shape_G114": 0.0,
-      "Shape_G115": 538.54
+      "Shape_G115": 538.54,
+      "Shape_G116": 932.29,
+      "Shape_G117": 941.71,
+      "Shape_G118": 945.58,
+      "Shape_G119": 974.13
     },
     "Shape_G66": {
       "Shape_G1": 0.0,
@@ -133846,7 +134935,11 @@
       "Shape_G112": 864.45,
       "Shape_G113": 504.36,
       "Shape_G114": 50.13,
-      "Shape_G115": 656.89
+      "Shape_G115": 656.89,
+      "Shape_G116": 1061.55,
+      "Shape_G117": 1060.67,
+      "Shape_G118": 1059.01,
+      "Shape_G119": 1065.8
     },
     "Shape_G67": {
       "Shape_G1": 0.0,
@@ -133962,7 +135055,11 @@
       "Shape_G112": 1234.44,
       "Shape_G113": 736.47,
       "Shape_G114": 0.0,
-      "Shape_G115": 878.66
+      "Shape_G115": 878.66,
+      "Shape_G116": 744.03,
+      "Shape_G117": 755.8,
+      "Shape_G118": 761.03,
+      "Shape_G119": 796.23
     },
     "Shape_G68": {
       "Shape_G1": 0.0,
@@ -134078,7 +135175,11 @@
       "Shape_G112": 1380.28,
       "Shape_G113": 642.84,
       "Shape_G114": 0.0,
-      "Shape_G115": 1402.19
+      "Shape_G115": 1402.19,
+      "Shape_G116": 143.21,
+      "Shape_G117": 145.33,
+      "Shape_G118": 152.31,
+      "Shape_G119": 222.49
     },
     "Shape_G69": {
       "Shape_G1": 0.0,
@@ -134194,7 +135295,11 @@
       "Shape_G112": 742.9,
       "Shape_G113": 707.17,
       "Shape_G114": 0.0,
-      "Shape_G115": 255.64
+      "Shape_G115": 255.64,
+      "Shape_G116": 1321.62,
+      "Shape_G117": 1328.16,
+      "Shape_G118": 1330.4,
+      "Shape_G119": 1350.66
     },
     "Shape_G70": {
       "Shape_G1": 0.0,
@@ -134310,7 +135415,11 @@
       "Shape_G112": 529.41,
       "Shape_G113": 1016.21,
       "Shape_G114": 41.41,
-      "Shape_G115": 199.56
+      "Shape_G115": 199.56,
+      "Shape_G116": 1987.36,
+      "Shape_G117": 1987.36,
+      "Shape_G118": 1985.9,
+      "Shape_G119": 1990.56
     },
     "Shape_G71": {
       "Shape_G1": 0.0,
@@ -134426,7 +135535,11 @@
       "Shape_G112": 648.35,
       "Shape_G113": 120.63,
       "Shape_G114": 0.0,
-      "Shape_G115": 152.23
+      "Shape_G115": 152.23,
+      "Shape_G116": 1221.89,
+      "Shape_G117": 1212.21,
+      "Shape_G118": 1189.62,
+      "Shape_G119": 1166.75
     },
     "Shape_G72": {
       "Shape_G1": 0.0,
@@ -134542,7 +135655,11 @@
       "Shape_G112": 732.71,
       "Shape_G113": 1465.38,
       "Shape_G114": 0.0,
-      "Shape_G115": 731.1
+      "Shape_G115": 731.1,
+      "Shape_G116": 2475.02,
+      "Shape_G117": 2475.08,
+      "Shape_G118": 2473.9,
+      "Shape_G119": 2478.8
     },
     "Shape_G73": {
       "Shape_G1": 0.0,
@@ -134658,7 +135775,11 @@
       "Shape_G112": 1684.27,
       "Shape_G113": 1139.29,
       "Shape_G114": 59.94,
-      "Shape_G115": 1222.39
+      "Shape_G115": 1222.39,
+      "Shape_G116": 327.08,
+      "Shape_G117": 407.23,
+      "Shape_G118": 437.69,
+      "Shape_G119": 551.69
     },
     "Shape_G74": {
       "Shape_G1": 0.0,
@@ -134774,7 +135895,11 @@
       "Shape_G112": 1910.85,
       "Shape_G113": 1257.84,
       "Shape_G114": 72.39,
-      "Shape_G115": 1590.84
+      "Shape_G115": 1590.84,
+      "Shape_G116": 149.99,
+      "Shape_G117": 223.34,
+      "Shape_G118": 252.23,
+      "Shape_G119": 363.6
     },
     "Shape_G75": {
       "Shape_G1": 0.0,
@@ -134890,7 +136015,11 @@
       "Shape_G112": 913.73,
       "Shape_G113": 618.97,
       "Shape_G114": 0.03,
-      "Shape_G115": 566.51
+      "Shape_G115": 566.51,
+      "Shape_G116": 82.72,
+      "Shape_G117": 120.91,
+      "Shape_G118": 144.52,
+      "Shape_G119": 248.84
     },
     "Shape_G76": {
       "Shape_G1": 0.0,
@@ -135006,7 +136135,11 @@
       "Shape_G112": 294.72,
       "Shape_G113": 1172.95,
       "Shape_G114": 43.88,
-      "Shape_G115": 1008.78
+      "Shape_G115": 1008.78,
+      "Shape_G116": 2346.44,
+      "Shape_G117": 2339.49,
+      "Shape_G118": 2322.14,
+      "Shape_G119": 2302.19
     },
     "Shape_G77": {
       "Shape_G1": 0.0,
@@ -135122,7 +136255,11 @@
       "Shape_G112": 281.99,
       "Shape_G113": 1162.21,
       "Shape_G114": 59.77,
-      "Shape_G115": 1048.82
+      "Shape_G115": 1048.82,
+      "Shape_G116": 2348.29,
+      "Shape_G117": 2340.63,
+      "Shape_G118": 2321.47,
+      "Shape_G119": 2298.45
     },
     "Shape_G78": {
       "Shape_G1": 0.0,
@@ -135238,7 +136375,11 @@
       "Shape_G112": 632.92,
       "Shape_G113": 1420.24,
       "Shape_G114": 35.73,
-      "Shape_G115": 853.01
+      "Shape_G115": 853.01,
+      "Shape_G116": 2481.57,
+      "Shape_G117": 2479.89,
+      "Shape_G118": 2475.92,
+      "Shape_G119": 2475.77
     },
     "Shape_G79": {
       "Shape_G1": 0.0,
@@ -135354,7 +136495,11 @@
       "Shape_G112": 296.48,
       "Shape_G113": 518.22,
       "Shape_G114": 0.0,
-      "Shape_G115": 616.77
+      "Shape_G115": 616.77,
+      "Shape_G116": 1567.15,
+      "Shape_G117": 1562.11,
+      "Shape_G118": 1550.66,
+      "Shape_G119": 1543.88
     },
     "Shape_G80": {
       "Shape_G1": 0.0,
@@ -135470,7 +136615,11 @@
       "Shape_G112": 460.99,
       "Shape_G113": 454.27,
       "Shape_G114": 28.43,
-      "Shape_G115": 452.26
+      "Shape_G115": 452.26,
+      "Shape_G116": 125.81,
+      "Shape_G117": 103.53,
+      "Shape_G118": 80.89,
+      "Shape_G119": 107.35
     },
     "Shape_G81": {
       "Shape_G1": 0.0,
@@ -135586,7 +136735,11 @@
       "Shape_G112": 491.51,
       "Shape_G113": 947.57,
       "Shape_G114": 57.46,
-      "Shape_G115": 142.25
+      "Shape_G115": 142.25,
+      "Shape_G116": 1930.05,
+      "Shape_G117": 1930.05,
+      "Shape_G118": 1928.45,
+      "Shape_G119": 1931.04
     },
     "Shape_G82": {
       "Shape_G1": 0.0,
@@ -135702,7 +136855,11 @@
       "Shape_G112": 1512.64,
       "Shape_G113": 1032.81,
       "Shape_G114": 0.0,
-      "Shape_G115": 1008.24
+      "Shape_G115": 1008.24,
+      "Shape_G116": 634.96,
+      "Shape_G117": 680.05,
+      "Shape_G118": 697.77,
+      "Shape_G119": 774.76
     },
     "Shape_G83": {
       "Shape_G1": 0.0,
@@ -135818,7 +136975,11 @@
       "Shape_G112": 1165.78,
       "Shape_G113": 424.58,
       "Shape_G114": 0.0,
-      "Shape_G115": 1115.96
+      "Shape_G115": 1115.96,
+      "Shape_G116": 709.95,
+      "Shape_G117": 703.27,
+      "Shape_G118": 691.27,
+      "Shape_G119": 689.64
     },
     "Shape_G84": {
       "Shape_G1": 0.0,
@@ -135934,7 +137095,11 @@
       "Shape_G112": 979.62,
       "Shape_G113": 238.42,
       "Shape_G114": 0.0,
-      "Shape_G115": 972.96
+      "Shape_G115": 972.96,
+      "Shape_G116": 898.62,
+      "Shape_G117": 892.18,
+      "Shape_G118": 879.39,
+      "Shape_G119": 875.8
     },
     "Shape_G85": {
       "Shape_G1": 0.0,
@@ -136050,7 +137215,11 @@
       "Shape_G112": 0.0,
       "Shape_G113": 0.0,
       "Shape_G114": 21.09,
-      "Shape_G115": 39.21
+      "Shape_G115": 39.21,
+      "Shape_G116": 449.06,
+      "Shape_G117": 530.16,
+      "Shape_G118": 560.92,
+      "Shape_G119": 449.83
     },
     "Shape_G86": {
       "Shape_G1": 0.0,
@@ -136166,7 +137335,11 @@
       "Shape_G112": 169.91,
       "Shape_G113": 299.33,
       "Shape_G114": 41.3,
-      "Shape_G115": 196.06
+      "Shape_G115": 196.06,
+      "Shape_G116": 604.62,
+      "Shape_G117": 585.29,
+      "Shape_G118": 540.28,
+      "Shape_G119": 490.35
     },
     "Shape_G87": {
       "Shape_G1": 0.0,
@@ -136282,7 +137455,11 @@
       "Shape_G112": 245.14,
       "Shape_G113": 837.86,
       "Shape_G114": 31.62,
-      "Shape_G115": 752.4
+      "Shape_G115": 752.4,
+      "Shape_G116": 635.52,
+      "Shape_G117": 650.27,
+      "Shape_G118": 656.98,
+      "Shape_G119": 698.78
     },
     "Shape_G88": {
       "Shape_G1": 0.0,
@@ -136398,7 +137575,11 @@
       "Shape_G112": 1541.18,
       "Shape_G113": 832.6,
       "Shape_G114": 0.0,
-      "Shape_G115": 1370.58
+      "Shape_G115": 1370.58,
+      "Shape_G116": 139.11,
+      "Shape_G117": 139.11,
+      "Shape_G118": 137.51,
+      "Shape_G119": 137.45
     },
     "Shape_G89": {
       "Shape_G1": 0.0,
@@ -136514,7 +137695,11 @@
       "Shape_G112": 1552.21,
       "Shape_G113": 902.96,
       "Shape_G114": 60.14,
-      "Shape_G115": 1390.33
+      "Shape_G115": 1390.33,
+      "Shape_G116": 339.79,
+      "Shape_G117": 319.12,
+      "Shape_G118": 311.53,
+      "Shape_G119": 318.94
     },
     "Shape_G90": {
       "Shape_G1": 0.0,
@@ -136630,7 +137815,11 @@
       "Shape_G112": 411.09,
       "Shape_G113": 299.4,
       "Shape_G114": 0.0,
-      "Shape_G115": 289.47
+      "Shape_G115": 289.47,
+      "Shape_G116": 158.67,
+      "Shape_G117": 229.26,
+      "Shape_G118": 257.39,
+      "Shape_G119": 367.2
     },
     "Shape_G91": {
       "Shape_G1": 0.0,
@@ -136746,7 +137935,11 @@
       "Shape_G112": 502.04,
       "Shape_G113": 372.56,
       "Shape_G114": 35.13,
-      "Shape_G115": 364.19
+      "Shape_G115": 364.19,
+      "Shape_G116": 450.0,
+      "Shape_G117": 423.15,
+      "Shape_G118": 357.81,
+      "Shape_G119": 273.4
     },
     "Shape_G92": {
       "Shape_G1": 0.0,
@@ -136862,7 +138055,11 @@
       "Shape_G112": 385.89,
       "Shape_G113": 1033.89,
       "Shape_G114": 53.61,
-      "Shape_G115": 922.39
+      "Shape_G115": 922.39,
+      "Shape_G116": 265.17,
+      "Shape_G117": 313.29,
+      "Shape_G118": 334.04,
+      "Shape_G119": 425.18
     },
     "Shape_G93": {
       "Shape_G1": 0.0,
@@ -136978,7 +138175,11 @@
       "Shape_G112": 213.44,
       "Shape_G113": 988.67,
       "Shape_G114": 16.94,
-      "Shape_G115": 896.85
+      "Shape_G115": 896.85,
+      "Shape_G116": 482.44,
+      "Shape_G117": 519.2,
+      "Shape_G118": 534.55,
+      "Shape_G119": 606.24
     },
     "Shape_G94": {
       "Shape_G1": 0.0,
@@ -137094,7 +138295,11 @@
       "Shape_G112": 148.07,
       "Shape_G113": 953.12,
       "Shape_G114": 27.28,
-      "Shape_G115": 869.63
+      "Shape_G115": 869.63,
+      "Shape_G116": 492.03,
+      "Shape_G117": 528.12,
+      "Shape_G118": 543.18,
+      "Shape_G119": 613.87
     },
     "Shape_G95": {
       "Shape_G1": 0.0,
@@ -137210,7 +138415,11 @@
       "Shape_G112": 563.45,
       "Shape_G113": 1359.36,
       "Shape_G114": 9.07,
-      "Shape_G115": 813.69
+      "Shape_G115": 813.69,
+      "Shape_G116": 2432.37,
+      "Shape_G117": 2430.65,
+      "Shape_G118": 2426.63,
+      "Shape_G119": 2426.39
     },
     "Shape_G96": {
       "Shape_G1": 0.0,
@@ -137326,7 +138535,11 @@
       "Shape_G112": 189.46,
       "Shape_G113": 955.23,
       "Shape_G114": 28.63,
-      "Shape_G115": 738.06
+      "Shape_G115": 738.06,
+      "Shape_G116": 2081.68,
+      "Shape_G117": 2076.78,
+      "Shape_G118": 2064.94,
+      "Shape_G119": 2055.09
     },
     "Shape_G97": {
       "Shape_G1": 0.0,
@@ -137442,7 +138655,11 @@
       "Shape_G112": 60.31,
       "Shape_G113": 907.73,
       "Shape_G114": 0.0,
-      "Shape_G115": 837.5
+      "Shape_G115": 837.5,
+      "Shape_G116": 503.92,
+      "Shape_G117": 539.21,
+      "Shape_G118": 553.94,
+      "Shape_G119": 623.41
     },
     "Shape_G98": {
       "Shape_G1": 0.0,
@@ -137558,7 +138775,11 @@
       "Shape_G112": 791.37,
       "Shape_G113": 68.25,
       "Shape_G114": 28.96,
-      "Shape_G115": 46.06
+      "Shape_G115": 46.06,
+      "Shape_G116": 1078.06,
+      "Shape_G117": 1063.38,
+      "Shape_G118": 1028.14,
+      "Shape_G119": 984.79
     },
     "Shape_G99": {
       "Shape_G1": 0.0,
@@ -137674,7 +138895,11 @@
       "Shape_G112": 757.16,
       "Shape_G113": 158.82,
       "Shape_G114": 0.0,
-      "Shape_G115": 88.08
+      "Shape_G115": 88.08,
+      "Shape_G116": 863.22,
+      "Shape_G117": 895.39,
+      "Shape_G118": 907.88,
+      "Shape_G119": 924.84
     },
     "Shape_G100": {
       "Shape_G1": 0.0,
@@ -137790,7 +139015,11 @@
       "Shape_G112": 669.94,
       "Shape_G113": 0.0,
       "Shape_G114": 5.71,
-      "Shape_G115": 32.85
+      "Shape_G115": 32.85,
+      "Shape_G116": 1181.36,
+      "Shape_G117": 1169.14,
+      "Shape_G118": 1140.05,
+      "Shape_G119": 1106.33
     },
     "Shape_G101": {
       "Shape_G1": 0.0,
@@ -137906,7 +139135,11 @@
       "Shape_G112": 645.87,
       "Shape_G113": 362.17,
       "Shape_G114": 92.06,
-      "Shape_G115": 383.65
+      "Shape_G115": 383.65,
+      "Shape_G116": 1243.66,
+      "Shape_G117": 1239.53,
+      "Shape_G118": 1231.21,
+      "Shape_G119": 1229.72
     },
     "Shape_G102": {
       "Shape_G1": 0.0,
@@ -138022,7 +139255,11 @@
       "Shape_G112": 461.08,
       "Shape_G113": 310.95,
       "Shape_G114": 0.0,
-      "Shape_G115": 69.72
+      "Shape_G115": 69.72,
+      "Shape_G116": 827.98,
+      "Shape_G117": 820.99,
+      "Shape_G118": 807.2,
+      "Shape_G119": 803.27
     },
     "Shape_G103": {
       "Shape_G1": 0.0,
@@ -138138,7 +139375,11 @@
       "Shape_G112": 371.67,
       "Shape_G113": 552.94,
       "Shape_G114": 0.01,
-      "Shape_G115": 556.35
+      "Shape_G115": 556.35,
+      "Shape_G116": 1556.58,
+      "Shape_G117": 1552.77,
+      "Shape_G118": 1544.48,
+      "Shape_G119": 1542.14
     },
     "Shape_G104": {
       "Shape_G1": 0.0,
@@ -138254,7 +139495,11 @@
       "Shape_G112": 945.88,
       "Shape_G113": 1038.76,
       "Shape_G114": 0.0,
-      "Shape_G115": 60.18
+      "Shape_G115": 60.18,
+      "Shape_G116": 1645.91,
+      "Shape_G117": 1662.68,
+      "Shape_G118": 1668.54,
+      "Shape_G119": 1700.54
     },
     "Shape_G105": {
       "Shape_G1": 0.0,
@@ -138370,7 +139615,11 @@
       "Shape_G112": 1002.58,
       "Shape_G113": 1461.8,
       "Shape_G114": 0.0,
-      "Shape_G115": 418.49
+      "Shape_G115": 418.49,
+      "Shape_G116": 2235.59,
+      "Shape_G117": 2250.33,
+      "Shape_G118": 2255.15,
+      "Shape_G119": 2282.2
     },
     "Shape_G106": {
       "Shape_G1": 0.0,
@@ -138486,7 +139735,11 @@
       "Shape_G112": 854.5,
       "Shape_G113": 1395.72,
       "Shape_G114": 69.47,
-      "Shape_G115": 466.19
+      "Shape_G115": 466.19,
+      "Shape_G116": 2262.42,
+      "Shape_G117": 2270.99,
+      "Shape_G118": 2273.45,
+      "Shape_G119": 2291.95
     },
     "Shape_G107": {
       "Shape_G1": 0.0,
@@ -138602,7 +139855,11 @@
       "Shape_G112": 620.75,
       "Shape_G113": 1328.7,
       "Shape_G114": 0.0,
-      "Shape_G115": 596.43
+      "Shape_G115": 596.43,
+      "Shape_G116": 2343.85,
+      "Shape_G117": 2343.85,
+      "Shape_G118": 2342.26,
+      "Shape_G119": 2345.46
     },
     "Shape_G108": {
       "Shape_G1": 0.0,
@@ -138718,7 +139975,11 @@
       "Shape_G112": 230.26,
       "Shape_G113": 365.92,
       "Shape_G114": 36.8,
-      "Shape_G115": 426.23
+      "Shape_G115": 426.23,
+      "Shape_G116": 1115.83,
+      "Shape_G117": 1128.42,
+      "Shape_G118": 1133.2,
+      "Shape_G119": 1163.54
     },
     "Shape_G109": {
       "Shape_G1": 0.0,
@@ -138834,7 +140095,11 @@
       "Shape_G112": 568.5,
       "Shape_G113": 1443.3,
       "Shape_G114": 49.79,
-      "Shape_G115": 1067.65
+      "Shape_G115": 1067.65,
+      "Shape_G116": 2585.05,
+      "Shape_G117": 2580.44,
+      "Shape_G118": 2568.9,
+      "Shape_G119": 2558.12
     },
     "Shape_G110": {
       "Shape_G1": 0.0,
@@ -138950,7 +140215,11 @@
       "Shape_G112": 1572.06,
       "Shape_G113": 830.86,
       "Shape_G114": 142.45,
-      "Shape_G115": 1716.78
+      "Shape_G115": 1716.78,
+      "Shape_G116": 704.64,
+      "Shape_G117": 675.11,
+      "Shape_G118": 600.41,
+      "Shape_G119": 483.64
     },
     "Shape_G111": {
       "Shape_G1": 0.0,
@@ -139066,7 +140335,11 @@
       "Shape_G112": 0.0,
       "Shape_G113": 737.33,
       "Shape_G114": 40.65,
-      "Shape_G115": 975.45
+      "Shape_G115": 975.45,
+      "Shape_G116": 1952.9,
+      "Shape_G117": 1942.91,
+      "Shape_G118": 1918.16,
+      "Shape_G119": 1886.89
     },
     "Shape_G112": {
       "Shape_G1": 0.0,
@@ -139182,7 +140455,11 @@
       "Shape_G111": 0.0,
       "Shape_G113": 741.2,
       "Shape_G114": 0.0,
-      "Shape_G115": 915.87
+      "Shape_G115": 915.87,
+      "Shape_G116": 1938.52,
+      "Shape_G117": 1929.47,
+      "Shape_G118": 1907.14,
+      "Shape_G119": 1880.08
     },
     "Shape_G113": {
       "Shape_G1": 0.0,
@@ -139298,7 +140575,11 @@
       "Shape_G111": 737.33,
       "Shape_G112": 741.2,
       "Shape_G114": 42.33,
-      "Shape_G115": 1087.95
+      "Shape_G115": 1087.95,
+      "Shape_G116": 1260.73,
+      "Shape_G117": 1229.76,
+      "Shape_G118": 1205.53,
+      "Shape_G119": 1162.16
     },
     "Shape_G114": {
       "Shape_G1": 0.0,
@@ -139414,7 +140695,11 @@
       "Shape_G111": 40.65,
       "Shape_G112": 0.0,
       "Shape_G113": 42.33,
-      "Shape_G115": 53.26
+      "Shape_G115": 53.26,
+      "Shape_G116": 117.01,
+      "Shape_G117": 115.54,
+      "Shape_G118": 133.49,
+      "Shape_G119": 112.19
     },
     "Shape_G115": {
       "Shape_G1": 0.0,
@@ -139530,7 +140815,491 @@
       "Shape_G111": 975.45,
       "Shape_G112": 915.87,
       "Shape_G113": 1087.95,
-      "Shape_G114": 53.26
+      "Shape_G114": 53.26,
+      "Shape_G116": 1716.59,
+      "Shape_G117": 1731.9,
+      "Shape_G118": 1744.97,
+      "Shape_G119": 1782.9
+    },
+    "Shape_G116": {
+      "Shape_G1": 82.49,
+      "Shape_G2": 260.98,
+      "Shape_G3": 525.03,
+      "Shape_G4": 1113.81,
+      "Shape_G5": 450.0,
+      "Shape_G6": 482.81,
+      "Shape_G7": 538.04,
+      "Shape_G8": 2322.81,
+      "Shape_G9": 2524.21,
+      "Shape_G10": 2382.69,
+      "Shape_G11": 543.99,
+      "Shape_G12": 1728.56,
+      "Shape_G13": 1776.42,
+      "Shape_G14": 955.32,
+      "Shape_G15": 1975.84,
+      "Shape_G16": 2355.31,
+      "Shape_G17": 690.69,
+      "Shape_G18": 1044.49,
+      "Shape_G19": 1179.33,
+      "Shape_G20": 1094.32,
+      "Shape_G21": 1013.71,
+      "Shape_G22": 955.76,
+      "Shape_G23": 1086.88,
+      "Shape_G24": 1311.56,
+      "Shape_G25": 1295.75,
+      "Shape_G26": 1079.47,
+      "Shape_G27": 1157.8,
+      "Shape_G28": 1275.0,
+      "Shape_G29": 661.5,
+      "Shape_G30": 469.56,
+      "Shape_G31": 417.69,
+      "Shape_G32": 531.38,
+      "Shape_G33": 681.71,
+      "Shape_G34": 440.92,
+      "Shape_G35": 354.91,
+      "Shape_G36": 365.72,
+      "Shape_G37": 201.88,
+      "Shape_G38": 638.28,
+      "Shape_G39": 928.58,
+      "Shape_G40": 272.97,
+      "Shape_G41": 403.72,
+      "Shape_G42": 192.49,
+      "Shape_G43": 924.35,
+      "Shape_G44": 1278.98,
+      "Shape_G45": 1755.9,
+      "Shape_G46": 772.28,
+      "Shape_G47": 1041.34,
+      "Shape_G48": 1008.34,
+      "Shape_G49": 1818.76,
+      "Shape_G50": 2206.29,
+      "Shape_G51": 2257.1,
+      "Shape_G52": 2015.69,
+      "Shape_G53": 277.67,
+      "Shape_G54": 611.45,
+      "Shape_G55": 2524.03,
+      "Shape_G56": 1578.2,
+      "Shape_G57": 2049.17,
+      "Shape_G58": 1932.69,
+      "Shape_G59": 1339.1,
+      "Shape_G60": 1325.89,
+      "Shape_G61": 1210.34,
+      "Shape_G62": 843.58,
+      "Shape_G63": 910.08,
+      "Shape_G64": 482.81,
+      "Shape_G65": 932.29,
+      "Shape_G66": 1061.55,
+      "Shape_G67": 744.03,
+      "Shape_G68": 143.21,
+      "Shape_G69": 1321.62,
+      "Shape_G70": 1987.36,
+      "Shape_G71": 1221.89,
+      "Shape_G72": 2475.02,
+      "Shape_G73": 327.08,
+      "Shape_G74": 149.99,
+      "Shape_G75": 82.72,
+      "Shape_G76": 2346.44,
+      "Shape_G77": 2348.29,
+      "Shape_G78": 2481.57,
+      "Shape_G79": 1567.15,
+      "Shape_G80": 125.81,
+      "Shape_G81": 1930.05,
+      "Shape_G82": 634.96,
+      "Shape_G83": 709.95,
+      "Shape_G84": 898.62,
+      "Shape_G85": 449.06,
+      "Shape_G86": 604.62,
+      "Shape_G87": 635.52,
+      "Shape_G88": 139.11,
+      "Shape_G89": 339.79,
+      "Shape_G90": 158.67,
+      "Shape_G91": 450.0,
+      "Shape_G92": 265.17,
+      "Shape_G93": 482.44,
+      "Shape_G94": 492.03,
+      "Shape_G95": 2432.37,
+      "Shape_G96": 2081.68,
+      "Shape_G97": 503.92,
+      "Shape_G98": 1078.06,
+      "Shape_G99": 863.22,
+      "Shape_G100": 1181.36,
+      "Shape_G101": 1243.66,
+      "Shape_G102": 827.98,
+      "Shape_G103": 1556.58,
+      "Shape_G104": 1645.91,
+      "Shape_G105": 2235.59,
+      "Shape_G106": 2262.42,
+      "Shape_G107": 2343.85,
+      "Shape_G108": 1115.83,
+      "Shape_G109": 2585.05,
+      "Shape_G110": 704.64,
+      "Shape_G111": 1952.9,
+      "Shape_G112": 1938.52,
+      "Shape_G113": 1260.73,
+      "Shape_G114": 117.01,
+      "Shape_G115": 1716.59,
+      "Shape_G117": 46.23,
+      "Shape_G118": 58.92,
+      "Shape_G119": 168.68
+    },
+    "Shape_G117": {
+      "Shape_G1": 82.49,
+      "Shape_G2": 242.73,
+      "Shape_G3": 498.92,
+      "Shape_G4": 1097.45,
+      "Shape_G5": 423.15,
+      "Shape_G6": 459.03,
+      "Shape_G7": 579.81,
+      "Shape_G8": 2318.3,
+      "Shape_G9": 2520.2,
+      "Shape_G10": 2376.65,
+      "Shape_G11": 568.98,
+      "Shape_G12": 1721.79,
+      "Shape_G13": 1766.54,
+      "Shape_G14": 989.48,
+      "Shape_G15": 1972.92,
+      "Shape_G16": 2346.64,
+      "Shape_G17": 709.93,
+      "Shape_G18": 1030.11,
+      "Shape_G19": 1165.92,
+      "Shape_G20": 1082.17,
+      "Shape_G21": 1004.58,
+      "Shape_G22": 947.04,
+      "Shape_G23": 1073.58,
+      "Shape_G24": 1298.1,
+      "Shape_G25": 1285.16,
+      "Shape_G26": 1072.2,
+      "Shape_G27": 1152.48,
+      "Shape_G28": 1270.97,
+      "Shape_G29": 652.55,
+      "Shape_G30": 438.96,
+      "Shape_G31": 386.94,
+      "Shape_G32": 504.31,
+      "Shape_G33": 665.82,
+      "Shape_G34": 409.99,
+      "Shape_G35": 355.66,
+      "Shape_G36": 363.16,
+      "Shape_G37": 181.73,
+      "Shape_G38": 653.27,
+      "Shape_G39": 958.56,
+      "Shape_G40": 339.5,
+      "Shape_G41": 428.6,
+      "Shape_G42": 236.52,
+      "Shape_G43": 960.04,
+      "Shape_G44": 1278.89,
+      "Shape_G45": 1754.44,
+      "Shape_G46": 809.59,
+      "Shape_G47": 1029.84,
+      "Shape_G48": 999.77,
+      "Shape_G49": 1819.46,
+      "Shape_G50": 2206.29,
+      "Shape_G51": 2262.92,
+      "Shape_G52": 2013.62,
+      "Shape_G53": 357.07,
+      "Shape_G54": 579.79,
+      "Shape_G55": 2521.72,
+      "Shape_G56": 1571.95,
+      "Shape_G57": 2040.36,
+      "Shape_G58": 1927.6,
+      "Shape_G59": 1324.46,
+      "Shape_G60": 1336.11,
+      "Shape_G61": 1202.24,
+      "Shape_G62": 829.06,
+      "Shape_G63": 910.51,
+      "Shape_G64": 459.03,
+      "Shape_G65": 941.71,
+      "Shape_G66": 1060.67,
+      "Shape_G67": 755.8,
+      "Shape_G68": 145.33,
+      "Shape_G69": 1328.16,
+      "Shape_G70": 1987.36,
+      "Shape_G71": 1212.21,
+      "Shape_G72": 2475.08,
+      "Shape_G73": 407.23,
+      "Shape_G74": 223.34,
+      "Shape_G75": 120.91,
+      "Shape_G76": 2339.49,
+      "Shape_G77": 2340.63,
+      "Shape_G78": 2479.89,
+      "Shape_G79": 1562.11,
+      "Shape_G80": 103.53,
+      "Shape_G81": 1930.05,
+      "Shape_G82": 680.05,
+      "Shape_G83": 703.27,
+      "Shape_G84": 892.18,
+      "Shape_G85": 530.16,
+      "Shape_G86": 585.29,
+      "Shape_G87": 650.27,
+      "Shape_G88": 139.11,
+      "Shape_G89": 319.12,
+      "Shape_G90": 229.26,
+      "Shape_G91": 423.15,
+      "Shape_G92": 313.29,
+      "Shape_G93": 519.2,
+      "Shape_G94": 528.12,
+      "Shape_G95": 2430.65,
+      "Shape_G96": 2076.78,
+      "Shape_G97": 539.21,
+      "Shape_G98": 1063.38,
+      "Shape_G99": 895.39,
+      "Shape_G100": 1169.14,
+      "Shape_G101": 1239.53,
+      "Shape_G102": 820.99,
+      "Shape_G103": 1552.77,
+      "Shape_G104": 1662.68,
+      "Shape_G105": 2250.33,
+      "Shape_G106": 2270.99,
+      "Shape_G107": 2343.85,
+      "Shape_G108": 1128.42,
+      "Shape_G109": 2580.44,
+      "Shape_G110": 675.11,
+      "Shape_G111": 1942.91,
+      "Shape_G112": 1929.47,
+      "Shape_G113": 1229.76,
+      "Shape_G114": 115.54,
+      "Shape_G115": 1731.9,
+      "Shape_G116": 46.23,
+      "Shape_G118": 19.71,
+      "Shape_G119": 136.39
+    },
+    "Shape_G118": {
+      "Shape_G1": 80.89,
+      "Shape_G2": 210.58,
+      "Shape_G3": 483.21,
+      "Shape_G4": 1057.66,
+      "Shape_G5": 357.81,
+      "Shape_G6": 402.64,
+      "Shape_G7": 596.66,
+      "Shape_G8": 2307.23,
+      "Shape_G9": 2510.24,
+      "Shape_G10": 2361.6,
+      "Shape_G11": 579.84,
+      "Shape_G12": 1705.64,
+      "Shape_G13": 1742.27,
+      "Shape_G14": 1002.56,
+      "Shape_G15": 1966.27,
+      "Shape_G16": 2324.87,
+      "Shape_G17": 718.09,
+      "Shape_G18": 995.81,
+      "Shape_G19": 1133.72,
+      "Shape_G20": 1053.54,
+      "Shape_G21": 984.19,
+      "Shape_G22": 927.99,
+      "Shape_G23": 1041.99,
+      "Shape_G24": 1265.42,
+      "Shape_G25": 1259.99,
+      "Shape_G26": 1056.34,
+      "Shape_G27": 1141.35,
+      "Shape_G28": 1262.81,
+      "Shape_G29": 635.08,
+      "Shape_G30": 361.72,
+      "Shape_G31": 309.42,
+      "Shape_G32": 437.56,
+      "Shape_G33": 629.59,
+      "Shape_G34": 331.79,
+      "Shape_G35": 357.48,
+      "Shape_G36": 361.39,
+      "Shape_G37": 149.56,
+      "Shape_G38": 660.06,
+      "Shape_G39": 970.13,
+      "Shape_G40": 365.76,
+      "Shape_G41": 440.34,
+      "Shape_G42": 257.17,
+      "Shape_G43": 987.73,
+      "Shape_G44": 1277.76,
+      "Shape_G45": 1751.73,
+      "Shape_G46": 824.17,
+      "Shape_G47": 1003.14,
+      "Shape_G48": 980.85,
+      "Shape_G49": 1819.01,
+      "Shape_G50": 2204.83,
+      "Shape_G51": 2264.32,
+      "Shape_G52": 2009.1,
+      "Shape_G53": 298.78,
+      "Shape_G54": 499.13,
+      "Shape_G55": 2516.11,
+      "Shape_G56": 1557.39,
+      "Shape_G57": 2018.52,
+      "Shape_G58": 1915.44,
+      "Shape_G59": 1288.59,
+      "Shape_G60": 1337.05,
+      "Shape_G61": 1183.78,
+      "Shape_G62": 795.32,
+      "Shape_G63": 910.42,
+      "Shape_G64": 402.64,
+      "Shape_G65": 945.58,
+      "Shape_G66": 1059.01,
+      "Shape_G67": 761.03,
+      "Shape_G68": 152.31,
+      "Shape_G69": 1330.4,
+      "Shape_G70": 1985.9,
+      "Shape_G71": 1189.62,
+      "Shape_G72": 2473.9,
+      "Shape_G73": 437.69,
+      "Shape_G74": 252.23,
+      "Shape_G75": 144.52,
+      "Shape_G76": 2322.14,
+      "Shape_G77": 2321.47,
+      "Shape_G78": 2475.92,
+      "Shape_G79": 1550.66,
+      "Shape_G80": 80.89,
+      "Shape_G81": 1928.45,
+      "Shape_G82": 697.77,
+      "Shape_G83": 691.27,
+      "Shape_G84": 879.39,
+      "Shape_G85": 560.92,
+      "Shape_G86": 540.28,
+      "Shape_G87": 656.98,
+      "Shape_G88": 137.51,
+      "Shape_G89": 311.53,
+      "Shape_G90": 257.39,
+      "Shape_G91": 357.81,
+      "Shape_G92": 334.04,
+      "Shape_G93": 534.55,
+      "Shape_G94": 543.18,
+      "Shape_G95": 2426.63,
+      "Shape_G96": 2064.94,
+      "Shape_G97": 553.94,
+      "Shape_G98": 1028.14,
+      "Shape_G99": 907.88,
+      "Shape_G100": 1140.05,
+      "Shape_G101": 1231.21,
+      "Shape_G102": 807.2,
+      "Shape_G103": 1544.48,
+      "Shape_G104": 1668.54,
+      "Shape_G105": 2255.15,
+      "Shape_G106": 2273.45,
+      "Shape_G107": 2342.26,
+      "Shape_G108": 1133.2,
+      "Shape_G109": 2568.9,
+      "Shape_G110": 600.41,
+      "Shape_G111": 1918.16,
+      "Shape_G112": 1907.14,
+      "Shape_G113": 1205.53,
+      "Shape_G114": 133.49,
+      "Shape_G115": 1744.97,
+      "Shape_G116": 58.92,
+      "Shape_G117": 19.71,
+      "Shape_G119": 51.26
+    },
+    "Shape_G119": {
+      "Shape_G1": 80.83,
+      "Shape_G2": 206.13,
+      "Shape_G3": 472.68,
+      "Shape_G4": 1005.67,
+      "Shape_G5": 273.4,
+      "Shape_G6": 336.57,
+      "Shape_G7": 672.06,
+      "Shape_G8": 2297.9,
+      "Shape_G9": 2502.25,
+      "Shape_G10": 2345.42,
+      "Shape_G11": 636.67,
+      "Shape_G12": 1690.03,
+      "Shape_G13": 1712.62,
+      "Shape_G14": 1062.3,
+      "Shape_G15": 1964.62,
+      "Shape_G16": 2297.41,
+      "Shape_G17": 763.9,
+      "Shape_G18": 954.57,
+      "Shape_G19": 1094.55,
+      "Shape_G20": 1021.69,
+      "Shape_G21": 967.73,
+      "Shape_G22": 914.77,
+      "Shape_G23": 1004.99,
+      "Shape_G24": 1224.11,
+      "Shape_G25": 1231.95,
+      "Shape_G26": 1046.64,
+      "Shape_G27": 1137.67,
+      "Shape_G28": 1261.36,
+      "Shape_G29": 629.64,
+      "Shape_G30": 243.1,
+      "Shape_G31": 192.2,
+      "Shape_G32": 344.54,
+      "Shape_G33": 593.02,
+      "Shape_G34": 211.19,
+      "Shape_G35": 392.04,
+      "Shape_G36": 380.93,
+      "Shape_G37": 148.13,
+      "Shape_G38": 702.1,
+      "Shape_G39": 1025.0,
+      "Shape_G40": 470.24,
+      "Shape_G41": 503.06,
+      "Shape_G42": 350.39,
+      "Shape_G43": 1064.14,
+      "Shape_G44": 1286.03,
+      "Shape_G45": 1751.67,
+      "Shape_G46": 890.06,
+      "Shape_G47": 975.37,
+      "Shape_G48": 966.99,
+      "Shape_G49": 1827.81,
+      "Shape_G50": 2209.09,
+      "Shape_G51": 2279.02,
+      "Shape_G52": 2008.93,
+      "Shape_G53": 220.7,
+      "Shape_G54": 368.01,
+      "Shape_G55": 2514.76,
+      "Shape_G56": 1545.31,
+      "Shape_G57": 1991.88,
+      "Shape_G58": 1905.62,
+      "Shape_G59": 1241.43,
+      "Shape_G60": 1316.93,
+      "Shape_G61": 1168.09,
+      "Shape_G62": 758.67,
+      "Shape_G63": 925.11,
+      "Shape_G64": 336.57,
+      "Shape_G65": 974.13,
+      "Shape_G66": 1065.8,
+      "Shape_G67": 796.23,
+      "Shape_G68": 222.49,
+      "Shape_G69": 1350.66,
+      "Shape_G70": 1990.56,
+      "Shape_G71": 1166.75,
+      "Shape_G72": 2478.8,
+      "Shape_G73": 551.69,
+      "Shape_G74": 363.6,
+      "Shape_G75": 248.84,
+      "Shape_G76": 2302.19,
+      "Shape_G77": 2298.45,
+      "Shape_G78": 2475.77,
+      "Shape_G79": 1543.88,
+      "Shape_G80": 107.35,
+      "Shape_G81": 1931.04,
+      "Shape_G82": 774.76,
+      "Shape_G83": 689.64,
+      "Shape_G84": 875.8,
+      "Shape_G85": 449.83,
+      "Shape_G86": 490.35,
+      "Shape_G87": 698.78,
+      "Shape_G88": 137.45,
+      "Shape_G89": 318.94,
+      "Shape_G90": 367.2,
+      "Shape_G91": 273.4,
+      "Shape_G92": 425.18,
+      "Shape_G93": 606.24,
+      "Shape_G94": 613.87,
+      "Shape_G95": 2426.39,
+      "Shape_G96": 2055.09,
+      "Shape_G97": 623.41,
+      "Shape_G98": 984.79,
+      "Shape_G99": 924.84,
+      "Shape_G100": 1106.33,
+      "Shape_G101": 1229.72,
+      "Shape_G102": 803.27,
+      "Shape_G103": 1542.14,
+      "Shape_G104": 1700.54,
+      "Shape_G105": 2282.2,
+      "Shape_G106": 2291.95,
+      "Shape_G107": 2345.46,
+      "Shape_G108": 1163.54,
+      "Shape_G109": 2558.12,
+      "Shape_G110": 483.64,
+      "Shape_G111": 1886.89,
+      "Shape_G112": 1880.08,
+      "Shape_G113": 1162.16,
+      "Shape_G114": 112.19,
+      "Shape_G115": 1782.9,
+      "Shape_G116": 168.68,
+      "Shape_G117": 136.39,
+      "Shape_G118": 51.26
     }
   },
   "nesting_tree": [
@@ -139558,6 +141327,32 @@
         1516.61
       ],
       "area_mm2": 0.0,
+      "children": []
+    },
+    {
+      "entity_id": "E_0671",
+      "type": "LWPOLYLINE",
+      "length_mm": 335.56,
+      "bbox_mm": [
+        1241.42,
+        2632.49,
+        1305.01,
+        2729.45
+      ],
+      "area_mm2": 1850.61,
+      "children": []
+    },
+    {
+      "entity_id": "E_0672",
+      "type": "LWPOLYLINE",
+      "length_mm": 54.95,
+      "bbox_mm": [
+        1323.7,
+        2632.49,
+        1337.44,
+        2646.23
+      ],
+      "area_mm2": 188.69,
       "children": []
     }
   ]
