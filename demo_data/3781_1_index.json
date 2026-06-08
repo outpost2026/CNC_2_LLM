@@ -6,7 +6,7 @@
     "dxf_version": "AC1015",
     "file_size_bytes": 12355,
     "md5": "5a874b8054eacf51ad6fdaa3cc1b317d",
-    "timestamp": "2026-06-08T09:37:15",
+    "timestamp": "2026-06-08T10:00:07",
     "libraries_available": {
       "shapely": true,
       "scipy": true,
@@ -50,7 +50,7 @@
       "max_degree": 22,
       "graph_diameter": 23,
       "laplacian_eigenvalues_top10": [
-        -0.0,
+        0.0,
         2.066952,
         4.628141,
         6.770642,

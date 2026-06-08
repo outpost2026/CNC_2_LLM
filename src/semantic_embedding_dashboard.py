@@ -58,12 +58,6 @@ def _render_png_bytes(entities, semantic, tool_config):
         ys = [v[1] for v in verts]
         ax.plot(xs, ys, color=color, linewidth=0.9, alpha=0.85)
 
-    from matplotlib.patches import Rectangle
-    stock_w, stock_h = 2900.0, 1220.0
-    ax.add_patch(Rectangle((0, 0), stock_w, stock_h, fill=False, edgecolor="#475569",
-                           linewidth=1.5, linestyle="--",
-                           label=f"Stock: {stock_w:.0f}x{stock_h:.0f} mm"))
-
     if semantic:
         zones = semantic.get("zones", [])
         for z in zones:
