@@ -1,0 +1,148 @@
+{
+  "handoff_version": "2.4.0",
+  "timestamp": "2026-06-08T18:00:00Z",
+  "branch": "feature/PNG_Trimming_vector",
+  "status": "ACTIVE — development started",
+
+  "current_state": {
+    "version": "2.3.0",
+    "what_works": [
+      "CLI indexer: 6 demo DXF files process without crash",
+      "PNG visualization: fixed (empty PNG + rectangle artifact)",
+      "Streamlit dashboard: functional with drag-drop, 2D viz, download",
+      "ML feature vector: 55 features (pre-trim)",
+      "Layer card CSV: per-color-index CAM-import format",
+      "Semantic embedding dashboard: functional"
+    ],
+    "known_issues": [
+      {"id": "M1", "severity": "critical", "desc": "Point Density Bug — 58 points on rectangle, 36 on circle", "detected_by": "PNG handoff (Gemini Flash 3.5)"},
+      {"id": "M2", "severity": "critical", "desc": "JSON expansion — 7.2 MB for 78 entities (80 % = vertices)", "detected_by": "PNG handoff"},
+      {"id": "M3", "severity": "high", "desc": "Containment Blindness — flat entity list, no hierarchy", "detected_by": "PNG handoff"},
+      {"id": "M4", "severity": "medium", "desc": "Perpendicular Detection — 0 pairs on orthogonal geometry", "detected_by": "PNG handoff"},
+      {"id": "M5", "severity": "medium", "desc": "Zone False Positive — single-entity zone in arbyd_v1", "detected_by": "PNG handoff"},
+      {"id": "M6", "severity": "low", "desc": "min_feature_width always 0 (bug M2 from SNR)", "detected_by": "SNR analysis"},
+      {"id": "M7", "severity": "low", "desc": "Golden master tests fail (P1/P2 output format change)", "detected_by": "manual test run"}
+    ],
+    "documentation": {
+      "methodology": "docs/methodology/METHODOLOGY_MASTER_V1.md",
+      "snr_analysis": "docs/methodology/SNR_analyza_data_trimming.md",
+      "semantic_correlation": "docs/methodology/semanticka_embedding_korelace.md",
+      "png_handoff_json": "docs/reports/Refraktorizace_parseru_DXF_indexer_v2.3.0.json",
+      "png_handoff_txt": "docs/reports/Refraktorizace_parseru_DXF_indexer_v2.3.0.txt",
+      "dev_assessment": "docs/reports/DEVELOPER_ASSESSMENT_PNG_TRIMMING_BRANCH.md",
+      "github_guide": "docs/reports/GITHUB_INTEGRATION_GUIDE.txt",
+      "marginal_analysis": "docs/reports/MARGINAL_ANALYSIS_LOCAL_VS_GITHUB.txt",
+      "handoff_history": "docs/handoffs/dev_handoff_v2.2_to_v2.3.json",
+      "project_map": "docs/PROJEKTOVA_MAPA.md"
+    }
+  },
+
+  "active_branches": [
+    {"name": "main", "purpose": "Production baseline v2.2.0", "status": "stable"},
+    {"name": "feature/p0-remove-nondeterminism", "purpose": "P0-P2 geometry + tool conflict fixes", "status": "merged into SNR_optimalization"},
+    {"name": "feature/semantic_embedding", "purpose": "Semantic embedding dashboard + PNG viz fixes", "status": "merged into SNR_optimalization"},
+    {"name": "feature/SNR_optimalization", "purpose": "Trimming branch — SNR analysis + handoff reports", "status": "active (parent of PNG_Trimming_vector)"},
+    {"name": "feature/PNG_Trimming_vector", "purpose": "v2.4.X development — geometry optimization, triggers, containment tree", "status": "CURRENT"}
+  ],
+
+  "development_vectors": {
+    "primary_vector": {
+      "name": "PNG Trimming — geometrická optimalizace",
+      "source": "docs/reports/Refraktorizace_parseru_DXF_indexer_v2.3.0.json + .txt",
+      "method": "Multimodalní analýza: Gemini Flash 3.5 (PNG) → DeepSeek V4 (JSON/CSV)",
+      "discoveries": [
+        "Kolineární body (58 na obdélník) — RDP simplification nutná",
+        "Kružnice aproximované 36-body — typ CIRCLE nutný",
+        "Chybí hierarchie entit — containment tree nutný",
+        "O(N²) proximity škáluje špatně — KD-tree nutný",
+        "4 profily (production, hybrid, matrix, artistic) pro trigger engine"
+      ]
+    },
+    "secondary_vector": {
+      "name": "SNR Data Trimming — ML featur očista",
+      "source": "docs/methodology/SNR_analyza_data_trimming.md",
+      "method": "Statistická SNR klasifikace 27 modulů, 55 featů",
+      "actions": [
+        "Odstranit 8 šumových featů (max_bulge_any, solidity, boundary_length, ...)",
+        "Přidat 7 high-SNR featů (cut_density, sharp_corners_per_meter, ...)",
+        "P3 TopoSanitizer (make_valid) — zpřesnění délek",
+        "Základní E_confidence výpočet (bez --strict)"
+      ]
+    }
+  },
+
+  "implementation_plan": {
+    "phase_0_foundation": {
+      "duration": "dny 1–4",
+      "tasks": [
+        {"id": "0.1", "task": "RDP collinearity culling (epsilon 0.01 mm)", "effort": "2 dny"},
+        {"id": "0.2", "task": "CIRCLE/ARC preservation (typ místo polygonu)", "effort": "1 den"},
+        {"id": "0.3", "task": "Light JSON mód: odstranit vertices z výchozího outputu", "effort": "1 den"}
+      ],
+      "exit_criterion": "fluenz_xl: vertices < 500, JSON < 500 KB"
+    },
+    "phase_1_topology": {
+      "duration": "dny 5–8",
+      "tasks": [
+        {"id": "1.1", "task": "Containment tree (mother board, depth levels)", "effort": "2 dny"},
+        {"id": "1.2", "task": "KD-tree proximity (nahradit O(N²))", "effort": "1.5 dne"},
+        {"id": "1.3", "task": "Fix perpendicular_pairs (non-intersecting)", "effort": "0.5 dne"},
+        {"id": "1.4", "task": "Zone detection: min 3 entities", "effort": "0.5 dne"}
+      ],
+      "exit_criterion": "botanic_vse < 3s, 26ks_skladba mother board OK"
+    },
+    "phase_2_triggers": {
+      "duration": "dny 9–11",
+      "tasks": [
+        {"id": "2.1", "task": "Trigger engine (4 profily)", "effort": "1.5 dne"},
+        {"id": "2.2", "task": "matrix_perforation → slot_milling", "effort": "0.5 dne"},
+        {"id": "2.3", "task": "artistic_engraving panel_type", "effort": "0.5 dne"},
+        {"id": "2.4", "task": "ML feature trim (−8 +7 featů)", "effort": "0.5 dne"}
+      ],
+      "exit_criterion": "fluenz_xl slot_milling, botanic_vse artistic_engraving"
+    },
+    "phase_3_polish": {
+      "duration": "dny 12–14",
+      "tasks": [
+        {"id": "3.1", "task": "min_feature_width estimation (gap-based)", "effort": "0.5 dne"},
+        {"id": "3.2", "task": "E_confidence basic (bez --strict)", "effort": "0.5 dne"},
+        {"id": "3.3", "task": "Zlatý master pro 6 DXF + smoke testy", "effort": "1 den"},
+        {"id": "3.4", "task": "Verze bump 2.3.0 → 2.4.0 + dokumentace", "effort": "0.5 dne"}
+      ],
+      "exit_criterion": "6 DXF bez regression, MAPE baseline změřen"
+    }
+  },
+
+  "production_threshold": {
+    "gcp_demo_ready": {
+      "after_phase": "Fáze 1 (den ~8)",
+      "reason": "JSON < 500 KB, geometrie korektní, containment tree funkční",
+      "risks_remaining": [
+        "Trigger engine neaktivní (chybí profilové přepínání)",
+        "ML featur vektor stále obsahuje šum",
+        "E_confidence neimplementováno"
+      ]
+    },
+    "production_deploy_ready": {
+      "after_phase": "Fáze 3 (den ~14)",
+      "reason": "Všechny 4 fáze hotovy, zlatý master stabilní, all 6 DXF OK",
+      "target_infrastructure": "GCP Cloud Run (serverless container)",
+      "odo_integration": "Možná po fázi 3 (JSON output konzistentní pro Odoo ERP)"
+    }
+  },
+
+  "deferred_to_v2_5_0": [
+    {"feature": "Kinematic correction (travel time, acceleration)", "reason": "Vyžaduje terénní výzkum — reálná měření na stroji"},
+    {"feature": "TSP solver pro optimální cutting order", "reason": "Závisí na kinematických datech"},
+    {"feature": "--strict CLI flag (abort na hypothesis)", "reason": "Nízká priorita — málo empirical dat"},
+    {"feature": "Delta + varint komprese JSON", "reason": "Nice-to-have, neblokuje nasazení"},
+    {"feature": "CI/CD GitHub Actions pipeline", "reason": "Infrastrukturní — neovlivňuje funkcionalitu"}
+  ],
+
+  "developer_assessment_summary": {
+    "quantitative_score": "82.3 % (B+)",
+    "strongest_areas": ["Multi-LLM orchestrace (91.7%)", "Git learning curve (98.3%)", "Dokumentační disciplína"],
+    "weakest_areas": ["Test-first (DR7) nedodržen", "CI/CD chybí", "Občas hardcoded hodnoty"],
+    "recommendation": "Zavést pre-commit hook (blacklist + golden master), ADD-TEST prompt před každým taskem"
+  }
+}
