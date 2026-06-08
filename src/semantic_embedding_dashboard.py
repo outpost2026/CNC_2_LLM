@@ -212,11 +212,6 @@ def _build_llm_prompt(result, file_path, fname, file_hash, png_bytes, layer_card
 ## INSTRUCTION for Multimodal LLM:
 You are analyzing a DXF CNC drawing rendered as a 2D PNG visualization.
 Use the numerical data ABOVE as ground truth.
-Describe what you SEE in the PNG — spatial layout, color patterns,
-entity distribution, zones, anomalies.
-DO NOT infer. DO NOT assign tools. DO NOT estimate time.
-Only describe observable facts that are directly supported by the
-numerical data above or visible in the PNG.
 """
     return prompt
 
