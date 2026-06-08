@@ -37,69 +37,21 @@ st.markdown("<p style='text-align:center; color:#6B7280; font-size:13px;'>Drag &
 
 # ── Helper functions (must be defined before UI logic) ──
 
-def _render_png_bytes(dxf_path, file_bytes, semantic, tool_config):
+def _render_png_bytes(entities, semantic, tool_config):
     try:
         from dxf_geometry_indexer_v2 import _VIZ_COLORS, _ACI_COLOR_NAMES
-        import ezdxf as _ezdxf
     except Exception:
         return None
-
-    try:
-        doc = _ezdxf.readfile(str(dxf_path))
-    except Exception:
-        try:
-            tmp2 = tempfile.NamedTemporaryFile(suffix=".dxf", delete=False)
-            tmp2.write(file_bytes)
-            tmp2.close()
-            doc = _ezdxf.readfile(tmp2.name)
-            os.unlink(tmp2.name)
-        except Exception:
-            return None
-
-    msp = doc.modelspace()
-    layer_colors = {l.dxf.name: l.color for l in doc.layers if hasattr(l.dxf, 'color')}
 
     fig, ax = plt.subplots(figsize=(19.2, 10.8), facecolor="#1E293B")
     ax.set_facecolor("#0F172A")
     seen_colors = set()
 
-    for entity in msp:
-        dtype = entity.dxftype()
-        verts = None
-        try:
-            if dtype == 'LINE':
-                s, e = entity.dxf.start, entity.dxf.end
-                verts = [(s.x, s.y), (e.x, e.y)]
-            elif dtype in ('LWPOLYLINE', 'POLYLINE'):
-                verts = [(p[0], p[1]) for p in entity.get_points()] if hasattr(entity, 'get_points') else [(v[0], v[1]) for v in entity.vertices]
-            elif dtype == 'CIRCLE':
-                r = entity.dxf.radius
-                cx, cy = entity.dxf.center.x, entity.dxf.center.y
-                verts = [(cx + r * math.cos(2 * math.pi * i / 48), cy + r * math.sin(2 * math.pi * i / 48)) for i in range(49)]
-            elif dtype == 'ARC':
-                r = entity.dxf.radius
-                sd, ed_ang = entity.dxf.start_angle, entity.dxf.end_angle
-                ar = math.radians(ed_ang - sd)
-                if ar < 0:
-                    ar += 2 * math.pi
-                cx, cy = entity.dxf.center.x, entity.dxf.center.y
-                n = max(12, int(ar / 0.08))
-                verts = [(cx + r * math.cos(math.radians(sd) + ar * i / n), cy + r * math.sin(math.radians(sd) + ar * i / n)) for i in range(n + 1)]
-            elif dtype in ('SPLINE', 'ELLIPSE'):
-                try:
-                    verts = [(p[0], p[1]) for p in entity.flattening(0.5)]
-                except Exception:
-                    continue
-            else:
-                continue
-        except Exception:
-            continue
-
+    for entity in entities:
+        verts = entity.get("vertices", [])
         if not verts or len(verts) < 2:
             continue
-        color_idx = getattr(entity.dxf, 'color', 256)
-        if color_idx == 256:
-            color_idx = layer_colors.get(entity.dxf.layer, 7)
+        color_idx = entity.get("color_index", 7)
         seen_colors.add(color_idx)
         color = _VIZ_COLORS.get(color_idx, "#64748B")
         xs = [v[0] for v in verts]
@@ -109,7 +61,8 @@ def _render_png_bytes(dxf_path, file_bytes, semantic, tool_config):
     from matplotlib.patches import Rectangle
     stock_w, stock_h = 2900.0, 1220.0
     ax.add_patch(Rectangle((0, 0), stock_w, stock_h, fill=False, edgecolor="#475569",
-                           linewidth=1.5, linestyle="--"))
+                           linewidth=1.5, linestyle="--",
+                           label=f"Stock: {stock_w:.0f}x{stock_h:.0f} mm"))
 
     if semantic:
         zones = semantic.get("zones", [])
@@ -118,6 +71,27 @@ def _render_png_bytes(dxf_path, file_bytes, semantic, tool_config):
             if len(yr) >= 2:
                 ax.axhline(y=yr[0], color="#F59E0B", linewidth=0.8, linestyle=":", alpha=0.6)
                 ax.axhline(y=yr[1], color="#F59E0B", linewidth=0.8, linestyle=":", alpha=0.6)
+
+    # Legend
+    legend_patches = []
+    shown = set()
+    for ci in sorted(seen_colors):
+        color = _VIZ_COLORS.get(ci, "#64748B")
+        name = _ACI_COLOR_NAMES.get(ci, f"ACI {ci}")
+        if tool_config and str(ci) in tool_config.get("aci_color_mapping", {}):
+            tc = tool_config["aci_color_mapping"][str(ci)]
+            ct = tc.get("cutter_type", "")
+            label = f"{name} ({ct})"
+        else:
+            label = name
+        if label not in shown:
+            import matplotlib.lines as mlines
+            legend_patches.append(mlines.Line2D([0], [0], color=color, linewidth=2, label=label))
+            shown.add(label)
+
+    if legend_patches:
+        ax.legend(handles=legend_patches, loc="upper right", fontsize=8,
+                 facecolor="#1E293B", edgecolor="#334155", labelcolor="#F8FAFC")
 
     ax.set_aspect('equal', 'box')
     ax.invert_yaxis()
@@ -311,8 +285,7 @@ with st.spinner("Indexuji geometrii + renderuji vizualizaci..."):
     eg = result.get("entity_graph", {})
     egf = eg.get("graph_features", {})
 
-    png_bytes = _render_png_bytes(Path(tmp_path) if Path(tmp_path).exists() else None,
-                                   file_bytes, sem, tool_cfg)
+    png_bytes = _render_png_bytes(entities, sem, tool_cfg)
 
 st.markdown("---")
 

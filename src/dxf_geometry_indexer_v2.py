@@ -1928,57 +1928,19 @@ _VIZ_COLORS = {
 }
 
 
-def _render_png(dxf_path, out_path, semantic=None, tool_config=None):
+def _render_png(entities, out_path, semantic=None, tool_config=None):
     if not _HAS_MPL:
         return
-    try:
-        doc = ezdxf.readfile(str(dxf_path))
-    except Exception:
-        return
-    msp = doc.modelspace()
-    layer_colors = {l.dxf.name: l.color for l in doc.layers if hasattr(l.dxf, 'color')}
 
     fig, ax = plt.subplots(figsize=(19.2, 10.8), facecolor="#1E293B")
     ax.set_facecolor("#0F172A")
 
     seen_colors = set()
-    for entity in msp:
-        dtype = entity.dxftype()
-        verts = None
-        try:
-            if dtype == 'LINE':
-                s, e = entity.dxf.start, entity.dxf.end
-                verts = [(s.x, s.y), (e.x, e.y)]
-            elif dtype in ('LWPOLYLINE', 'POLYLINE'):
-                verts = [(p[0], p[1]) for p in entity.get_points()] if hasattr(entity, 'get_points') else [(v[0], v[1]) for v in entity.vertices]
-            elif dtype == 'CIRCLE':
-                r = entity.dxf.radius
-                cx, cy = entity.dxf.center.x, entity.dxf.center.y
-                verts = [(cx + r * math.cos(2 * math.pi * i / 48),
-                         cy + r * math.sin(2 * math.pi * i / 48)) for i in range(49)]
-            elif dtype == 'ARC':
-                r, sd, ed_ang = entity.dxf.radius, entity.dxf.start_angle, entity.dxf.end_angle
-                ar = math.radians(ed_ang - sd)
-                if ar < 0: ar += 2 * math.pi
-                cx, cy = entity.dxf.center.x, entity.dxf.center.y
-                n = max(12, int(ar / 0.08))
-                verts = [(cx + r * math.cos(math.radians(sd) + ar * i / n),
-                         cy + r * math.sin(math.radians(sd) + ar * i / n)) for i in range(n + 1)]
-            elif dtype in ('SPLINE', 'ELLIPSE'):
-                try:
-                    verts = [(p[0], p[1]) for p in entity.flattening(0.5)]
-                except Exception:
-                    continue
-            else:
-                continue
-        except Exception:
-            continue
-
+    for entity in entities:
+        verts = entity.get("vertices", [])
         if not verts or len(verts) < 2:
             continue
-        color_idx = getattr(entity.dxf, 'color', 256)
-        if color_idx == 256:
-            color_idx = layer_colors.get(entity.dxf.layer, 7)
+        color_idx = entity.get("color_index", 7)
         seen_colors.add(color_idx)
         color = _VIZ_COLORS.get(color_idx, "#64748B")
         xs = [v[0] for v in verts]
@@ -2093,7 +2055,7 @@ def main():
 
         if args.viz:
             png_out = out / f"{df.stem}_2d.png"
-            _render_png(df, png_out, sem, tool_config)
+            _render_png(result["entities"], png_out, sem, tool_config)
             print(f"  viz -> {png_out.name}")
 
     if len(all_results) > 1:
