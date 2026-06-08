@@ -1,12 +1,12 @@
 {
-  "indexer_version": "2.0.0",
+  "indexer_version": "2.3.0",
   "metadata": {
-    "file": "G:\\Můj disk\\Moodpasta\\dxf_integrace\\DXF_v2.0\\demo_data\\26_skladba.dxf",
+    "file": "G:\\Můj disk\\Moodpasta\\dxf_integrace\\DXF_indexer_main\\demo_data\\26_skladba.dxf",
     "file_name": "26_skladba.dxf",
     "dxf_version": "AC1015",
     "file_size_bytes": 264334,
     "md5": "85b4ca6b1567e38c13b840f3058ae8c4",
-    "timestamp": "2026-06-06T18:17:22",
+    "timestamp": "2026-06-08T09:07:35",
     "libraries_available": {
       "shapely": true,
       "scipy": true,
@@ -29,7 +29,7 @@
     "total_closed_loops": 183,
     "total_open_paths": 0,
     "closed_ratio": 1.0,
-    "max_nesting_depth": 1,
+    "max_nesting_depth": 2,
     "distinct_shape_patterns": 6,
     "spatial_clusters": 1,
     "total_vertices": 7288,
@@ -45,21 +45,21 @@
       "proximity": 1741
     },
     "graph_features": {
-      "connected_components": 2,
+      "connected_components": 1,
       "cycle_count": 208,
-      "max_degree": 31,
-      "graph_diameter": 182,
+      "max_degree": 182,
+      "graph_diameter": 183,
       "laplacian_eigenvalues_top10": [
         0.0,
-        0.678539,
-        2.482051,
-        2.514963,
-        2.820288,
-        4.150646,
-        4.880919,
-        5.803114,
-        5.979919,
-        6.190984
+        1.678792,
+        3.485508,
+        3.519428,
+        3.825229,
+        5.164343,
+        5.913143,
+        6.830067,
+        7.005787,
+        7.224952
       ]
     },
     "edges": {
@@ -10549,30 +10549,78 @@
         ]
       }
     ],
-    "nesting_summary": "183 closed contours: 1 top-level outline(s) containing 130 inner features."
+    "nesting_summary": "183 closed contours: 1 top-level outline(s) containing 182 inner features.",
+    "cutting_time_estimate": {
+      "config_feed_rate_mmps": 200,
+      "vibrate_cutter_time_s": 522.7,
+      "v_slot_time_s": 0.0,
+      "head_rotation_overhead_s": 0.0,
+      "total_time_s": 522.7
+    },
+    "tool_summary": {
+      "vibrate_cutter_0deg": {
+        "entity_count": 183,
+        "total_length_mm": 104544.0,
+        "operation": "outer_format"
+      }
+    },
+    "zone_analysis": [],
+    "mounting_flap": {
+      "detected": false
+    },
+    "material_optimization": {
+      "stock_plate_mm": [
+        2900.0,
+        1220.0
+      ],
+      "panel_bbox_mm": [
+        1220.0,
+        2900.0
+      ],
+      "yield_percent": 100.0,
+      "waste_mm": [
+        0.0,
+        0.0
+      ],
+      "panel_fits_stock": true,
+      "panel_rotated": true
+    }
   },
   "ml_feature_vector_global": {
     "entity_count": 183,
     "closed_loop_count": 183,
     "open_path_count": 0,
+    "total_vertices": 7288,
     "total_length_mm": 104544.0,
-    "total_tac_rad": 0.0,
     "mean_length_mm": 571.28,
     "std_length_mm": 610.9,
     "p50_length_mm": 512.0,
     "p95_length_mm": 784.0,
+    "min_length_mm": 72.0,
     "mean_area_mm2": 31892.9,
     "std_area_mm2": 259992.76,
     "total_area_mm2": 5836400.21,
+    "total_tac_rad": 0.0,
+    "mean_tac_rad": 0.0,
+    "std_tac_rad": 0.0,
+    "max_tac_rad": 0.0,
+    "tac_per_meter": 0.0,
     "mean_curvature_index": 0.0,
     "std_curvature_index": 0.0,
     "total_sharp_corners": 0,
     "total_direction_changes": 0,
     "mean_avg_segment_mm": 19.94,
     "std_avg_segment_mm": 85.83,
-    "graph_connected_components": 2,
-    "graph_max_degree": 31,
+    "mean_point_count": 39.83,
+    "max_point_count": 56,
+    "has_arcs_entity_count": 0,
+    "has_arcs_ratio": 0.0,
+    "max_bulge_any": 0.0,
+    "mean_bulge_all": 0.0,
+    "graph_connected_components": 1,
+    "graph_max_degree": 182,
     "graph_cycle_count": 208,
+    "graph_diameter": 183,
     "constraints_parallel": 16653,
     "constraints_perpendicular": 0,
     "constraints_orthogonal_ratio": 1.0,
@@ -10581,7 +10629,324 @@
     "solidity": 1.0,
     "num_holes": 0,
     "boundary_length_mm": 8240.0,
-    "min_feature_width_mm": 0.0
+    "min_feature_width_mm": 0.0,
+    "semantic_zone_count": 0,
+    "largest_zone_entity_count": 0,
+    "zone_lengths_mean": 0.0,
+    "max_zone_spacing_mm": 0,
+    "v_slot_entity_count": 0,
+    "v_slot_double_pass_length_mm": 0,
+    "v_slot_single_pass_length_mm": 0,
+    "head_rotation_count": 0,
+    "vibrate_cutter_length_mm": 104544.0,
+    "has_mounting_flap": 0,
+    "panel_yield_percent": 100.0,
+    "panel_fits_stock": 1,
+    "panel_is_orthogonal": 1
+  },
+  "semantic_analysis": {
+    "panel_type": "unknown",
+    "confidence": "medium",
+    "narrative_summary": "Vyrez o rozmerech 1220 x 2900 mm (3.54 m2). Celkova delka tras: 104.5 m. Nalezeno 183 uzavrenych obrysu a 0 otevrenych drah.\nPrirazeni nastroju CNC:\n- Vibrate cutter 0deg: 183 entit, 104.5 m (vnejsi format)\nVyteznost materialu: 100.0% z formatu 2900x1220 mm (panel otocen o 90deg).\nOdhadovany cas CNC rezu: 8m 42s (při feed rate 200 mm/s).\n",
+    "zones": [],
+    "tool_assignments": {
+      "vibrate_cutter_0deg": {
+        "entity_ids": [
+          "E_0000",
+          "E_0001",
+          "E_0002",
+          "E_0003",
+          "E_0004",
+          "E_0005",
+          "E_0006",
+          "E_0007",
+          "E_0008",
+          "E_0009",
+          "E_0010",
+          "E_0011",
+          "E_0012",
+          "E_0013",
+          "E_0014",
+          "E_0015",
+          "E_0016",
+          "E_0017",
+          "E_0018",
+          "E_0019",
+          "E_0020",
+          "E_0021",
+          "E_0022",
+          "E_0023",
+          "E_0024",
+          "E_0025",
+          "E_0026",
+          "E_0027",
+          "E_0028",
+          "E_0029",
+          "E_0030",
+          "E_0031",
+          "E_0032",
+          "E_0033",
+          "E_0034",
+          "E_0035",
+          "E_0036",
+          "E_0037",
+          "E_0038",
+          "E_0039",
+          "E_0040",
+          "E_0041",
+          "E_0042",
+          "E_0043",
+          "E_0044",
+          "E_0045",
+          "E_0046",
+          "E_0047",
+          "E_0048",
+          "E_0049",
+          "E_0050",
+          "E_0051",
+          "E_0052",
+          "E_0053",
+          "E_0054",
+          "E_0055",
+          "E_0056",
+          "E_0057",
+          "E_0058",
+          "E_0059",
+          "E_0060",
+          "E_0061",
+          "E_0062",
+          "E_0063",
+          "E_0064",
+          "E_0065",
+          "E_0066",
+          "E_0067",
+          "E_0068",
+          "E_0069",
+          "E_0070",
+          "E_0071",
+          "E_0072",
+          "E_0073",
+          "E_0074",
+          "E_0075",
+          "E_0076",
+          "E_0077",
+          "E_0078",
+          "E_0079",
+          "E_0080",
+          "E_0081",
+          "E_0082",
+          "E_0083",
+          "E_0084",
+          "E_0085",
+          "E_0086",
+          "E_0087",
+          "E_0088",
+          "E_0089",
+          "E_0090",
+          "E_0091",
+          "E_0092",
+          "E_0093",
+          "E_0094",
+          "E_0095",
+          "E_0096",
+          "E_0097",
+          "E_0098",
+          "E_0099",
+          "E_0100",
+          "E_0101",
+          "E_0102",
+          "E_0103",
+          "E_0104",
+          "E_0105",
+          "E_0106",
+          "E_0107",
+          "E_0108",
+          "E_0109",
+          "E_0110",
+          "E_0111",
+          "E_0112",
+          "E_0113",
+          "E_0114",
+          "E_0115",
+          "E_0116",
+          "E_0117",
+          "E_0118",
+          "E_0119",
+          "E_0120",
+          "E_0121",
+          "E_0122",
+          "E_0123",
+          "E_0124",
+          "E_0125",
+          "E_0126",
+          "E_0127",
+          "E_0128",
+          "E_0129",
+          "E_0130",
+          "E_0131",
+          "E_0132",
+          "E_0133",
+          "E_0134",
+          "E_0135",
+          "E_0136",
+          "E_0137",
+          "E_0138",
+          "E_0139",
+          "E_0140",
+          "E_0141",
+          "E_0142",
+          "E_0143",
+          "E_0144",
+          "E_0145",
+          "E_0146",
+          "E_0147",
+          "E_0148",
+          "E_0149",
+          "E_0150",
+          "E_0151",
+          "E_0152",
+          "E_0153",
+          "E_0154",
+          "E_0155",
+          "E_0156",
+          "E_0157",
+          "E_0158",
+          "E_0159",
+          "E_0160",
+          "E_0161",
+          "E_0162",
+          "E_0163",
+          "E_0164",
+          "E_0165",
+          "E_0166",
+          "E_0167",
+          "E_0168",
+          "E_0169",
+          "E_0170",
+          "E_0171",
+          "E_0172",
+          "E_0173",
+          "E_0174",
+          "E_0175",
+          "E_0176",
+          "E_0177",
+          "E_0178",
+          "E_0179",
+          "E_0180",
+          "E_0181",
+          "E_0182"
+        ],
+        "entity_count": 183,
+        "total_length_mm": 104544.0,
+        "passes": 1,
+        "operation": "outer_format"
+      }
+    },
+    "tool_conflict_detected": false,
+    "tool_conflict_entity_ids": [],
+    "cutting_time_estimate": {
+      "config_feed_rate_mmps": 200,
+      "vibrate_cutter_time_s": 522.7,
+      "v_slot_time_s": 0.0,
+      "head_rotation_overhead_s": 0.0,
+      "total_time_s": 522.7
+    },
+    "mounting_flap": {
+      "detected": false
+    },
+    "material_yield": {
+      "stock_plate_mm": [
+        2900.0,
+        1220.0
+      ],
+      "panel_bbox_mm": [
+        1220.0,
+        2900.0
+      ],
+      "yield_percent": 100.0,
+      "waste_mm": [
+        0.0,
+        0.0
+      ],
+      "panel_fits_stock": true,
+      "panel_rotated": true
+    },
+    "constraints_summary": {
+      "orthogonal_ratio": 1.0,
+      "parallel_pairs": 16653,
+      "perpendicular_pairs": 0
+    },
+    "is_orthogonal": true,
+    "has_arcs_any": false
+  },
+  "layer_card": {
+    "color_count": 2,
+    "total_entities_mapped": 2,
+    "total_entities_unmapped": 0,
+    "colors": {
+      "1": {
+        "color_index": 1,
+        "color_name": "Red",
+        "entity_count": 1,
+        "total_length_mm": 8240.0,
+        "total_point_count": 8,
+        "point_density_per_meter": 1.0,
+        "closed_count": 1,
+        "open_count": 0,
+        "closed_ratio": 1.0,
+        "total_tac_rad": 0.0,
+        "tac_per_meter": 0.0,
+        "min_length_mm": 8240.0,
+        "max_length_mm": 8240.0,
+        "geometry_types": {
+          "LWPOLYLINE": 1
+        },
+        "layers": [
+          "mainlayer"
+        ],
+        "tool_config": {
+          "cutter_type": "Vibrate cutter",
+          "base_speed_mms": 150,
+          "direction": "N/A",
+          "h2_mm": -0.3,
+          "validation_status": "hypothesis",
+          "is_output": true,
+          "note": "Červená (C02/C10, ACI 1) — vnější obrysy. Ale slouží i jako metadata/bounding box. Empiricky neověřeno napříč všemi zakázkami."
+        },
+        "is_mapped": true
+      },
+      "4": {
+        "color_index": 4,
+        "color_name": "Cyan",
+        "entity_count": 182,
+        "total_length_mm": 96304.0,
+        "total_point_count": 7280,
+        "point_density_per_meter": 75.6,
+        "closed_count": 182,
+        "open_count": 0,
+        "closed_ratio": 1.0,
+        "total_tac_rad": 0.0,
+        "tac_per_meter": 0.0,
+        "min_length_mm": 72.0,
+        "max_length_mm": 784.0,
+        "geometry_types": {
+          "LWPOLYLINE": 182
+        },
+        "layers": [
+          "mainlayer"
+        ],
+        "tool_config": {
+          "cutter_type": "ambiguous",
+          "base_speed_mms": 200,
+          "direction": "Cut both side",
+          "h2_mm": 6.0,
+          "validation_status": "hypothesis",
+          "is_output": true,
+          "note": "Azurová (C06, ACI 4) — AMBIGUOUS. Podle hustoty bodů se rozhoduje mezi Vibrate (50 mm/s) a V-slot (200 mm/s)."
+        },
+        "is_mapped": true
+      }
+    }
   },
   "layers": [
     {
@@ -10831,7 +11196,10 @@
         "max_segment_mm": 2900.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0001",
@@ -10868,7 +11236,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0002",
@@ -10905,7 +11276,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0003",
@@ -10942,7 +11316,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0004",
@@ -10979,7 +11356,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0005",
@@ -11016,7 +11396,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0006",
@@ -11053,7 +11436,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0007",
@@ -11090,7 +11476,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0008",
@@ -11127,7 +11516,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0009",
@@ -11164,7 +11556,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0010",
@@ -11201,7 +11596,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0011",
@@ -11238,7 +11636,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0012",
@@ -11275,7 +11676,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0013",
@@ -11312,7 +11716,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0014",
@@ -11349,7 +11756,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0015",
@@ -11386,7 +11796,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0016",
@@ -11423,7 +11836,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0017",
@@ -11460,7 +11876,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0018",
@@ -11497,7 +11916,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0019",
@@ -11534,7 +11956,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0020",
@@ -11571,7 +11996,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0021",
@@ -11608,7 +12036,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0022",
@@ -11645,7 +12076,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0023",
@@ -11682,7 +12116,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0024",
@@ -11719,7 +12156,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0025",
@@ -11756,7 +12196,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0026",
@@ -11793,7 +12236,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0027",
@@ -11830,7 +12276,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0028",
@@ -11867,7 +12316,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0029",
@@ -11904,7 +12356,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0030",
@@ -11941,7 +12396,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0031",
@@ -11978,7 +12436,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0032",
@@ -12015,7 +12476,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0033",
@@ -12052,7 +12516,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0034",
@@ -12089,7 +12556,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0035",
@@ -12126,7 +12596,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0036",
@@ -12163,7 +12636,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0037",
@@ -12200,7 +12676,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0038",
@@ -12237,7 +12716,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0039",
@@ -12274,7 +12756,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0040",
@@ -12311,7 +12796,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0041",
@@ -12348,7 +12836,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0042",
@@ -12385,7 +12876,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0043",
@@ -12422,7 +12916,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0044",
@@ -12459,7 +12956,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0045",
@@ -12496,7 +12996,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0046",
@@ -12533,7 +13036,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0047",
@@ -12570,7 +13076,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0048",
@@ -12607,7 +13116,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0049",
@@ -12644,7 +13156,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0050",
@@ -12681,7 +13196,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0051",
@@ -12718,7 +13236,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0052",
@@ -12755,7 +13276,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0053",
@@ -12792,7 +13316,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0054",
@@ -12829,7 +13356,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0055",
@@ -12866,7 +13396,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0056",
@@ -12903,7 +13436,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0057",
@@ -12940,7 +13476,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0058",
@@ -12977,7 +13516,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0059",
@@ -13014,7 +13556,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0060",
@@ -13051,7 +13596,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0061",
@@ -13088,7 +13636,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0062",
@@ -13125,7 +13676,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0063",
@@ -13162,7 +13716,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0064",
@@ -13199,7 +13756,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0065",
@@ -13236,7 +13796,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0066",
@@ -13273,7 +13836,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0067",
@@ -13310,7 +13876,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0068",
@@ -13347,7 +13916,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0069",
@@ -13384,7 +13956,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0070",
@@ -13421,7 +13996,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0071",
@@ -13458,7 +14036,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0072",
@@ -13495,7 +14076,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0073",
@@ -13532,7 +14116,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0074",
@@ -13569,7 +14156,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0075",
@@ -13606,7 +14196,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0076",
@@ -13643,7 +14236,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0077",
@@ -13680,7 +14276,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0078",
@@ -13717,7 +14316,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0079",
@@ -13754,7 +14356,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0080",
@@ -13791,7 +14396,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0081",
@@ -13828,7 +14436,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0082",
@@ -13865,7 +14476,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0083",
@@ -13902,7 +14516,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0084",
@@ -13939,7 +14556,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0085",
@@ -13976,7 +14596,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0086",
@@ -14013,7 +14636,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0087",
@@ -14050,7 +14676,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0088",
@@ -14087,7 +14716,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0089",
@@ -14124,7 +14756,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0090",
@@ -14161,7 +14796,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0091",
@@ -14198,7 +14836,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0092",
@@ -14235,7 +14876,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0093",
@@ -14272,7 +14916,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0094",
@@ -14309,7 +14956,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0095",
@@ -14346,7 +14996,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0096",
@@ -14383,7 +15036,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0097",
@@ -14420,7 +15076,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0098",
@@ -14457,7 +15116,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0099",
@@ -14494,7 +15156,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0100",
@@ -14531,7 +15196,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0101",
@@ -14568,7 +15236,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0102",
@@ -14605,7 +15276,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0103",
@@ -14642,7 +15316,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0104",
@@ -14679,7 +15356,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0105",
@@ -14716,7 +15396,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0106",
@@ -14753,7 +15436,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0107",
@@ -14790,7 +15476,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0108",
@@ -14827,7 +15516,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0109",
@@ -14864,7 +15556,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0110",
@@ -14901,7 +15596,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0111",
@@ -14938,7 +15636,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0112",
@@ -14975,7 +15676,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0113",
@@ -15012,7 +15716,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0114",
@@ -15049,7 +15756,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0115",
@@ -15086,7 +15796,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0116",
@@ -15123,7 +15836,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0117",
@@ -15160,7 +15876,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0118",
@@ -15197,7 +15916,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0119",
@@ -15234,7 +15956,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0120",
@@ -15271,7 +15996,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0121",
@@ -15308,7 +16036,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0122",
@@ -15345,7 +16076,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0123",
@@ -15382,7 +16116,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0124",
@@ -15419,7 +16156,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0125",
@@ -15456,7 +16196,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0126",
@@ -15493,7 +16236,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0127",
@@ -15530,7 +16276,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0128",
@@ -15567,7 +16316,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0129",
@@ -15604,7 +16356,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0130",
@@ -15641,7 +16396,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0131",
@@ -15678,7 +16436,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0132",
@@ -15715,7 +16476,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0133",
@@ -15752,7 +16516,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0134",
@@ -15789,7 +16556,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0135",
@@ -15826,7 +16596,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0136",
@@ -15863,7 +16636,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0137",
@@ -15900,7 +16676,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0138",
@@ -15937,7 +16716,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0139",
@@ -15974,7 +16756,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0140",
@@ -16011,7 +16796,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0141",
@@ -16048,7 +16836,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0142",
@@ -16085,7 +16876,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0143",
@@ -16122,7 +16916,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0144",
@@ -16159,7 +16956,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0145",
@@ -16196,7 +16996,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0146",
@@ -16233,7 +17036,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0147",
@@ -16270,7 +17076,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0148",
@@ -16307,7 +17116,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0149",
@@ -16344,7 +17156,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0150",
@@ -16381,7 +17196,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0151",
@@ -16418,7 +17236,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0152",
@@ -16455,7 +17276,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0153",
@@ -16492,7 +17316,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0154",
@@ -16529,7 +17356,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0155",
@@ -16566,7 +17396,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0156",
@@ -16603,7 +17436,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0157",
@@ -16640,7 +17476,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0158",
@@ -16677,7 +17516,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0159",
@@ -16714,7 +17556,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0160",
@@ -16751,7 +17596,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0161",
@@ -16788,7 +17636,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0162",
@@ -16825,7 +17676,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0163",
@@ -16862,7 +17716,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0164",
@@ -16899,7 +17756,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0165",
@@ -16936,7 +17796,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0166",
@@ -16973,7 +17836,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0167",
@@ -17010,7 +17876,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0168",
@@ -17047,7 +17916,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0169",
@@ -17084,7 +17956,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0170",
@@ -17121,7 +17996,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0171",
@@ -17158,7 +18036,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0172",
@@ -17195,7 +18076,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0173",
@@ -17232,7 +18116,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0174",
@@ -17269,7 +18156,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0175",
@@ -17306,7 +18196,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0176",
@@ -17343,7 +18236,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0177",
@@ -17380,7 +18276,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0178",
@@ -17417,7 +18316,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 47
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0179",
@@ -17454,7 +18356,10 @@
         "max_segment_mm": 94.0,
         "segment_count": 55
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0180",
@@ -17491,7 +18396,10 @@
         "max_segment_mm": 100.0,
         "segment_count": 23
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0181",
@@ -17528,7 +18436,10 @@
         "max_segment_mm": 76.0,
         "segment_count": 39
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     },
     {
       "id": "E_0182",
@@ -17565,7 +18476,10 @@
         "max_segment_mm": 24.0,
         "segment_count": 7
       },
-      "tac_rad": 0.0
+      "tac_rad": 0.0,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
     }
   ],
   "spatial_clusters": [
@@ -18023,7 +18937,7 @@
       "Shape_G3": 10.0,
       "Shape_G4": 5.0,
       "Shape_G5": 108.0,
-      "Shape_G6": 146.0
+      "Shape_G6": 146.12
     },
     "Shape_G3": {
       "Shape_G1": 0.0,
@@ -18036,21 +18950,21 @@
       "Shape_G1": 0.0,
       "Shape_G2": 5.0,
       "Shape_G3": 113.0,
-      "Shape_G5": 3.0,
-      "Shape_G6": 41.0
+      "Shape_G5": 10.92,
+      "Shape_G6": 49.37
     },
     "Shape_G5": {
       "Shape_G1": 0.0,
       "Shape_G2": 108.0,
       "Shape_G3": 10.0,
-      "Shape_G4": 3.0,
+      "Shape_G4": 10.92,
       "Shape_G6": 0.0
     },
     "Shape_G6": {
       "Shape_G1": 0.0,
-      "Shape_G2": 146.0,
+      "Shape_G2": 146.12,
       "Shape_G3": 48.0,
-      "Shape_G4": 41.0,
+      "Shape_G4": 49.37,
       "Shape_G5": 0.0
     }
   },
@@ -18133,6 +19047,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0006",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            2680.0,
+            1210.0,
+            2880.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0007",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                2774.0,
+                1172.0,
+                2786.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0008",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -18196,6 +19137,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0013",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            2680.0,
+            612.0,
+            2880.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0014",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                2774.0,
+                574.0,
+                2786.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0015",
@@ -18263,6 +19231,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0020",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            2460.0,
+            1210.0,
+            2660.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0021",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                2554.0,
+                1172.0,
+                2566.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0022",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -18326,6 +19321,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0027",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            2460.0,
+            612.0,
+            2660.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0028",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                2554.0,
+                574.0,
+                2566.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0029",
@@ -18393,6 +19415,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0034",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            2240.0,
+            1210.0,
+            2440.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0035",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                2334.0,
+                1172.0,
+                2346.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0036",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -18456,6 +19505,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0041",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            2240.0,
+            612.0,
+            2440.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0042",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                2334.0,
+                574.0,
+                2346.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0043",
@@ -18523,6 +19599,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0048",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            2020.0,
+            1210.0,
+            2220.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0049",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                2114.0,
+                1172.0,
+                2126.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0050",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -18586,6 +19689,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0055",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            2020.0,
+            612.0,
+            2220.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0056",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                2114.0,
+                574.0,
+                2126.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0057",
@@ -18653,6 +19783,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0062",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            1800.0,
+            1210.0,
+            2000.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0063",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1894.0,
+                1172.0,
+                1906.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0064",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -18716,6 +19873,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0069",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            1800.0,
+            612.0,
+            2000.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0070",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1894.0,
+                574.0,
+                1906.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0071",
@@ -18783,6 +19967,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0076",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            1580.0,
+            1210.0,
+            1780.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0077",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1674.0,
+                1172.0,
+                1686.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0078",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -18846,6 +20057,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0083",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            1580.0,
+            612.0,
+            1780.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0084",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1674.0,
+                574.0,
+                1686.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0085",
@@ -18913,6 +20151,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0090",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            1360.0,
+            1210.0,
+            1560.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0091",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1454.0,
+                1172.0,
+                1466.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0092",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -18976,6 +20241,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0097",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            1360.0,
+            612.0,
+            1560.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0098",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1454.0,
+                574.0,
+                1466.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0099",
@@ -19043,6 +20335,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0104",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            1140.0,
+            1210.0,
+            1340.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0105",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1234.0,
+                1172.0,
+                1246.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0106",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19106,6 +20425,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0111",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            1140.0,
+            612.0,
+            1340.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0112",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1234.0,
+                574.0,
+                1246.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0113",
@@ -19173,6 +20519,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0118",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            920.0,
+            1210.0,
+            1120.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0119",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1014.0,
+                1172.0,
+                1026.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0120",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19236,6 +20609,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0125",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            920.0,
+            612.0,
+            1120.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0126",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1014.0,
+                574.0,
+                1026.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0127",
@@ -19303,6 +20703,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0132",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            700.0,
+            1210.0,
+            900.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0133",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                794.0,
+                1172.0,
+                806.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0134",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19366,6 +20793,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0139",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            700.0,
+            612.0,
+            900.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0140",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                794.0,
+                574.0,
+                806.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0141",
@@ -19433,6 +20887,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0146",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            480.0,
+            1210.0,
+            680.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0147",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                574.0,
+                1172.0,
+                586.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0148",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19496,6 +20977,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0153",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            480.0,
+            612.0,
+            680.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0154",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                574.0,
+                574.0,
+                586.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0155",
@@ -19563,6 +21071,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0160",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            260.0,
+            1210.0,
+            460.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0161",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                354.0,
+                1172.0,
+                366.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0162",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19626,6 +21161,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0167",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            260.0,
+            612.0,
+            460.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0168",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                354.0,
+                574.0,
+                366.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0169",
@@ -19693,6 +21255,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0174",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            40.0,
+            1210.0,
+            240.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0175",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                134.0,
+                1172.0,
+                146.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0176",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19756,6 +21345,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0181",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            40.0,
+            612.0,
+            240.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0182",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                134.0,
+                574.0,
+                146.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         }
       ]
     }

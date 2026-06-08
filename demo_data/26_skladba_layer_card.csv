@@ -1,0 +1,3 @@
+color_index,color_name,entity_count,total_length_mm,point_count,closed_count,open_count,closed_ratio,total_tac_rad,tac_per_meter,point_density_per_meter,min_length_mm,max_length_mm,geometry_types,layers,cutter_type,base_speed_mms,direction,validation_status,is_mapped
+1,Red,1,8240.0,8,1,0,1.0,0.0,0.0,1.0,8240.0,8240.0,LWPOLYLINE:1,mainlayer,Vibrate cutter,150,N/A,hypothesis,1
+4,Cyan,182,96304.0,7280,182,0,1.0,0.0,0.0,75.6,72.0,784.0,LWPOLYLINE:182,mainlayer,ambiguous,200,Cut both side,hypothesis,1
