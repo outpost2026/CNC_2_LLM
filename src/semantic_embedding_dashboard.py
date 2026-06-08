@@ -35,6 +35,226 @@ st.markdown("""
 st.markdown("<h1 style='text-align:center; margin-bottom:2px;'>Sémantický Embedding</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center; color:#6B7280; font-size:13px;'>Drag & drop DXF → KPI + PNG + LLM prompt artifacts</p>", unsafe_allow_html=True)
 
+# ── Helper functions (must be defined before UI logic) ──
+
+def _render_png_bytes(dxf_path, file_bytes, semantic, tool_config):
+    try:
+        from dxf_geometry_indexer_v2 import _VIZ_COLORS, _ACI_COLOR_NAMES
+        import ezdxf as _ezdxf
+    except Exception:
+        return None
+
+    try:
+        doc = _ezdxf.readfile(str(dxf_path))
+    except Exception:
+        try:
+            tmp2 = tempfile.NamedTemporaryFile(suffix=".dxf", delete=False)
+            tmp2.write(file_bytes)
+            tmp2.close()
+            doc = _ezdxf.readfile(tmp2.name)
+            os.unlink(tmp2.name)
+        except Exception:
+            return None
+
+    msp = doc.modelspace()
+    layer_colors = {l.dxf.name: l.color for l in doc.layers if hasattr(l.dxf, 'color')}
+
+    fig, ax = plt.subplots(figsize=(19.2, 10.8), facecolor="#1E293B")
+    ax.set_facecolor("#0F172A")
+    seen_colors = set()
+
+    for entity in msp:
+        dtype = entity.dxftype()
+        verts = None
+        try:
+            if dtype == 'LINE':
+                s, e = entity.dxf.start, entity.dxf.end
+                verts = [(s.x, s.y), (e.x, e.y)]
+            elif dtype in ('LWPOLYLINE', 'POLYLINE'):
+                verts = [(p[0], p[1]) for p in entity.get_points()] if hasattr(entity, 'get_points') else [(v[0], v[1]) for v in entity.vertices]
+            elif dtype == 'CIRCLE':
+                r = entity.dxf.radius
+                cx, cy = entity.dxf.center.x, entity.dxf.center.y
+                verts = [(cx + r * math.cos(2 * math.pi * i / 48), cy + r * math.sin(2 * math.pi * i / 48)) for i in range(49)]
+            elif dtype == 'ARC':
+                r = entity.dxf.radius
+                sd, ed_ang = entity.dxf.start_angle, entity.dxf.end_angle
+                ar = math.radians(ed_ang - sd)
+                if ar < 0:
+                    ar += 2 * math.pi
+                cx, cy = entity.dxf.center.x, entity.dxf.center.y
+                n = max(12, int(ar / 0.08))
+                verts = [(cx + r * math.cos(math.radians(sd) + ar * i / n), cy + r * math.sin(math.radians(sd) + ar * i / n)) for i in range(n + 1)]
+            elif dtype in ('SPLINE', 'ELLIPSE'):
+                try:
+                    verts = [(p[0], p[1]) for p in entity.flattening(0.5)]
+                except Exception:
+                    continue
+            else:
+                continue
+        except Exception:
+            continue
+
+        if not verts or len(verts) < 2:
+            continue
+        color_idx = getattr(entity.dxf, 'color', 256)
+        if color_idx == 256:
+            color_idx = layer_colors.get(entity.dxf.layer, 7)
+        seen_colors.add(color_idx)
+        color = _VIZ_COLORS.get(color_idx, "#64748B")
+        xs = [v[0] for v in verts]
+        ys = [v[1] for v in verts]
+        ax.plot(xs, ys, color=color, linewidth=0.9, alpha=0.85)
+
+    from matplotlib.patches import Rectangle
+    stock_w, stock_h = 2900.0, 1220.0
+    ax.add_patch(Rectangle((0, 0), stock_w, stock_h, fill=False, edgecolor="#475569",
+                           linewidth=1.5, linestyle="--"))
+
+    if semantic:
+        zones = semantic.get("zones", [])
+        for z in zones:
+            yr = z.get("y_range_mm", [])
+            if len(yr) >= 2:
+                ax.axhline(y=yr[0], color="#F59E0B", linewidth=0.8, linestyle=":", alpha=0.6)
+                ax.axhline(y=yr[1], color="#F59E0B", linewidth=0.8, linestyle=":", alpha=0.6)
+
+    ax.set_aspect('equal', 'box')
+    ax.invert_yaxis()
+    ax.tick_params(colors="#94A3B8")
+    for spine in ax.spines.values():
+        spine.set_color("#334155")
+    ax.set_xlabel("X (mm)", color="#94A3B8")
+    ax.set_ylabel("Y (mm)", color="#94A3B8")
+    fig.tight_layout()
+
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png', dpi=100, facecolor="#1E293B")
+    plt.close(fig)
+    buf.seek(0)
+    return buf.getvalue()
+
+
+def _build_json_output(result, file_path, fname, file_hash, timestamp):
+    out = dict(result)
+    out["semantic_embedding"] = {
+        "source_file": file_path,
+        "file_name": fname,
+        "md5": file_hash,
+        "timestamp": timestamp,
+        "description": "Deterministic geometric data ready for multimodal LLM semantic embedding"
+    }
+    return json.dumps(out, indent=2, ensure_ascii=False)
+
+
+def _build_ml_csv(mfv):
+    if not mfv:
+        return "No ML vector data"
+    keys = sorted(mfv.keys())
+    import csv
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(keys)
+    w.writerow([mfv.get(k, "") for k in keys])
+    return buf.getvalue()
+
+
+def _build_llm_prompt(result, file_path, fname, file_hash, png_bytes, layer_card):
+    sb = result["spatial_bounds"]
+    ts = result["topology_stats"]
+    eg = result.get("entity_graph", {})
+    egf = eg.get("graph_features", {})
+    eg_stat = eg.get("edge_statistics", {})
+    sem = result.get("semantic_analysis", {}) or {}
+    mfv = result.get("ml_feature_vector_global", {})
+    ta = sem.get("tool_assignments", {})
+
+    aci_colors = sorted(set(e.get("color_index", 0) for e in result.get("entities", [])))
+
+    zs = sem.get("zones", [])
+    zone_desc = "\n".join(f"  - {z.get('zone_id', '?')}: {z.get('zone_type', '?')}, {z.get('entity_count', 0)} entit, "
+                          f"rozteč {z.get('spacing_mean_mm', 'N/A')} mm, regularity={z.get('regularity_score', 0)}"
+                          for z in zs) if zs else "  (žádné zóny)"
+
+    t1_keys = ['entity_count', 'closed_loop_count', 'open_path_count', 'total_vertices',
+               'total_length_mm', 'total_sharp_corners', 'total_direction_changes',
+               'total_tac_rad', 'tac_per_meter', 'graph_connected_components',
+               'v_slot_entity_count', 'v_slot_double_pass_length_mm',
+               'head_rotation_count', 'vibrate_cutter_length_mm']
+    ml_high_snr = {k: mfv.get(k, 'CHYBÍ') for k in t1_keys if k in mfv}
+
+    prompt = f"""# SEMANTIC EMBEDDING — Deterministic Data Audit
+
+## SOURCE
+- File: {file_path}
+- File Name: {fname}
+- MD5: {file_hash}
+- Indexer Version: {result.get('indexer_version', '?')}
+- DXF Version: {result.get('metadata', {}).get('dxf_version', '?')}
+
+## 1. PROSTOROVÝ LAYOUT
+- Canvas: {sb['global_bbox_mm'][2]-sb['global_bbox_mm'][0]:.0f} × {sb['global_bbox_mm'][3]-sb['global_bbox_mm'][1]:.0f} mm
+- Canvas Area: {sb['canvas_area_mm2']/1e6:.3f} m²
+- Entity Count: {sb['entity_count']}
+- Closed loops: {ts['total_closed_loops']} / Open paths: {ts['total_open_paths']}
+- Layer count: {sb['layer_count']}
+- Spatial clusters: {ts['spatial_clusters']}
+- Max nesting depth: {ts['max_nesting_depth']}
+- Distinct shape patterns: {ts['distinct_shape_patterns']}
+
+## 2. BAREVNÁ MAPA
+- ACI Color Indexy: {', '.join(str(c) for c in aci_colors)}
+
+## 3. NUMERICKÁ FAKTA — Geometrie
+- Total Path Length: {sb['total_path_length_mm']:.1f} mm = {sb['total_path_length_mm']/1000:.2f} m
+- Total Vertices: {ts['total_vertices']}
+- Mean segment length: {ts['global_mean_segment_length_mm']:.1f} mm
+- Point density: {ts['point_density_per_meter']:.1f} pts/m
+- Closed ratio: {ts['closed_ratio']:.3f}
+
+## 4. NUMERICKÁ FAKTA — Graf
+- Nodes: {eg.get('node_count', '?')}
+- Edges — Adjacency: {eg_stat.get('adjacency', '?')}
+- Edges — Containment: {eg_stat.get('containment', '?')}
+- Edges — Intersection: {eg_stat.get('intersection_bbox_overlaps', '?')}
+- Edges — Proximity: {eg_stat.get('proximity', '?')}
+- Connected components: {egf.get('connected_components', '?')}
+- Max degree: {egf.get('max_degree', '?')}
+- Graph diameter: {egf.get('graph_diameter', '?')}
+
+## 5. SÉMANTICKÁ ANALÝZA
+- Panel type: {sem.get('panel_type', '?')}
+- Tool conflict: {sem.get('tool_conflict_detected', False)}
+- Tool conflict IDs: {sem.get('tool_conflict_entity_ids', [])}
+- Zones:
+{zone_desc}
+
+## 6. TOOL ASSIGNMENTS (deterministické — z ACI mappingu)
+{json.dumps(ta, indent=2, ensure_ascii=False)}
+
+## 7. CUTTING TIME
+{json.dumps(sem.get('cutting_time_estimate', {}), indent=2, ensure_ascii=False)}
+
+## 8. ML VECTOR — Vysoké SNR Featury (Tier 1)
+{json.dumps(ml_high_snr, indent=2, ensure_ascii=False)}
+
+## 9. LAYER CARD — Per-Color Agregace
+{json.dumps({k: {sk: str(sv) for sk, sv in v.items() if sk in ('color_index','color_name','entity_count','total_length_mm','point_density_per_meter','closed_count','open_count','is_mapped')} for k, v in layer_card.get('colors', {}).items()}, indent=2, ensure_ascii=False)}
+
+## INSTRUCTION for Multimodal LLM:
+You are analyzing a DXF CNC drawing rendered as a 2D PNG visualization.
+Use the numerical data ABOVE as ground truth.
+Describe what you SEE in the PNG — spatial layout, color patterns,
+entity distribution, zones, anomalies.
+DO NOT infer. DO NOT assign tools. DO NOT estimate time.
+Only describe observable facts that are directly supported by the
+numerical data above or visible in the PNG.
+"""
+    return prompt
+
+
+# ── UI LOGIC ──
+
 uploaded_file = st.file_uploader("Přetáhněte .dxf soubor", type=["dxf"], label_visibility="collapsed")
 
 if uploaded_file is None:
@@ -244,224 +464,4 @@ with st.expander("🔍 Náhled LLM promptu", expanded=False):
         st.caption(f"... a {len(txt_str)-6000} dalších znaků")
 
 
-def _render_png_bytes(dxf_path, file_bytes, semantic, tool_config):
-    """Render DXF to in-memory PNG bytes. Fallback to reading from path."""
-    try:
-        import io
-        from dxf_geometry_indexer_v2 import _VIZ_COLORS, _ACI_COLOR_NAMES
-        import ezdxf as _ezdxf
-    except Exception:
-        return None
 
-    try:
-        doc = _ezdxf.readfile(str(dxf_path))
-    except Exception:
-        try:
-            tmp2 = tempfile.NamedTemporaryFile(suffix=".dxf", delete=False)
-            tmp2.write(file_bytes)
-            tmp2.close()
-            doc = _ezdxf.readfile(tmp2.name)
-            os.unlink(tmp2.name)
-        except Exception:
-            return None
-
-    msp = doc.modelspace()
-    layer_colors = {l.dxf.name: l.color for l in doc.layers if hasattr(l.dxf, 'color')}
-
-    fig, ax = plt.subplots(figsize=(19.2, 10.8), facecolor="#1E293B")
-    ax.set_facecolor("#0F172A")
-    seen_colors = set()
-
-    for entity in msp:
-        dtype = entity.dxftype()
-        verts = None
-        try:
-            if dtype == 'LINE':
-                s, e = entity.dxf.start, entity.dxf.end
-                verts = [(s.x, s.y), (e.x, e.y)]
-            elif dtype in ('LWPOLYLINE', 'POLYLINE'):
-                verts = [(p[0], p[1]) for p in entity.get_points()] if hasattr(entity, 'get_points') else [(v[0], v[1]) for v in entity.vertices]
-            elif dtype == 'CIRCLE':
-                r = entity.dxf.radius
-                cx, cy = entity.dxf.center.x, entity.dxf.center.y
-                verts = [(cx + r * math.cos(2 * math.pi * i / 48), cy + r * math.sin(2 * math.pi * i / 48)) for i in range(49)]
-            elif dtype == 'ARC':
-                r = entity.dxf.radius
-                sd, ed_ang = entity.dxf.start_angle, entity.dxf.end_angle
-                ar = math.radians(ed_ang - sd)
-                if ar < 0:
-                    ar += 2 * math.pi
-                cx, cy = entity.dxf.center.x, entity.dxf.center.y
-                n = max(12, int(ar / 0.08))
-                verts = [(cx + r * math.cos(math.radians(sd) + ar * i / n), cy + r * math.sin(math.radians(sd) + ar * i / n)) for i in range(n + 1)]
-            elif dtype in ('SPLINE', 'ELLIPSE'):
-                try:
-                    verts = [(p[0], p[1]) for p in entity.flattening(0.5)]
-                except Exception:
-                    continue
-            else:
-                continue
-        except Exception:
-            continue
-
-        if not verts or len(verts) < 2:
-            continue
-        color_idx = getattr(entity.dxf, 'color', 256)
-        if color_idx == 256:
-            color_idx = layer_colors.get(entity.dxf.layer, 7)
-        seen_colors.add(color_idx)
-        color = _VIZ_COLORS.get(color_idx, "#64748B")
-        xs = [v[0] for v in verts]
-        ys = [v[1] for v in verts]
-        ax.plot(xs, ys, color=color, linewidth=0.9, alpha=0.85)
-
-    from matplotlib.patches import Rectangle
-    stock_w, stock_h = 2900.0, 1220.0
-    ax.add_patch(Rectangle((0, 0), stock_w, stock_h, fill=False, edgecolor="#475569",
-                           linewidth=1.5, linestyle="--"))
-
-    if semantic:
-        zones = semantic.get("zones", [])
-        for z in zones:
-            yr = z.get("y_range_mm", [])
-            if len(yr) >= 2:
-                ax.axhline(y=yr[0], color="#F59E0B", linewidth=0.8, linestyle=":", alpha=0.6)
-                ax.axhline(y=yr[1], color="#F59E0B", linewidth=0.8, linestyle=":", alpha=0.6)
-
-    ax.set_aspect('equal', 'box')
-    ax.invert_yaxis()
-    ax.tick_params(colors="#94A3B8")
-    for spine in ax.spines.values():
-        spine.set_color("#334155")
-    ax.set_xlabel("X (mm)", color="#94A3B8")
-    ax.set_ylabel("Y (mm)", color="#94A3B8")
-    fig.tight_layout()
-
-    buf = io.BytesIO()
-    fig.savefig(buf, format='png', dpi=100, facecolor="#1E293B")
-    plt.close(fig)
-    buf.seek(0)
-    return buf.getvalue()
-
-
-def _build_json_output(result, file_path, fname, file_hash, timestamp):
-    """Forward current result JSON with path/hash/time injected."""
-    out = dict(result)
-    out["semantic_embedding"] = {
-        "source_file": file_path,
-        "file_name": fname,
-        "md5": file_hash,
-        "timestamp": timestamp,
-        "description": "Deterministic geometric data ready for multimodal LLM semantic embedding"
-    }
-    return json.dumps(out, indent=2, ensure_ascii=False)
-
-
-def _build_ml_csv(mfv):
-    """Serialize ML feature vector to CSV."""
-    if not mfv:
-        return "No ML vector data"
-    keys = sorted(mfv.keys())
-    import csv
-    buf = io.StringIO()
-    w = csv.writer(buf)
-    w.writerow(keys)
-    w.writerow([mfv.get(k, "") for k in keys])
-    return buf.getvalue()
-
-
-def _build_llm_prompt(result, file_path, fname, file_hash, png_bytes, layer_card):
-    """Generate structured LLM prompt for semantic embedding."""
-    sb = result["spatial_bounds"]
-    ts = result["topology_stats"]
-    eg = result.get("entity_graph", {})
-    egf = eg.get("graph_features", {})
-    eg_stat = eg.get("edge_statistics", {})
-    sem = result.get("semantic_analysis", {}) or {}
-    mfv = result.get("ml_feature_vector_global", {})
-    ta = sem.get("tool_assignments", {})
-
-    aci_colors = sorted(set(e.get("color_index", 0) for e in result.get("entities", [])))
-
-    zs = sem.get("zones", [])
-    zone_desc = "\n".join(f"  - {z.get('zone_id', '?')}: {z.get('zone_type', '?')}, {z.get('entity_count', 0)} entit, "
-                          f"rozteč {z.get('spacing_mean_mm', 'N/A')} mm, regularity={z.get('regularity_score', 0)}"
-                          for z in zs) if zs else "  (žádné zóny)"
-
-    # Tier 1 keys
-    t1_keys = ['entity_count', 'closed_loop_count', 'open_path_count', 'total_vertices',
-               'total_length_mm', 'total_sharp_corners', 'total_direction_changes',
-               'total_tac_rad', 'tac_per_meter', 'graph_connected_components',
-               'v_slot_entity_count', 'v_slot_double_pass_length_mm',
-               'head_rotation_count', 'vibrate_cutter_length_mm']
-    ml_high_snr = {k: mfv.get(k, 'CHYBÍ') for k in t1_keys if k in mfv}
-
-    prompt = f"""# SEMANTIC EMBEDDING — Deterministic Data Audit
-
-## SOURCE
-- File: {file_path}
-- File Name: {fname}
-- MD5: {file_hash}
-- Indexer Version: {result.get('indexer_version', '?')}
-- DXF Version: {result.get('metadata', {}).get('dxf_version', '?')}
-
-## 1. PROSTOROVÝ LAYOUT
-- Canvas: {sb['global_bbox_mm'][2]-sb['global_bbox_mm'][0]:.0f} × {sb['global_bbox_mm'][3]-sb['global_bbox_mm'][1]:.0f} mm
-- Canvas Area: {sb['canvas_area_mm2']/1e6:.3f} m²
-- Entity Count: {sb['entity_count']}
-- Closed loops: {ts['total_closed_loops']} / Open paths: {ts['total_open_paths']}
-- Layer count: {sb['layer_count']}
-- Spatial clusters: {ts['spatial_clusters']}
-- Max nesting depth: {ts['max_nesting_depth']}
-- Distinct shape patterns: {ts['distinct_shape_patterns']}
-
-## 2. BAREVNÁ MAPA
-- ACI Color Indexy: {', '.join(str(c) for c in aci_colors)}
-Collapse
-
-## 3. NUMERICKÁ FAKTA — Geometrie
-- Total Path Length: {sb['total_path_length_mm']:.1f} mm = {sb['total_path_length_mm']/1000:.2f} m
-- Total Vertices: {ts['total_vertices']}
-- Mean segment length: {ts['global_mean_segment_length_mm']:.1f} mm
-- Point density: {ts['point_density_per_meter']:.1f} pts/m
-- Closed ratio: {ts['closed_ratio']:.3f}
-
-## 4. NUMERICKÁ FAKTA — Graf
-- Nodes: {eg.get('node_count', '?')}
-- Edges — Adjacency: {eg_stat.get('adjacency', '?')}
-- Edges — Containment: {eg_stat.get('containment', '?')}
-- Edges — Intersection: {eg_stat.get('intersection_bbox_overlaps', '?')}
-- Edges — Proximity: {eg_stat.get('proximity', '?')}
-- Connected components: {egf.get('connected_components', '?')}
-- Max degree: {egf.get('max_degree', '?')}
-- Graph diameter: {egf.get('graph_diameter', '?')}
-
-## 5. SÉMANTICKÁ ANALÝZA
-- Panel type: {sem.get('panel_type', '?')}
-- Tool conflict: {sem.get('tool_conflict_detected', False)}
-- Tool conflict IDs: {sem.get('tool_conflict_entity_ids', [])}
-- Zones:
-{zone_desc}
-
-## 6. TOOL ASSIGNMENTS (deterministické — z ACI mappingu)
-{json.dumps(ta, indent=2, ensure_ascii=False)}
-
-## 7. CUTTING TIME
-{json.dumps(sem.get('cutting_time_estimate', {}), indent=2, ensure_ascii=False)}
-
-## 8. ML VECTOR — Vysoké SNR Featury (Tier 1)
-{json.dumps(ml_high_snr, indent=2, ensure_ascii=False)}
-
-## 9. LAYER CARD — Per-Color Agregace
-{json.dumps({k: {sk: str(sv) for sk, sv in v.items() if sk in ('color_index','color_name','entity_count','total_length_mm','point_density_per_meter','closed_count','open_count','is_mapped')} for k, v in layer_card.get('colors', {}).items()}, indent=2, ensure_ascii=False)}
-
-## INSTRUCTION for Multimodal LLM:
-You are analyzing a DXF CNC drawing rendered as a 2D PNG visualization.
-Use the numerical data ABOVE as ground truth.
-Describe what you SEE in the PNG — spatial layout, color patterns,
-entity distribution, zones, anomalies.
-DO NOT infer. DO NOT assign tools. DO NOT estimate time.
-Only describe observable facts that are directly supported by the
-numerical data above or visible in the PNG.
-"""
-    return prompt
