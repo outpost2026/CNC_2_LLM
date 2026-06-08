@@ -1,0 +1,277 @@
+{
+  "handoff_version": "2.4.0",
+  "timestamp": "2026-06-08T12:00:00Z",
+  "source_analysis": {
+    "files_analyzed": [
+      "1ks.dxf",
+      "26ks_skladba.dxf",
+      "3618_camel_arbyd_08042026.dxf",
+      "arbyd_vyrobni_data_v1_20_5_2025.dxf",
+      "botanic_vse.dxf",
+      "fluenz_xl.dxf"
+    ],
+    "total_entities": 2059,
+    "total_vertices": 64760,
+    "key_anomalies": {
+      "point_density_bug": {
+        "description": "Extremely high vertex count on simple primitives (rectangles approximated by dozens of collinear points, circles approximated by 36-point polygons)",
+        "examples": [
+          {"file": "fluenz_xl", "entity": "circle", "expected_vertices": 1, "actual_vertices": 36},
+          {"file": "fluenz_xl", "entity": "rectangle", "expected_vertices": 4, "actual_vertices": 58}
+        ],
+        "impact": "Increased JSON size, misleading sharp corner counts, false positive for drilling features"
+      },
+      "containment_blindness": {
+        "description": "All entities flattened, no parent-child hierarchy. Mother board not distinguished from internal cutouts.",
+        "impact": "CAM operation misassignment (e.g., cutting internal pockets with vibrate cutter instead of slot milling)"
+      },
+      "perpendicular_detection_failure": {
+        "description": "Zero perpendicular pairs detected even for fully orthogonal geometry (e.g., 1ks, fluenz_xl).",
+        "cause": "Only intersecting perpendicular lines counted; non‑intersecting orthogonal pairs ignored.",
+        "impact": "Geometric constraint features under‑reported for ML."
+      },
+      "zone_detection_false_positive": {
+        "description": "Single‑entity zone detected in arbyd_vyrobni_data_v1 (uniform_pattern, 1 entity, spacing 0).",
+        "impact": "LLM misled into believing repeated pattern where none exists."
+      },
+      "json_expansion": {
+        "description": "Full vertex storage and brute‑force proximity matrix cause excessive size (up to 7.2 MB for 78 entities).",
+        "impact": "Context window overflow for LLMs, slow parsing."
+      }
+    }
+  },
+  "v2_4_0_changes": {
+    "core_principles": [
+      "SNR trimming – remove information noise, not arbitrary size limits",
+      "Hierarchical topology – containment tree instead of flat list",
+      "Trigger‑based behavior – dynamic switching based on profile detection",
+      "Geometry simplification – RDP collinearity culling, preserve circles as CIRCLE"
+    ],
+    "modules_to_remove": [
+      {
+        "module": "vertices_storage",
+        "reason": "Noise; LLM only needs aggregated vertex counts and segment statistics.",
+        "replacement": "store vertex_count and segment_statistics only"
+      },
+      {
+        "module": "proximity_matrix_full",
+        "reason": "O(N²) combinatorial explosion, minimal semantic value.",
+        "replacement": "proximity_distance_histogram (binned distances)"
+      },
+      {
+        "module": "nesting_tree",
+        "reason": "Redundant with containment edges in entity_graph.",
+        "replacement": "remove, keep only containment edges list"
+      },
+      {
+        "module": "rag_queries.tool_summary",
+        "reason": "Duplicates information already in tool_assignments.",
+        "replacement": "none (remove)"
+      },
+      {
+        "module": "bruteforce_proximity",
+        "reason": "O(N²) leads to 8 MB JSON for botanic_vse.",
+        "replacement": "KD‑Tree spatial indexing"
+      }
+    ],
+    "modules_to_add_or_enhance": [
+      {
+        "name": "collinearity_simplification",
+        "algorithm": "Ramer–Douglas–Peucker (epsilon = 0.01 mm)",
+        "effect": "Reduces rectangle vertices from 58 → 4, approximates curves with fewer points."
+      },
+      {
+        "name": "circle_preservation",
+        "detection": "DXF entity type CIRCLE or ARC",
+        "storage": "{ type: 'CIRCLE', center_mm: [x,y], radius_mm: r }",
+        "effect": "No vertex list, reduces JSON size by ~90% for circular features."
+      },
+      {
+        "name": "containment_tree",
+        "algorithm": "Sort entities by area descending; if Bbox(A) fully contains Bbox(B), B is child of A.",
+        "output": "nesting_tree with mother_board_id and depth levels.",
+        "benefit": "Enables automatic CAM operation selection (outer_format vs slot_milling)."
+      },
+      {
+        "name": "profile_triggers",
+        "triggers": [
+          {
+            "id": "production_nesting",
+            "condition": "closed_ratio > 0.95 AND entity_count > 20",
+            "actions": ["enable_tsp_travel_time (v2.5.0)", "all entities outer_format"]
+          },
+          {
+            "id": "hybrid_nesting",
+            "condition": "0.7 < closed_ratio < 0.95 AND open_path_count > 0",
+            "actions": ["separate ACI mapping for open paths", "preserve tool_assignments"]
+          },
+          {
+            "id": "matrix_perforation",
+            "condition": "closed_ratio == 1.0 AND point_density > 100 AND mean_area_per_entity < 10000",
+            "actions": ["inner entities (depth ≥ 2) → slot_milling with z_hop_required"]
+          },
+          {
+            "id": "artistic_engraving",
+            "condition": "closed_ratio < 0.1 AND entity_count > 500",
+            "actions": ["panel_type = 'artistic_engraving'", "disable orthogonality checks", "force engraving mode"]
+          }
+        ]
+      },
+      {
+        "name": "perpendicular_detection_fix",
+        "description": "Count pairs of edges with perpendicular directions even if they do not intersect.",
+        "implementation": "For each shape group, compute edge direction vectors; count orthogonal direction pairs."
+      },
+      {
+        "name": "min_feature_width_estimation",
+        "algorithm": "Find minimum distance between two non‑intersecting parallel edges within same parent.",
+        "fallback": "If not found, estimate from bounding box diagonal / 100."
+      },
+      {
+        "name": "zone_detection_min_entities",
+        "condition": "zone.entity_count >= 3",
+        "action": "Discard zones with < 3 entities (eliminates false positive like arbyd_v1)"
+      }
+    ],
+    "json_output_recommendation": {
+      "mode": "light_by_default",
+      "excluded_fields": [
+        "entities[*].vertices",
+        "proximity_matrix",
+        "nesting_tree",
+        "rag_queries.tool_summary"
+      ],
+      "aggregated_fields": {
+        "proximity": "proximity_distance_histogram",
+        "vertices": "vertex_count + segment_statistics"
+      }
+    }
+  },
+  "priority_actions": [
+    {
+      "priority": "P0 (critical)",
+      "task": "Implement RDP simplification for all polylines",
+      "owner": "core_geometry",
+      "estimated_effort": "2 days",
+      "validation": "fluenz_xl vertices drop from 4551 to < 500"
+    },
+    {
+      "priority": "P0 (critical)",
+      "task": "Remove vertices from JSON output",
+      "owner": "serialization",
+      "estimated_effort": "1 day",
+      "validation": "JSON size reduction > 70%"
+    },
+    {
+      "priority": "P0 (critical)",
+      "task": "Preserve CIRCLE/ARC types, do not approximate",
+      "owner": "dxf_parser",
+      "estimated_effort": "1 day",
+      "validation": "No polyline approximation for circles in output"
+    },
+    {
+      "priority": "P1 (high)",
+      "task": "Implement KD‑Tree for proximity computation",
+      "owner": "graph_builder",
+      "estimated_effort": "3 days",
+      "validation": "botanic_vse processing time < 2 seconds"
+    },
+    {
+      "priority": "P1 (high)",
+      "task": "Build containment tree (mother board detection)",
+      "owner": "topology",
+      "estimated_effort": "2 days",
+      "validation": "26ks_skladba: mother board correctly identified as outer rectangle"
+    },
+    {
+      "priority": "P1 (high)",
+      "task": "Implement matrix_perforation trigger",
+      "owner": "semantic_analysis",
+      "estimated_effort": "1 day",
+      "validation": "fluenz_xl inner slots → slot_milling, not outer_format"
+    },
+    {
+      "priority": "P2 (medium)",
+      "task": "Fix perpendicular pairs detection",
+      "owner": "geometric_constraints",
+      "estimated_effort": "1 day",
+      "validation": "1ks returns perpendicular_pairs > 0"
+    },
+    {
+      "priority": "P2 (medium)",
+      "task": "Zone detection: require min 3 entities",
+      "owner": "zone_analysis",
+      "estimated_effort": "0.5 day",
+      "validation": "arbyd_v1 no longer reports a zone"
+    },
+    {
+      "priority": "P2 (medium)",
+      "task": "Add min_feature_width_mm estimation",
+      "owner": "boolean_analysis",
+      "estimated_effort": "1 day",
+      "validation": "Value > 0 for all files"
+    },
+    {
+      "priority": "P3 (low)",
+      "task": "Implement artistic_engraving trigger",
+      "owner": "semantic_analysis",
+      "estimated_effort": "1 day",
+      "validation": "botanic_vse → panel_type = 'artistic_engraving'"
+    }
+  ],
+  "validation_criteria": {
+    "test_file": "fluenz_xl.dxf",
+    "expected": {
+      "json_size_kb": "< 500",
+      "total_vertices": "< 500",
+      "circles_as_type": true,
+      "matrix_perforation_triggered": true
+    },
+    "test_file": "arbyd_vyrobni_data_v1.dxf",
+    "expected": {
+      "json_size_mb": "< 1.5",
+      "zone_count": 0,
+      "perpendicular_pairs": "> 0"
+    },
+    "test_file": "botanic_vse.dxf",
+    "expected": {
+      "panel_type": "artistic_engraving",
+      "processing_time_sec": "< 3"
+    },
+    "test_file": "26ks_skladba.dxf",
+    "expected": {
+      "nesting_tree.mother_board_id": "E_0000",
+      "tool_assignments": "vibrate_cutter_0deg only"
+    },
+    "test_file": "3618_camel_arbyd.dxf",
+    "expected": {
+      "panel_type": "lamella_panel",
+      "zones": "≥ 1"
+    },
+    "test_file": "1ks.dxf",
+    "expected": {
+      "perpendicular_pairs": "> 0",
+      "closed_ratio": 1.0
+    }
+  },
+  "excluded_from_v2_4_0": [
+    {
+      "feature": "Kinematic correction (travel time, acceleration penalty)",
+      "reason": "Requires real‑world machine measurements; planned for v2.5.0 after field research."
+    },
+    {
+      "feature": "TSP solver for optimal cutting order",
+      "reason": "Depends on kinematic data; postponed."
+    },
+    {
+      "feature": "Delta + varint compression for full JSON",
+      "reason": "Nice to have; not blocking for light JSON."
+    }
+  ],
+  "developer_notes": {
+    "json_size": "No hard limit; developer to iteratively reduce noise. Target: < 200 KB for typical files, but not enforced.",
+    "artistic_milling_vs_engraving": "Use 'artistic_engraving' as panel_type (not 'artistic_milling').",
+    "kinematics": "Do not implement in v2.4.0 – will be added after field research in v2.5.0.",
+    "testing": "Use the six provided DXF files as regression suite. Each change must pass all six without regression."
+  }
+}

@@ -1,0 +1,226 @@
+# TECHNICKÝ HANDOFF: REFAKTORIZACE PARSERU v2.3.0 → v2.4.0 (REVIDOVANÝ)
+
+**Upřesnění na základě vývojářských poznámek:**
+
+- **Kinematická korekce** není v první iteraci implementována – vyžaduje terénní výzkum (reálné měření akcelerací, přejezdů). V2.4.0 se zaměří na **trimmování vstupních dat**, nikoli na sofistikovaný výpočet času.
+- **Velikost JSON** není uměle omezena – cílem je **SNR trimming** (odstranění informačního šumu). Výslednou velikost určí developer iterativně.
+- **Panel type** pro organické tvary: `artistic_engraving` (místo `artistic_milling`).
+- **Light JSON** = redukce nadbytečných dat, nikoli striktní procentuální cíl.
+
+---
+
+## 1. VERDIKT NAD v2.3.0 – SYSTÉMOVÁ SELHÁNÍ (BEZ ZMĚNY)
+
+| Selhání | Manifestace | Postižené soubory | Závažnost |
+|---------|--------------|-------------------|------------|
+| **Point Density Bug** | 58 bodů na obdélník (místo 4) | fluenz_xl, arbyd | **Kritická** |
+| **JSON Expanze (SNR šum)** | 7.2 MB pro 78 entit (z toho 80 % vertices) | Všechny soubory > 50 entit | **Kritická** |
+| **Containment Blindness** | Všechny entity v jedné rovině | Všechny soubory | **Vysoká** |
+| **Perpendicular Detection** | 0 kolmých párů i u ortogonálních tvarů | 1ks, 26ks, fluenz_xl | **Střední** |
+| **Zone Detection Fail** | Žádné zóny nebo falešné (1 entita) | fluenz_xl (žádné), arbyd (1 → chyba) | **Střední** |
+
+---
+
+## 2. PRINCIPY VERZE 2.4.0 – SNR TRIMMING
+
+### 2.1 Odstranit informační šum (nikoli „omezit na X kB“)
+
+**Co je šum:**
+- Duplicitní body na přímkách (kolinearita).
+- Aproximace kružnic polygony (108 bodů místo 1 kružnice).
+- Úplné seznamy vrcholů pro každou entitu (pro LLM zbytečné).
+- Detailní `proximity_matrix` (1936 hodnot pro 44 tvarů).
+- `nesting_tree` redundantní s `containment` hranami.
+
+**Co je signál (zachovat):**
+- Agregované statistiky (délka, plocha, počet bodů, TAC).
+- `tool_assignments`, `cutting_time_estimate`, `zones`, `layer_card`.
+- `shape_groups` (již kompaktní).
+- `semantic_analysis.narrative_summary`.
+
+**Implementační poznámka pro developera:**  
+Výstupní JSON by měl být čitelný pro LLM a zároveň obsahovat pouze data, která **mění rozhodování**. Pokud odstranění určité položky nezmění výsledné doporučení (např. panel_type, tool assignment), je položka šum.
+
+### 2.2 Detekce a eliminace kolinearity
+
+**Algoritmus (Ramer–Douglas–Peucker s epsilon = 0.01 mm):**
+
+```python
+def simplify_polyline(points, epsilon=0.01):
+    # Implementace RDP
+    # Odstraní body, které leží na přímce mezi dvěma koncovými
+    return simplified_points
+```
+
+**Dopad:** `fluenz_xl` – kružnice (3 × 36 bodů) a obdélníky (58 bodů) se zjednoduší na 4 body (nebo typ CIRCLE).
+
+### 2.3 Zachování typu CIRCLE
+
+**Místo aproximace polygony uložit jako:**
+
+```json
+{
+  "id": "E_0000",
+  "type": "CIRCLE",
+  "center_mm": [4012.74, 11853.31],
+  "radius_mm": 70.0,
+  "length_mm": 439.82,
+  "area_mm2": 15316.01
+}
+```
+
+**Tím odpadne 36 záznamů `vertices` na jednu kružnici.**
+
+---
+
+## 3. TOPOLOGICKÁ HIERARCHIE (AST STROM)
+
+### 3.1 Detekce "Mother Board" (hlavní deska / polotovar)
+
+**Definice:** Entita s největší plochou v rámci spatial clusteru, jejíž bounding box obsahuje bounding boxy jiných entit.
+
+**Výstup (místo plochého seznamu):**
+
+```json
+{
+  "nesting_tree": {
+    "mother_board_id": "E_0068",
+    "bbox_mm": [3112, 11661, 4312, 14061],
+    "children": [
+      {
+        "id": "E_0050",
+        "type": "cutout",
+        "area_mm2": 74832,
+        "depth": 1
+      },
+      {
+        "id": "E_0051",
+        "type": "cutout",
+        "area_mm2": 74536,
+        "depth": 1,
+        "children": [...]  // vnořené kapsy
+      }
+    ]
+  }
+}
+```
+
+### 3.2 Automatické přiřazení CAM operace na základě hloubky
+
+| Hloubka | Typ entity | Operace |
+|---------|------------|---------|
+| 0 | Mother board | (ignorovat, není řezána) |
+| 1 | Vnější obrys | `outer_format` |
+| 2+ | Vnitřní kapsa | `slot_milling` + `z_hop_required = true` |
+
+---
+
+## 4. KINEMATICKÁ KOREKCE – NENÍ V TÉTO ITERACI
+
+**Poznámka developera:**  
+Výpočet přejezdů (travel time) a akceleračních penalizací vyžaduje reálné testování na konkrétním stroji. V2.4.0 se omezí na **trimmování vstupních dat** a **přesný výpočet čistého řezu** (již implementováno). Travel time bude přidáno ve verzi 2.5.0 po terénním výzkumu.
+
+---
+
+## 5. ČTYŘI TOPOLOGICKÉ PROFILY A TRIGGERY
+
+| Profil | Trigger | Fallback / Speciální handling |
+|--------|---------|-------------------------------|
+| **production_nesting** | `closed_ratio > 0.95`, `entity_count > 20` | `outer_format` pro všechny, TSP pro přejezdy (v2.5.0) |
+| **hybrid_nesting** | `0.7 < closed_ratio < 0.95`, `open_path_count > 0` | Separátní ACI mapování (vibrate vs v-slot) |
+| **matrix_perforation** | `closed_ratio == 1.0`, `point_density > 100`, `mean_area_per_entity < 10000` | **Vnitřní entity → slot_milling** (ne outer_format) |
+| **artistic_engraving** | `closed_ratio < 0.1`, `entity_count > 500` | Vypnout ortogonalitu, **engraving** mód, lokální klastrování |
+
+**Implementace triggerů:**  
+Každý trigger je podmínka, která se vyhodnotí po agregaci základních statistik. Pokud je splněna, přepíše se výchozí chování (např. `outer_format` → `slot_milling`).
+
+---
+
+## 6. AKČNÍ BODY PRO VÝVOJÁŘE (PRIORITY – BEZ ARBITRÁRNÍCH LIMITŮ)
+
+### 🔴 Priorita 1 (Kritická – blokuje nasazení)
+
+- [ ] **Light JSON** – odstranit `vertices`, `proximity_matrix`, `nesting_tree` z výchozího výstupu. Developer rozhodne o kompromisu mezi informací a velikostí.
+- [ ] **Implementovat RDP zjednodušení** pro všechny polyline (epsilon = 0.01 mm).
+- [ ] **Zachovat typ CIRCLE** – neaproximovat.
+
+### 🟠 Priorita 2 (Vysoká – zlepšení SNR)
+
+- [ ] **KD‑Tree pro proximity** – nahradit $O(N^2)$ (nutné pro botanic_vse s 1000+ entitami).
+- [ ] **Containment tree** – detekce mother board a hloubky vnoření.
+- [ ] **Trigger pro `matrix_perforation`** – změna `outer_format` na `slot_milling` pro vnitřní entity.
+
+### 🟡 Priorita 3 (Střední – doladění)
+
+- [ ] **Opravit `perpendicular_pairs`** – detekce i neprotínajících se kolmic.
+- [ ] **Zóny** – minimálně 3 entity pro detekci, normalizace `regularity_score` na 0–1.
+- [ ] **`min_feature_width_mm`** – odhad z mezer mezi paralelními hranami (např. 10 mm).
+
+### ⚪ Priorita 4 (Nízká – nice to have)
+
+- [ ] **Delta + varint komprese** pro full JSON (pokud bude potřeba archivace).
+- [ ] **CSV jednotky** – přejmenovat `zone_lengths_mean` → `zone_lengths_mean_mm`.
+- [ ] **`has_arcs` detekce** pro kružnice (nyní false i u CIRCLE).
+
+---
+
+## 7. KÓD K ODSTRANĚNÍ (INFORMAČNÍ ŠUM)
+
+```python
+# 1. Zastaralý výpočet proximity bruteforce (před implementací KD‑Tree)
+# def compute_proximity_bruteforce(entities): ...  // ODSTRANIT
+
+# 2. Ukládání plných vrcholů (nahradit agregací)
+def serialize_entity(entity):
+    return {
+        # "vertices": entity.points,  // ODSTRANIT
+        "vertex_count": len(entity.points),
+        "segment_statistics": {...}   // PONECHAŤ
+    }
+
+# 3. redundantní tool_summary (již v tool_assignments)
+# rag_queries.tool_summary - ODSTRANIT
+
+# 4. proximity_matrix jako samostatný blok - nahradit histogramem
+def compute_proximity_histogram(distances):
+    return {
+        "min_mm": min(distances),
+        "max_mm": max(distances),
+        "mean_mm": statistics.mean(distances),
+        "histogram_bins": [0, 10, 50, 100, 500],
+        "histogram_counts": [...]  // agregace
+    }
+```
+
+---
+
+## 8. VALIDAČNÍ TESTY (PRO VÝVOJÁŘE)
+
+| Test | Vstup | Očekávané chování | Měřítko úspěchu |
+|------|-------|-------------------|------------------|
+| **1** | fluenz_xl | Kružnice jako `CIRCLE`, nikoli polyline; celkový počet vrcholů klesne z 4551 na < 500 | Subjektivní posouzení developera |
+| **2** | arbyd_vyrobni | Po RDP zjednodušení klesne počet bodů z 29769 na < 5000 | Developer rozhodne o vhodné míře zjednodušení |
+| **3** | 3618_camel | `matrix_perforation` trigger = false (není perforace) | OK |
+| **4** | botanic_vse | `closed_ratio < 0.1` → `panel_type = "artistic_engraving"` | OK |
+| **5** | 26ks_skladba | `containment_tree` detekuje mother board (E_0000) jako kořen | OK |
+
+---
+
+## 9. ZÁVĚR A HANDOFF PRO AGENTNÍ NÁSTROJE
+
+**Verze 2.4.0 se zaměřuje na:**
+
+1. **SNR trimming** – odstranění informačního šumu (vertices, duplicitní body, aproximace kružnic).
+2. **Hierarchické vnímání** – containment tree místo plochého seznamu.
+3. **Typové rozpoznání** – kružnice, obdélníky, perforace.
+4. **Trigger-based přepínání** – `matrix_perforation`, `artistic_engraving`.
+
+**Kinematická korekce (travel time) je odložena na v2.5.0** – vyžaduje terénní výzkum.
+
+**Handoff dokumentu rozumí:**
+- Vývojář implementující změny v kódu.
+- LLM agent analyzující výstupní JSON.
+- CAM postprocesor (později).
+
+**Souhlasí developer s tímto plánem?**  
+Ano – iterativní přístup, bez umělých limitů, s důrazem na praktické testování.
