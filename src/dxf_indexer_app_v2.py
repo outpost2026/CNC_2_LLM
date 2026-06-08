@@ -295,11 +295,6 @@ if uploaded_file is not None:
                             ys = [v[1] for v in el["verts"]]
                             ax.plot(xs, ys, color=cmap.get(el["color"], "#64748B"), linewidth=1.0, alpha=0.8)
 
-                        from matplotlib.patches import Rectangle
-                        stock_w, stock_h = 2900.0, 1220.0
-                        ax.add_patch(Rectangle((0, 0), stock_w, stock_h, fill=False,
-                                               edgecolor="#475569", linewidth=1.5, linestyle="--"))
-
                         sem_loc = result.get("semantic_analysis", {})
                         zones = sem_loc.get("zones", [])
                         for z in zones:

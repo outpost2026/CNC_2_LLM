@@ -1,0 +1,4 @@
+color_index,color_name,entity_count,total_length_mm,point_count,closed_count,open_count,closed_ratio,total_tac_rad,tac_per_meter,point_density_per_meter,min_length_mm,max_length_mm,geometry_types,layers,cutter_type,base_speed_mms,direction,validation_status,is_mapped
+0,ByBlock,1,7705.0,8,1,0,1.0,0.0,0.0,1.0,7705.0,7705.0,LWPOLYLINE:1,mainlayer,unmapped,,,,0
+3,Green,21,58590.0,42,0,21,0.0,0.0,0.0,0.7,2790.0,2790.0,LWPOLYLINE:21,mainlayer,V-slot,200,Cut both side,empirical,1
+52,Lime,1,2790.0,2,0,1,0.0,0.0,0.0,0.7,2790.0,2790.0,LWPOLYLINE:1,mainlayer,V-slot,200,Cut both side,hypothesis,1
