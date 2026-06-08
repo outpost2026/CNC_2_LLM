@@ -1372,7 +1372,7 @@ def build_layer_card(entities, tool_config=None):
 # MAIN PARSER (v2.2 — layer card + ML hygiene)
 # ═══════════════════════════════════════════════════
 
-def index_dxf(dxf_path, tool_config=None):
+def index_dxf(dxf_path, tool_config=None, keep_vertices=False):
     try: doc = ezdxf.readfile(dxf_path)
     except Exception as e:
         print(f"Error: {dxf_path.name}: {e}", file=sys.stderr)
@@ -1538,8 +1538,9 @@ def index_dxf(dxf_path, tool_config=None):
             all_seg_lens.append(ss["mean_segment_length_mm"])
     global_mean_seg = sum(all_seg_lens) / len(all_seg_lens) if all_seg_lens else 0.0
 
-    for e in all_entities:
-        e.pop("vertices", None)
+    if not keep_vertices:
+        for e in all_entities:
+            e.pop("vertices", None)
 
     return {
         "indexer_version": VERSION,
@@ -2031,7 +2032,7 @@ def main():
     print(f"DXF Geometry Indexer V{VERSION} — Semantic Analysis Enabled")
     print(f"{'='*60}")
     for df in sorted(dxf_files):
-        result = index_dxf(df, tool_config)
+        result = index_dxf(df, tool_config, keep_vertices=args.viz)
         if result is None: continue
         all_results.append(result)
         sb = result["spatial_bounds"]; ts = result["topology_stats"]

@@ -263,7 +263,7 @@ with st.spinner("Indexuji geometrii + renderuji vizualizaci..."):
         except Exception:
             pass
 
-    result = index_dxf(Path(tmp_path), tool_cfg)
+    result = index_dxf(Path(tmp_path), tool_cfg, keep_vertices=True)
     os.unlink(tmp_path)
 
     if result is None:
