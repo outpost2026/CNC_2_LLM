@@ -251,7 +251,6 @@ if uploaded_file is not None:
                         vis_path = tmp.name
                     doc = ezdxf.readfile(vis_path)
                     msp = doc.modelspace()
-                    layer_colors = {l.dxf.name: l.color for l in doc.layers if hasattr(l.dxf, 'color')}
                     plt_ents = []
                     seen_colors = set()
                     for entity in msp:
@@ -276,10 +275,20 @@ if uploaded_file is not None:
                             else:
                                 continue
                             if len(verts) > 1:
-                                color_idx = getattr(entity.dxf, 'color', 256)
-                                if color_idx in (0, 256):
-                                    lc = layer_colors.get(entity.dxf.layer, 256)
-                                    color_idx = lc if lc not in (0, 256) else 7
+                                color_idx = 7
+                                if entity.has_dxf_attrib('color'):
+                                    c = entity.dxf.color
+                                    if c not in (0, 256):
+                                        color_idx = int(c)
+                                if color_idx == 7 and doc:
+                                    try:
+                                        ln = entity.dxf.layer
+                                        if ln in doc.layers:
+                                            lc = int(doc.layers.get(ln).color)
+                                            if lc not in (0, 256):
+                                                color_idx = lc
+                                    except Exception:
+                                        pass
                                 plt_ents.append({"verts": verts, "color": color_idx})
                                 seen_colors.add(color_idx)
                         except Exception:

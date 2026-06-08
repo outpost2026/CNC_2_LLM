@@ -1368,13 +1368,17 @@ def build_layer_card(entities, tool_config=None):
     }
 
 
-def resolve_aci_color(entity, layer_colors):
-    color_idx = getattr(entity.dxf, 'color', 256)
-    if color_idx not in (0, 256):
-        return color_idx
-    layer_color = layer_colors.get(entity.dxf.layer, 256)
-    if layer_color not in (0, 256):
-        return layer_color
+def resolve_aci_color(entity, doc) -> int:
+    if entity.has_dxf_attrib('color'):
+        c = entity.dxf.color
+        if c not in (0, 256):
+            return int(c)
+    try:
+        layer_name = entity.dxf.layer
+        if doc and layer_name in doc.layers:
+            return int(doc.layers.get(layer_name).color)
+    except Exception:
+        pass
     return 7
 
 
@@ -1395,13 +1399,12 @@ def index_dxf(dxf_path, tool_config=None, keep_vertices=False):
     except: md5, size = "unknown", 0
 
     msp = doc.modelspace()
-    layer_colors = {l.dxf.name: l.color for l in doc.layers}
 
     all_entities = []
     global_bbox = [float('inf'), float('inf'), float('-inf'), float('-inf')]
 
     for idx, entity in enumerate(msp):
-        color_idx = resolve_aci_color(entity, layer_colors)
+        color_idx = resolve_aci_color(entity, doc)
         dtype = entity.dxftype()
         if dtype not in _GEOM_FNS: continue
 
