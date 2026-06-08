@@ -24,10 +24,16 @@ def _strip_volatile(result):
     return result
 
 
+def _load_config(tool_config_path):
+    with open(tool_config_path, 'r', encoding='utf-8-sig') as f:
+        return json.load(f)
+
+
 @pytest.mark.integration
-def test_golden_master_26_skladba(demo_dir, golden_master_dir):
+def test_golden_master_26_skladba(demo_dir, golden_master_dir, tool_config_path):
     dxf = Path(demo_dir) / "26_skladba.dxf"
-    new = index_dxf(dxf, None)
+    config = _load_config(tool_config_path)
+    new = index_dxf(dxf, config)
     assert new is not None
 
     golden = _load_golden(golden_master_dir, "26_skladba")
@@ -40,9 +46,10 @@ def test_golden_master_26_skladba(demo_dir, golden_master_dir):
 
 
 @pytest.mark.integration
-def test_golden_master_3781_1(demo_dir, golden_master_dir):
+def test_golden_master_3781_1(demo_dir, golden_master_dir, tool_config_path):
     dxf = Path(demo_dir) / "3781_1.dxf"
-    new = index_dxf(dxf, None)
+    config = _load_config(tool_config_path)
+    new = index_dxf(dxf, config)
     assert new is not None
 
     golden = _load_golden(golden_master_dir, "3781_1")
@@ -55,9 +62,10 @@ def test_golden_master_3781_1(demo_dir, golden_master_dir):
 
 
 @pytest.mark.integration
-def test_golden_master_3824_1(demo_dir, golden_master_dir):
+def test_golden_master_3824_1(demo_dir, golden_master_dir, tool_config_path):
     dxf = Path(demo_dir) / "3824_1.dxf"
-    new = index_dxf(dxf, None)
+    config = _load_config(tool_config_path)
+    new = index_dxf(dxf, config)
     assert new is not None
 
     golden = _load_golden(golden_master_dir, "3824_1")
@@ -67,3 +75,35 @@ def test_golden_master_3824_1(demo_dir, golden_master_dir):
     new_json = json.dumps(new_stripped, sort_keys=True, ensure_ascii=False)
     golden_json = json.dumps(golden_stripped, sort_keys=True, ensure_ascii=False)
     assert new_json == golden_json, "Golden master mismatch for 3824_1.dxf"
+
+
+@pytest.mark.integration
+def test_golden_master_3824_4(demo_dir, golden_master_dir, tool_config_path):
+    dxf = Path(demo_dir) / "3824_4.dxf"
+    config = _load_config(tool_config_path)
+    new = index_dxf(dxf, config)
+    assert new is not None
+
+    golden = _load_golden(golden_master_dir, "3824_4")
+    new_stripped = _strip_volatile(new)
+    golden_stripped = _strip_volatile(golden)
+
+    new_json = json.dumps(new_stripped, sort_keys=True, ensure_ascii=False)
+    golden_json = json.dumps(golden_stripped, sort_keys=True, ensure_ascii=False)
+    assert new_json == golden_json, "Golden master mismatch for 3824_4.dxf"
+
+
+@pytest.mark.integration
+def test_golden_master_PCB_C(demo_dir, golden_master_dir, tool_config_path):
+    dxf = Path(demo_dir) / "PCB_C.dxf"
+    config = _load_config(tool_config_path)
+    new = index_dxf(dxf, config)
+    assert new is not None
+
+    golden = _load_golden(golden_master_dir, "PCB_C")
+    new_stripped = _strip_volatile(new)
+    golden_stripped = _strip_volatile(golden)
+
+    new_json = json.dumps(new_stripped, sort_keys=True, ensure_ascii=False)
+    golden_json = json.dumps(golden_stripped, sort_keys=True, ensure_ascii=False)
+    assert new_json == golden_json, "Golden master mismatch for PCB_C.dxf"

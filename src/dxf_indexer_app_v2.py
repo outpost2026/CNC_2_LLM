@@ -4,6 +4,10 @@ import pandas as pd
 import os, io, json, math, tempfile
 from pathlib import Path
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from dxf_geometry_indexer_v2 import resolve_cam_color, LIGHTBURN_CAM_PALETTE
+
 st.set_page_config(
     page_title="DXF Geometry Indexer V2.1 | Dev Dashboard",
     layout="wide",
@@ -236,8 +240,8 @@ if uploaded_file is not None:
                             "Open": c["open_count"],
                             "TAC": c["total_tac_rad"],
                             "Nástroj": tc.get("cutter_type", "unmapped"),
-                            "Rychlost": tc.get("base_speed_mms", ""),
-                            "Status": tc.get("validation_status", "")
+                            "Rychlost": tc.get("base_speed_mms", 0),
+                            "Status": tc.get("validation_status", "unmapped")
                         })
                     st.dataframe(pd.DataFrame(lc_rows), use_container_width=True, hide_index=True)
                     st.caption(f"{lc['total_entities_mapped']} barev má mapovaný nástroj, {lc['total_entities_unmapped']} nemá")
@@ -275,20 +279,7 @@ if uploaded_file is not None:
                             else:
                                 continue
                             if len(verts) > 1:
-                                color_idx = 7
-                                if entity.has_dxf_attrib('color'):
-                                    c = entity.dxf.color
-                                    if c not in (0, 256):
-                                        color_idx = int(c)
-                                if color_idx == 7 and doc:
-                                    try:
-                                        ln = entity.dxf.layer
-                                        if ln in doc.layers:
-                                            lc = int(doc.layers.get(ln).color)
-                                            if lc not in (0, 256):
-                                                color_idx = lc
-                                    except Exception:
-                                        pass
+                                color_idx = resolve_cam_color(entity, doc)
                                 plt_ents.append({"verts": verts, "color": color_idx})
                                 seen_colors.add(color_idx)
                         except Exception:
@@ -298,9 +289,16 @@ if uploaded_file is not None:
                     if plt_ents:
                         fig, ax = plt.subplots(figsize=(12, 8), facecolor="#1E293B")
                         ax.set_facecolor("#0F172A")
-                        cmap = {1: "#F43F5E", 2: "#F59E0B", 3: "#10B981", 4: "#06B6D4",
-                                5: "#3B82F6", 6: "#A855F7", 7: "#F8FAFC", 0: "#94A3B8",
-                                30: "#EA580C", 52: "#84CC16", 92: "#0891B2"}
+                        cmap = {0: "#000000", 1: "#FF0000", 2: "#D0D000",
+                                3: "#00E000", 5: "#0000FF", 6: "#FF00FF",
+                                7: "#000000", 8: "#808080", 12: "#0000A0",
+                                14: "#A00000", 30: "#FF8000", 34: "#C08000",
+                                36: "#B45A00", 44: "#F0B98D", 51: "#FFDB66",
+                                54: "#A0A000", 80: "#86FA88", 82: "#8CD78C",
+                                84: "#00A000", 104: "#7D87B9", 134: "#004754",
+                                140: "#00E0E0", 160: "#00A0FF", 170: "#4A6FE3",
+                                194: "#500A78", 210: "#F6C4E1", 214: "#A000A0",
+                                221: "#FA9ED4", 230: "#D33F6A", 252: "#B4B4B4"}
                         for el in plt_ents[:600]:
                             xs = [v[0] for v in el["verts"]]
                             ys = [v[1] for v in el["verts"]]

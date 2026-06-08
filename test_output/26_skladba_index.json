@@ -1,12 +1,12 @@
 {
-  "indexer_version": "2.2.0",
+  "indexer_version": "2.3.0",
   "metadata": {
-    "file": "G:\\Můj disk\\Moodpasta\\dxf_integrace\\DXF_indexer_v2.2\\demo_data\\26_skladba.dxf",
+    "file": "G:\\Můj disk\\Moodpasta\\dxf_integrace\\DXF_indexer_main\\demo_data\\26_skladba.dxf",
     "file_name": "26_skladba.dxf",
     "dxf_version": "AC1015",
     "file_size_bytes": 264334,
     "md5": "85b4ca6b1567e38c13b840f3058ae8c4",
-    "timestamp": "2026-06-07T00:39:47",
+    "timestamp": "2026-06-08T21:49:11",
     "libraries_available": {
       "shapely": true,
       "scipy": true,
@@ -29,7 +29,7 @@
     "total_closed_loops": 183,
     "total_open_paths": 0,
     "closed_ratio": 1.0,
-    "max_nesting_depth": 1,
+    "max_nesting_depth": 2,
     "distinct_shape_patterns": 6,
     "spatial_clusters": 1,
     "total_vertices": 7288,
@@ -45,21 +45,21 @@
       "proximity": 1741
     },
     "graph_features": {
-      "connected_components": 2,
+      "connected_components": 1,
       "cycle_count": 208,
-      "max_degree": 31,
-      "graph_diameter": 182,
+      "max_degree": 182,
+      "graph_diameter": 183,
       "laplacian_eigenvalues_top10": [
-        0.0,
-        0.678539,
-        2.482051,
-        2.514963,
-        2.820288,
-        4.150646,
-        4.880919,
-        5.803114,
-        5.979919,
-        6.190984
+        -0.0,
+        1.678792,
+        3.485508,
+        3.519428,
+        3.825229,
+        5.164343,
+        5.913143,
+        6.830067,
+        7.005787,
+        7.224952
       ]
     },
     "edges": {
@@ -10549,9 +10549,9 @@
         ]
       }
     ],
-    "nesting_summary": "183 closed contours: 1 top-level outline(s) containing 130 inner features.",
+    "nesting_summary": "183 closed contours: 1 top-level outline(s) containing 182 inner features.",
     "cutting_time_estimate": {
-      "config_feed_rate_mmps": 200.0,
+      "config_feed_rate_mmps": 200,
       "vibrate_cutter_time_s": 522.7,
       "v_slot_time_s": 0.0,
       "head_rotation_overhead_s": 0.0,
@@ -10617,10 +10617,10 @@
     "has_arcs_ratio": 0.0,
     "max_bulge_any": 0.0,
     "mean_bulge_all": 0.0,
-    "graph_connected_components": 2,
-    "graph_max_degree": 31,
+    "graph_connected_components": 1,
+    "graph_max_degree": 182,
     "graph_cycle_count": 208,
-    "graph_diameter": 182,
+    "graph_diameter": 183,
     "constraints_parallel": 16653,
     "constraints_perpendicular": 0,
     "constraints_orthogonal_ratio": 1.0,
@@ -10842,8 +10842,10 @@
         "operation": "outer_format"
       }
     },
+    "tool_conflict_detected": false,
+    "tool_conflict_entity_ids": [],
     "cutting_time_estimate": {
-      "config_feed_rate_mmps": 200.0,
+      "config_feed_rate_mmps": 200,
       "vibrate_cutter_time_s": 522.7,
       "v_slot_time_s": 0.0,
       "head_rotation_overhead_s": 0.0,
@@ -10879,8 +10881,8 @@
   },
   "layer_card": {
     "color_count": 2,
-    "total_entities_mapped": 2,
-    "total_entities_unmapped": 0,
+    "total_entities_mapped": 1,
+    "total_entities_unmapped": 1,
     "colors": {
       "1": {
         "color_index": 1,
@@ -10913,8 +10915,8 @@
         },
         "is_mapped": true
       },
-      "4": {
-        "color_index": 4,
+      "140": {
+        "color_index": 140,
         "color_name": "Cyan",
         "entity_count": 182,
         "total_length_mm": 96304.0,
@@ -10933,23 +10935,15 @@
         "layers": [
           "mainlayer"
         ],
-        "tool_config": {
-          "cutter_type": "ambiguous",
-          "base_speed_mms": 200,
-          "direction": "Cut both side",
-          "h2_mm": 6.0,
-          "validation_status": "hypothesis",
-          "is_output": true,
-          "note": "Azurová (C06, ACI 4) — AMBIGUOUS. Podle hustoty bodů se rozhoduje mezi Vibrate (50 mm/s) a V-slot (200 mm/s)."
-        },
-        "is_mapped": true
+        "tool_config": null,
+        "is_mapped": false
       }
     }
   },
   "layers": [
     {
       "name": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "entity_count": 183,
       "total_length_mm": 104544.0,
       "total_point_count": 7288,
@@ -11203,7 +11197,7 @@
       "id": "E_0001",
       "entity_index": 1,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -11243,7 +11237,7 @@
       "id": "E_0002",
       "entity_index": 2,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -11283,7 +11277,7 @@
       "id": "E_0003",
       "entity_index": 3,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -11323,7 +11317,7 @@
       "id": "E_0004",
       "entity_index": 4,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -11363,7 +11357,7 @@
       "id": "E_0005",
       "entity_index": 5,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -11403,7 +11397,7 @@
       "id": "E_0006",
       "entity_index": 6,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -11443,7 +11437,7 @@
       "id": "E_0007",
       "entity_index": 7,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -11483,7 +11477,7 @@
       "id": "E_0008",
       "entity_index": 8,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -11523,7 +11517,7 @@
       "id": "E_0009",
       "entity_index": 9,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -11563,7 +11557,7 @@
       "id": "E_0010",
       "entity_index": 10,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -11603,7 +11597,7 @@
       "id": "E_0011",
       "entity_index": 11,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -11643,7 +11637,7 @@
       "id": "E_0012",
       "entity_index": 12,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -11683,7 +11677,7 @@
       "id": "E_0013",
       "entity_index": 13,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -11723,7 +11717,7 @@
       "id": "E_0014",
       "entity_index": 14,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -11763,7 +11757,7 @@
       "id": "E_0015",
       "entity_index": 15,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -11803,7 +11797,7 @@
       "id": "E_0016",
       "entity_index": 16,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -11843,7 +11837,7 @@
       "id": "E_0017",
       "entity_index": 17,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -11883,7 +11877,7 @@
       "id": "E_0018",
       "entity_index": 18,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -11923,7 +11917,7 @@
       "id": "E_0019",
       "entity_index": 19,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -11963,7 +11957,7 @@
       "id": "E_0020",
       "entity_index": 20,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -12003,7 +11997,7 @@
       "id": "E_0021",
       "entity_index": 21,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -12043,7 +12037,7 @@
       "id": "E_0022",
       "entity_index": 22,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -12083,7 +12077,7 @@
       "id": "E_0023",
       "entity_index": 23,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -12123,7 +12117,7 @@
       "id": "E_0024",
       "entity_index": 24,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -12163,7 +12157,7 @@
       "id": "E_0025",
       "entity_index": 25,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -12203,7 +12197,7 @@
       "id": "E_0026",
       "entity_index": 26,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -12243,7 +12237,7 @@
       "id": "E_0027",
       "entity_index": 27,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -12283,7 +12277,7 @@
       "id": "E_0028",
       "entity_index": 28,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -12323,7 +12317,7 @@
       "id": "E_0029",
       "entity_index": 29,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -12363,7 +12357,7 @@
       "id": "E_0030",
       "entity_index": 30,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -12403,7 +12397,7 @@
       "id": "E_0031",
       "entity_index": 31,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -12443,7 +12437,7 @@
       "id": "E_0032",
       "entity_index": 32,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -12483,7 +12477,7 @@
       "id": "E_0033",
       "entity_index": 33,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -12523,7 +12517,7 @@
       "id": "E_0034",
       "entity_index": 34,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -12563,7 +12557,7 @@
       "id": "E_0035",
       "entity_index": 35,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -12603,7 +12597,7 @@
       "id": "E_0036",
       "entity_index": 36,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -12643,7 +12637,7 @@
       "id": "E_0037",
       "entity_index": 37,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -12683,7 +12677,7 @@
       "id": "E_0038",
       "entity_index": 38,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -12723,7 +12717,7 @@
       "id": "E_0039",
       "entity_index": 39,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -12763,7 +12757,7 @@
       "id": "E_0040",
       "entity_index": 40,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -12803,7 +12797,7 @@
       "id": "E_0041",
       "entity_index": 41,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -12843,7 +12837,7 @@
       "id": "E_0042",
       "entity_index": 42,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -12883,7 +12877,7 @@
       "id": "E_0043",
       "entity_index": 43,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -12923,7 +12917,7 @@
       "id": "E_0044",
       "entity_index": 44,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -12963,7 +12957,7 @@
       "id": "E_0045",
       "entity_index": 45,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -13003,7 +12997,7 @@
       "id": "E_0046",
       "entity_index": 46,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -13043,7 +13037,7 @@
       "id": "E_0047",
       "entity_index": 47,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -13083,7 +13077,7 @@
       "id": "E_0048",
       "entity_index": 48,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -13123,7 +13117,7 @@
       "id": "E_0049",
       "entity_index": 49,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -13163,7 +13157,7 @@
       "id": "E_0050",
       "entity_index": 50,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -13203,7 +13197,7 @@
       "id": "E_0051",
       "entity_index": 51,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -13243,7 +13237,7 @@
       "id": "E_0052",
       "entity_index": 52,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -13283,7 +13277,7 @@
       "id": "E_0053",
       "entity_index": 53,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -13323,7 +13317,7 @@
       "id": "E_0054",
       "entity_index": 54,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -13363,7 +13357,7 @@
       "id": "E_0055",
       "entity_index": 55,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -13403,7 +13397,7 @@
       "id": "E_0056",
       "entity_index": 56,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -13443,7 +13437,7 @@
       "id": "E_0057",
       "entity_index": 57,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -13483,7 +13477,7 @@
       "id": "E_0058",
       "entity_index": 58,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -13523,7 +13517,7 @@
       "id": "E_0059",
       "entity_index": 59,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -13563,7 +13557,7 @@
       "id": "E_0060",
       "entity_index": 60,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -13603,7 +13597,7 @@
       "id": "E_0061",
       "entity_index": 61,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -13643,7 +13637,7 @@
       "id": "E_0062",
       "entity_index": 62,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -13683,7 +13677,7 @@
       "id": "E_0063",
       "entity_index": 63,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -13723,7 +13717,7 @@
       "id": "E_0064",
       "entity_index": 64,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -13763,7 +13757,7 @@
       "id": "E_0065",
       "entity_index": 65,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -13803,7 +13797,7 @@
       "id": "E_0066",
       "entity_index": 66,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -13843,7 +13837,7 @@
       "id": "E_0067",
       "entity_index": 67,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -13883,7 +13877,7 @@
       "id": "E_0068",
       "entity_index": 68,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -13923,7 +13917,7 @@
       "id": "E_0069",
       "entity_index": 69,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -13963,7 +13957,7 @@
       "id": "E_0070",
       "entity_index": 70,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -14003,7 +13997,7 @@
       "id": "E_0071",
       "entity_index": 71,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -14043,7 +14037,7 @@
       "id": "E_0072",
       "entity_index": 72,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -14083,7 +14077,7 @@
       "id": "E_0073",
       "entity_index": 73,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -14123,7 +14117,7 @@
       "id": "E_0074",
       "entity_index": 74,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -14163,7 +14157,7 @@
       "id": "E_0075",
       "entity_index": 75,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -14203,7 +14197,7 @@
       "id": "E_0076",
       "entity_index": 76,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -14243,7 +14237,7 @@
       "id": "E_0077",
       "entity_index": 77,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -14283,7 +14277,7 @@
       "id": "E_0078",
       "entity_index": 78,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -14323,7 +14317,7 @@
       "id": "E_0079",
       "entity_index": 79,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -14363,7 +14357,7 @@
       "id": "E_0080",
       "entity_index": 80,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -14403,7 +14397,7 @@
       "id": "E_0081",
       "entity_index": 81,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -14443,7 +14437,7 @@
       "id": "E_0082",
       "entity_index": 82,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -14483,7 +14477,7 @@
       "id": "E_0083",
       "entity_index": 83,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -14523,7 +14517,7 @@
       "id": "E_0084",
       "entity_index": 84,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -14563,7 +14557,7 @@
       "id": "E_0085",
       "entity_index": 85,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -14603,7 +14597,7 @@
       "id": "E_0086",
       "entity_index": 86,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -14643,7 +14637,7 @@
       "id": "E_0087",
       "entity_index": 87,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -14683,7 +14677,7 @@
       "id": "E_0088",
       "entity_index": 88,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -14723,7 +14717,7 @@
       "id": "E_0089",
       "entity_index": 89,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -14763,7 +14757,7 @@
       "id": "E_0090",
       "entity_index": 90,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -14803,7 +14797,7 @@
       "id": "E_0091",
       "entity_index": 91,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -14843,7 +14837,7 @@
       "id": "E_0092",
       "entity_index": 92,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -14883,7 +14877,7 @@
       "id": "E_0093",
       "entity_index": 93,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -14923,7 +14917,7 @@
       "id": "E_0094",
       "entity_index": 94,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -14963,7 +14957,7 @@
       "id": "E_0095",
       "entity_index": 95,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -15003,7 +14997,7 @@
       "id": "E_0096",
       "entity_index": 96,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -15043,7 +15037,7 @@
       "id": "E_0097",
       "entity_index": 97,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -15083,7 +15077,7 @@
       "id": "E_0098",
       "entity_index": 98,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -15123,7 +15117,7 @@
       "id": "E_0099",
       "entity_index": 99,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -15163,7 +15157,7 @@
       "id": "E_0100",
       "entity_index": 100,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -15203,7 +15197,7 @@
       "id": "E_0101",
       "entity_index": 101,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -15243,7 +15237,7 @@
       "id": "E_0102",
       "entity_index": 102,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -15283,7 +15277,7 @@
       "id": "E_0103",
       "entity_index": 103,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -15323,7 +15317,7 @@
       "id": "E_0104",
       "entity_index": 104,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -15363,7 +15357,7 @@
       "id": "E_0105",
       "entity_index": 105,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -15403,7 +15397,7 @@
       "id": "E_0106",
       "entity_index": 106,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -15443,7 +15437,7 @@
       "id": "E_0107",
       "entity_index": 107,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -15483,7 +15477,7 @@
       "id": "E_0108",
       "entity_index": 108,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -15523,7 +15517,7 @@
       "id": "E_0109",
       "entity_index": 109,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -15563,7 +15557,7 @@
       "id": "E_0110",
       "entity_index": 110,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -15603,7 +15597,7 @@
       "id": "E_0111",
       "entity_index": 111,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -15643,7 +15637,7 @@
       "id": "E_0112",
       "entity_index": 112,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -15683,7 +15677,7 @@
       "id": "E_0113",
       "entity_index": 113,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -15723,7 +15717,7 @@
       "id": "E_0114",
       "entity_index": 114,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -15763,7 +15757,7 @@
       "id": "E_0115",
       "entity_index": 115,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -15803,7 +15797,7 @@
       "id": "E_0116",
       "entity_index": 116,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -15843,7 +15837,7 @@
       "id": "E_0117",
       "entity_index": 117,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -15883,7 +15877,7 @@
       "id": "E_0118",
       "entity_index": 118,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -15923,7 +15917,7 @@
       "id": "E_0119",
       "entity_index": 119,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -15963,7 +15957,7 @@
       "id": "E_0120",
       "entity_index": 120,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -16003,7 +15997,7 @@
       "id": "E_0121",
       "entity_index": 121,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -16043,7 +16037,7 @@
       "id": "E_0122",
       "entity_index": 122,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -16083,7 +16077,7 @@
       "id": "E_0123",
       "entity_index": 123,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -16123,7 +16117,7 @@
       "id": "E_0124",
       "entity_index": 124,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -16163,7 +16157,7 @@
       "id": "E_0125",
       "entity_index": 125,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -16203,7 +16197,7 @@
       "id": "E_0126",
       "entity_index": 126,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -16243,7 +16237,7 @@
       "id": "E_0127",
       "entity_index": 127,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -16283,7 +16277,7 @@
       "id": "E_0128",
       "entity_index": 128,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -16323,7 +16317,7 @@
       "id": "E_0129",
       "entity_index": 129,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -16363,7 +16357,7 @@
       "id": "E_0130",
       "entity_index": 130,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -16403,7 +16397,7 @@
       "id": "E_0131",
       "entity_index": 131,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -16443,7 +16437,7 @@
       "id": "E_0132",
       "entity_index": 132,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -16483,7 +16477,7 @@
       "id": "E_0133",
       "entity_index": 133,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -16523,7 +16517,7 @@
       "id": "E_0134",
       "entity_index": 134,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -16563,7 +16557,7 @@
       "id": "E_0135",
       "entity_index": 135,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -16603,7 +16597,7 @@
       "id": "E_0136",
       "entity_index": 136,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -16643,7 +16637,7 @@
       "id": "E_0137",
       "entity_index": 137,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -16683,7 +16677,7 @@
       "id": "E_0138",
       "entity_index": 138,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -16723,7 +16717,7 @@
       "id": "E_0139",
       "entity_index": 139,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -16763,7 +16757,7 @@
       "id": "E_0140",
       "entity_index": 140,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -16803,7 +16797,7 @@
       "id": "E_0141",
       "entity_index": 141,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -16843,7 +16837,7 @@
       "id": "E_0142",
       "entity_index": 142,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -16883,7 +16877,7 @@
       "id": "E_0143",
       "entity_index": 143,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -16923,7 +16917,7 @@
       "id": "E_0144",
       "entity_index": 144,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -16963,7 +16957,7 @@
       "id": "E_0145",
       "entity_index": 145,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -17003,7 +16997,7 @@
       "id": "E_0146",
       "entity_index": 146,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -17043,7 +17037,7 @@
       "id": "E_0147",
       "entity_index": 147,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -17083,7 +17077,7 @@
       "id": "E_0148",
       "entity_index": 148,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -17123,7 +17117,7 @@
       "id": "E_0149",
       "entity_index": 149,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -17163,7 +17157,7 @@
       "id": "E_0150",
       "entity_index": 150,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -17203,7 +17197,7 @@
       "id": "E_0151",
       "entity_index": 151,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -17243,7 +17237,7 @@
       "id": "E_0152",
       "entity_index": 152,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -17283,7 +17277,7 @@
       "id": "E_0153",
       "entity_index": 153,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -17323,7 +17317,7 @@
       "id": "E_0154",
       "entity_index": 154,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -17363,7 +17357,7 @@
       "id": "E_0155",
       "entity_index": 155,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -17403,7 +17397,7 @@
       "id": "E_0156",
       "entity_index": 156,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -17443,7 +17437,7 @@
       "id": "E_0157",
       "entity_index": 157,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -17483,7 +17477,7 @@
       "id": "E_0158",
       "entity_index": 158,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -17523,7 +17517,7 @@
       "id": "E_0159",
       "entity_index": 159,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -17563,7 +17557,7 @@
       "id": "E_0160",
       "entity_index": 160,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -17603,7 +17597,7 @@
       "id": "E_0161",
       "entity_index": 161,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -17643,7 +17637,7 @@
       "id": "E_0162",
       "entity_index": 162,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -17683,7 +17677,7 @@
       "id": "E_0163",
       "entity_index": 163,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -17723,7 +17717,7 @@
       "id": "E_0164",
       "entity_index": 164,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -17763,7 +17757,7 @@
       "id": "E_0165",
       "entity_index": 165,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -17803,7 +17797,7 @@
       "id": "E_0166",
       "entity_index": 166,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -17843,7 +17837,7 @@
       "id": "E_0167",
       "entity_index": 167,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -17883,7 +17877,7 @@
       "id": "E_0168",
       "entity_index": 168,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -17923,7 +17917,7 @@
       "id": "E_0169",
       "entity_index": 169,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -17963,7 +17957,7 @@
       "id": "E_0170",
       "entity_index": 170,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -18003,7 +17997,7 @@
       "id": "E_0171",
       "entity_index": 171,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -18043,7 +18037,7 @@
       "id": "E_0172",
       "entity_index": 172,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -18083,7 +18077,7 @@
       "id": "E_0173",
       "entity_index": 173,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -18123,7 +18117,7 @@
       "id": "E_0174",
       "entity_index": 174,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -18163,7 +18157,7 @@
       "id": "E_0175",
       "entity_index": 175,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -18203,7 +18197,7 @@
       "id": "E_0176",
       "entity_index": 176,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -18243,7 +18237,7 @@
       "id": "E_0177",
       "entity_index": 177,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -18283,7 +18277,7 @@
       "id": "E_0178",
       "entity_index": 178,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 512.0,
       "point_count": 48,
@@ -18323,7 +18317,7 @@
       "id": "E_0179",
       "entity_index": 179,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 784.0,
       "point_count": 56,
@@ -18363,7 +18357,7 @@
       "id": "E_0180",
       "entity_index": 180,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 440.0,
       "point_count": 24,
@@ -18403,7 +18397,7 @@
       "id": "E_0181",
       "entity_index": 181,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 600.0,
       "point_count": 40,
@@ -18443,7 +18437,7 @@
       "id": "E_0182",
       "entity_index": 182,
       "layer": "mainlayer",
-      "color_index": 4,
+      "color_index": 140,
       "type": "LWPOLYLINE",
       "length_mm": 72.0,
       "point_count": 8,
@@ -18935,7 +18929,7 @@
       "Shape_G3": 10.0,
       "Shape_G4": 5.0,
       "Shape_G5": 108.0,
-      "Shape_G6": 146.0
+      "Shape_G6": 146.12
     },
     "Shape_G3": {
       "Shape_G1": 0.0,
@@ -18948,21 +18942,21 @@
       "Shape_G1": 0.0,
       "Shape_G2": 5.0,
       "Shape_G3": 113.0,
-      "Shape_G5": 3.0,
-      "Shape_G6": 41.0
+      "Shape_G5": 10.92,
+      "Shape_G6": 49.37
     },
     "Shape_G5": {
       "Shape_G1": 0.0,
       "Shape_G2": 108.0,
       "Shape_G3": 10.0,
-      "Shape_G4": 3.0,
+      "Shape_G4": 10.92,
       "Shape_G6": 0.0
     },
     "Shape_G6": {
       "Shape_G1": 0.0,
-      "Shape_G2": 146.0,
+      "Shape_G2": 146.12,
       "Shape_G3": 48.0,
-      "Shape_G4": 41.0,
+      "Shape_G4": 49.37,
       "Shape_G5": 0.0
     }
   },
@@ -19045,6 +19039,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0006",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            2680.0,
+            1210.0,
+            2880.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0007",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                2774.0,
+                1172.0,
+                2786.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0008",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19108,6 +19129,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0013",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            2680.0,
+            612.0,
+            2880.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0014",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                2774.0,
+                574.0,
+                2786.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0015",
@@ -19175,6 +19223,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0020",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            2460.0,
+            1210.0,
+            2660.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0021",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                2554.0,
+                1172.0,
+                2566.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0022",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19238,6 +19313,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0027",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            2460.0,
+            612.0,
+            2660.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0028",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                2554.0,
+                574.0,
+                2566.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0029",
@@ -19305,6 +19407,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0034",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            2240.0,
+            1210.0,
+            2440.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0035",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                2334.0,
+                1172.0,
+                2346.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0036",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19368,6 +19497,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0041",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            2240.0,
+            612.0,
+            2440.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0042",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                2334.0,
+                574.0,
+                2346.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0043",
@@ -19435,6 +19591,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0048",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            2020.0,
+            1210.0,
+            2220.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0049",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                2114.0,
+                1172.0,
+                2126.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0050",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19498,6 +19681,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0055",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            2020.0,
+            612.0,
+            2220.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0056",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                2114.0,
+                574.0,
+                2126.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0057",
@@ -19565,6 +19775,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0062",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            1800.0,
+            1210.0,
+            2000.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0063",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1894.0,
+                1172.0,
+                1906.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0064",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19628,6 +19865,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0069",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            1800.0,
+            612.0,
+            2000.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0070",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1894.0,
+                574.0,
+                1906.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0071",
@@ -19695,6 +19959,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0076",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            1580.0,
+            1210.0,
+            1780.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0077",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1674.0,
+                1172.0,
+                1686.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0078",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19758,6 +20049,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0083",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            1580.0,
+            612.0,
+            1780.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0084",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1674.0,
+                574.0,
+                1686.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0085",
@@ -19825,6 +20143,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0090",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            1360.0,
+            1210.0,
+            1560.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0091",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1454.0,
+                1172.0,
+                1466.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0092",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -19888,6 +20233,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0097",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            1360.0,
+            612.0,
+            1560.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0098",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1454.0,
+                574.0,
+                1466.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0099",
@@ -19955,6 +20327,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0104",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            1140.0,
+            1210.0,
+            1340.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0105",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1234.0,
+                1172.0,
+                1246.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0106",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -20018,6 +20417,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0111",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            1140.0,
+            612.0,
+            1340.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0112",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1234.0,
+                574.0,
+                1246.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0113",
@@ -20085,6 +20511,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0118",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            920.0,
+            1210.0,
+            1120.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0119",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                1014.0,
+                1172.0,
+                1026.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0120",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -20148,6 +20601,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0125",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            920.0,
+            612.0,
+            1120.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0126",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                1014.0,
+                574.0,
+                1026.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0127",
@@ -20215,6 +20695,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0132",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            700.0,
+            1210.0,
+            900.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0133",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                794.0,
+                1172.0,
+                806.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0134",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -20278,6 +20785,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0139",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            700.0,
+            612.0,
+            900.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0140",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                794.0,
+                574.0,
+                806.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0141",
@@ -20345,6 +20879,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0146",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            480.0,
+            1210.0,
+            680.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0147",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                574.0,
+                1172.0,
+                586.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0148",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -20408,6 +20969,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0153",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            480.0,
+            612.0,
+            680.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0154",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                574.0,
+                574.0,
+                586.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0155",
@@ -20475,6 +21063,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0160",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            260.0,
+            1210.0,
+            460.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0161",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                354.0,
+                1172.0,
+                366.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0162",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -20538,6 +21153,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0167",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            260.0,
+            612.0,
+            460.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0168",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                354.0,
+                574.0,
+                366.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         },
         {
           "entity_id": "E_0169",
@@ -20605,6 +21247,33 @@
           "children": []
         },
         {
+          "entity_id": "E_0174",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            1110.0,
+            40.0,
+            1210.0,
+            240.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0175",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                1148.0,
+                134.0,
+                1172.0,
+                146.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
+        },
+        {
           "entity_id": "E_0176",
           "type": "LWPOLYLINE",
           "length_mm": 512.0,
@@ -20668,6 +21337,33 @@
           ],
           "area_mm2": 8784.01,
           "children": []
+        },
+        {
+          "entity_id": "E_0181",
+          "type": "LWPOLYLINE",
+          "length_mm": 600.0,
+          "bbox_mm": [
+            512.0,
+            40.0,
+            612.0,
+            240.0
+          ],
+          "area_mm2": 14528.0,
+          "children": [
+            {
+              "entity_id": "E_0182",
+              "type": "LWPOLYLINE",
+              "length_mm": 72.0,
+              "bbox_mm": [
+                550.0,
+                134.0,
+                574.0,
+                146.0
+              ],
+              "area_mm2": 288.0,
+              "children": []
+            }
+          ]
         }
       ]
     }

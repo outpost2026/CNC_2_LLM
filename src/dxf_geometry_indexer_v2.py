@@ -78,6 +78,68 @@ VERSION = "2.3.0"
 ADJACENCY_THRESHOLD_MM = 1.0
 PROXIMITY_THRESHOLD_MM = 5.0
 
+# LightBurn 32-color CAM palette: (R, G, B, cam_layer_index, aci)
+# Per "DXF CAM Export & Ruida Compatibility" spec — ground truth for Euclidean match.
+# T1=30, T2=31 (non-output tool layers).
+LIGHTBURN_CAM_PALETTE = [
+    (0, 0, 0, 0, 7),          # Layer 00 — Black
+    (0, 0, 255, 1, 5),        # Layer 01 — Blue
+    (255, 0, 0, 2, 1),        # Layer 02 — Red
+    (0, 224, 0, 3, 3),        # Layer 03 — Green
+    (208, 208, 0, 4, 2),      # Layer 04 — Yellow
+    (255, 128, 0, 5, 30),     # Layer 05 — Orange
+    (0, 224, 224, 6, 140),    # Layer 06 — Cyan
+    (255, 0, 255, 7, 6),      # Layer 07 — Magenta
+    (180, 180, 180, 8, 252),  # Layer 08 — Light Gray
+    (0, 0, 160, 9, 12),       # Layer 09 — Dark Blue
+    (160, 0, 0, 10, 14),      # Layer 10 — Dark Red
+    (0, 160, 0, 11, 84),      # Layer 11 — Dark Green
+    (160, 160, 0, 12, 54),    # Layer 12 — Dark Yellow
+    (192, 128, 0, 13, 34),    # Layer 13 — Brown
+    (0, 160, 255, 14, 160),   # Layer 14 — Sky Blue
+    (160, 0, 160, 15, 214),   # Layer 15 — Purple
+    (128, 128, 128, 16, 8),   # Layer 16 — Gray
+    (125, 135, 185, 17, 104), # Layer 17 — Periwinkle
+    (187, 119, 132, 18, 14),  # Layer 18 — Pinkish (ACI 14 dupe)
+    (74, 111, 227, 19, 170),  # Layer 19 — Royal Blue
+    (211, 63, 106, 20, 230),  # Layer 20 — Rose
+    (140, 215, 140, 21, 82),  # Layer 21 — Light Green
+    (240, 185, 141, 22, 44),  # Layer 22 — Peach
+    (246, 196, 225, 23, 210), # Layer 23 — Light Pink
+    (250, 158, 212, 24, 221), # Layer 24 — Hot Pink
+    (80, 10, 120, 25, 194),   # Layer 25 — Deep Purple
+    (180, 90, 0, 26, 36),     # Layer 26 — Dark Orange
+    (0, 71, 84, 27, 134),     # Layer 27 — Teal
+    (134, 250, 136, 28, 80),  # Layer 28 — Mint
+    (255, 219, 102, 29, 51),  # Layer 29 — Gold
+    (243, 105, 38, 30, 7),    # Tool T1 — Orange-Red (fallback ACI 7)
+    (12, 150, 217, 31, 7),    # Tool T2 — Sky Blue (fallback ACI 7)
+]
+
+RDP_THRESHOLD_PTS = 1000
+RDP_EPSILON_MM = 0.01
+
+def _rdp_simplify(vertices, epsilon):
+    if len(vertices) < 3:
+        return vertices
+    start, end = vertices[0], vertices[-1]
+    dx, dy = end[0] - start[0], end[1] - start[1]
+    line_len = math.hypot(dx, dy)
+    if line_len < 1e-12:
+        return [start, end]
+    max_d = 0.0
+    max_i = 0
+    for i in range(1, len(vertices) - 1):
+        d = abs(dy * vertices[i][0] - dx * vertices[i][1] + end[0] * start[1] - end[1] * start[0]) / line_len
+        if d > max_d:
+            max_d = d
+            max_i = i
+    if max_d <= epsilon:
+        return [start, end]
+    left = _rdp_simplify(vertices[:max_i + 1], epsilon)
+    right = _rdp_simplify(vertices[max_i:], epsilon)
+    return left[:-1] + right
+
 # ═══════════════════════════════════════════════════
 # GEOMETRIC PRIMITIVES (v1.0, extended v2.1 for bulges)
 # ═══════════════════════════════════════════════════
@@ -154,10 +216,14 @@ def _arc_length(entity) -> Tuple[float, int, list, list]:
 
 def _spline_length(entity) -> Tuple[float, int, list, list]:
     try:
-        pts = [entity.point(i / 99.0) for i in range(100)]
+        pts = list(entity.flattening(0.1))
+        if not pts:
+            return 0.0, 0, [], []
         verts = [(p.x, p.y) for p in pts]
-        return sum(pts[i].distance(pts[i + 1]) for i in range(99)), 100, verts, [0.0] * 100
-    except: return 0.0, 0, [], []
+        length = sum(pts[i].distance(pts[i + 1]) for i in range(len(pts) - 1))
+        return length, len(verts), verts, [0.0] * len(verts)
+    except Exception:
+        return 0.0, 0, [], []
 
 def _ellipse_length(entity) -> Tuple[float, int, list, list]:
     try:
@@ -1368,17 +1434,55 @@ def build_layer_card(entities, tool_config=None):
     }
 
 
-def resolve_aci_color(entity, doc) -> int:
+def _closest_aci(r, g, b) -> int:
+    min_dist = float('inf')
+    best_aci = 7
+    for pr, pg, pb, _, aci in LIGHTBURN_CAM_PALETTE:
+        d = (pr - r)**2 + (pg - g)**2 + (pb - b)**2
+        if d < min_dist:
+            min_dist = d
+            best_aci = aci
+    return best_aci
+
+def resolve_cam_color(entity, doc) -> int:
+    from ezdxf.colors import aci2rgb
+    if entity.has_dxf_attrib('true_color'):
+        tc = entity.dxf.true_color
+        r = (tc >> 16) & 0xFF
+        g = (tc >> 8) & 0xFF
+        b = tc & 0xFF
+        return _closest_aci(r, g, b)
     if entity.has_dxf_attrib('color'):
         c = entity.dxf.color
-        if c not in (0, 256):
-            return int(c)
-    try:
-        layer_name = entity.dxf.layer
-        if doc and layer_name in doc.layers:
-            return int(doc.layers.get(layer_name).color)
-    except Exception:
-        pass
+        if c in (0, 7):
+            return 7
+        if c != 256:
+            try:
+                rgb = aci2rgb(c)
+                return _closest_aci(rgb.r, rgb.g, rgb.b)
+            except IndexError:
+                pass
+    if doc:
+        try:
+            layer = doc.layers.get(entity.dxf.layer)
+            if layer and layer.has_dxf_attrib('true_color'):
+                tc = layer.dxf.true_color
+                r = (tc >> 16) & 0xFF
+                g = (tc >> 8) & 0xFF
+                b = tc & 0xFF
+                return _closest_aci(r, g, b)
+            if layer and layer.has_dxf_attrib('color'):
+                lc = layer.dxf.color
+                if lc in (0, 7):
+                    return 7
+                if lc != 256:
+                    try:
+                        rgb = aci2rgb(lc)
+                        return _closest_aci(rgb.r, rgb.g, rgb.b)
+                    except IndexError:
+                        pass
+        except Exception:
+            pass
     return 7
 
 
@@ -1404,12 +1508,23 @@ def index_dxf(dxf_path, tool_config=None, keep_vertices=False):
     global_bbox = [float('inf'), float('inf'), float('-inf'), float('-inf')]
 
     for idx, entity in enumerate(msp):
-        color_idx = resolve_aci_color(entity, doc)
+        color_idx = resolve_cam_color(entity, doc)
         dtype = entity.dxftype()
         if dtype not in _GEOM_FNS: continue
 
         length, pt_count, vertices, bulge_data = _GEOM_FNS[dtype](entity)
         if length <= 0: continue
+
+        if pt_count > RDP_THRESHOLD_PTS:
+            is_closed = math.hypot(vertices[0][0] - vertices[-1][0], vertices[0][1] - vertices[-1][1]) < 0.001
+            work = vertices[:-1] if is_closed and len(vertices) > 2 else vertices
+            simplified = _rdp_simplify(work, RDP_EPSILON_MM)
+            if len(simplified) >= 2:
+                vertices = simplified + [simplified[0]] if is_closed else simplified
+                pt_count = len(vertices)
+                bulge_data = [0.0] * pt_count
+                length = sum(math.hypot(vertices[i][0] - vertices[i-1][0], vertices[i][1] - vertices[i-1][1]) for i in range(1, len(vertices)))
+                if length <= 0: continue
 
         bb = _bb(vertices)
         center = _centroid(vertices)
@@ -1929,15 +2044,25 @@ def write_layer_card_csv(data, out):
 # ═══════════════════════════════════════════════════
 
 _ACI_COLOR_NAMES = {
-    0: "ByBlock", 1: "Red", 2: "Yellow", 3: "Green", 4: "Cyan",
-    5: "Blue", 6: "Magenta", 7: "White", 8: "DarkGray", 9: "LightGray",
-    30: "Orange", 52: "Lime", 92: "Azure"
+    0: "ByBlock", 1: "Red", 2: "Yellow", 3: "Green", 5: "Blue",
+    6: "Magenta", 7: "Black", 8: "DarkGray",
+    12: "DarkBlue", 14: "DarkRed", 30: "Orange", 34: "Brown",
+    36: "DarkOrange", 44: "Peach", 51: "Gold", 54: "DarkYellow",
+    80: "Mint", 82: "LightGreen", 84: "Lime", 104: "Periwinkle",
+    134: "Teal", 140: "Cyan", 160: "SkyBlue", 170: "Royal",
+    194: "DeepPurple", 210: "LightPink", 214: "Purple",
+    221: "HotPink", 230: "Rose", 252: "LightGray",
 }
 
 _VIZ_COLORS = {
-    1: "#F43F5E", 2: "#F59E0B", 3: "#10B981", 4: "#06B6D4",
-    5: "#3B82F6", 6: "#A855F7", 7: "#F8FAFC", 0: "#94A3B8",
-    30: "#EA580C", 52: "#84CC16", 92: "#0891B2"
+    0: "#000000", 1: "#FF0000", 2: "#D0D000", 3: "#00E000", 5: "#0000FF",
+    6: "#FF00FF", 7: "#000000", 8: "#808080", 12: "#0000A0",
+    14: "#A00000", 30: "#FF8000", 34: "#C08000", 36: "#B45A00",
+    44: "#F0B98D", 51: "#FFDB66", 54: "#A0A000", 80: "#86FA88",
+    82: "#8CD78C", 84: "#00A000", 104: "#7D87B9", 134: "#004754",
+    140: "#00E0E0", 160: "#00A0FF", 170: "#4A6FE3", 194: "#500A78",
+    210: "#F6C4E1", 214: "#A000A0", 221: "#FA9ED4", 230: "#D33F6A",
+    252: "#B4B4B4",
 }
 
 
