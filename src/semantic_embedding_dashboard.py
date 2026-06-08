@@ -412,7 +412,7 @@ col_viz, col_info = st.columns([2, 1])
 
 with col_viz:
     if png_bytes:
-        st.image(png_bytes, caption=f"{fname} — 1920×1080", use_container_width=True)
+        st.image(png_bytes, caption=f"{fname} — 1920×1080", use_column_width=True)
     else:
         st.warning("Matplotlib není k dispozici pro render PNG.")
 
