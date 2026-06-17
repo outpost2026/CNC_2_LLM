@@ -40,3 +40,5 @@ test_output/*_old/
 *.pem
 *.key
 credentials*.json
+
+nul
