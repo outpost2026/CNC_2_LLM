@@ -1,30 +1,45 @@
-# DXF Geometry Indexer — Moodpasta
+# CNC_2_LLM — DXF Geometry Indexer & Semantic Embedding
 
-Deterministický parser DXF/VCF souborů pro CNC frézování. Extrahuje geometrii, počítá cutting time, provádí sémantickou analýzu zón a nástrojů, generuje ML feature vektor a CAM-import-ready Layer Card.
+Deterministický parser DXF/VCF souborů pro CNC frézování s podporou sémantického embeddingu, multiodvětvového vývoje a LLM křížové validace.
 
-## Verze
-
-**Aktuální baseline:** V2.2.0  
-**Vývoj:** V2.3.0 (viz `docs/handoffs/dev_handoff_v2.3_open_code_deepseek.json`)  
+**Repozitář:** `github.com/outpost2026/CNC_2_LLM.git`  
 **Metodika:** Open Code CLI + DeepSeek V4 API (viz `docs/methodology/METHODOLOGY_MASTER_V1.md`)
+
+## Vývojové větve
+
+| Větev | Účel |
+|-------|------|
+| `main` | Stabilní baseline — pouze mergované změny |
+| `feature/semantic_embedding` | *Aktivní vývoj* — embedding dashboard, PNG viz, SNR optimalizace |
+| `feature/SNR_optimalization` | SNR analýza a trimming vývojových modulů |
+| `feature/PNG_Trimming_vector` | PNG vizualizace — vektorové trimmování |
+| `feature/p0-remove-nondeterminism` | P0: odstranění nondeterminismu z indexeru |
+| `bug/ACI_colors` | ACI barevný resolver — LightBurn paleta |
 
 ## Struktura projektu
 
 ```
-DXF_indexer_main/
-├── src/                        # Source code
-│   ├── dxf_geometry_indexer_v2.py   # Core deterministic indexer (~1994 lines)
-│   ├── dxf_indexer_app_v2.py        # Streamlit DEV dashboard
-│   └── dxf_tool_config.json        # CNC tool configuration
-├── tests/                      # Test suite (pytest)
+├── src/                              # Source code
+│   ├── dxf_geometry_indexer_v2.py         # Core deterministic indexer (~1994 lines)
+│   ├── dxf_indexer_app_v2.py              # Streamlit DEV dashboard
+│   ├── semantic_embedding_dashboard.py    # Semantic embedding dashboard (Drag & Drop)
+│   ├── semantic_embedding_dashboard.bat   # Windows launcher
+│   └── dxf_tool_config.json              # CNC tool configuration
+├── tests/                            # Test suite (pytest)
 │   ├── conftest.py
-│   └── __init__.py
-├── demo_data/                  # Test DXF files
-├── test_output/                # Golden master outputs (V2.2 baseline)
+│   ├── test_determinism.py
+│   ├── test_golden_master.py
+│   ├── test_layer_card.py
+│   ├── test_ml_vector.py
+│   └── test_smoke.py
+├── demo_data/                        # DXF test files + golden outputs
+├── test_output/                      # Golden master outputs (V2.2 baseline)
 ├── docs/
-│   ├── methodology/            # Dev methodology + Golden Rules
-│   ├── handoffs/               # Version handoffs and diffs
-│   └── reports/                # Analysis reports
+│   ├── methodology/                  # Dev methodology + Golden Rules
+│   ├── handoffs/                     # Version handoffs and diffs
+│   ├── reports/                      # Analysis reports
+│   ├── bugs/                         # Bug reports
+│   └── PRINCIPLES_DASHBOARD_DESIGN.md
 └── requirements.txt
 ```
 
@@ -40,8 +55,11 @@ python src/dxf_geometry_indexer_v2.py -i demo_data/26_skladba.dxf -o output -f b
 # CLI — dávkové zpracování
 python src/dxf_geometry_indexer_v2.py -i demo_data/ -o output -f both --viz --config src/dxf_tool_config.json
 
-# Streamlit dashboard
+# Streamlit DEV dashboard
 streamlit run src/dxf_indexer_app_v2.py
+
+# Semantic embedding dashboard (Drag & Drop DXF)
+streamlit run src/semantic_embedding_dashboard.py
 
 # Testy
 pytest tests/ -v
@@ -67,16 +85,36 @@ pytest tests/ -v
 | `-r` | Rekurzivní zpracování podadresářů |
 | `--viz` | Generovat `{name}_2d.png` |
 | `--config <path>` | Cesta k `dxf_tool_config.json` |
-| `--strict` | *Plánováno pro V2.3* — abort na hypothesis entity |
-| `--confidence` | *Plánováno pro V2.3* — tisk E_confidence indexu |
+| `--strict` | Abort na hypothesis entity |
+| `--confidence` | Tisk E_confidence indexu |
 
-## Vývojový workflow (V2.3+)
+## Semantic Embedding Dashboard
 
-1. Vyber task z `docs/handoffs/dev_handoff_v2.3_open_code_deepseek.json`
-2. Vytvoř branch: `git checkout -b feature/<task-id>`
-3. Dodržuj 10 Golden Rules (viz `docs/methodology/`)
-4. Před commitem: `pytest tests/` + diff s golden master
-5. Po commitu: merge do `main`, tag
+Spustí interaktivní dashboard pro sémantickou analýzu DXF souborů:
+
+```bash
+streamlit run src/semantic_embedding_dashboard.py
+```
+
+Nebo pomocí přiloženého .bat souboru:
+```bash
+src/semantic_embedding_dashboard.bat
+```
+
+Funkce:
+- Drag & Drop DXF souborů
+- Tier 1 / Tier 2 KPI boxy
+- 2D PNG vizualizace
+- Download artifacts: JSON, CSV, PNG, TXT (LLM prompt)
+- Multimodální LLM křížová validace výstupů parseru
+
+## Vývojový workflow
+
+1. Vyber task z `docs/handoffs/` pro aktuální vývojovou větev
+2. Vytvoř feature branch: `git checkout -b feature/<task-id>`
+3. Dodržuj Golden Rules (viz `docs/methodology/`)
+4. Před commitem: `pytest tests/ -v` + diff s golden master
+5. Po commitu: merge do `main`
 
 ## Verzování
 
