@@ -1,1 +1,8 @@
- streamlit run .\semantic_embedding_dashboard.py --server.port=8080 --server.address=127.0.0.1
+@echo off
+title CNC_2_LLM — Semantic Embedding Dashboard
+cd /d "%~dp0"
+echo Spoustim Semantic Embedding Dashboard...
+echo.
+streamlit run semantic_embedding_dashboard.py
+echo.
+pause

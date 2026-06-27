@@ -1,0 +1,411 @@
+{
+  "indexer_version": "2.3.0",
+  "metadata": {
+    "file": "C:\\Users\\PC\\AppData\\Local\\Temp\\tmp80p8mxbf.dxf",
+    "file_name": "tmp80p8mxbf.dxf",
+    "dxf_version": "AC1009",
+    "file_size_bytes": 301,
+    "md5": "3ba3d535d3a8240d8184cd1d080db5d0",
+    "timestamp": "2026-06-27T10:16:15",
+    "libraries_available": {
+      "shapely": true,
+      "scipy": true,
+      "gudhi": false
+    }
+  },
+  "spatial_bounds": {
+    "global_bbox_mm": [
+      336.5,
+      1636.5,
+      836.5,
+      2136.5
+    ],
+    "canvas_area_mm2": 250000.0,
+    "total_path_length_mm": 1570.8,
+    "entity_count": 1,
+    "layer_count": 1
+  },
+  "topology_stats": {
+    "total_closed_loops": 1,
+    "total_open_paths": 0,
+    "closed_ratio": 1.0,
+    "max_nesting_depth": 0,
+    "distinct_shape_patterns": 1,
+    "spatial_clusters": 1,
+    "total_vertices": 36,
+    "global_mean_segment_length_mm": 43.58,
+    "point_density_per_meter": 22.92
+  },
+  "entity_graph": {
+    "node_count": 1,
+    "edge_statistics": {
+      "adjacency": 0,
+      "containment": 0,
+      "intersection_bbox_overlaps": 0,
+      "proximity": 0
+    },
+    "graph_features": {
+      "connected_components": 1,
+      "cycle_count": 0,
+      "max_degree": 0,
+      "graph_diameter": 1,
+      "laplacian_eigenvalues_top10": []
+    },
+    "edges": {
+      "adjacency": [],
+      "containment": [],
+      "intersection": [],
+      "proximity": []
+    }
+  },
+  "boolean_analysis": {
+    "method": "shapely",
+    "unified_area_mm2": 195354.2,
+    "boundary_length_mm": 1568.8,
+    "convex_hull_area_mm2": 195354.2,
+    "solidity": 1.0,
+    "num_holes": 0,
+    "estimated_min_feature_width_mm": 0.0
+  },
+  "geometric_constraints": {
+    "parallel_pairs": 0,
+    "perpendicular_pairs": 0,
+    "colinear_pairs": 0,
+    "tangent_pairs": 0,
+    "orthogonal_ratio": 0.0
+  },
+  "rag_queries": {
+    "largest_closed_contours": [
+      {
+        "entity_id": "E_0000",
+        "type": "CIRCLE",
+        "area_mm2": 195354.2,
+        "bbox_mm": [
+          336.5,
+          1636.5,
+          836.5,
+          2136.5
+        ],
+        "center_mm": [
+          586.5,
+          1886.5
+        ]
+      }
+    ],
+    "isolated_features": [
+      {
+        "entity_id": "E_0000",
+        "min_distance_to_neighbor_mm": Infinity,
+        "center_mm": [
+          586.5,
+          1886.5
+        ],
+        "type": "CIRCLE"
+      }
+    ],
+    "dense_regions": [],
+    "nesting_summary": "No containment detected.",
+    "cutting_time_estimate": {
+      "config_feed_rate_mmps": 200,
+      "vibrate_cutter_time_s": 7.9,
+      "v_slot_time_s": 0.0,
+      "head_rotation_overhead_s": 0.0,
+      "total_time_s": 7.9
+    },
+    "tool_summary": {
+      "vibrate_cutter_0deg": {
+        "entity_count": 1,
+        "total_length_mm": 1570.8,
+        "operation": "outer_format"
+      }
+    },
+    "zone_analysis": [],
+    "mounting_flap": {
+      "detected": false
+    },
+    "material_optimization": {
+      "stock_plate_mm": [
+        2900.0,
+        1220.0
+      ],
+      "panel_bbox_mm": [
+        500.0,
+        500.0
+      ],
+      "yield_percent": 7.1,
+      "waste_mm": [
+        2400.0,
+        720.0
+      ],
+      "panel_fits_stock": true,
+      "panel_rotated": false
+    }
+  },
+  "ml_feature_vector_global": {
+    "entity_count": 1,
+    "closed_loop_count": 1,
+    "open_path_count": 0,
+    "total_vertices": 36,
+    "total_length_mm": 1570.8,
+    "mean_length_mm": 1570.8,
+    "std_length_mm": 0.0,
+    "p50_length_mm": 1570.8,
+    "p95_length_mm": 1570.8,
+    "min_length_mm": 1570.8,
+    "mean_area_mm2": 195354.2,
+    "std_area_mm2": 0.0,
+    "total_area_mm2": 195354.2,
+    "total_tac_rad": 6.1087,
+    "mean_tac_rad": 6.11,
+    "std_tac_rad": 0.0,
+    "max_tac_rad": 6.1087,
+    "tac_per_meter": 3.88891,
+    "mean_curvature_index": 0.0,
+    "std_curvature_index": 0.0,
+    "total_sharp_corners": 0,
+    "total_direction_changes": 0,
+    "mean_avg_segment_mm": 43.58,
+    "std_avg_segment_mm": 0.0,
+    "mean_point_count": 36.0,
+    "max_point_count": 36,
+    "has_arcs_entity_count": 0,
+    "has_arcs_ratio": 0.0,
+    "max_bulge_any": 0.0,
+    "mean_bulge_all": 0.0,
+    "graph_connected_components": 1,
+    "graph_max_degree": 0,
+    "graph_cycle_count": 0,
+    "graph_diameter": 1,
+    "constraints_parallel": 0,
+    "constraints_perpendicular": 0,
+    "constraints_orthogonal_ratio": 0.0,
+    "unified_area_mm2": 195354.2,
+    "convex_hull_area_mm2": 195354.2,
+    "solidity": 1.0,
+    "num_holes": 0,
+    "boundary_length_mm": 1568.8,
+    "min_feature_width_mm": 0.0,
+    "semantic_zone_count": 0,
+    "largest_zone_entity_count": 0,
+    "zone_lengths_mean": 0.0,
+    "max_zone_spacing_mm": 0,
+    "v_slot_entity_count": 0,
+    "v_slot_double_pass_length_mm": 0,
+    "v_slot_single_pass_length_mm": 0,
+    "head_rotation_count": 0,
+    "vibrate_cutter_length_mm": 1570.8,
+    "has_mounting_flap": 0,
+    "panel_yield_percent": 7.1,
+    "panel_fits_stock": 1,
+    "panel_is_orthogonal": 0
+  },
+  "semantic_analysis": {
+    "panel_type": "unknown",
+    "confidence": "medium",
+    "narrative_summary": "Vyrez o rozmerech 500 x 500 mm (0.25 m2). Celkova delka tras: 1.6 m. Nalezeno 1 uzavrenych obrysu a 0 otevrenych drah.\nPrirazeni nastroju CNC:\n- Vibrate cutter 0deg: 1 entit, 1.6 m (vnejsi format)\nVyteznost materialu: 7.1% z formatu 2900x1220 mm.\nOdhadovany cas CNC rezu: 0m 7s (při feed rate 200 mm/s).\n",
+    "zones": [],
+    "tool_assignments": {
+      "vibrate_cutter_0deg": {
+        "entity_ids": [
+          "E_0000"
+        ],
+        "entity_count": 1,
+        "total_length_mm": 1570.8,
+        "passes": 1,
+        "operation": "outer_format"
+      }
+    },
+    "tool_conflict_detected": false,
+    "tool_conflict_entity_ids": [],
+    "cutting_time_estimate": {
+      "config_feed_rate_mmps": 200,
+      "vibrate_cutter_time_s": 7.9,
+      "v_slot_time_s": 0.0,
+      "head_rotation_overhead_s": 0.0,
+      "total_time_s": 7.9
+    },
+    "mounting_flap": {
+      "detected": false
+    },
+    "material_yield": {
+      "stock_plate_mm": [
+        2900.0,
+        1220.0
+      ],
+      "panel_bbox_mm": [
+        500.0,
+        500.0
+      ],
+      "yield_percent": 7.1,
+      "waste_mm": [
+        2400.0,
+        720.0
+      ],
+      "panel_fits_stock": true,
+      "panel_rotated": false
+    },
+    "constraints_summary": {
+      "orthogonal_ratio": 0.0,
+      "parallel_pairs": 0,
+      "perpendicular_pairs": 0
+    },
+    "is_orthogonal": false,
+    "has_arcs_any": false
+  },
+  "layer_card": {
+    "color_count": 1,
+    "total_entities_mapped": 1,
+    "total_entities_unmapped": 0,
+    "colors": {
+      "7": {
+        "color_index": 7,
+        "color_name": "White",
+        "entity_count": 1,
+        "total_length_mm": 1570.8,
+        "total_point_count": 36,
+        "point_density_per_meter": 22.9,
+        "closed_count": 1,
+        "open_count": 0,
+        "closed_ratio": 1.0,
+        "total_tac_rad": 6.1087,
+        "tac_per_meter": 3.88891,
+        "min_length_mm": 1570.8,
+        "max_length_mm": 1570.8,
+        "geometry_types": {
+          "CIRCLE": 1
+        },
+        "layers": [
+          "Layer_0"
+        ],
+        "tool_config": {
+          "cutter_type": "Vibrate cutter",
+          "base_speed_mms": 200,
+          "direction": "N/A",
+          "h2_mm": -0.3,
+          "validation_status": "empirical",
+          "is_output": true,
+          "note": "Černá/bílá (C00, ACI 7) — hlavní obrysy. Vibrate cutter 200 mm/s."
+        },
+        "is_mapped": true
+      }
+    }
+  },
+  "layers": [
+    {
+      "name": "Layer_0",
+      "color_index": 7,
+      "entity_count": 1,
+      "total_length_mm": 1570.8,
+      "total_point_count": 36,
+      "bbox_mm": [
+        336.5,
+        1636.5,
+        836.5,
+        2136.5
+      ],
+      "geometry_types": {
+        "CIRCLE": 1
+      },
+      "spatial_complexity": {
+        "curvature_index": 0.00388889,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 43.63,
+        "closed_loop_ratio": 1.0,
+        "arc_ratio": 1.0,
+        "total_tac_rad": 6.1087
+      },
+      "entity_ids": [
+        "E_0000"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "id": "E_0000",
+      "entity_index": 0,
+      "layer": "Layer_0",
+      "color_index": 7,
+      "type": "CIRCLE",
+      "length_mm": 1570.8,
+      "point_count": 36,
+      "bbox_mm": [
+        336.5,
+        1636.5,
+        836.5,
+        2136.5
+      ],
+      "center_mm": [
+        586.5,
+        1886.5
+      ],
+      "area_mm2": 195354.2,
+      "is_closed_loop": true,
+      "complexity": {
+        "curvature_index": 0.00388889,
+        "sharp_corners_count": 0,
+        "direction_changes": 0,
+        "avg_segment_length_mm": 42.45,
+        "is_closed_loop": true,
+        "vertex_count": 37
+      },
+      "segment_statistics": {
+        "std_segment_length_mm": 0.0,
+        "mean_segment_length_mm": 43.58,
+        "min_segment_mm": 43.58,
+        "max_segment_mm": 43.58,
+        "segment_count": 36
+      },
+      "tac_rad": 6.1087,
+      "has_arcs": false,
+      "max_bulge": 0.0,
+      "mean_bulge": 0.0
+    }
+  ],
+  "spatial_clusters": [
+    {
+      "cluster_id": 1,
+      "entity_count": 1,
+      "entity_ids": [
+        "E_0000"
+      ],
+      "bbox_mm": [
+        336.5,
+        1636.5,
+        836.5,
+        2136.5
+      ]
+    }
+  ],
+  "shape_groups": [
+    {
+      "id": "Shape_G1",
+      "type": "CIRCLE",
+      "point_count": 36,
+      "length_mm": 1570.8,
+      "aspect_ratio": 1.0,
+      "instance_count": 1,
+      "entity_indices": [
+        0
+      ]
+    }
+  ],
+  "proximity_matrix": {
+    "Shape_G1": {}
+  },
+  "nesting_tree": [
+    {
+      "entity_id": "E_0000",
+      "type": "CIRCLE",
+      "length_mm": 1570.8,
+      "bbox_mm": [
+        336.5,
+        1636.5,
+        836.5,
+        2136.5
+      ],
+      "area_mm2": 195354.2,
+      "children": []
+    }
+  ]
+}
