@@ -154,9 +154,17 @@ def _arc_length(entity) -> Tuple[float, int, list, list]:
 
 def _spline_length(entity) -> Tuple[float, int, list, list]:
     try:
-        pts = [entity.point(i / 99.0) for i in range(100)]
-        verts = [(p.x, p.y) for p in pts]
-        return sum(pts[i].distance(pts[i + 1]) for i in range(99)), 100, verts, [0.0] * 100
+        from ezdxf.math import BSpline
+        ctrl_pts = [(float(p[0]), float(p[1]), float(p[2])) for p in entity.control_points]
+        knots = list(entity.knots)
+        degree = int(entity.dxf.degree)
+        bsp = BSpline(ctrl_pts, order=degree + 1, knots=knots)
+        n = 100
+        u_max = knots[-1] if knots else 1.0
+        verts = [(float(bsp.point(float(i / (n - 1)) * u_max)[0]),
+                  float(bsp.point(float(i / (n - 1)) * u_max)[1])) for i in range(n)]
+        length = sum(math.hypot(verts[i+1][0] - verts[i][0], verts[i+1][1] - verts[i][1]) for i in range(n - 1))
+        return length, n, verts, [0.0] * n
     except: return 0.0, 0, [], []
 
 def _ellipse_length(entity) -> Tuple[float, int, list, list]:
@@ -1392,12 +1400,19 @@ def index_dxf(dxf_path, tool_config=None, keep_vertices=False):
 
     for idx, entity in enumerate(msp):
         color_idx = getattr(entity.dxf, 'color', 256)
-        if color_idx == 256: color_idx = 7
+        if color_idx == 256:
+            color_idx = layer_colors.get(entity.dxf.layer, 7)
         dtype = entity.dxftype()
         if dtype not in _GEOM_FNS: continue
 
         length, pt_count, vertices, bulge_data = _GEOM_FNS[dtype](entity)
         if length <= 0: continue
+
+        circle_cx = circle_cy = circle_radius = None
+        if dtype == "CIRCLE":
+            circle_cx = entity.dxf.center.x
+            circle_cy = entity.dxf.center.y
+            circle_radius = entity.dxf.radius
 
         bb = _bb(vertices)
         center = _centroid(vertices)
@@ -1431,7 +1446,10 @@ def index_dxf(dxf_path, tool_config=None, keep_vertices=False):
             "has_arcs": has_arcs,
             "max_bulge": round(max_bulge, 6),
             "mean_bulge": round(mean_bulge, 6),
-            "vertices": vertices
+            "vertices": vertices,
+            "circle_cx": circle_cx,
+            "circle_cy": circle_cy,
+            "circle_radius": circle_radius
         })
 
     if not all_entities:
