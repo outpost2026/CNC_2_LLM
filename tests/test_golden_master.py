@@ -21,7 +21,17 @@ def _strip_volatile(result):
         result["metadata"].pop("file", None)
         result["metadata"].pop("md5", None)
     result.pop("indexer_version", None)
-    return result
+    return _fix_minus_zero(result)
+
+
+def _fix_minus_zero(obj):
+    if isinstance(obj, dict):
+        return {k: _fix_minus_zero(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [_fix_minus_zero(v) for v in obj]
+    elif isinstance(obj, float):
+        return 0.0 if obj == 0.0 and str(obj) == "-0.0" else obj
+    return obj
 
 
 @pytest.mark.integration

@@ -13,7 +13,18 @@ def _normalize_for_comparison(result):
         result["metadata"].pop("file", None)
         result["metadata"].pop("file_name", None)
         result["metadata"].pop("md5", None)
+    result = _fix_minus_zero(result)
     return json.dumps(result, sort_keys=True, indent=None, ensure_ascii=False)
+
+
+def _fix_minus_zero(obj):
+    if isinstance(obj, dict):
+        return {k: _fix_minus_zero(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [_fix_minus_zero(v) for v in obj]
+    elif isinstance(obj, float):
+        return 0.0 if obj == 0.0 and str(obj) == "-0.0" else obj
+    return obj
 
 
 @pytest.mark.determinism

@@ -1,5 +1,7 @@
 # CNC_2_LLM — DXF Geometry Indexer & Semantic Embedding
 
+[![CI](https://github.com/outpost2026/CNC_2_LLM/actions/workflows/ci.yml/badge.svg)](https://github.com/outpost2026/CNC_2_LLM/actions/workflows/ci.yml)
+
 Deterministický parser DXF/VCF souborů pro CNC frézování s podporou sémantického embeddingu, multiodvětvového vývoje a LLM křížové validace.
 
 **Repozitář:** `github.com/outpost2026/CNC_2_LLM.git`  
