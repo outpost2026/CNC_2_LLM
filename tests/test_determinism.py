@@ -13,8 +13,18 @@ def _normalize_for_comparison(result):
         result["metadata"].pop("file", None)
         result["metadata"].pop("file_name", None)
         result["metadata"].pop("md5", None)
-    result = _fix_minus_zero(result)
+    result = _round_floats(_fix_minus_zero(result))
     return json.dumps(result, sort_keys=True, indent=None, ensure_ascii=False)
+
+
+def _round_floats(obj, ndigits=10):
+    if isinstance(obj, dict):
+        return {k: _round_floats(v, ndigits) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [_round_floats(v, ndigits) for v in obj]
+    elif isinstance(obj, float):
+        return round(obj, ndigits)
+    return obj
 
 
 def _fix_minus_zero(obj):

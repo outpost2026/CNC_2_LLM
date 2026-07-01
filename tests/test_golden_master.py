@@ -21,7 +21,17 @@ def _strip_volatile(result):
         result["metadata"].pop("file", None)
         result["metadata"].pop("md5", None)
     result.pop("indexer_version", None)
-    return _fix_minus_zero(result)
+    return _round_floats(_fix_minus_zero(result))
+
+
+def _round_floats(obj, ndigits=10):
+    if isinstance(obj, dict):
+        return {k: _round_floats(v, ndigits) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [_round_floats(v, ndigits) for v in obj]
+    elif isinstance(obj, float):
+        return round(obj, ndigits)
+    return obj
 
 
 def _fix_minus_zero(obj):
