@@ -1,5 +1,7 @@
 # CNC_2_LLM — DXF/VCF CAM Pipeline
 
+[![CI](https://github.com/outpost2026/CNC_2_LLM/actions/workflows/ci.yml/badge.svg)](https://github.com/outpost2026/CNC_2_LLM/actions/workflows/ci.yml)
+
 Deterministický parser DXF (CAD) a VCF (Ruida CAM) formátů pro CNC frézování. Extrahuje geometrii, mapuje barvy na LightBurn paletu pomocí ACI→RGB→Euclidean match, počítá cutting time s korekcí na reálné strojové konstanty, generuje ML feature vektor, Layer Card (CAM-import-ready CSV) a 2D vizualizaci.
 
 **Status:** V2.4.0 — ACI Blindness resolved, INSERT block explosion, RDP culling, SPLINE fix, 32-barevná LightBurn paleta.
