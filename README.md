@@ -139,4 +139,5 @@ Ramer-Douglas-Peucker při >1000 vrcholech, ε=0.01mm. Řeší "millions of poin
 
 ## Licence
 
-MIT
+Copyright (c) 2026 SYSTEQ. All rights reserved.
+Proprietary — no license granted for use, modification, or distribution.
