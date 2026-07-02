@@ -1,14 +1,30 @@
 name: CI
 
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
       - run: pip install -r requirements.txt pytest
       - run: pytest tests/ -v --assert=plain
+
+      - name: Trigger Vcf-compiler CI
+        if: secrets.PAT_CROSS_REPO != ''
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.PAT_CROSS_REPO }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/outpost2026/Vcf-compiler/dispatches \
+            -d '{"event_type": "dxf_push", "client_payload": {"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}}'
