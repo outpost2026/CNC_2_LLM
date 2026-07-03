@@ -8,17 +8,20 @@ import os
 import json
 import pytest
 from pathlib import Path
-from dxf_geometry_indexer_v2 import index_dxf
+from dxf.indexer import DxfIndexer
 
 if os.environ.get("CI"):
-    pytest.skip("Golden master tests are local-only (platform-dependent)", allow_module_level=True)
+    pytest.skip(
+        "Golden master tests are local-only (platform-dependent)",
+        allow_module_level=True,
+    )
 
 
 def _load_golden(golden_master_dir, dxf_stem):
     gm_path = Path(golden_master_dir) / f"{dxf_stem}_index.json"
     if not gm_path.exists():
         pytest.skip(f"Golden master not found: {gm_path}")
-    with open(gm_path, 'r', encoding='utf-8') as f:
+    with open(gm_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -55,7 +58,7 @@ def _fix_minus_zero(obj):
 @pytest.mark.integration
 def test_golden_master_26_skladba(demo_dir, golden_master_dir):
     dxf = Path(demo_dir) / "26_skladba.dxf"
-    new = index_dxf(dxf, None)
+    new = DxfIndexer().index(dxf)
     assert new is not None
 
     golden = _load_golden(golden_master_dir, "26_skladba")
@@ -70,7 +73,7 @@ def test_golden_master_26_skladba(demo_dir, golden_master_dir):
 @pytest.mark.integration
 def test_golden_master_3781_1(demo_dir, golden_master_dir):
     dxf = Path(demo_dir) / "3781_1.dxf"
-    new = index_dxf(dxf, None)
+    new = DxfIndexer().index(dxf)
     assert new is not None
 
     golden = _load_golden(golden_master_dir, "3781_1")
@@ -85,7 +88,7 @@ def test_golden_master_3781_1(demo_dir, golden_master_dir):
 @pytest.mark.integration
 def test_golden_master_3824_1(demo_dir, golden_master_dir):
     dxf = Path(demo_dir) / "3824_1.dxf"
-    new = index_dxf(dxf, None)
+    new = DxfIndexer().index(dxf)
     assert new is not None
 
     golden = _load_golden(golden_master_dir, "3824_1")

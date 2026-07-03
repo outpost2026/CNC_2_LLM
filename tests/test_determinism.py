@@ -3,7 +3,7 @@
 import json
 import pytest
 from pathlib import Path
-from dxf_geometry_indexer_v2 import index_dxf, write_json
+from dxf.indexer import DxfIndexer
 
 
 def _normalize_for_comparison(result):
@@ -41,14 +41,16 @@ def _fix_minus_zero(obj):
 @pytest.mark.integration
 def test_determinism_26_skladba(demo_dir):
     dxf = Path(demo_dir) / "26_skladba.dxf"
-    run1 = index_dxf(dxf, None)
+    run1 = DxfIndexer().index(dxf)
     assert run1 is not None
-    run2 = index_dxf(dxf, None)
+    run2 = DxfIndexer().index(dxf)
     assert run2 is not None
 
     norm1 = _normalize_for_comparison(run1)
     norm2 = _normalize_for_comparison(run2)
-    assert norm1 == norm2, "Determinism failure: two runs of same DXF produced different output"
+    assert norm1 == norm2, (
+        "Determinism failure: two runs of same DXF produced different output"
+    )
 
 
 @pytest.mark.determinism
@@ -56,19 +58,22 @@ def test_determinism_26_skladba(demo_dir):
 def test_determinism_different_filenames_same_content(demo_dir, tmp_path):
     """Same DXF content with different file names must produce identical output (except metadata)."""
     import shutil
+
     source = Path(demo_dir) / "26_skladba.dxf"
     copy1 = tmp_path / "aaa.dxf"
     copy2 = tmp_path / "bbb_renamed.dxf"
     shutil.copy2(source, copy1)
     shutil.copy2(source, copy2)
 
-    run1 = index_dxf(copy1, None)
-    run2 = index_dxf(copy2, None)
+    run1 = DxfIndexer().index(copy1)
+    run2 = DxfIndexer().index(copy2)
     assert run1 is not None and run2 is not None
 
     norm1 = _normalize_for_comparison(run1)
     norm2 = _normalize_for_comparison(run2)
-    assert norm1 == norm2, "Determinism failure: different file names produced different output geometry"
+    assert norm1 == norm2, (
+        "Determinism failure: different file names produced different output geometry"
+    )
 
 
 @pytest.mark.determinism
@@ -76,8 +81,8 @@ def test_determinism_different_filenames_same_content(demo_dir, tmp_path):
 def test_determinism_all_demo_files(demo_dir):
     for dxf_name in ["26_skladba.dxf", "3781_1.dxf", "3824_1.dxf"]:
         dxf = Path(demo_dir) / dxf_name
-        run1 = index_dxf(dxf, None)
-        run2 = index_dxf(dxf, None)
+        run1 = DxfIndexer().index(dxf)
+        run2 = DxfIndexer().index(dxf)
         assert run1 is not None and run2 is not None
         norm1 = _normalize_for_comparison(run1)
         norm2 = _normalize_for_comparison(run2)
