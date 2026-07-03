@@ -22,10 +22,13 @@ jobs:
       - run: pytest tests/ -v --assert=plain
 
       - name: Trigger Vcf-compiler CI
-        if: secrets.PAT_CROSS_REPO != ''
+        env:
+          PAT: ${{ secrets.PAT_CROSS_REPO }}
         run: |
-          curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.PAT_CROSS_REPO }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/outpost2026/Vcf-compiler/dispatches \
-            -d '{"event_type": "dxf_push", "client_payload": {"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}}'
+          if [ -n "$PAT" ]; then
+            curl -X POST \
+              -H "Authorization: Bearer $PAT" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/outpost2026/Vcf-compiler/dispatches \
+              -d '{"event_type": "dxf_push", "client_payload": {"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}}'
+          fi
