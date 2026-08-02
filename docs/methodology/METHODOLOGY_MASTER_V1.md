@@ -611,7 +611,7 @@ grep -rn "\bprint\b" dxf_*.py | grep -v "#.*print" || echo "PASS"
 | Dokument | Cesta |
 |----------|-------|
 | Epistemický playbook | `New_rules/epistemicky_playbook_B2B_automation_junior_dev.txt` |
-| Golden Rules pro DeepSeek V4 | `New_rules/DeepSeek V4 API – Golden Rules for Open Code CLI Development.txt` |
+| Golden Rules pro DeepSeek V4 | `New_rules/DeepSeek_V4_API_Golden_Rules_for_Open_Code_CLI_Development.txt` |
 | Handoff V2.3 (task plán) | `New_rules/dev_handoff_v2.3_open_code_deepseek.json` |
 | Paradigm Shift Report | `New_rules/PARADIGM_SHIFT_REPORT_V2_2_to_V2_3.md` |
 | Kompletní handoff V2.2 | `dokumentace/dev_handoff_v22_complete.json` |

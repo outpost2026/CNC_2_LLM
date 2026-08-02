@@ -127,7 +127,7 @@ g:\Můj disk\Moodpasta\dxf_integrace\dokumentace\
 ├── PROJEKTOVA_MAPA.md              ← originál (tento soubor)
 ├── New_rules/
 │   ├── epistemicky_playbook_B2B_automation_junior_dev.txt
-│   ├── DeepSeek V4 API – Golden Rules for Open Code CLI Development.txt
+│   ├── DeepSeek_V4_API_Golden_Rules_for_Open_Code_CLI_Development.txt
 │   ├── dev_handoff_v2.3_open_code_deepseek.json
 │   └── PARADIGM_SHIFT_REPORT_V2_2_to_V2_3.md
 ```
